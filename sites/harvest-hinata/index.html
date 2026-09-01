@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>道の駅 ハーベストひなた｜日向町の観光・交流拠点</title>
+<meta name="description" content="とれたて新鮮な、ここでしか味わえないもの。道の駅ハーベストひなたは、日向町の食と観光の交流拠点です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&family=Krona+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<!-- マスコット（使い回すのでSVGシンボルにしておく） -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="mascot" viewBox="-46 -62 92 112">
+    <path d="M 0 -34 C 26 -34 40 -14 40 6 C 40 30 22 44 0 44 C -22 44 -40 30 -40 6 C -40 -14 -26 -34 0 -34 Z" fill="#FCCF05"/>
+    <path d="M 2 -34 q 3 -16 -6 -24" stroke="#E8500F" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M 6 -30 q 14 -6 18 4 q 3 9 -7 10 q -8 1 -7 -6" stroke="#0080CA" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+    <circle cx="-13" cy="2" r="3.4" fill="#1A1A1A"/><circle cx="13" cy="2" r="3.4" fill="#1A1A1A"/>
+    <path d="M -3 10 L 3 10 L 0 15 Z" fill="#E8500F"/>
+    <path d="M -8 20 q 8 7 16 0" stroke="#1A1A1A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <a class="logo" href="#">
+      <svg class="logo__mark" aria-hidden="true"><use href="#mascot"/></svg>
+      <span class="logo__ja">道 の 駅</span>
+      <span class="logo__name">ハーベストひなた</span>
+      <span class="logo__en">HARVEST HINATA</span>
+    </a>
+
+    <nav class="gnav" id="gnav" aria-label="グローバルナビゲーション">
+      <ul>
+        <li><a href="#about"><b>道の駅について</b><i>About Us</i></a></li>
+        <li><a href="#about"><b>施設・店舗案内</b><i>Information</i></a></li>
+        <li><a href="#products"><b>取扱商品</b><i>Products</i></a></li>
+        <li><a href="#footer"><b>アクセス</b><i>Access</i></a></li>
+        <li><a href="#news"><b>お知らせ</b><i>News</i></a></li>
+      </ul>
+    </nav>
+
+    <div class="hero__actions">
+      <a class="rndbtn" href="#"><span class="ic ic--shop" aria-hidden="true"></span>SHOP</a>
+      <button type="button" class="rndbtn rndbtn--menu" id="menuBtn" aria-expanded="false" aria-controls="gnav">
+        <span class="ic ic--menu" aria-hidden="true"></span>MENU
+      </button>
+    </div>
+
+    <div class="hero__stage">
+      <svg class="hero__ring" viewBox="0 0 1440 1500" aria-hidden="true">
+        <defs><path id="ringpath" d="M 720 880 m -620 0 a 620 620 0 1 1 1240 0"/></defs>
+        <text><textPath href="#ringpath" startOffset="2%">フレッシュ！ひなたで、リフレッシュ！ひなたで、</textPath></text>
+      </svg>
+
+      <span class="hero__disc" aria-hidden="true"></span>
+      <figure class="hero__ph hero__ph--l"><img src="assets/img/building.webp" alt="道の駅の外観"></figure>
+      <figure class="hero__ph hero__ph--r"><img src="assets/img/sunset.webp" alt="遠浅の海に沈む夕日"></figure>
+
+      <div class="tree">
+        <img class="tree__img" src="assets/img/tree.webp" alt="ひなたの生産者たちが実る梨の木" width="900" height="770">
+        <ul class="tree__faces" aria-label="ひなたの生産者たち">
+          <li style="--x:39%;--y:19%"><img src="assets/img/p0.webp" alt="梨の生産者"></li>
+          <li style="--x:53%;--y:12%"><img src="assets/img/p1.webp" alt="漁師"></li>
+          <li style="--x:67%;--y:19%"><img src="assets/img/p2.webp" alt="野菜の生産者"></li>
+          <li style="--x:29%;--y:41%"><img src="assets/img/p3.webp" alt="パン職人"></li>
+          <li style="--x:53%;--y:39%"><img src="assets/img/p4.webp" alt="ぶどうの生産者"></li>
+          <li style="--x:77%;--y:41%"><img src="assets/img/p5.webp" alt="加工品の作り手"></li>
+          <li style="--x:36%;--y:63%"><img src="assets/img/p6.webp" alt="料理人"></li>
+          <li style="--x:53%;--y:67%"><img src="assets/img/p7.webp" alt="青果の生産者"></li>
+          <li style="--x:70%;--y:63%"><img src="assets/img/p8.webp" alt="米の生産者"></li>
+        </ul>
+      </div>
+
+      <a class="newscard" href="#news">
+        <span class="newscard__thumb"><svg aria-hidden="true"><use href="#mascot"/></svg></span>
+        <span class="newscard__body">
+          <b>大屋根広場のイベント開催と現在の営業状…</b>
+          <time datetime="2026-07-30">2026.07.30</time>
+        </span>
+        <span class="newscard__badge" aria-hidden="true">！</span>
+      </a>
+    </div>
+    <div class="wave wave--white" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ CONCEPT ============ -->
+  <section class="concept">
+    <div class="concept__row">
+      <figure class="blob blob--ph"><img src="assets/img/pear-tree.webp" alt="実った梨"></figure>
+      <p class="concept__txt">とれたて新鮮な、ここでしか味わえないもの。<br>土地がはぐくんだ、ここでしかであえないもの。<br>こころをほぐしてくれる、ここにしかないもの。<br>食も、人も、であいも、風景だって、ぜんぶ産地直送。</p>
+      <figure class="blob blob--y"><img src="assets/img/c-scooter.webp" alt="" aria-hidden="true"></figure>
+    </div>
+
+    <div class="concept__row">
+      <figure class="blob blob--y"><img src="assets/img/c-picker.webp" alt="" aria-hidden="true"></figure>
+      <p class="concept__txt">どっぷりと、ひなたの魅力にひたって<br>おもうぞんぶん、食べて、遊んで、<br>笑って、のんびりして。</p>
+      <figure class="blob blob--ph"><img src="assets/img/bread.webp" alt="焼きたてのパン"></figure>
+    </div>
+
+    <div class="concept__row">
+      <figure class="blob blob--ph"><img src="assets/img/nori-pack.webp" alt="海苔の商品"></figure>
+      <p class="concept__txt">いつでも「おかえり」「ただいま」と<br>どこからか声が聞こえてくるような。<br>そんな道の駅ハーベストひなたへ、ようこそ。</p>
+      <figure class="blob blob--y"><img src="assets/img/c-boat.webp" alt="" aria-hidden="true"></figure>
+    </div>
+
+    <img class="deco deco--gull1" src="assets/img/c-gull.webp" alt="" aria-hidden="true">
+    <img class="deco deco--cloud1" src="assets/img/c-cloud.webp" alt="" aria-hidden="true">
+    <img class="deco deco--cloud2" src="assets/img/c-cloud.webp" alt="" aria-hidden="true">
+    <img class="deco deco--gull2" src="assets/img/c-gull.webp" alt="" aria-hidden="true">
+
+    <div class="concept__cta">
+      <svg class="concept__mascot" aria-hidden="true"><use href="#mascot"/></svg>
+      <p class="concept__logo"><span>道 の 駅</span><b>ハーベストひなた</b></p>
+      <a class="pillbtn pillbtn--orange" href="#about"><span><b>道の駅について</b><i>About us</i></span></a>
+    </div>
+    <div class="wave wave--white" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <figure class="about__map">
+      <img src="assets/img/isometric.webp" alt="道の駅ハーベストひなたの敷地全体図" width="1900" height="1270">
+    </figure>
+
+    <div class="about__pref">
+      <svg viewBox="0 0 200 320" class="about__prefsvg" aria-hidden="true">
+        <path d="M 96 0 q 44 12 40 54 q -4 40 22 62 q 30 26 18 74 q -10 40 -40 60 q -26 18 -30 54 q -4 40 -40 52 q -40 14 -62 -16 q -20 -28 -12 -66 q 8 -38 -16 -58 q -30 -24 -20 -62 q 8 -32 40 -44 q 30 -12 40 -44 q 12 -36 60 -66 Z" fill="#8FC98F" stroke="#5AA05A" stroke-width="2.4"/>
+        <circle cx="70" cy="92" r="11" fill="#FCCF05" stroke="#1A1A1A" stroke-width="2"/>
+        <path d="M 81 100 L 175 148" stroke="#1A1A1A" stroke-width="1.6"/>
+      </svg>
+      <p class="about__preflabel"><i>HINATA</i><b>日向町</b></p>
+    </div>
+    <img class="deco deco--family" src="assets/img/c-family.webp" alt="" aria-hidden="true">
+
+    <header class="about__head">
+      <h2><span class="k">道の駅</span><i class="en">About Us</i><em>！</em><span class="n">ハーベストひなた</span></h2>
+    </header>
+
+    <div class="about__body">
+      <p>日向町は、海と丘の両方を持つまちです。西に遠浅の入り江、内陸にゆるい丘。その真ん中に「道の駅ハーベストひなた」があります。旅の途中で寄る場所であると同時に、町の人が夕方の買い物に来る場所でもあります。観光と日常が同じ棚の前で混ざる、そういう道の駅を目指しています。</p>
+      <a class="pillbtn pillbtn--blue" href="#"><span><b>施設・店舗案内へ</b><i>Information</i></span></a>
+    </div>
+
+    <ul class="strip">
+      <li><img src="assets/img/pear-tree.webp" alt="収穫期の梨"></li>
+      <li><img src="assets/img/pear-box.webp" alt="箱詰めされた梨"></li>
+      <li><img src="assets/img/sea.webp" alt="遠浅の海"></li>
+      <li><img src="assets/img/nori.webp" alt="海苔"></li>
+    </ul>
+    <div class="wave wave--blue" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ PRODUCTS ============ -->
+  <section class="products" id="products">
+    <span class="products__blob" aria-hidden="true"></span>
+    <div class="products__grid">
+      <ul class="products__ph">
+        <li><img src="assets/img/grapes.webp" alt="収穫したぶどう"></li>
+        <li><img src="assets/img/farmer.webp" alt="梨園の生産者"></li>
+        <li><img src="assets/img/pear-close.webp" alt="収穫した梨"></li>
+      </ul>
+      <div class="products__body">
+        <h2><span class="k">取扱商品</span><i class="en">Products</i><em>！</em></h2>
+        <p>遠浅の入り江は潮の引きが大きく、貝の育つ場所になっています。丘のほうでは果樹と葉物が季節ごとに入れ替わります。棚に並ぶものが二週間で変わるので、来るたびに違うものがあります。</p>
+        <a class="pillbtn pillbtn--white" href="#"><span><b>取扱商品の一覧へ</b><i>Product list</i></span></a>
+      </div>
+    </div>
+    <img class="deco deco--bike" src="assets/img/c-bike.webp" alt="" aria-hidden="true">
+    <div class="wave wave--white" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ TOURISM ============ -->
+  <section class="tourism">
+    <div class="tourism__head">
+      <h2><span class="k">ひなたの</span><i class="en">Tourism</i><em>！</em><span class="k">観光情報を発信！</span></h2>
+      <div class="tourism__body">
+        <p>町とその周りの見どころをまとめた案内所です。入り江を見わたせるテラスがあり、そこから歩ける範囲の地図を配っています。まずここで行き先を決めてから動く方が多いです。</p>
+      </div>
+    </div>
+    <div class="tourism__strip">
+      <ul class="strip">
+        <li><img src="assets/img/sunset.webp" alt="夕日のスポット"></li>
+        <li><img src="assets/img/building.webp" alt="展望デッキ"></li>
+        <li><img src="assets/img/station.webp" alt="道の駅の外観"></li>
+        <li><img src="assets/img/shop.webp" alt="直売所の店内"></li>
+      </ul>
+      <img class="deco deco--boat" src="assets/img/c-boat.webp" alt="" aria-hidden="true">
+      <a class="pillbtn pillbtn--blue tourism__btn" href="#"><span><b>詳細ページへ</b><i>More</i></span></a>
+    </div>
+    <div class="wave wave--gray" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section class="news" id="news">
+    <header class="news__head">
+      <p class="news__label"><i class="en">News&amp;Event</i><em>！</em></p>
+      <h2>お知らせ・イベント</h2>
+      <a class="pillbtn pillbtn--blue" href="#"><span><b>記事の一覧へ</b><i>More</i></span></a>
+    </header>
+
+    <ul class="news__list">
+      <li><a href="#">
+        <span class="news__thumb"><img src="assets/img/terrace.webp" alt="オープンテラス"><span class="news__new">New</span></span>
+        <span class="news__txt">
+          <span class="news__meta"><time datetime="2026-08-27">2026.08.27</time><i>ひなたのみりょく</i></span>
+          <b>遠浅の海を一望する、至福の特等席。2階オープンテラスで過ごす昼下がりのひととき。</b>
+        </span>
+      </a></li>
+      <li><a href="#">
+        <span class="news__thumb news__thumb--logo"><svg aria-hidden="true"><use href="#mascot"/></svg><small>道の駅<br>ハーベストひなた</small><span class="news__new">New</span></span>
+        <span class="news__txt">
+          <span class="news__meta"><time datetime="2026-08-25">2026.08.25</time><i>営業情報</i></span>
+          <b>9月・10月の営業カレンダー</b>
+        </span>
+      </a></li>
+      <li><a href="#">
+        <span class="news__thumb news__thumb--logo"><svg aria-hidden="true"><use href="#mascot"/></svg><small>道の駅<br>ハーベストひなた</small><span class="news__new">New</span></span>
+        <span class="news__txt">
+          <span class="news__meta"><time datetime="2026-08-22">2026.08.22</time><i>出店予約</i></span>
+          <b>出店のご案内（大屋根広場・屋外スペース・キッチンカー）</b>
+        </span>
+      </a></li>
+      <li><a href="#">
+        <span class="news__thumb news__thumb--logo"><svg aria-hidden="true"><use href="#mascot"/></svg><small>道の駅<br>ハーベストひなた</small></span>
+        <span class="news__txt">
+          <span class="news__meta"><time datetime="2026-08-10">2026.08.10</time><i>営業情報</i></span>
+          <b>【台風の影響により開催中止】道の駅ハーベストひなた 家族みんなで夏まつり enjoy the summer</b>
+        </span>
+      </a></li>
+    </ul>
+    <div class="wave wave--white" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ SORAIRO ============ -->
+  <section class="sorairo">
+    <ul class="sorairo__art sorairo__art--l" aria-hidden="true">
+      <li><img src="assets/img/k0.webp" alt=""></li><li><img src="assets/img/k1.webp" alt=""></li>
+      <li><img src="assets/img/k2.webp" alt=""></li><li><img src="assets/img/k3.webp" alt=""></li>
+    </ul>
+    <ul class="sorairo__art sorairo__art--r" aria-hidden="true">
+      <li><img src="assets/img/k4.webp" alt=""></li><li><img src="assets/img/k5.webp" alt=""></li>
+      <li><img src="assets/img/k6.webp" alt=""></li><li><img src="assets/img/k7.webp" alt=""></li>
+    </ul>
+
+    <div class="sorairo__body">
+      <p class="sorairo__kicker">日向町 保健・福祉・子育て支援施設</p>
+      <h2 class="sorairo__logo" aria-label="Sorairo そらいろ">
+        <span aria-hidden="true"><i>S</i><i>o</i><i>r</i><i>a</i><i>i</i><i>r</i><i>o</i></span>
+        <small>そらいろ</small>
+      </h2>
+      <p>敷地の奥に、町の子育て支援の窓口を併設しています。天井の高い遊び場「そらいろパーク」、集まりに使える「そらいろホール」、料理教室に使う「そらいろキッチン」、それと相談室。手続きと相談を一か所で済ませられるようにしています。</p>
+      <a class="pillbtn pillbtn--orange" href="#"><span><b>詳細ページへ</b><i>More</i></span></a>
+    </div>
+    <div class="wave wave--blue" aria-hidden="true"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="footer">
+  <ul class="banners">
+    <li><a href="#">
+      <img class="banners__ic" src="assets/img/ic-tomato.webp" alt="" aria-hidden="true">
+      <span><i>美味しいを直送！</i><b class="c-blue">オンラインショップ</b></span>
+      <img class="banners__ic" src="assets/img/ic-pear.webp" alt="" aria-hidden="true">
+      <span class="corner" aria-hidden="true">more</span>
+    </a></li>
+    <li><a href="#">
+      <span><i>スタッフおすすめ！</i><b>ひなたのみりょく</b></span>
+      <img class="banners__ph" src="assets/img/sea.webp" alt="" aria-hidden="true">
+      <span class="corner" aria-hidden="true">more</span>
+    </a></li>
+  </ul>
+
+  <ul class="minis">
+    <li><a href="#"><span><i>直売所</i><b>出荷者募集</b></span><img src="assets/img/p0.webp" alt="" aria-hidden="true"></a></li>
+    <li><a href="#"><span><i>ひなたで働きませんか？</i><b>スタッフ募集</b></span><img src="assets/img/p2.webp" alt="" aria-hidden="true"></a></li>
+    <li><a href="#"><span><i>ひなたを盛り上げたい方！</i><b>出店予約</b></span><img src="assets/img/p4.webp" alt="" aria-hidden="true"></a></li>
+    <li><a href="#"><span><i>お気軽にどうぞ</i><b>施設予約</b></span><img src="assets/img/p6.webp" alt="" aria-hidden="true"></a></li>
+  </ul>
+
+  <div class="fmain">
+    <div class="fmain__info">
+      <p class="logo logo--footer">
+        <svg class="logo__mark" aria-hidden="true"><use href="#mascot"/></svg>
+        <span class="logo__ja">道 の 駅</span>
+        <span class="logo__name">ハーベストひなた</span>
+        <span class="logo__en">HARVEST HINATA</span>
+      </p>
+      <p class="fmain__addr">〒000-0000　日向県日向町ひなた二丁目3番地1</p>
+      <p class="fmain__tel"><i>Tel.</i><b>0000-00-0000</b></p>
+      <p class="fmain__hours">営業時間：9:00〜18:30 ／ 駐車場：24時間<br>定休日：火曜日（祝日の場合は営業）</p>
+      <p class="fmain__btns">
+        <a href="#"><span class="dot dot--orange" aria-hidden="true"></span>グーグルマップ</a>
+        <a href="#"><span class="dot dot--mail" aria-hidden="true"></span>お問い合わせ</a>
+      </p>
+      <p class="fmain__sns">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◻</a>
+        <a href="#" aria-label="LINE">●</a>
+        <a class="fmain__pp" href="#">プライバシーポリシー</a>
+      </p>
+      <p class="copy">(C) HARVEST HINATA 2026.</p>
+    </div>
+
+    <nav class="fnav" aria-label="フッターナビゲーション">
+      <div><h2>道の駅ハーベストひなたについて</h2><ul><li><a href="#">コンセプト</a></li><li><a href="#">ひなたについて</a></li></ul></div>
+      <div><h2>施設・テナント情報</h2><ul><li><a href="#">直売所営業カレンダー</a></li><li><a href="#">道の駅ハーベストひなた</a></li><li><a href="#">日向町保健・福祉・子育て支援施設 Sorairo</a></li></ul></div>
+      <div><h2>取扱商品</h2></div>
+      <div><h2>お知らせ・イベント</h2><ul><li><a href="#">営業情報</a></li><li><a href="#">ひなたの観光情報</a></li><li><a href="#">イベント情報</a></li><li><a href="#">よくある質問</a></li></ul></div>
+    </nav>
+  </div>
+
+  <div class="fbottom" aria-hidden="true">
+    <span class="fbottom__pear"></span>
+    <svg class="fbottom__ring" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax meet">
+      <defs><path id="footring" d="M -160 1000 A 880 880 0 0 1 1600 1000"/></defs>
+      <text><textPath href="#footring" startOffset="14%">が、フレッシュ！ひなた</textPath></text>
+    </svg>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

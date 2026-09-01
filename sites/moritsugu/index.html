@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>モリツグ｜その山、ひとりで抱えなくていい。</title>
+<meta name="description" content="モリツグは、手入れが止まった山林の持ち主と、保全に関わりたい企業をつなぐ仲介サービスです。契約から現地の段取り、年に一度の報告まで引き受けます。（架空のサイトです）">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<!-- ============ 固定ナビ（PC）／ハンバーガー（SP） ============ -->
+<header class="hd">
+  <a class="hd__logo" href="#top" aria-label="モリツグ ホーム">
+    <svg viewBox="0 0 46 30" aria-hidden="true"><path d="M2 26 L15 4 L24 17 L30 9 L44 26 Z"/></svg>
+    <b>モリツグ</b>
+  </a>
+  <nav class="hd__nav" id="nav" aria-label="メインナビゲーション">
+    <a href="#about">モリツグについて</a>
+    <a href="#features">できること</a>
+    <a href="#flow">引き受けるまで</a>
+    <a href="#cases">つないだ山</a>
+    <a href="#faq">よくある質問</a>
+    <a href="#contact">ご相談</a>
+  </nav>
+  <button class="hd__burger" id="burger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- 右端の縦書きタグライン＋マスコット（PCのみ） -->
+<div class="side" aria-hidden="true">
+  <img src="assets/img/tsugu-stand.webp" alt="" width="241" height="282">
+  <p class="side__v">手入れの止まった山を<br>企業とつなぐ</p>
+</div>
+
+<main id="main">
+
+<!-- ============ 1. ヒーロー ============ -->
+<!-- 空(CSS)＋遠景／中景／前景の3層。雲と鳥は空の層を流れる。スクロールで層ごとに速度が変わる -->
+<section class="hero" id="top">
+    <!-- 空を流れるもの（見出しの後ろの空。層より奥に敷く） -->
+  <div class="sky-lane" aria-hidden="true">
+    <svg class="cl cl--1" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <svg class="cl cl--2" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <svg class="cl cl--3" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <svg class="cl cl--4" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <svg class="cl cl--5" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <!-- 羽ばたきは4コマのスプライトを steps(4) で送る -->
+    <i class="flap flap--1"></i>
+    <i class="flap flap--2"></i>
+  </div>
+
+  <div class="hero__body">
+    <p class="en hero__en">Mori &times; Tsugu</p>
+    <h1 class="hero__h">
+      <span class="type" data-type>その山、</span><br>
+      <span class="type" data-type data-delay="1">ひとりで<span class="sp-nb"><br class="sp-br"></span>抱えなくていい。</span>
+    </h1>
+    <p class="hero__lead">手入れが要る山と、手入れをしたい企業のあいだに立ちます。<br>契約から現地の段取り、年に一度の報告まで引き受けます。</p>
+    <p><a class="btn btn--solid" href="#contact">相談してみる</a></p>
+    <p class="scrolldown en" aria-hidden="true">SCROLL<span></span></p>
+  </div>
+
+  <div class="scene" aria-label="尾根から見下ろした里山の谷。棚田と集落、川、歩く二人" role="img">
+    <div class="scene__l scene__l--far" data-par="0.06"><img src="assets/img/hero-far.webp" alt="" width="1536" height="522" fetchpriority="high"></div>
+    <div class="scene__l scene__l--mid" data-par="0.14"><img src="assets/img/hero-mid.webp" alt="" width="1536" height="490" fetchpriority="high"></div>
+    <div class="scene__l scene__l--near" data-par="0.24">
+      <img class="scene__ground" src="assets/img/hero-ground.webp" alt="" width="1536" height="338" fetchpriority="high">
+      <!-- 歩く二人も単体生成。地面の絵に入れると必ず巨大化するので、縮尺はこちらで握る -->
+      <img class="scene__walkers" src="assets/img/hero-walkers.webp" alt="" width="140" height="195">
+      <!-- 手前の木だけ単体生成（900幅）。表示430pxなので約2.1倍の密度になる -->
+      <img class="scene__tree scene__tree--l" src="assets/img/hero-tree-l.webp" alt="" width="890" height="1327">
+      <img class="scene__tree scene__tree--r" src="assets/img/hero-tree-r.webp" alt="" width="871" height="1310">
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ 2. 課題 ============ -->
+<section class="problem" id="about">
+  <div class="wrap">
+    <p class="en sec-en reveal">PROBLEM</p>
+    <p class="bubble bubble--y reveal">こんなこと、ありませんか？</p>
+
+    <div class="problem__figs" aria-hidden="true">
+      <img class="reveal" src="assets/img/p-troubled.webp" alt="" width="254" height="382">
+      <img class="reveal" src="assets/img/p-puzzled.webp" alt="" width="226" height="367">
+    </div>
+
+    <ol class="worries">
+      <li class="reveal">
+        <span class="worries__n">1</span>
+        <div>
+          <h3>相続したはいいが、<br>境界がどこか分からない</h3>
+          <p>登記は自分の名前になっている。でも、どこからどこまでが自分の山なのか、誰にも聞けないまま何年も経っている。</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="worries__n">2</span>
+        <div>
+          <h3>「そろそろ手を入れないと」<br>と言われて10年</h3>
+          <p>区長さんにも役場にも言われている。やらないといけないのは分かる。ただ、何から始めるのかが分からない。</p>
+        </div>
+      </li>
+      <li class="reveal">
+        <span class="worries__n">3</span>
+        <div>
+          <h3>見積もりを頼んだら、<br>思っていた桁と違った</h3>
+          <p>3haで数百万。そんな金額は出せない。かといって放っておくと、倒れた木が道に出るのも時間の問題。</p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="problem__end reveal">
+      <img src="assets/img/tsugu-point.webp" alt="" width="275" height="268" aria-hidden="true">
+      <b>ぜんぶ、こちらで引き受けます。</b>
+    </p>
+  </div>
+</section>
+
+<!-- ============ 3. できること ============ -->
+<section class="feat" id="features">
+  <div class="wrap">
+    <h2 class="wave-h reveal">モリツグができること</h2>
+    <p class="sec-lead reveal">山を売る話でも、補助金の書類を書かせる話でもありません。</p>
+
+    <ul class="feat__list">
+      <li class="reveal">
+        <img class="feat__peek" src="assets/img/tsugu-peek.webp" alt="" width="349" height="250" aria-hidden="true">
+        <div class="gcard">
+          <div class="gcard__in">
+            <img class="feat__ic" src="assets/img/ic-map.webp" alt="" width="229" height="270">
+            <p class="tag">01 境界と現況</p>
+            <h3>まず、山の輪郭を<br>はっきりさせる</h3>
+            <hr class="squig">
+            <p>公図と登記、それから現地。3つを突き合わせて、いまの境界を1枚の図にまとめます。隣の山の持ち主への挨拶も、こちらで回ります。所有者が複数に分かれている場合の整理も含みます。</p>
+          </div>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="gcard">
+          <div class="gcard__in">
+            <img class="feat__ic" src="assets/img/ic-match.webp" alt="" width="253" height="236">
+            <p class="tag">02 企業とつなぐ</p>
+            <h3>山と企業を、<br>性格で引き合わせる</h3>
+            <hr class="squig">
+            <p>「とにかく木を植えたい」企業もあれば、「社員が毎年来られる場所がほしい」企業もあります。山の側の事情と合う相手だけを持ってきます。合わなければ、無理に決めません。</p>
+          </div>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="gcard">
+          <div class="gcard__in">
+            <img class="feat__ic" src="assets/img/ic-year.webp" alt="" width="199" height="210">
+            <p class="tag">03 毎年まわす</p>
+            <h3>決めたあとの手間を、<br>こちらで持つ</h3>
+            <hr class="squig">
+            <p>作業の手配、当日の立ち会い、写真の記録、年に一度の報告書。続けるのに要る面倒はぜんぶ引き受けます。お願いするのは年1回、報告書に目を通していただくことだけです。</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <p class="sec-note reveal">どれか1つだけをお願いすることもできます。</p>
+  </div>
+</section>
+
+<!-- ============ 4. 引き受けるまでの流れ ============ -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <h2 class="wave-h reveal">引き受けるまでの流れ</h2>
+
+    <div class="flow__box reveal">
+      <img class="flow__peek" src="assets/img/tsugu-peek.webp" alt="" width="349" height="250" aria-hidden="true">
+      <div class="gcard">
+        <div class="gcard__in">
+          <p class="corners en">MORITSUGU<br>FLOW</p>
+
+          <ol class="steps">
+            <li>
+              <p class="steps__pill en">STEP 1</p>
+              <img src="assets/img/ic-hearing.webp" alt="" width="223" height="188" aria-hidden="true">
+              <div class="steps__txt">
+                <h3>お話をうかがう</h3>
+                <p>どこにある山で、いまどうなっているか。分かる範囲で構いません。「登記簿が見つからない」から始まる方がほとんどです。</p>
+              </div>
+              <p class="steps__note">費用はかかりません</p>
+            </li>
+            <li>
+              <p class="steps__pill en">STEP 2</p>
+              <img src="assets/img/ic-survey.webp" alt="" width="202" height="212" aria-hidden="true">
+              <div class="steps__txt">
+                <h3>山を見にいく</h3>
+                <p>こちらで現地に入り、木の育ち具合と道の有無を見ます。写真と簡単な図にまとめて、そのままお渡しします。</p>
+              </div>
+              <p class="steps__note">2〜3週間</p>
+            </li>
+            <li>
+              <p class="steps__pill en">STEP 3</p>
+              <img src="assets/img/ic-plan.webp" alt="" width="177" height="234" aria-hidden="true">
+              <div class="steps__txt">
+                <h3>手の入れ方を決める</h3>
+                <p>全部やる必要はありません。今年どこまでやるかを、費用と一緒に3案お出しして、選んでいただきます。</p>
+              </div>
+              <p class="steps__note">1ヶ月ほど</p>
+            </li>
+            <li>
+              <p class="steps__pill en">STEP 4</p>
+              <img src="assets/img/ic-match.webp" alt="" width="253" height="236" aria-hidden="true">
+              <div class="steps__txt">
+                <h3>企業を探す</h3>
+                <p>決めた計画に合う企業を、こちらから当たります。相手が決まったら、三者で一度お会いする場を作ります。</p>
+              </div>
+              <p class="steps__note">2〜4ヶ月</p>
+            </li>
+            <li>
+              <p class="steps__pill en">STEP 5</p>
+              <img src="assets/img/ic-report.webp" alt="" width="226" height="274" aria-hidden="true">
+              <div class="steps__txt">
+                <h3>はじめて、続ける</h3>
+                <p>作業の手配から報告書まではこちらの担当です。年に1回、その年の写真と収支をまとめてお送りします。</p>
+              </div>
+              <p class="steps__note">毎年</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-note reveal">途中でやめても違約金はいただきません。合わなければ、そう言ってください。</p>
+  </div>
+</section>
+
+<!-- ============ 5. つないだ山と企業 ============ -->
+<section class="cases" id="cases">
+  <div class="wrap">
+    <h2 class="wave-h reveal">つないだ山と企業</h2>
+    <p class="sec-lead reveal">これまでにお引き受けした山です。すべて所有者の方の許可を得て載せています。</p>
+
+    <ul class="cases__list">
+      <li class="reveal">
+        <figure><img src="assets/img/case-thin.webp" alt="スギの立木を間伐する2人" width="640" height="640"><figcaption class="tag tag--g">間伐</figcaption></figure>
+        <p class="cases__meta">つむぎ野町 東谷　/　4.2ha ／ スギ・ヒノキ</p>
+        <h3>30年ぶりに、道が通った</h3>
+        <p>植えたまま手が入っていない山でした。まず作業道を1本入れて、3年かけて間伐を進めています。光が入って、下草が戻りました。</p>
+        <hr class="squig">
+        <p class="cases__corp">相手企業：株式会社みなも印刷</p>
+      </li>
+      <li class="reveal">
+        <figure><img src="assets/img/case-plant.webp" alt="斜面で苗木を植える人たち" width="640" height="640"><figcaption class="tag tag--y">植樹</figcaption></figure>
+        <p class="cases__meta">小鳥沢 上ノ平　/　1.8ha ／ 広葉樹</p>
+        <h3>社員が、毎年来る山になった</h3>
+        <p>「社員旅行の行き先がほしい」という相談から始まりました。春に苗を植えて、秋に草を刈る。今年で4年目です。</p>
+        <hr class="squig">
+        <p class="cases__corp">相手企業：かえで運輸株式会社</p>
+      </li>
+      <li class="reveal">
+        <figure><img src="assets/img/case-floor.webp" alt="光の入った明るい林床と、通り抜ける小径" width="640" height="640"><figcaption class="tag tag--g">整備</figcaption></figure>
+        <p class="cases__meta">日ノ木 西山　/　6.5ha ／ スギ</p>
+        <h3>倒れる前に、片づいた</h3>
+        <p>台風のあと、道に倒れかけた木が20本以上ありました。危ないところから順に片づけて、いまは通れます。</p>
+        <hr class="squig">
+        <p class="cases__corp">相手企業：株式会社つばくろ食品</p>
+      </li>
+      <li class="reveal">
+        <figure><img src="assets/img/case-shed.webp" alt="林のふちに建つ木の小屋と積まれた丸太" width="640" height="640"><figcaption class="tag tag--y">小屋</figcaption></figure>
+        <p class="cases__meta">つむぎ野町 中村　/　0.9ha ／ 混交林</p>
+        <h3>道具を置く場所ができた</h3>
+        <p>山に入るたび軽トラで道具を運んでいました。小屋を1つ建てただけで、行く回数が倍になりました。</p>
+        <hr class="squig">
+        <p class="cases__corp">相手企業：みどり県森づくり基金</p>
+      </li>
+    </ul>
+
+    <p class="sec-note reveal">掲載しているのは一部です。近い条件の山があればお伝えします。</p>
+  </div>
+</section>
+
+<!-- ============ 6. 数字 ============ -->
+<section class="nums">
+  <div class="wrap">
+    <h2 class="wave-h wave-h--w reveal">数字で見るモリツグ</h2>
+    <ul class="nums__list">
+      <li class="reveal"><span class="nums__c"><b class="en">48</b><i>件</i></span><p>これまでにつないだ山</p></li>
+      <li class="reveal"><span class="nums__c"><b class="en">214</b><i>ha</i></span><p>手を入れた面積</p></li>
+      <li class="reveal"><span class="nums__c"><b class="en">31</b><i>社</i></span><p>関わっている企業</p></li>
+      <li class="reveal"><span class="nums__c"><b class="en">9</b><i>年</i></span><p>続いている年数</p></li>
+    </ul>
+    <p class="nums__note">※ 2026年8月時点。すべてこのサイト用の架空の数字です。</p>
+  </div>
+</section>
+
+<!-- ============ 7. よくある質問 ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <p class="en sec-en reveal">Q &amp; A</p>
+    <p class="bubble bubble--y reveal">よくある質問</p>
+    <img class="faq__fig reveal" src="assets/img/p-explain.webp" alt="" width="340" height="391" aria-hidden="true">
+
+    <dl class="qa">
+      <div class="reveal">
+        <dt>山の場所が正確に分からなくても相談できますか。</dt>
+        <dd>大丈夫です。「たしかこの沢の向こう」くらいから始まる方がほとんどです。公図と現地で一緒に探します。</dd>
+      </div>
+      <div class="reveal">
+        <dt>所有者が親のままなのですが。</dt>
+        <dd>構いません。相続の手続きが済んでいなくても、話は進められます。必要なら司法書士をご紹介します。</dd>
+      </div>
+      <div class="reveal">
+        <dt>費用はどのくらいかかりますか。</dt>
+        <dd>最初の相談と現地調査までは無料です。そのあとは企業側の負担でまかなえる範囲で組みますので、所有者の方の持ち出しが出ない形を先に探します。</dd>
+      </div>
+      <div class="reveal">
+        <dt>企業が見つからなかったらどうなりますか。</dt>
+        <dd>そのときは正直にお伝えします。見つからないまま費用だけいただくことはありません。</dd>
+      </div>
+      <div class="reveal">
+        <dt>途中でやめられますか。</dt>
+        <dd>やめられます。違約金はいただきません。ただし、すでに植えた木の扱いだけは相談させてください。</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ 8. 相談の入口 ============ -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <hr class="squig squig--wide">
+    <h2 class="reveal">その山をどうするかは、<br>まだ決めなくて構いません。</h2>
+    <p class="reveal">いまどうなっているかを聞かせていただくところから始めます。<br>相談と現地調査までは費用がかかりません。</p>
+    <p class="reveal"><a class="btn btn--outline en" href="#contact">CONTACT</a></p>
+    <p class="cta__tel reveal">000-000-0000 ／ 平日 9:00 - 17:00</p>
+    <hr class="squig squig--wide">
+  </div>
+
+  <div class="sky" aria-hidden="true">
+    <svg class="sky__cloud sky__cloud--1" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <svg class="sky__cloud sky__cloud--2" viewBox="0 0 100 36"><path d="M6 30 C6 18 16 14 22 16 C24 6 40 3 47 11 C54 4 68 8 69 17 C80 16 88 22 88 30 Z"/></svg>
+    <svg class="sky__bird sky__bird--1" viewBox="0 0 26 10"><path d="M2 6 q5.5 -6 11 0 q5.5 -6 11 0"/></svg>
+    <svg class="sky__bird sky__bird--2" viewBox="0 0 26 10"><path d="M2 6 q5.5 -6 11 0 q5.5 -6 11 0"/></svg>
+    <img class="sky__tsugu" src="assets/img/tsugu-fly.webp" alt="" width="340" height="218">
+  </div>
+</section>
+
+</main>
+
+<!-- ============ フッター ============ -->
+<footer class="ft">
+  <svg class="ft__hill" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 66 C259 50 432 -32 720 -34 C1008 -36 1181 48 1440 64 L1440 120 L0 120 Z"/>
+  </svg>
+  <div class="ft__in">
+    <p class="ft__logo">
+      <svg viewBox="0 0 46 30" aria-hidden="true"><path d="M2 26 L15 4 L24 17 L30 9 L44 26 Z"/></svg>
+      <b>モリツグ</b>
+    </p>
+    <p class="ft__tag">山と、その持ち主を、ひとりにしない。</p>
+
+    <nav class="ft__nav" aria-label="フッターナビゲーション">
+      <div><h3>モリツグについて</h3><ul><li><a href="#about">はじめての方へ</a></li><li><a href="#features">できること</a></li><li><a href="#flow">引き受けるまで</a></li><li><a href="#faq">よくある質問</a></li></ul></div>
+      <div><h3>山の持ち主の方へ</h3><ul><li><a href="#flow">相談の流れ</a></li><li><a href="#faq">費用について</a></li><li><a href="#cases">つないだ山</a></li><li><a href="#contact">資料をもらう</a></li></ul></div>
+      <div><h3>企業の方へ</h3><ul><li><a href="#features">参加のしかた</a></li><li><a href="#faq">費用と期間</a></li><li><a href="#flow">year 1 の進み方</a></li><li><a href="#contact">資料をもらう</a></li></ul></div>
+      <div><h3>会社</h3><ul><li><a href="#top">株式会社つむぎ野</a></li><li><a href="#contact">はたらく</a></li><li><a href="#contact">お知らせ</a></li><li><a href="#contact">お問い合わせ</a></li></ul></div>
+    </nav>
+
+    <hr class="squig squig--dk">
+    <p class="ft__copy">
+      <span class="en">© MORITSUGU（架空）</span>
+      <span>運営 株式会社つむぎ野（架空）</span>
+      <span class="en">Illustration: GPT Image 2</span>
+    </p>
+  </div>
+</footer>
+
+<a class="pagetop" href="#top" id="pagetop" aria-label="ページの先頭へ戻る"><span></span></a>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

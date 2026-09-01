@@ -1,0 +1,14 @@
+# 自動制作の内部スクリプト・ログ（公開しない）
+auto/
+
+# 15秒の録画（サイトからは参照していない・容量が大きい）
+*.mp4
+
+# 制作メモ・権利監査・参照元台帳（ローカル限定）
+/README.md
+sites/*/README.md
+used-references.json
+
+# OS
+Thumbs.db
+.DS_Store

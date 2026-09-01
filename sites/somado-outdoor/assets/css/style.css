@@ -1,0 +1,407 @@
+@charset "UTF-8";
+/* =========================================================
+   杣戸のアウトドア部 / ACTIVITY somado
+   Figma: 2026-09-01 somado-outdoor（PC列 1440 / SP列 390）
+   中央460pxのカラムだけが流れ、左の野原と右のナビは position:fixed で止まる。
+   ========================================================= */
+
+:root{
+  --field:#E0F1E4; --green:#00A820; --green2:#18AA34; --hill:#007D17;
+  --yellow:#FFE880; --leaf:#B2EEA4; --orange:#FF6600; --white:#fff;
+  --sumi:#313231; --ink:#232323; --line:#00B900; --ig1:#39B54A; --ig2:#F0356E;
+  --jp:"Zen Kaku Gothic Antique","Noto Sans JP",system-ui,sans-serif;
+  --en:"Fredoka","Noto Sans JP",system-ui,sans-serif;
+  /* 1440グリッドの原点。PC列の座標はすべてここが基準 */
+  --gx:max(0px, calc((100vw - 1440px) / 2));
+  --col:460px;
+  --ease:cubic-bezier(.37,0,.63,1);
+  --overshoot:cubic-bezier(.68,-.6,.32,1.6);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+/* scroll-behavior:smooth は入れない（毎フレームの scrollTo が滑り直して
+   段階スクロールの検証・録画が効かなくなる）。ページ内リンクだけ JS で滑らせる。 */
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--field);color:var(--ink);
+  font-family:var(--jp);font-weight:500;line-height:1.7;
+  font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased}
+img,svg{display:block}
+em{font-style:normal}
+h1,h2,p,ul,figure{margin:0;padding:0}
+li{list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+.u-vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0}
+.skip{position:absolute;left:8px;top:-60px;z-index:200;padding:10px 18px;border-radius:0 0 10px 10px;
+  background:var(--green);color:#fff;font-weight:700;text-decoration:none;transition:top .2s}
+.skip:focus{top:0}
+
+/* ---------------------------------------------------------
+   1. スクロールする中央カラム
+   --------------------------------------------------------- */
+.sec{position:relative;--bg:transparent;--h:auto}
+.sec > .in{position:relative;overflow:hidden;
+  width:var(--col);min-height:var(--h);
+  margin:0 calc(var(--gx) + 226px) 0 auto;
+  background:var(--bg)}
+
+/* ---------------------------------------------------------
+   2. 固定パネル（左＝野原 / 右＝ナビ）
+   --------------------------------------------------------- */
+.pane{position:fixed;top:0;height:100%;z-index:4;pointer-events:none}
+.pane a{pointer-events:auto}
+.pane--l{left:calc(100vw - var(--gx) - 1440px);width:754px}
+.pane--r{left:calc(100vw - var(--gx) - 200px);width:200px}
+.pane__in{position:absolute;left:0;top:50%;width:100%;height:1000px;margin-top:-500px}
+
+/* 読み込み直後に 60ms ずつ順に出る */
+.pane__in > *,.sidenav li{opacity:0;transition:opacity .6s ease;transition-delay:calc(var(--i,0) * 60ms)}
+body.is-ready .pane__in > *,body.is-ready .sidenav li{opacity:1}
+
+/* 白いドットの散らし */
+.dots{position:absolute;left:calc(var(--x) - 7.5px);top:calc(var(--y) - 7.5px);
+  background-image:radial-gradient(circle at 7.5px 7.5px,rgba(255,255,255,.9) 3.4px,transparent 3.6px);
+  background-size:15px 15px}
+.dots--33{width:45px;height:45px}
+.dots--23{width:30px;height:45px}
+.dots--32{width:45px;height:30px}
+
+/* 野原に散らす写真とイラスト */
+.mw{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h)}
+.mw--ph{overflow:hidden;box-shadow:0 2px 8px rgba(18,52,24,.12);transition:box-shadow .3s ease}
+.mw--ph img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.mw--ph:hover{box-shadow:0 10px 26px rgba(18,52,24,.30)}
+.mw--ph:hover img{transform:scale(1.04)}
+.mw--il{object-fit:contain}
+
+/* LINEの丸バッジ（PCのCTA） */
+.badge{position:absolute;left:615px;top:585px;width:106px;height:106px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  background:var(--green);color:#fff;text-decoration:none;text-align:center;
+  font-size:11.5px;font-weight:700;line-height:1.5;letter-spacing:.2px;
+  transition:transform .3s ease,box-shadow .3s ease}
+.badge:hover{transform:scale(1.06);box-shadow:0 8px 20px rgba(0,120,25,.35)}
+.badge svg{width:21px;height:21px;border-radius:6px;background:#fff;color:var(--green)}
+
+/* 右の固定ナビ */
+.pn{position:absolute;object-fit:contain}
+.pn--bird{left:24px;top:292px;width:70px;height:68px}
+.pn--cabin{left:10px;top:512px;width:146px;height:116px}
+.sidenav{position:absolute;left:0;top:0;width:100%;height:100%}
+.sidenav li{position:absolute;left:22px;top:calc(654.75px + (var(--i) - 1) * 28px)}
+.sidenav li::before{content:"";position:absolute;left:-19.5px;top:4.25px;
+  width:9px;height:9px;border-radius:50%;background:var(--green)}
+.sidenav a{display:block;color:var(--green);font-size:12.5px;font-weight:700;line-height:17px;
+  letter-spacing:.4px;text-decoration:none;transition:opacity .2s ease,transform .2s ease}
+.sidenav a:hover{opacity:.6;transform:translateX(2px)}
+
+/* ---------------------------------------------------------
+   3. s1 ヒーロー
+   --------------------------------------------------------- */
+.hero{--h:1000px}
+.kv{position:relative;margin-top:36px;width:100%;height:926px;overflow:hidden;
+  opacity:0;transform:scale(1.04);
+  transition:opacity 1s ease,transform 1.4s cubic-bezier(.2,.7,.3,1)}
+body.is-ready .kv{opacity:1;transform:none}
+.kv__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.kv__slide.is-on{opacity:1}
+.kv__slide img{width:100%;height:100%;object-fit:cover}
+.kv__shade{position:absolute;left:0;top:0;width:100%;height:260px;
+  background:linear-gradient(180deg,rgba(11,42,18,.42),rgba(11,42,18,0))}
+.kv__pause{position:absolute;right:14px;bottom:14px;width:34px;height:34px;border:0;border-radius:50%;
+  background:rgba(0,0,0,.34);display:grid;place-items:center;cursor:pointer;z-index:3;
+  transition:background .2s ease}
+.kv__pause:hover{background:rgba(0,0,0,.55)}
+.kv__pauseIc{width:10px;height:12px;border-left:3px solid #fff;border-right:3px solid #fff}
+.kv__pause[aria-pressed="true"] .kv__pauseIc{width:0;height:0;border:6px solid transparent;
+  border-left:11px solid #fff;border-right:0}
+
+.logo{display:flex;flex-direction:column;align-items:center;line-height:1;font-weight:400}
+.logo__arc{width:calc(260px * var(--s));height:calc(28px * var(--s));overflow:visible}
+.logo__arc text{font-family:var(--en);font-weight:500;font-size:14.5px;letter-spacing:3px;fill:currentColor}
+.logo__en{font-family:var(--en);font-weight:600;font-size:calc(56px * var(--s));letter-spacing:-.5px}
+.logo__jp{font-size:calc(13px * var(--s));font-weight:700;
+  letter-spacing:calc(3px * var(--s));margin-top:calc(11px * var(--s));text-indent:calc(3px * var(--s))}
+.hero__logo{--s:1;position:absolute;left:0;right:0;top:73px;color:#fff;z-index:2;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .9s ease .35s,transform .9s cubic-bezier(.2,.7,.3,1) .35s}
+body.is-ready .hero__logo{opacity:1;transform:none}
+
+/* ---------------------------------------------------------
+   4. s2 イントロ（緑の帯）
+   --------------------------------------------------------- */
+.intro{--bg:var(--green);--h:1687px}
+.intro .in{color:#fff}
+.intro__hills{position:absolute;left:0;top:0;width:100%;height:auto}
+.intro__hills--sp{display:none}
+.intro__catch{position:absolute;left:0;right:0;top:73.8px;z-index:2;
+  text-align:center;font-size:40px;font-weight:900;line-height:66px;letter-spacing:2px}
+.intro__catch span{display:block}
+.intro__bird{position:absolute;left:192px;top:252px;width:78px;height:76px;object-fit:contain}
+.intro__map{position:absolute;left:-54px;top:302px;width:568px;height:380px;max-width:none;object-fit:contain}
+.cloud{position:absolute;--s:1;width:calc(154px * var(--s));height:calc(62px * var(--s));
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -30 154 62'%3E%3Cellipse cx='0' cy='0' rx='46' ry='30' fill='%23fff'/%3E%3Cellipse cx='-46' cy='10' rx='34' ry='22' fill='%23fff'/%3E%3Cellipse cx='44' cy='12' rx='30' ry='20' fill='%23fff'/%3E%3Crect x='-76' y='4' width='150' height='28' rx='14' fill='%23fff'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+.cloud--a{--s:.66;left:369.2px;top:336.2px}
+.cloud--b{--s:.58;left:5.6px;top:618.6px}
+.cloud--c{--s:.5;left:390px;top:1217px}
+.intro__lead{position:absolute;left:30px;top:780.2px;width:382px;
+  font-size:18px;line-height:46px;letter-spacing:.8px;font-weight:500}
+
+/* 横に流れる写真マーキー */
+.mq{position:absolute;left:0;top:1252px;width:100%;height:324px;overflow:hidden}
+.mq__track{display:flex;width:max-content;animation:mq 60s linear infinite;animation-delay:-12s}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq:hover .mq__track,body.is-paused .mq__track{animation-play-state:paused}
+.mq__i{position:relative;flex:0 0 158px;width:158px;margin:38px 20px 0 0}
+.mq__i img{width:158px;height:250px;object-fit:cover}
+.mq__say{position:absolute;left:50%;transform:translateX(-50%);
+  height:27.5px;line-height:27.5px;padding:0 11px;border-radius:14px;
+  background:#fff;color:var(--green);font-size:12.5px;font-weight:700;white-space:nowrap}
+.mq__say::after{content:"";position:absolute;left:50%;margin-left:-7px;
+  border-left:7px solid transparent;border-right:7px solid transparent}
+.mq__i:nth-child(odd) .mq__say{top:-37.75px}
+.mq__i:nth-child(odd) .mq__say::after{top:100%;border-top:9px solid #fff}
+.mq__i:nth-child(even) .mq__say{top:256.25px}
+.mq__i:nth-child(even) .mq__say::after{bottom:100%;border-bottom:9px solid #fff}
+
+/* ---------------------------------------------------------
+   5. s3〜s10 アクティビティ（共通の型）
+   --------------------------------------------------------- */
+.act{--head:105px}
+.act .in{display:flex;flex-direction:column;padding-top:var(--head);padding-bottom:77px}
+.act__pill{--rot:-4deg;position:absolute;top:63.5px;z-index:3;
+  height:49px;line-height:49px;padding:0 24px;border-radius:26px;
+  background:var(--ac);color:#fff;font-size:20px;font-weight:700;letter-spacing:.5px;white-space:nowrap}
+.act--odd .act__pill{left:24px}
+.act--even .act__pill{--rot:3.5deg;right:24px}
+.act__il{position:absolute;top:26px;z-index:2;width:126px;height:106px;object-fit:contain}
+.act--odd .act__il{right:14px}
+.act--even .act__il{left:14px}
+.act__media{position:relative}
+.act__ph{width:100%;height:296px;overflow:hidden}
+.act__ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.act__media:hover .act__ph img{transform:scale(1.05)}
+.act__en{position:absolute;left:0;top:calc(-1 * var(--head));width:100%;height:auto;
+  overflow:visible;pointer-events:none}
+.act__en text{font-family:var(--en);font-weight:600;fill:var(--ac);letter-spacing:.04em}
+.act__body{margin:22px 28px 0;max-width:380px;font-size:16.5px;line-height:39px;letter-spacing:.6px}
+
+/* 角が飛び出す枠のボタン */
+.act__btn{position:relative;margin:auto 0 0 42px;width:376px;height:68px}
+.act__btn::before,.act__btn::after{content:"";position:absolute;pointer-events:none}
+.act__btn::before{left:-9px;right:-9px;top:0;height:68px;
+  border-top:1.6px solid var(--ac);border-bottom:1.6px solid var(--ac)}
+.act__btn::after{top:-9px;bottom:-9px;left:0;right:0;
+  border-left:1.6px solid var(--ac);border-right:1.6px solid var(--ac)}
+.btn{position:relative;display:grid;place-items:center;height:100%;overflow:hidden;
+  text-decoration:none;color:var(--ac);font-size:16px;font-weight:700;letter-spacing:2px}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ac);
+  transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
+.btn:hover::before,.btn:focus-visible::before{transform:scaleX(1)}
+.btn span{position:relative;transition:color .2s ease}
+.btn:hover span,.btn:focus-visible span{color:#fff}
+
+/* ---------------------------------------------------------
+   6. s11 総合受付
+   --------------------------------------------------------- */
+.rcp{--bg:var(--white);--h:1101px}
+.rcp .in{padding-top:61.6px}
+.rcp__h{text-align:center;color:var(--green2);font-size:30px;font-weight:900;line-height:46px;letter-spacing:1px}
+.rcp__h span{display:block}
+/* 幅は「SVGの折り返し行数と同じになる値」。狭すぎると1行あふれて section が伸びる */
+.rcp__lead{margin:33.5px 28px 0;max-width:380px;font-size:15.5px;line-height:34px;letter-spacing:.6px}
+.rcp__cta{margin:32.9px 0 0 32px;width:396px}
+.lbtn{position:relative;display:grid;place-items:center;height:68px;padding-left:44px;
+  border-radius:34px;background:var(--line);color:#fff;text-decoration:none;
+  font-size:17px;font-weight:700;letter-spacing:.8px;
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+.lbtn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 8px 18px rgba(0,150,20,.28)}
+.lbtn__ic{position:absolute;left:33px;top:50%;margin-top:-13px;width:26px;height:26px;
+  border-radius:7px;background:#fff;color:var(--line)}
+.rcp__map{margin:40px 0 0 -2px;width:464px;height:310px;max-width:none;object-fit:contain}
+.rcp__lead2{margin:23.1px 28px 0;max-width:380px;font-size:15.5px;line-height:34px;letter-spacing:.6px}
+.igc{position:relative;display:block;overflow:hidden;margin:20.9px 0 0 24px;
+  width:404px;height:124px;border-radius:7px;color:#fff;text-decoration:none}
+.igc + .igc{margin-top:10px}
+.igc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.igc::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,var(--c) 32%,rgba(255,255,255,0) 100%)}
+.igc--1{--c:var(--ig1)}
+.igc--2{--c:var(--ig2)}
+.igc:hover img{transform:scale(1.06)}
+.igc__t{position:absolute;left:26px;top:38.8px;z-index:2;font-size:15px;font-weight:700;line-height:1;letter-spacing:.6px}
+.igc__n{position:absolute;left:25px;top:70px;z-index:2;display:flex;align-items:center;gap:7px;
+  font-size:21px;line-height:22px;font-weight:700;letter-spacing:.5px}
+.igc__n svg{flex:0 0 22px;width:22px;height:22px;color:#fff}
+
+/* ---------------------------------------------------------
+   7. s12 フッター
+   --------------------------------------------------------- */
+.ft{--bg:var(--sumi);--h:672px}
+.ft .in{padding-top:73.7px;color:#fff}
+.ft__addr{margin:0 28px;font-size:14px;line-height:30px;letter-spacing:.6px;font-weight:500}
+.ft__links{margin:20.3px 28px 0;border-top:1px solid #5A5B5A}
+.ft__links li{border-bottom:1px solid #5A5B5A}
+.ft__links a{display:flex;align-items:center;gap:12px;height:52px;padding-left:6px;
+  font-size:13px;font-weight:700;letter-spacing:.5px;text-decoration:none;
+  transition:opacity .2s ease,transform .2s ease}
+.ft__links a:hover{opacity:.65;transform:translateX(3px)}
+.ft__links svg{flex:0 0 20px;width:20px;height:20px;color:#fff}
+.ft__links .ft__line{flex-basis:19px;width:19px;height:19px;border-radius:5px;background:#fff;color:var(--sumi)}
+.ft__logo{--s:.9;margin-top:71.55px}
+.ft__c{margin-top:53.75px;text-align:center;font-size:12px;font-weight:700;line-height:1;letter-spacing:.5px}
+
+/* ---------------------------------------------------------
+   8. スクロールで出る／跳ねて出る
+   --------------------------------------------------------- */
+.reveal{opacity:0;transform:translateY(24px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease);
+  transition-delay:calc(150ms + var(--d,0) * 80ms)}
+.reveal.is-in{opacity:1;transform:none}
+.pop{--sc:.62;opacity:0;transform:rotate(var(--rot,0deg)) scale(var(--sc));
+  transition:transform .8s var(--overshoot),opacity .45s ease}
+.pop.is-in{--sc:1;opacity:1}
+
+/* ---------------------------------------------------------
+   9. SPだけの部品（既定は隠す）
+   --------------------------------------------------------- */
+.burger,.linetab,.spnav{display:none}
+.burger{position:fixed;right:18px;top:16px;width:52px;height:40px;border:0;border-radius:11px;
+  background:var(--green);cursor:pointer;z-index:60;padding:0}
+.burger__bar{position:absolute;left:12px;width:28px;height:3.4px;border-radius:1.7px;background:#fff;
+  transition:transform .3s ease}
+.burger__bar--t{top:14px}
+.burger__bar--b{top:25px}
+.burger[aria-expanded="true"] .burger__bar--t{transform:translateY(5.5px) rotate(45deg)}
+.burger[aria-expanded="true"] .burger__bar--b{transform:translateY(-5.5px) rotate(-45deg)}
+.linetab{position:fixed;right:0;top:66px;width:45px;height:172px;border-radius:8px 0 0 8px;
+  background:var(--green);color:#fff;text-decoration:none;z-index:56}
+.linetab__ic{position:absolute;left:12.65px;top:12.65px;width:18.7px;height:18.7px;
+  border-radius:5px;background:#fff;color:var(--green)}
+.linetab__t{position:absolute;top:41px;writing-mode:vertical-rl;
+  font-size:11.5px;font-weight:700;line-height:1;letter-spacing:1.9px;white-space:nowrap}
+.linetab__t:nth-of-type(1){right:7.25px}
+.linetab__t:nth-of-type(2){right:23.25px}
+.spnav{position:fixed;inset:0;z-index:58;background:var(--green);
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;
+  overflow-y:auto;place-items:center}
+.spnav.is-open{opacity:1;visibility:visible}
+.spnav ul{padding:96px 32px}
+.spnav li + li{margin-top:6px}
+.spnav a{display:block;padding:11px 0;color:#fff;font-size:16px;font-weight:700;
+  letter-spacing:.8px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+
+/* =========================================================
+   SP（SPフレーム 390px のとおりに組む）
+   ========================================================= */
+@media (max-width:900px){
+  .pane{display:none}
+  .burger{display:block}
+  .linetab{display:block}
+  .spnav{display:grid}
+  body.is-locked{overflow:hidden}
+
+  .sec > .in{width:100%;margin:0;min-height:var(--hsp,var(--h))}
+
+  /* --- sp1 ヒーロー --- */
+  .hero{--hsp:844px}
+  .kv{margin-top:0;height:844px}
+  .kv__shade{height:250px}
+  .hero__logo{--s:.9;top:61.55px}
+  .kv__pause{right:10px;bottom:10px}
+
+  /* --- sp2 イントロ --- */
+  .intro{--hsp:1464px}
+  .intro__hills{display:none}
+  .intro__hills--sp{display:block}
+  .intro__catch{top:57.6px;font-size:30px;line-height:54px;letter-spacing:1.5px}
+  .intro__bird{left:162px;top:174px;width:66px;height:64px}
+  .intro__map{left:0;top:240px;width:100%;height:400px;object-fit:cover}
+  .cloud--a{--s:.44;left:298.8px;top:274.8px}
+  .cloud--b{--s:.4;left:26px;top:584px}
+  .cloud--c{display:none}
+  .intro__lead{left:24px;top:695.9px;width:auto;max-width:348px;font-size:16px;line-height:36px;letter-spacing:.5px}
+  .mq{top:1115.9px;height:271.2px}
+  .mq__i{flex:0 0 130px;width:130px;margin:34.1px 18px 0 0}
+  .mq__i img{width:130px;height:205px}
+  .mq__say{height:24.2px;line-height:24.2px;padding:0 9.9px;border-radius:12.1px;font-size:11px}
+  .mq__i:nth-child(odd) .mq__say{top:-34.1px}
+  .mq__i:nth-child(even) .mq__say{top:246.9px}
+
+  /* --- sp3〜sp10 アクティビティ --- */
+  .act{--head:92px}
+  .act .in{padding-bottom:68px}
+  #camp{--hsp:683px} #villa{--hsp:640px} #packraft{--hsp:683px} #sup{--hsp:659px}
+  #kayak{--hsp:627px} #rivertrek{--hsp:684px} #ebike{--hsp:683px} #sauna{--hsp:650px}
+  .act__pill{top:45.2px;height:41.65px;line-height:41.65px;padding:0 20.4px;border-radius:21px;font-size:17px}
+  .act--odd .act__pill{left:20px}
+  .act--even .act__pill{right:20px}
+  .act__il{top:18px;width:94px;height:80px}
+  .act--odd .act__il{right:14px}
+  .act--even .act__il{left:14px}
+  .act__ph{height:250px}
+  .act__body{margin:22.3px 24px 0;max-width:326px;font-size:15px;line-height:32px;letter-spacing:.4px}
+  .act__btn{margin-left:24px;width:342px;height:60px}
+  .act__btn::before{height:60px}
+  .btn{font-size:15px}
+
+  /* --- sp11 総合受付 --- */
+  .rcp{--hsp:934px}
+  .rcp .in{padding-top:45.9px}
+  .rcp__h{font-size:24px;line-height:38px;letter-spacing:.8px}
+  /* 45字。字送り .4 だと 1行22字までで3行になり section が1行ぶん伸びる → .2 で23字入れる */
+  .rcp__lead{margin:28.6px 24px 0;max-width:342px;font-size:14.5px;line-height:32px;letter-spacing:.2px}
+  .rcp__cta{margin:59.5px 0 0 24px;width:342px}
+  .lbtn{height:62px;border-radius:31px;padding-left:32px;font-size:14.5px;letter-spacing:.4px}
+  .lbtn__ic{left:30.8px;width:22.4px;height:22.4px;margin-top:-11.2px;border-radius:6px}
+  .rcp__map{margin:30px 0 0 24px;width:342px;height:230px;object-fit:cover}
+  .rcp__lead2{margin:18.5px 24px 0;max-width:342px;font-size:14.5px;line-height:32px;letter-spacing:.4px}
+  .igc{margin:21.5px 0 0 24px;width:342px;height:98px}
+  .igc + .igc{margin-top:14px}
+  .igc__t{left:20px;top:26.6px;font-size:13px;letter-spacing:.5px}
+  .igc__n{left:18.5px;top:54px;gap:5.5px;font-size:18px;line-height:19px;letter-spacing:.4px}
+  .igc__n svg{flex:0 0 19px;width:19px;height:19px}
+
+  /* --- sp12 フッター --- */
+  .ft{--hsp:536px}
+  .ft .in{padding-top:57.06px}
+  .ft__addr{margin:0 24px;font-size:13px;line-height:28px;letter-spacing:.4px}
+  .ft__links{margin:16.94px 24px 0}
+  .ft__links a{height:48px;gap:10.8px;padding-left:6.8px;font-size:12.5px;letter-spacing:.4px}
+  .ft__links svg{flex:0 0 18.4px;width:18.4px;height:18.4px}
+  .ft__links .ft__line{flex-basis:17.2px;width:17.2px;height:17.2px;border-radius:4.5px}
+  .ft__logo{--s:.74;margin-top:42.07px}
+  .ft__c{margin-top:37.6px;font-size:11px;letter-spacing:.4px}
+}
+
+/* 中間幅：右ナビが本文に寄りすぎないよう、野原は左へ逃がす（left が負になる） */
+@media (max-width:1100px) and (min-width:901px){
+  .pane--l{opacity:.55}
+}
+
+/* 画面の高さが足りないときは固定パネルを少し縮める */
+@media (max-height:880px) and (min-width:901px){
+  .pane__in{transform:scale(.92);transform-origin:50% 50%}
+}
+@media (max-height:780px) and (min-width:901px){
+  .pane__in{transform:scale(.82)}
+}
+
+/* =========================================================
+   動きを止める
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;transition-delay:0ms !important}
+  .mq__track{animation:none;transform:translateX(0)}
+  .kv{opacity:1;transform:none}
+  .kv__slide{display:none}
+  .kv__slide.is-on{display:block;opacity:1}
+  .hero__logo{opacity:1;transform:none}
+  .pane__in > *,.sidenav li{opacity:1}
+  .reveal{opacity:1;transform:none}
+  .pop{--sc:1;opacity:1;transform:rotate(var(--rot,0deg))}
+}

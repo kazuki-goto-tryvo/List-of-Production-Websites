@@ -1,0 +1,278 @@
+@charset "UTF-8";
+/* ===========================================================
+   陶 SUE（架空）
+   素の CSS のみ。ビルドツールなし。
+   参照サイトは使わず、GPT Image 2 で起こしたモックから設計している。
+   PC 1440 / SP 390 の2つのアートボード。
+   =========================================================== */
+
+:root{
+  --paper:#F2EDE4; --paper2:#E9E3D7;
+  --ink:#1F1E1B; --ink2:#33312C;
+  --celadon:#7C9A90; --celadon-d:#4E7A72;
+  --rust:#A8543A; --line:#D6CFC2; --gray:#7C766B; --white:#fff;
+  --ja:"Zen Old Mincho","Hiragino Mincho ProN",serif;
+  --en:"Spectral","Times New Roman",serif;
+  --body:"Noto Sans JP","Hiragino Sans",sans-serif;
+  --w:1220px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 13px/2 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,h3,p,address,time{margin:0;font-style:normal}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:8px 14px}
+:focus-visible{outline:1px solid var(--celadon-d);outline-offset:3px}
+
+/* ---------- 共通 ---------- */
+.jah{font:400 clamp(20px,2.2vw,30px)/1.6 var(--ja);letter-spacing:.24em}
+.en{font:400 11px/1 var(--en);letter-spacing:.24em;color:var(--gray)}
+.note{margin-top:12px;font-size:11.5px;color:var(--gray)}
+.rule{display:block;width:34px;height:1.4px;background:var(--rust);margin-top:22px}
+
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;
+  min-width:220px;height:50px;padding:0 22px;border:1px solid var(--ink);font-size:12px;transition:background .25s}
+.btn:hover{background:rgba(31,30,27,.05)}
+.btn>i{width:20px;height:1px;background:currentColor;position:relative;flex:none}
+.btn>i::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;
+  border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.btn--c{display:flex;width:max-content;margin-inline:auto}
+.tlink{display:inline-flex;align-items:center;gap:14px;font-size:11.5px}
+.tlink>i{width:18px;height:1px;background:currentColor;position:relative}
+.tlink>i::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;
+  border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+
+.logo{display:inline-grid;justify-items:center;color:var(--ink)}
+.logo svg{width:26px;height:26px;color:currentColor}
+.logo b{margin-top:8px;font:400 19px/1 var(--ja);letter-spacing:.34em;text-indent:.34em}
+.logo em{margin-top:6px;font:400 7.5px/1 var(--en);letter-spacing:.2em;font-style:normal}
+.logo--w{color:#fff}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ===========================================================
+   1. ヘッダー ＋ ヒーロー
+   =========================================================== */
+.hd{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:28px 60px 26px;border-bottom:1px solid var(--line)}
+.hd__nav ul{display:flex;gap:34px}
+.hd__nav li{font-size:11.5px}
+.hd__nav--r{justify-self:end;margin-right:70px}
+.hd__nav a:hover{color:var(--celadon-d)}
+.cart{position:absolute;right:60px;top:34px;width:18px;height:16px;border:1.2px solid var(--ink)}
+.cart i{position:absolute;left:2px;top:-5px;width:12px;height:6px;border:1.2px solid var(--ink);border-bottom:0;border-radius:6px 6px 0 0}
+.menubtn{display:none}
+
+.hero{position:relative;padding:40px 0 46px}
+.hero__ph{width:100%;aspect-ratio:1440/700;object-fit:cover}
+/* ★ 縦組みは右の列から読む。DOM順（毎日つかう、→ すこし特別。）のまま
+      flex を row-reverse にして、1つめを右端に置く */
+.hero__cat{position:absolute;right:56px;top:100px;display:flex;flex-direction:row-reverse;gap:20px}
+.hero__cat span{writing-mode:vertical-rl;font:400 clamp(20px,1.9vw,26px)/1 var(--ja);letter-spacing:.4em}
+.hero__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
+  width:min(var(--w),90%);margin:44px auto 0}
+.hero__ship{font-size:11.5px}
+
+/* ===========================================================
+   2. つくり方のこと
+   =========================================================== */
+.mk{display:grid;grid-template-columns:minmax(0,540px) minmax(0,1fr);gap:0 80px;
+  padding:90px 0 100px;align-items:start}
+.mk__ph{width:min(420px,100%);aspect-ratio:1;object-fit:cover;margin-left:max(24px,calc(50vw - 660px))}
+.mk__lbl{grid-column:1;margin:44px 0 0 max(24px,calc(50vw - 660px))}
+.mk__body{grid-column:2;grid-row:1/3;padding-right:max(24px,calc(50vw - 660px));padding-top:34px}
+.mk__body p{margin-top:26px;font-size:12.5px;line-height:2.5}
+.mk__body .jah+p{margin-top:34px}
+.mk__body .btn{margin-top:40px}
+
+/* ===========================================================
+   3. うつわを選ぶ
+   =========================================================== */
+.shop{padding:20px 0 100px}
+.shop__head,.shop__bar,.grid{width:min(var(--w),90%);margin-inline:auto}
+.shop__head .jah{margin-top:34px}
+.shop__bar{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-top:44px;flex-wrap:wrap}
+.chips{display:flex;gap:14px;flex-wrap:wrap}
+.chips button{height:34px;padding:0 20px;border:1px solid var(--line);border-radius:17px;font-size:11px;transition:.2s}
+.chips button:hover{border-color:var(--ink)}
+.chips .is-on{background:var(--celadon-d);border-color:var(--celadon-d);color:#fff}
+.sort{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--gray)}
+.sort>i{width:8px;height:8px;border-bottom:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:70px 35px;margin-top:50px}
+.grid img{width:100%;aspect-ratio:1;object-fit:cover;transition:opacity .3s}
+.grid a:hover img{opacity:.82}
+.grid em{display:block;margin-top:24px;font:400 9.5px/1 var(--en);letter-spacing:.2em;color:var(--rust);font-style:normal}
+.grid b{display:block;margin-top:18px;font:400 12.5px/1 var(--ja);letter-spacing:.16em}
+.grid span{display:block;margin-top:14px;font:400 11px/1 var(--en);letter-spacing:.06em;color:var(--gray)}
+.shop .btn--c{margin-top:80px}
+
+/* ===========================================================
+   4. ろくろ
+   =========================================================== */
+.wheel{position:relative;padding-bottom:70px}
+.wheel>img{width:100%;aspect-ratio:1440/560;object-fit:cover}
+.wheel::before{content:"";position:absolute;left:0;top:0;right:0;aspect-ratio:1440/560;background:rgba(31,30,27,.16)}
+.wheel__cat{position:absolute;left:0;right:0;top:0;height:calc(100% - 70px);display:grid;place-content:center;
+  font:400 clamp(18px,1.9vw,26px)/1 var(--ja);letter-spacing:.4em;color:#fff;text-align:center;padding:0 24px}
+.wheel__foot{display:flex;justify-content:space-between;gap:30px;
+  width:min(var(--w),90%);margin:26px auto 0;font-size:11.5px}
+
+/* ===========================================================
+   5. つくり手のこと
+   =========================================================== */
+.mkr{background:var(--paper2);display:grid;grid-template-columns:minmax(0,600px) minmax(0,1fr);gap:0 70px;
+  padding:100px 0;align-items:start}
+.mkr__kiln{width:min(520px,100%);aspect-ratio:52/70;object-fit:cover;margin-left:max(24px,calc(50vw - 660px))}
+.mkr__body{padding-right:max(24px,calc(50vw - 660px));padding-top:50px}
+.mkr__body .jah{margin-top:40px}
+.mkr__body p{margin-top:26px;font-size:12.5px;line-height:2.5}
+.mkr__sign{display:flex;align-items:center;gap:26px;margin-top:44px}
+.mkr__sign img{width:150px;height:150px;object-fit:cover;flex:none}
+.mkr__sign b{font:400 13px/1 var(--ja);letter-spacing:.24em}
+.mkr__sign em{display:block;margin-top:10px;font-style:normal}
+.mkr__body .btn{margin-top:34px}
+
+/* ===========================================================
+   6. 読みもの
+   =========================================================== */
+.jr{padding:100px 0;width:min(var(--w),90%);margin-inline:auto}
+.jr__head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+.jr__head .jah{margin-top:34px}
+.jr__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:60px}
+.jr__list img{width:100%;aspect-ratio:38/27;object-fit:cover}
+.jr__meta{display:flex;gap:26px;margin-top:26px;font-size:10.5px}
+.jr__meta i{color:var(--rust);font-style:normal}
+.jr__list b{display:block;margin-top:16px;padding-bottom:34px;border-bottom:1px solid var(--line);
+  font:400 14px/1.7 var(--ja);letter-spacing:.14em}
+.jr__list a:hover b{color:var(--celadon-d)}
+
+/* ===========================================================
+   7. はじめての方へ
+   =========================================================== */
+.gd{padding:0 0 100px;width:min(var(--w),90%);margin-inline:auto}
+.gd__head .jah{margin-top:34px}
+.gd__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:60px}
+.gd__list img{width:100%;aspect-ratio:1;object-fit:cover}
+.gd__list h3{margin-top:34px;font:400 16px/1 var(--ja);letter-spacing:.3em}
+.gd__list p{margin-top:20px;font-size:11.5px;line-height:2.2;color:var(--gray)}
+
+/* ===========================================================
+   8. フッター
+   =========================================================== */
+.ft{position:relative;background:var(--ink);color:#DCD6CB;padding:70px 0 40px;overflow:hidden}
+.ft__bg{position:absolute;left:0;top:0;width:100%;height:240px;object-fit:cover;opacity:.2}
+.ft>*:not(.ft__bg){position:relative;z-index:2}
+.ft .logo{display:grid;margin-inline:auto}
+.ft__nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:30px;
+  width:min(var(--w),90%);margin:80px auto 0}
+.ft__nav .en{color:#8E887C}
+.ft__nav ul{margin-top:26px}
+.ft__nav li{font-size:11px;line-height:2.6}
+.ft__nav a:hover{color:#fff}
+.ft__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
+  width:min(var(--w),90%);margin:70px auto 0;padding-top:44px;border-top:1px solid #3A3730}
+.ft__foot address{font-size:11px;line-height:2}
+.ft__foot small{color:#8E887C}
+.ft__sns{display:flex;gap:34px}
+.copy{width:min(var(--w),90%);margin:44px auto 0;color:#8E887C}
+
+/* ===========================================================
+   レスポンシブ ── 900px で SPフレーム（390幅・8枚）の形に切り替える
+   =========================================================== */
+@media (max-width:1200px){
+  .mk{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:0 40px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .mkr{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 40px}
+}
+
+@media (max-width:900px){
+  body{font-size:12.5px}
+
+  /* SPフレーム: ヘッダーはロゴとハンバーガーだけ。ナビ4項目は出さない */
+  .hd{grid-template-columns:1fr;justify-items:center;padding:22px 24px 20px}
+  .hd__nav,.cart{display:none}
+  .menubtn{display:grid;gap:8px;position:absolute;right:24px;top:30px}
+  .menubtn span{display:block;width:26px;height:1.2px;background:var(--ink)}
+
+  /* SPフレーム: 縦書きのキャッチは写真の上に残す */
+  .hero{padding:26px 0 30px}
+  .hero__ph{aspect-ratio:390/460}
+  .hero__cat{right:24px;top:60px;gap:14px}
+  .hero__cat span{font-size:20px;letter-spacing:.34em}
+  .hero__foot{flex-direction:column;align-items:flex-start;gap:20px;width:auto;padding-inline:24px}
+
+  /* SPフレーム: 写真→ラベル→文章の縦積み */
+  .mk{grid-template-columns:minmax(0,1fr);gap:0;padding:20px 0 70px}
+  .mk__ph{width:100%;margin:0;padding-inline:24px;aspect-ratio:342/260}
+  .mk__lbl{margin:30px 24px 0}
+  .mk__body{grid-column:1;grid-row:auto;padding:34px 24px 0}
+  .mk__body p{font-size:11.5px;line-height:2.3}
+
+  /* SPフレーム: 商品は2列。フィルタは4つだけ */
+  .shop{padding:0 0 70px}
+  .shop__head,.shop__bar,.grid{width:auto;padding-inline:24px}
+  .shop__bar{flex-direction:column;align-items:flex-start;gap:16px;margin-top:30px}
+  .chips li:nth-child(n+5){display:none}
+  .chips button{height:30px;padding:0 16px;font-size:10px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 18px;margin-top:34px}
+  .grid em{margin-top:18px}
+  .grid b{margin-top:12px;font-size:12px}
+  .grid span{margin-top:10px}
+  .shop .btn--c{margin-top:50px}
+
+  /* SPフレーム: ろくろ */
+  .wheel{padding-bottom:50px}
+  .wheel>img,.wheel::before{aspect-ratio:390/400}
+  .wheel__cat{height:calc(100% - 50px);font-size:17px;letter-spacing:.3em;line-height:1.9}
+  .wheel__foot{flex-direction:column;align-items:flex-start;gap:10px;width:auto;padding-inline:24px}
+
+  /* SPフレーム: つくり手は写真→文章→署名 */
+  .mkr{grid-template-columns:minmax(0,1fr);gap:0;padding:60px 0 70px}
+  .mkr__kiln{width:100%;margin:0;padding-inline:24px;aspect-ratio:342/420}
+  .mkr__body{padding:40px 24px 0}
+  .mkr__body p{font-size:11px;line-height:2.3}
+  .mkr__sign img{width:120px;height:120px}
+  .mkr__sign{gap:18px}
+
+  /* SPフレーム: 読みものは1列 */
+  .jr{padding:70px 0;width:auto;padding-inline:24px}
+  .jr__list{grid-template-columns:minmax(0,1fr);gap:34px;margin-top:40px}
+  .jr__list img{aspect-ratio:342/180}
+  .jr__list b{padding-bottom:24px;font-size:12.5px}
+
+  /* SPフレーム: はじめての方へは写真左・見出し右の行 */
+  .gd{padding-bottom:70px;width:auto;padding-inline:24px}
+  .gd__list{grid-template-columns:minmax(0,1fr);gap:0;margin-top:40px}
+  .gd__list li{display:grid;grid-template-columns:168px 1fr;gap:0 24px;
+    padding-bottom:34px;margin-bottom:34px;border-bottom:1px solid var(--line)}
+  .gd__list img{grid-row:1;width:168px}
+  .gd__list h3{grid-column:2;grid-row:1;align-self:start;margin-top:34px;font-size:14px}
+  .gd__list p{grid-column:1/-1;margin-top:20px}
+
+  /* SPフレーム: フッターは2列 */
+  .ft{padding:50px 0 30px}
+  .ft__nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 24px;width:auto;
+    padding-inline:24px;margin-top:60px}
+  .ft__foot{flex-direction:column;align-items:flex-start;gap:26px;width:auto;
+    padding-inline:24px;margin-top:50px}
+  .copy{width:auto;padding-inline:24px;margin-top:34px}
+}
+
+@media (max-width:560px){
+  .gd__list li{grid-template-columns:130px 1fr}
+  .gd__list img{width:130px}
+  .hero__cat span{font-size:18px}
+}
+
+/* 動きを減らす設定 */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *{transition-duration:.001s !important}
+}

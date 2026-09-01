@@ -1,0 +1,518 @@
+@charset "UTF-8";
+/* =========================================================================
+   灯山デザイン室 40th（架空）
+   Figma: 2026-08-31 hiyama-design-40th  PC列 X=0 / SP列 X=1840
+   PCフレーム1440幅・SPフレーム390幅を、%（座標）と cqw（文字サイズ）で写している。
+   ========================================================================= */
+
+:root{
+  --navy:#17288B;
+  --cyan:#02FFFE;
+  --yellow:#F5FF00;
+  --pink:#F0B4FF;
+  --red:#FF0000;
+  --navy2:#6570B2;
+  --white:#fff;
+  --jp:"Noto Sans JP",system-ui,sans-serif;
+  --en:"Inter","Noto Sans JP",sans-serif;
+  --puff:"Bowlby One","Noto Sans JP",cursive;
+  --ease:cubic-bezier(.165,.84,.44,1);
+  --bp:900px;           /* ここでSPフレームの形へ切り替える */
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:#fff; color:var(--navy);
+  font-family:var(--jp); font-weight:400; line-height:1.7;
+  overflow-x:hidden;
+}
+img,svg{display:block; max-width:100%}
+a{color:inherit}
+p,h1,h2,h3,blockquote,figure{margin:0}
+em,i{font-style:normal}
+button{font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer}
+mark{color:inherit; background:none}
+
+.skip{
+  position:fixed; left:8px; top:-60px; z-index:200;
+  padding:10px 16px; background:var(--navy); color:#fff; font-size:14px;
+  transition:top .2s;
+}
+.skip:focus{top:8px}
+:focus-visible{outline:3px solid var(--cyan); outline-offset:3px}
+
+/* 見出しの読み上げ用（画面には出さない） */
+.vh{
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+}
+
+/* =========================================================================
+   1. ステージ（＝Figmaの1フレーム）と、その上に置く部品
+   ========================================================================= */
+.sec{position:relative; overflow:hidden}
+.stage{
+  position:relative; width:100%; max-width:1440px; margin-inline:auto;
+  container-type:inline-size;
+}
+.stage::before{content:""; display:block; padding-top:calc(var(--H) / 1440 * 100%)}
+
+/* 箱（写真・カード・円） */
+.ab{
+  position:absolute;
+  left:calc(var(--x) / 1440 * 100%);
+  top:calc(var(--y) / var(--H) * 100%);
+  width:calc(var(--w) / 1440 * 100%);
+  height:calc(var(--h) / var(--H) * 100%);
+}
+.ph{object-fit:cover}          /* SVGの xMidYMid slice */
+.fit{object-fit:contain}       /* SVGの xMidYMid meet  */
+.ph,.fit{height:calc(var(--h) / var(--H) * 100%)}
+/* 角丸は写真とカードだけ。.ab に載せると 50% の丸物までSP側で潰れる */
+.ph,.card{border-radius:calc(var(--r, 0) / 1440 * 100cqw)}
+
+/* 横組みテキスト。--y はSVGと同じ「ベースライン」で指定する */
+.tx{
+  position:absolute;
+  left:calc(var(--x) / 1440 * 100%);
+  top:calc(var(--y) / var(--H) * 100%);
+  font-size:calc(var(--fs) / 1440 * 100cqw);
+  line-height:var(--lh, 1);
+  white-space:nowrap;
+  transform:translate(var(--tx, 0px), calc(-1em * ((var(--lh, 1) - var(--tot, 1.448)) / 2 + var(--asc, 1.16)))) var(--xf, );
+}
+.tx.en{--tot:1.211; --asc:.969; font-family:var(--en)}
+.tx.c{--tx:-50%}
+.tx.r{--tx:-100%}
+
+/* 縦組み。列は右から左へ。--x は一番右の列の中心 */
+.vt{
+  position:absolute;
+  writing-mode:vertical-rl; text-orientation:upright;
+  right:calc((1440 - var(--x)) / 1440 * 100% - var(--vgap, 1) / 2 * 1em);
+  top:calc(var(--y) / var(--H) * 100%);
+  font-size:calc(var(--fs) / 1440 * 100cqw);
+  line-height:var(--vgap, 1);
+  letter-spacing:calc(var(--vls, 0) * 1em);
+  white-space:nowrap;   /* 折り返すと列が勝手に増える（SPのs6で実際に増えた） */
+  transform:translateY(-.88em);
+}
+/* 縦組みの蛍光マーカー（文字の下に敷く＝1.16em幅の帯） */
+.vt mark{background:linear-gradient(to right, transparent 0 9.9%, var(--mc) 9.9% 90.1%, transparent 90.1%)}
+/* 横組みの蛍光マーカー（ベースライン -0.86em 〜 +0.20em） */
+.tx mark{background:linear-gradient(transparent 0 20.7%, var(--mc) 20.7% 93.9%, transparent 93.9%)}
+mark.y{--mc:var(--yellow)}
+mark.p{--mc:var(--pink)}
+
+/* 膨らんだディスプレイ文字（Bowlby One ＋ 同色ストロークで太らせる） */
+.puff{
+  position:absolute;
+  left:calc(var(--x) / 1440 * 100%);
+  top:calc(var(--y) / var(--H) * 100%);
+  font-family:var(--puff); font-weight:400; white-space:nowrap;
+  font-size:calc(var(--fs) / 1440 * 100cqw);
+  line-height:1;
+  letter-spacing:calc(var(--ls, 0) / var(--fs) * 1em);
+  color:var(--c, var(--navy));
+  -webkit-text-stroke:calc(var(--sw, 0) / 1440 * 100cqw) var(--c, var(--navy));
+  transform:translateY(-.78em);
+}
+.puff.rot{transform-origin:0 .78em; transform:translateY(-.78em) rotate(var(--rot))}
+
+.pc-none{display:none}
+.sub{color:var(--navy2)}
+
+/* =========================================================================
+   2. ヘッダー
+   ========================================================================= */
+.hd{
+  position:fixed; inset:0 0 auto; z-index:100;
+  display:flex; align-items:center; gap:24px;
+  height:96px; padding:0 56px;
+  color:#fff; transition:transform .7s cubic-bezier(.25,.46,.45,.94), background-color .4s;
+}
+.hd.is-hidden{transform:translateY(-100%); transition-duration:.6s; transition-timing-function:cubic-bezier(.39,.575,.565,1)}
+.hd.is-solid{background:var(--navy)}
+.hd__logo{position:relative; z-index:2; display:flex; align-items:center; gap:8px; text-decoration:none}
+.hd__dot{width:22px; height:22px; border-radius:50%; background:var(--cyan); flex:none}
+.hd__name{display:block; line-height:1.15}
+.hd__name b{display:block; font-size:21px; font-weight:700; letter-spacing:1px}
+.hd__name em{display:block; font-family:var(--en); font-size:11px; letter-spacing:2.4px}
+.hd__nav{margin-left:auto; display:flex; gap:30px}
+.hd__nav a{font-family:var(--en); font-size:13px; font-weight:500; letter-spacing:1.6px; text-decoration:none; position:relative}
+.hd__nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:currentColor;
+  transform:scaleX(0); transform-origin:100% 50%; transition:transform .4s var(--ease);
+}
+.hd__nav a:hover::after{transform:scaleX(1); transform-origin:0 50%}
+.hd__burger{width:36px; height:21px; position:relative; z-index:2; flex:none}
+.hd__burger span{position:absolute; left:0; width:36px; height:3px; border-radius:1.5px; background:currentColor; transition:transform .4s var(--ease), opacity .3s}
+.hd__burger span:nth-child(1){top:0}
+.hd__burger span:nth-child(2){top:9px}
+.hd__burger span:nth-child(3){top:18px}
+
+/* =========================================================================
+   3. s1 ヒーロー
+   ========================================================================= */
+.sec--hero{background:var(--navy)}
+.stage--hero{overflow:hidden}
+.card{background:#fff}
+.card--y{background:var(--yellow)}
+.tag{
+  background:#fff; border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:500; letter-spacing:.6px; line-height:1;
+}
+.tag,.pill3,.sns a{font-size:calc(var(--fs) / 1440 * 100cqw)}
+.hero__en,.hero__slogan{color:#fff; letter-spacing:calc(2.6 / 15 * 1em)}
+.hero__slogan{color:var(--cyan); letter-spacing:calc(2 / 15 * 1em)}
+.hero__mark{
+  color:#fff; font-weight:400; letter-spacing:calc(-4 / 206 * 1em);
+}
+
+/* =========================================================================
+   4. s2 出版告知
+   ========================================================================= */
+.pill3{
+  border:2px solid var(--navy); border-radius:50%; background:#fff;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  line-height:var(--plh, 1.14); font-weight:500;
+}
+.pill3 .num{font-family:var(--en); font-size:.7em; line-height:1.62}
+
+/* ギザギザの日付バッジ */
+.badge{position:absolute}
+.badge__star{
+  position:absolute; inset:0; width:100%; height:100%;
+  fill:var(--red);
+  animation:hd-rotate360 20s linear infinite, hd-badge-scale 1s steps(2) infinite;
+}
+.badge__txt{position:absolute; inset:0; width:100%; height:100%}
+.badge__txt text{
+  font-family:var(--en); font-size:31px; font-weight:500; fill:#fff; text-anchor:middle;
+}
+.badge__txt line{stroke:#fff; stroke-width:2.75}
+
+/* 見出し（下線つき） */
+.head2 .ul i{
+  display:inline-block; position:relative;
+  clip-path:inset(0 100% -.6em 0);
+  transition:clip-path .9s cubic-bezier(.19,1,.22,1) var(--d, 0s);
+}
+.head2 .ul.is-in i{clip-path:inset(0 -.2em -.6em 0)}
+.head2 .ul i::after{
+  content:""; position:absolute; left:-.087em; right:-.13em; top:1.284em; height:.0435em;
+  background:var(--navy);
+}
+.head2 .tx{font-weight:500; letter-spacing:calc(1 / 46 * 1em)}
+/* 本のタイトルだけ 1.8s ごとにカクッと色が変わる */
+.flip{animation:hd-fill-rotation 1.8s step-end infinite}
+
+/* =========================================================================
+   5. s3 タイポ帯
+   ========================================================================= */
+.drop{background:var(--yellow); border-radius:50%}
+.sub2{color:var(--navy); letter-spacing:calc(2 / 15 * 1em)}
+.spin__lead{color:var(--cyan); letter-spacing:calc(1.4 / 15 * 1em)}
+.spin--y{--c:var(--yellow)}
+.spin--c{--c:var(--cyan)}
+.spin--n{--c:var(--navy)}
+
+/* =========================================================================
+   6. s4 インタビュー
+   ========================================================================= */
+.s4{max-width:1440px; margin-inline:auto; padding-top:calc(40 / 1440 * 100%)}
+.person{--H:1080}
+.no{color:var(--cyan); font-weight:400; letter-spacing:calc(-1 / 66 * 1em)}
+.name{color:var(--cyan); font-weight:700}
+.role{color:var(--navy)}
+.quote{font-weight:500}
+.lead{font-weight:500}
+.morebtn{
+  display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--navy); border-radius:999px; background:#fff;
+  text-decoration:none; font-weight:500;
+  transition:background-color .4s var(--ease), color .4s var(--ease);
+}
+.morebtn:hover{background:var(--navy); color:#fff}
+
+/* =========================================================================
+   7. s5 / s7 マーキー帯
+   ========================================================================= */
+.marquee{background:var(--navy); overflow:hidden; height:min(90px, 6.25vw)}
+.marquee__in{display:flex; width:max-content; animation:hd-marquee 22s linear infinite; animation-delay:-8s}
+.marquee__in span{
+  color:#fff; font-weight:500; white-space:pre;
+  font-size:min(44px, 3.06vw); line-height:min(90px, 6.25vw);
+  padding-right:0;
+}
+
+/* =========================================================================
+   8. s6 イベント
+   ========================================================================= */
+.pillw{
+  border:2px solid var(--navy); border-radius:999px; background:#fff;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+}
+.ct{
+  font-size:calc(var(--fs) / 1440 * 100cqw); line-height:var(--clh, 1);
+  font-weight:500; letter-spacing:calc(var(--cls, 0) * 1em);
+  transform:translateY(var(--nudge, 0px));
+}
+.circ9{background:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center}
+.circ9 .ct{color:#fff; font-family:var(--en)}
+.seal{background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center}
+.seal .ct{color:#fff; font-weight:900; --nudge:-.085em}
+.vhead{font-weight:700}
+.vbody{font-weight:400}
+
+/* =========================================================================
+   9. s8 オフィス
+   ========================================================================= */
+.wobble{
+  position:absolute;
+  left:calc(var(--x) / 1440 * 100%);
+  top:calc(var(--y) / var(--H) * 100%);
+  font-family:var(--en); font-weight:700; font-size:calc(var(--fs) / 1440 * 100cqw);
+  line-height:1; white-space:nowrap;
+  color:transparent; -webkit-text-stroke:calc(.028em) var(--red);
+  transform-origin:0 .8635em;
+  transform:translateY(-.8635em) rotate(-18deg);
+}
+.wobble i{display:inline-block; width:.78em}
+.wobble i:nth-child(1){animation:hd-wobble-1 4s ease-in-out infinite -.4s}
+.wobble i:nth-child(2){animation:hd-wobble-2 4s ease-in-out infinite -1.2s}
+.wobble i:nth-child(3){animation:hd-wobble-3 4s ease-in-out infinite -2s}
+.wobble i:nth-child(4){animation:hd-wobble-4 4s ease-in-out infinite -2.8s}
+.wobble i:nth-child(5){animation:hd-wobble-5 4s ease-in-out infinite -3.6s}
+.wobble::before,.wobble::after{
+  content:""; position:absolute; left:-.184em; right:-.395em; height:.0263em; background:var(--red);
+}
+.wobble::before{top:-.0565em}
+.wobble::after{top:1.0635em}
+
+.mapwrap{overflow:hidden}
+.mapwrap__in{position:relative; width:100%; height:100%}
+.fmap{width:100%; height:100%}
+.fmap__bg{fill:#fff}
+.fmap__stripe path{fill:var(--cyan)}
+.fmap__room rect{fill:none; stroke:var(--navy); stroke-width:1.4}
+.fmap__edge{fill:none; stroke:var(--navy); stroke-width:1.6}
+.fmap__lab text{fill:var(--navy); font-family:var(--en); font-weight:400; letter-spacing:1.6px}
+
+.spot{
+  position:absolute; left:calc(var(--a) * 1%); top:calc(var(--b) * 1%);
+  width:1.78%; aspect-ratio:1; transform:translate(-50%,-50%);
+  border-radius:50%; background:var(--navy);
+  transition:transform .25s cubic-bezier(.2,.7,.2,1);
+}
+.spot::before{
+  content:""; position:absolute; inset:0; border-radius:50%;
+  border:2px solid var(--navy);
+  animation:hd-spot-ring 2.2s cubic-bezier(.2,.7,.2,1) infinite var(--sd, 0s);
+}
+.spot::after{
+  content:""; position:absolute; inset:0; border-radius:50%; background:var(--navy);
+  animation:hd-spot-breathe 1.8s cubic-bezier(.45,0,.25,1) infinite var(--sd, 0s);
+}
+.spot:nth-child(3){--sd:-.4s}
+.spot:nth-child(4){--sd:-.8s}
+.spot:nth-child(5){--sd:-1.2s}
+.spot:nth-child(6){--sd:-1.6s}
+.spot:nth-child(7){--sd:-2s}
+.spot:hover,.spot[aria-pressed="true"]{transform:translate(-50%,-50%) scale(1.5)}
+
+/* =========================================================================
+   10. s9 ロゴ組み上げ
+   ========================================================================= */
+.logo{--p:0}
+.part{
+  position:absolute;
+  left:calc((var(--x) - 2 * var(--r) - 15) / 1440 * 100%);
+  top:calc((var(--y) - 2 * var(--r) - 15) / var(--H) * 100%);
+  width:calc((4 * var(--r) + 30) / 1440 * 100%);
+  height:auto; aspect-ratio:1;
+  fill:none; stroke:var(--navy);
+  pointer-events:none;
+  opacity:calc(.15 + .85 * var(--p));
+  transform:translate(calc(var(--dx) * (1 - var(--p))), calc(var(--dy) * (1 - var(--p)))) rotate(calc(var(--dr) * (1 - var(--p))));
+}
+.logo__word .tx{font-weight:700; letter-spacing:calc(-2 / 132 * 1em); opacity:calc(.1 + .9 * var(--p)); --xf:scale(calc(.93 + .07 * var(--p)))}
+.logo__word .solid{color:var(--navy); transform-origin:100% 70%}
+.logo__word .outline{color:transparent; -webkit-text-stroke:calc(3 / 1440 * 100cqw) var(--navy); transform-origin:0 70%; paint-order:stroke fill}
+.logo__slogan{font-weight:500; letter-spacing:calc(3 / 30 * 1em); opacity:calc(.1 + .9 * var(--p))}
+.logo__en{letter-spacing:calc(4 / 13 * 1em)}
+.sub.tx.en{letter-spacing:calc(4 / 14 * 1em)}
+
+/* =========================================================================
+   11. s10 フッター
+   ========================================================================= */
+.foot{padding-bottom:0}
+.rule{background:var(--navy2)}
+.sns{display:flex; align-items:baseline; gap:calc(38 / 1440 * 100cqw)}
+.sns a{font-family:var(--en); font-weight:500; letter-spacing:1.6px; text-decoration:none; line-height:1}
+.sns a:hover{text-decoration:underline}
+.foot__tbc{font-weight:500; letter-spacing:calc(2 / 24 * 1em)}
+.foot__4{color:var(--navy); font-weight:400}
+.foot__ring{border:calc(var(--bw) / 1440 * 100cqw) solid var(--navy); border-radius:50%; --bw:100}
+.foot__face{border-radius:50%; object-fit:cover; height:calc(var(--h) / var(--H) * 100%)}
+/* アーク文字は回さない。回すと1文字目「4」が巨大な「4」のネイビーに重なって消える
+   （フェーズ5で開始角を詰めて避けた事故がそのまま戻る） */
+.arcwrap{position:absolute}
+.arc{width:100%; height:100%; overflow:visible}
+.arc text{fill:var(--navy); font-family:var(--jp); font-weight:500; text-anchor:middle}
+.blob{fill:var(--cyan)}
+
+/* =========================================================================
+   12. スクロールで出す
+   ========================================================================= */
+.reveal{opacity:0; transition:opacity 1s var(--ease) var(--d, 0s), transform 1s var(--ease) var(--d, 0s)}
+.reveal.is-in{opacity:1}
+.ab.reveal{transform:translateY(24px)}
+.ab.reveal.is-in{transform:none}
+.ab.reveal.spring.is-in{animation:hd-spring .9s cubic-bezier(.215,.61,.355,1) both}
+.ab.burst{
+  opacity:0; transform:translateY(80px) scale(.8);
+  transition:opacity .3s ease-out var(--d, 0s), transform .5s cubic-bezier(.34,1.3,.64,1) var(--d, 0s);
+}
+.ab.burst.is-in{opacity:1; transform:none}
+/* 写真はホバーで少し寄る */
+.ph{transition:transform .45s cubic-bezier(.23,1,.32,1), filter .45s}
+.ph:hover{transform:scale(1.03)}
+.ab.reveal.ph:hover{transform:scale(1.03)}
+
+/* =========================================================================
+   13. キーフレーム
+   ========================================================================= */
+@keyframes hd-marquee{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+@keyframes hd-rotate360{from{transform:rotate(0)} to{transform:rotate(360deg)}}
+@keyframes hd-badge-scale{0%,49%{scale:1} 50%,100%{scale:1.04}}
+@keyframes hd-spring{
+  from{opacity:0; transform:translateY(40px) scale(.94)}
+  to{opacity:1; transform:none}
+}
+@keyframes hd-fill-rotation{
+  0%{color:var(--navy)} 33%{color:var(--red)} 66%{color:var(--navy2)} 100%{color:var(--navy)}
+}
+@keyframes hd-spot-ring{
+  0%{transform:scale(.4); opacity:.6} 100%{transform:scale(2.4); opacity:0}
+}
+@keyframes hd-spot-breathe{
+  0%,100%{transform:scale(1); opacity:.9} 50%{transform:scale(1.35); opacity:.4}
+}
+@keyframes hd-wobble-1{0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-.09em) rotate(-4deg)}}
+@keyframes hd-wobble-2{0%,100%{transform:translateY(-.092em) rotate(0)} 50%{transform:translateY(.04em) rotate(5deg)}}
+@keyframes hd-wobble-3{0%,100%{transform:translateY(.053em) rotate(0)} 50%{transform:translateY(-.06em) rotate(-6deg)}}
+@keyframes hd-wobble-4{0%,100%{transform:translateY(-.04em) rotate(0)} 50%{transform:translateY(.07em) rotate(4deg)}}
+@keyframes hd-wobble-5{0%,100%{transform:translateY(.079em) rotate(0)} 50%{transform:translateY(-.05em) rotate(-5deg)}}
+
+/* =========================================================================
+   14. 〜1200px：PCフレームのまま比率で縮む（このデザインは vw 追従で成立する）
+       〜900px ：ここからSPフレーム（390幅）の形に切り替える
+   ========================================================================= */
+@media (max-width:900px){
+  .stage{width:min(100%, 480px)}
+  .stage::before{padding-top:calc(var(--SH) / 390 * 100%)}
+
+  .ab{
+    left:calc(var(--sx) / 390 * 100%);
+    top:calc(var(--sy) / var(--SH) * 100%);
+    width:calc(var(--sw) / 390 * 100%);
+  }
+  .ab,.ph,.fit,.foot__face{height:calc(var(--sh) / var(--SH) * 100%)}
+  .ph,.card{border-radius:calc(var(--sr, 0) / 390 * 100cqw)}
+
+  .tx{
+    left:calc(var(--sx) / 390 * 100%);
+    top:calc(var(--sy) / var(--SH) * 100%);
+    font-size:calc(var(--sfs) / 390 * 100cqw);
+    line-height:var(--slh, var(--lh, 1));
+    transform:translate(var(--stx, var(--tx, 0px)), calc(-1em * ((var(--slh, var(--lh, 1)) - var(--tot, 1.448)) / 2 + var(--asc, 1.16)))) var(--xf, );
+  }
+  .vt{
+    right:calc((390 - var(--sx)) / 390 * 100% - var(--svgap, 1) / 2 * 1em);
+    top:calc(var(--sy) / var(--SH) * 100%);
+    font-size:calc(var(--sfs) / 390 * 100cqw);
+    line-height:var(--svgap, 1);
+    letter-spacing:calc(var(--svls, 0) * 1em);
+  }
+  .puff{
+    left:calc(var(--sx) / 390 * 100%);
+    top:calc(var(--sy) / var(--SH) * 100%);
+    font-size:calc(var(--sfs) / 390 * 100cqw);
+    letter-spacing:calc(var(--sls, 0) / var(--sfs) * 1em);
+    -webkit-text-stroke-width:calc(var(--ssw, 0) / 390 * 100cqw);
+  }
+  .wobble{
+    left:calc(var(--sx) / 390 * 100%);
+    top:calc(var(--sy) / var(--SH) * 100%);
+    font-size:calc(var(--sfs) / 390 * 100cqw);
+  }
+  .part{
+    left:calc((var(--sx) - 2 * var(--sr) - 10) / 390 * 100%);
+    top:calc((var(--sy) - 2 * var(--sr) - 10) / var(--SH) * 100%);
+    width:calc((4 * var(--sr) + 20) / 390 * 100%);
+  }
+  .tag,.pill3,.sns a{font-size:calc(var(--sfs) / 390 * 100cqw)}
+  .ct{font-size:calc(var(--sfs) / 390 * 100cqw); line-height:var(--sclh, var(--clh, 1))}
+
+  .sp-none{display:none}
+  .pc-none{display:block}
+
+  /* ヘッダー：ハンバーガーのみ（SPフレームに描いてある形） */
+  .hd{height:76px; padding:0 22px; gap:12px}
+  .hd__dot{width:18px; height:18px}
+  .hd__name b{font-size:17px}
+  .hd__name em{font-size:9px; letter-spacing:1.8px}
+  .hd__burger{margin-left:auto; width:30px; height:19px}
+  .hd__burger span{width:30px; height:2.6px}
+  .hd__nav{
+    position:fixed; inset:0; z-index:1; margin:0;
+    flex-direction:column; align-items:center; justify-content:center; gap:28px;
+    background:var(--navy); color:#fff;
+    clip-path:inset(0 0 100% 0); transition:clip-path .4s cubic-bezier(.25,.46,.45,.94);
+    pointer-events:none;
+  }
+  .hd__nav a{font-size:22px; letter-spacing:3px; transform:translateY(20px); opacity:0; transition:transform .6s var(--ease), opacity .6s var(--ease)}
+  .hd.is-open .hd__nav{clip-path:inset(0); pointer-events:auto}
+  .hd.is-open{background:var(--navy)}
+  .hd.is-open .hd__nav a{transform:none; opacity:1}
+  .hd.is-open .hd__nav a:nth-child(2){transition-delay:.06s}
+  .hd.is-open .hd__nav a:nth-child(3){transition-delay:.12s}
+  .hd.is-open .hd__nav a:nth-child(4){transition-delay:.18s}
+  .hd.is-open .hd__burger span:nth-child(1){transform:translateY(8.2px) rotate(45deg)}
+  .hd.is-open .hd__burger span:nth-child(2){opacity:0}
+  .hd.is-open .hd__burger span:nth-child(3){transform:translateY(-8.2px) rotate(-45deg)}
+
+  /* s4 の上端の余白もSPフレームどおり */
+  .s4{max-width:480px; padding-top:calc(20 / 390 * 100%)}
+  .person{--H:600}
+
+  /* マーキー帯 */
+  .marquee{height:min(70px, 17.95vw)}
+  .marquee__in span{font-size:min(30px, 7.7vw); line-height:min(70px, 17.95vw)}
+
+  /* フロアマップは横スクロールの帯（幅600をはみ出させる） */
+  .mapwrap{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none}
+  .mapwrap::-webkit-scrollbar{display:none}
+  .mapwrap__in{width:171.43%}
+  .spot{width:2%}
+
+  .logo__word .outline{-webkit-text-stroke-width:calc(1.6 / 390 * 100cqw)}
+  .foot__ring{--bw:46; border-width:calc(46 / 390 * 100cqw)}
+  .sns{gap:calc(26 / 390 * 100cqw)}
+}
+
+/* =========================================================================
+   15. 動きを止める
+   ========================================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+  .reveal,.ab.burst{opacity:1 !important}
+  .ab.reveal,.ab.burst{transform:none !important}
+  .head2 .ul i{clip-path:none !important}
+  .logo{--p:1 !important}
+  .marquee__in{transform:none}
+}
