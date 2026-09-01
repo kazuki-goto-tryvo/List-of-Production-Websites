@@ -1,0 +1,177 @@
+@charset "utf-8";
+/* ============================================================
+   あしたの靴下「サンダルインナー」
+   方眼の水色地に、幅370pxの縦カラムが中央に1本。PC 1440 / SP 390
+   ============================================================ */
+
+:root{
+  --bg:#E8F1FB; --grid:#D3E3F4; --cream:#FBF7EF; --leaf:#DFEFDC;
+  --aqua:#BFDCEB; --saku:#F6D8DE; --ink:#2B3A44; --sub:#6E8390;
+  --cta:#E8607A; --blue:#4E9CC4; --white:#fff;
+  --col:370px;
+  --over:cubic-bezier(.22,1.61,.36,1);      /* 参照元 .js-fade のオーバーシュート */
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;color:var(--ink);
+  background:var(--bg);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px;
+  font-family:"Noto Sans JP",-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  font-size:12px;line-height:2;font-weight:500;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,p,figure{margin:0}
+a{color:inherit;text-decoration:none;transition:opacity .3s}
+b,i,span{font-style:normal}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:#fff;padding:10px 18px}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--cta);outline-offset:3px}
+
+/* カラム */
+.col{width:var(--col);margin:0 auto;padding:26px 0}
+.pane{background:var(--cream);border:1.2px solid var(--blue);border-radius:14px;
+  padding:0 24px 34px;position:relative;overflow:hidden}
+.pane--leaf{background:var(--leaf)}
+.pane + .pane{margin-top:26px}
+
+/* ---------- カラム外の装飾（PCのみ） ---------- */
+.deco{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+.deco__band{position:sticky;top:0;height:100vh}
+.deco__v{position:absolute;left:176px;top:52%;writing-mode:vertical-rl;
+  font-size:17px;letter-spacing:.16em;color:var(--ink);translate:0 -50%}
+.deco__badge{position:absolute;left:1274px;top:44%;width:88px;height:102px;color:var(--ink);
+  display:grid;place-items:center}
+.deco__badge svg{position:absolute;inset:0;width:100%;height:100%}
+.deco__badge i{font-family:"Cormorant Garamond",serif;font-size:13px;line-height:1.5;
+  letter-spacing:.12em;text-align:center;translate:0 -6px}
+.deco__p{position:absolute;top:56%;width:78px;translate:0 -50%}
+.deco__p--l1{left:26px}.deco__p--l2{left:110px}.deco__p--l3{left:194px}.deco__p--l4{left:278px}
+.deco__p--r1{left:981px}.deco__p--r2{left:1065px}.deco__p--r3{left:1149px}.deco__p--r4{left:1233px}
+.deco__p--l3,.deco__p--l4{top:58%}
+.deco__p--r2,.deco__p--r4{top:58%}
+
+/* ---------- 01 ヒーロー ---------- */
+.hero{padding-top:0}
+.hero__h{font-size:25px;font-weight:700;line-height:1.5;text-align:center;padding-top:56px}
+.mk{position:relative}
+.mk::before{content:"";position:absolute;left:-58px;top:2px;width:54px;height:14px;
+  background:var(--saku);border-radius:999px;rotate:-8deg}
+.hero__fig{position:relative;margin-top:34px;display:grid;justify-items:center}
+.v{position:absolute;top:14px;writing-mode:vertical-rl;font-size:11.5px;
+  letter-spacing:.1em;color:var(--blue)}
+.v--l{left:2px}.v--r{right:2px}
+.arch{width:240px;background:var(--aqua);
+  border-radius:120px 120px 0 0;overflow:hidden}
+.arch img{width:100%;height:330px;object-fit:cover;object-position:top}
+.arch--sm{width:250px;background:var(--saku);border-radius:125px 125px 0 0;margin:26px auto 0}
+.arch--sm img{height:330px;object-position:center}
+.scallop{height:22px;margin:24px -24px 0;
+  background:radial-gradient(circle at 11px 0,var(--saku) 11px,transparent 11px) repeat-x;
+  background-size:22px 22px}
+.scallop{background-color:transparent}
+
+.card{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;align-items:start;margin-top:26px}
+.card figure{background:var(--white);border-radius:6px;overflow:hidden}
+.card img{width:92px;height:92px;object-fit:cover}
+.card__n{font-size:11px;line-height:1.6}
+.card__p{font-size:13px;font-weight:700;margin-top:8px}
+.card__p span{font-size:9px;font-weight:400;color:var(--sub);margin-left:4px}
+.buy{display:inline-block;margin-top:6px;border:1.4px solid var(--cta);border-radius:999px;
+  padding:4px 18px;font-family:"Cormorant Garamond",serif;font-size:13px;font-weight:500;
+  color:var(--cta);position:relative;overflow:hidden;z-index:0}
+.buy::before{content:"";position:absolute;inset:0;background:var(--cta);z-index:-1;
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--over)}
+.buy:hover{color:#fff}
+.buy:hover::before{transform:scaleX(1)}
+
+.mark{display:grid;place-items:center;position:relative;width:80px;height:92px;
+  margin:36px auto 0;color:var(--ink)}
+.mark svg{position:absolute;inset:0;width:100%;height:100%}
+.mark i{font-family:"Cormorant Garamond",serif;font-size:12px;line-height:1.5;
+  letter-spacing:.12em;text-align:center;translate:0 -5px}
+
+/* ---------- 特長 ---------- */
+.pt{padding-top:0;text-align:center}
+.pt__lead{font-size:10.5px;color:var(--sub);padding-top:46px}
+.pt__n{margin-top:24px}
+.dot{display:block;width:18px;height:18px;margin:0 auto;border-radius:50%;background:var(--leaf)}
+.dot--w{background:var(--white)}
+.pt__n b{display:block;font-family:"Cormorant Garamond",serif;font-size:44px;
+  font-weight:400;color:var(--blue);line-height:1.2;margin-top:6px}
+.pt__h{font-size:21px;font-weight:700;line-height:1.5;margin-top:6px}
+.pt__b{text-align:left;font-size:12px;line-height:2;margin-top:34px}
+
+/* ---------- サイズとカラー ---------- */
+.size{padding-top:0;text-align:center}
+.size__h{font-size:16px;font-weight:700;padding-top:52px}
+.size__s{font-size:10.5px;color:var(--sub);margin-top:6px}
+.size ul{margin-top:26px;text-align:left}
+.size li + li{border-top:1px solid var(--aqua);padding-top:26px;margin-top:26px}
+
+/* ---------- フッター ---------- */
+.ft{padding-top:0;text-align:center}
+.ft .mark{margin-top:46px}
+.ft__b{font-size:18px;font-weight:700;margin-top:28px}
+.ft__en{font-family:"Cormorant Garamond",serif;font-size:10.5px;letter-spacing:.2em;color:var(--sub)}
+.ft__addr{font-size:10px;line-height:2;color:var(--sub);margin-top:20px}
+.ft__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 8px;
+  margin-top:30px;text-align:left}
+.ft__links a{font-size:10.5px}
+.ft__links a:hover{opacity:.55}
+.ft__c{font-family:"Cormorant Garamond",serif;font-size:9.5px;color:var(--sub);margin-top:34px}
+
+/* ---------- 動き ---------- */
+.fade,.fade-list > *{opacity:0;transform:translateY(22px);
+  transition:opacity .35s ease-out,transform .65s var(--over)}
+.fade.is-in,.fade-list.is-in > *{opacity:1;transform:none}
+.fade-list.is-in > *{transition-delay:calc(var(--d,0) * 70ms)}
+
+/* ============================================================
+   SP（390フレームどおり）：カラムが画面幅いっぱい・装飾は全部消す
+   ============================================================ */
+@media (max-width:900px){
+  :root{--col:auto}
+  body{background-size:20px 20px}
+  .deco{display:none}
+  .col{width:auto;margin:0 16px;padding:14px 0}
+  .pane{padding:0 18px 28px;border-radius:12px}
+  .pane + .pane{margin-top:18px}
+
+  .hero__h{font-size:20px;padding-top:46px}
+  .mk::before{left:-44px;width:42px;height:11px}
+  .arch{width:200px}
+  .arch img{height:270px}
+  .arch--sm{width:220px;border-radius:110px 110px 0 0}
+  .arch--sm img{height:280px}
+  .v{font-size:9.5px}
+  .scallop{margin:20px -18px 0;height:18px;
+    background:radial-gradient(circle at 9px 0,var(--saku) 9px,transparent 9px) repeat-x;
+    background-size:18px 18px;background-color:transparent}
+  .card{grid-template-columns:84px minmax(0,1fr);gap:12px}
+  .card img{width:84px;height:84px}
+  .card__n{font-size:10px}
+  .mark{width:66px;height:76px;margin-top:28px}
+  .mark i{font-size:10px}
+
+  .pt__lead{font-size:9.5px;padding-top:38px}
+  .pt__n b{font-size:34px}
+  .pt__h{font-size:17px}
+  .pt__b{font-size:11px;margin-top:28px}
+
+  .size__h{font-size:15px;padding-top:44px}
+  .size__s{font-size:9.5px}
+
+  .ft__b{font-size:16px}
+  .ft__addr{font-size:9.5px}
+  .ft__links{grid-template-columns:minmax(0,1fr);gap:0}
+  .ft__links li{background:var(--white);border-radius:15px;margin-top:10px}
+  .ft__links a{display:block;padding:5px 0;text-align:center;font-size:10.5px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .fade,.fade-list > *{opacity:1;transform:none}
+}
