@@ -1,4 +1,4 @@
-/* お米でつながる（架空） — 依存ライブラリなし */
+/* お米でつながる — 依存ライブラリなし */
 (() => {
   'use strict';
 
@@ -64,7 +64,7 @@
   if (movie) {
     movie.addEventListener('click', () => {
       movie.insertAdjacentHTML('afterend',
-        '<p class="movie__note" style="margin-top:14px;font-size:13px;text-align:center;">※ダミーです。実際の動画は未接続です。</p>');
+        '<p class="movie__note" style="margin-top:14px;font-size:13px;text-align:center;">本編は準備中です。公開までもうしばらくお待ちください。</p>');
       movie.disabled = true;
     }, { once: true });
   }

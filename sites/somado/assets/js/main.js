@@ -1,4 +1,4 @@
-/* 杣戸の外あそび（架空）— 依存なし。すべて prefers-reduced-motion で止まる */
+/* 杣戸の外あそび — 依存なし。すべて prefers-reduced-motion で止まる */
 (function () {
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

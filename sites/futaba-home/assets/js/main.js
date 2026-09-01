@@ -1,4 +1,4 @@
-/* ふたばホーム（架空） — 依存ライブラリなし */
+/* ふたばホーム — 依存ライブラリなし */
 (() => {
   'use strict';
   const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;

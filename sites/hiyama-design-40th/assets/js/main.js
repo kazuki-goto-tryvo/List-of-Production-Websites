@@ -1,4 +1,4 @@
-/* 灯山デザイン室 40th（架空）— 動きは全部CSSキーフレーム。JSは発火と進捗だけ */
+/* 灯山デザイン室 40th — 動きは全部CSSキーフレーム。JSは発火と進捗だけ */
 (function () {
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

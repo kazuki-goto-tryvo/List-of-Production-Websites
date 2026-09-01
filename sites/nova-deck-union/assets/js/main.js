@@ -1,4 +1,4 @@
-/* NOVA DECK UNION（架空）— 依存ライブラリなし */
+/* NOVA DECK UNION— 依存ライブラリなし */
 (function () {
   'use strict';
 

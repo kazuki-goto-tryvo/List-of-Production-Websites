@@ -1,4 +1,4 @@
-/* 日本字形協会（架空）— 依存なし。すべて prefers-reduced-motion で止まる */
+/* 日本字形協会 — 依存なし。すべて prefers-reduced-motion で止まる */
 (function () {
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
