@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>制作サイト一覧｜Portfolio</title>
-<meta name="description" content="ローカルで制作した Web サイトの一覧。">
+<title>制作実績｜Web サイト制作</title>
+<meta name="description" content="コーポレートサイト・採用サイト・サービスLP・店舗／施設サイト・オンラインストアまで。Figma で PC とスマートフォンの2画面を設計し、素の HTML / CSS / JavaScript で実装した Web サイトの制作実績です。">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +15,9 @@
 
 <header class="head">
   <div class="wrap">
-    <p class="head__label">PORTFOLIO</p>
-    <h1 class="head__title">制作サイト一覧</h1>
-    <p class="head__lead">Web サイトの構成・レイアウトの練習として組んだ 1 ページサイトを集めています。<br>各カードから実物が開きます（素の HTML / CSS / JavaScript・ビルドなし）。<strong>すべて架空のブランド</strong>です。</p>
+    <p class="head__label">WORKS</p>
+    <h1 class="head__title">制作実績</h1>
+    <p class="head__lead">コーポレートサイト、採用サイト、サービスLP、店舗・施設サイト、オンラインストアまで。<br>Figma で PC とスマートフォンの2画面を設計し、素の HTML / CSS / JavaScript で実装しています。<br>各カードから実物のページが開きます。</p>
   </div>
 </header>
 
@@ -28,14 +28,32 @@
 
     <li>
       <article class="card">
+        <a class="card__link" href="sites/somado/index.html">
+          <span class="card__thumb">
+            <img src="assets/thumbs/somado.webp" alt="杣戸の外あそび のトップページ" width="760" height="475" loading="lazy">
+          </span>
+          <span class="card__body">
+            <span class="card__meta">2026.09 ／ アウトドア施設サイト</span>
+            <b class="card__title">杣戸の外あそび</b>
+            <span class="card__desc">山あいのキャンプ場とアクティビティの案内サイト。ミント色の地に幅460pxの縦カラムを1本だけ通し、その中で濃緑→黄→薄緑のパネルを積み上げました。カラムの外側にはコラージュ写真と鳥瞰のイラストマップが散ります。動きの主役は<em>行き過ぎて戻るイージング</em>で写真と吹き出しが飛び出すポップな演出。全8セクションを PC とスマートフォンの2画面で設計してから実装しました。</span>
+            <span class="card__tags">
+              <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>コラージュ</i><i>マーキー</i><i>イラストマップ</i><i>アウトドア</i>
+            </span>
+          </span>
+        </a>
+      </article>
+    </li>
+
+    <li>
+      <article class="card">
         <a class="card__link" href="sites/somado-outdoor/index.html">
           <span class="card__thumb">
             <img src="assets/thumbs/somado-outdoor.webp" alt="杣戸のアウトドア部 のトップページ" width="760" height="475" loading="lazy">
           </span>
           <span class="card__body">
             <span class="card__meta">2026.09 ／ 観光・アクティビティ</span>
-            <b class="card__title">杣戸のアウトドア部（架空）</b>
-            <span class="card__desc">架空の山村アウトドアガイドのトップページ。骨格が特殊で、<em>中央460pxのカラムだけが流れ、左の「野原」と右の縦ナビは動かない</em>（どちらも <code>position:fixed</code>）。緑と黄と若草を交互に敷いた全12セクションで、アクティビティ8面はピル・アーチ英字・枠線ボタンが緑→橙と入れ替わる。写真マーキー・オーバーシュートで跳ねるキャッチ・フェードのカルーセルまで、外部JSを1本も使わず素のCSSとIntersectionObserverで組んだ。PC 10,549px／SP 9,087px。</span>
+            <b class="card__title">杣戸のアウトドア部</b>
+            <span class="card__desc">山あいのアウトドアガイドのトップページ。<em>中央460pxのカラムだけが流れ、左の「野原」と右の縦ナビは動かない</em>という骨格が特徴です（どちらも <code>position:fixed</code>）。緑と黄と若草を交互に敷いた全12セクションで、アクティビティ8面はピル・アーチ英字・枠線ボタンが緑→橙と入れ替わります。写真マーキー、跳ねるキャッチ、フェードのカルーセルまで、外部ライブラリを使わず素の CSS と IntersectionObserver で実装しました。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>position:fixed</i><i>マーキー</i><i>イラスト</i><i>アウトドア</i>
             </span>
@@ -52,8 +70,8 @@
           </span>
           <span class="card__body">
             <span class="card__meta">2026.09 ／ 業界団体サイト</span>
-            <b class="card__title">日本字形協会（架空）</b>
-            <span class="card__desc">架空のNPO法人のトップページ。ほぼ無彩色のeditorialな組みに朱を1色だけ差した。目玉は「会員の壁」——名前が大小まざって左右に見切れ、名前にホバーすると<em>マウスが入ってきた辺から</em>顔写真が伸びる方向感知ホバー。見出しは左から拭き取り、下線は左→右に引かれ、ヘッダーは下スクロールで消える。全5セクションをPC・SPの2本立てでFigmaに起こしてから静的HTML化。</span>
+            <b class="card__title">日本字形協会</b>
+            <span class="card__desc">文字と組版にたずさわる人が集まる団体のトップページ。ほぼ無彩色のエディトリアルな組みに、朱を1色だけ差しました。目玉は「会員の壁」——名前が大小まざって左右に見切れ、ホバーすると<em>マウスが入ってきた辺から</em>顔写真が伸びる方向感知の演出です。見出しは左から拭き取り、下線は左→右に引かれ、ヘッダーは下スクロールで消えます。全5セクションを PC とスマートフォンの2画面で設計。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>モノクロ</i><i>方向感知ホバー</i><i>clip-path</i><i>タイポグラフィ</i>
             </span>
@@ -70,8 +88,8 @@
           </span>
           <span class="card__body">
             <span class="card__meta">2026.08 ／ サービスLP</span>
-            <b class="card__title">ソクリ！（架空）</b>
-            <span class="card__desc">架空の定額Web制作サービスのLP。オレンジ→マゼンタ→インディゴのグラデ帯を軸に、方眼の地紋・白カード・図解イラストで縦長1ページを構成。循環図・ファネル・BEFORE/AFTERの比較図はすべてSVGとCSSで自作し、素材はGPT Image 2で8回生成→27点に分割。全12セクションをPC1440とSP390の2本立てでFigmaに起こしてから静的HTML化。SPではヒーローの実績サムネが横スクロールの帯に、循環図が番号リストに置き換わる。</span>
+            <b class="card__title">ソクリ！</b>
+            <span class="card__desc">定額制の Web 制作サービスのランディングページ。オレンジ→マゼンタ→インディゴのグラデーション帯を軸に、方眼の地紋・白カード・図解イラストで縦長1ページを構成しました。循環図・ファネル・BEFORE / AFTER の比較図はすべて SVG と CSS で自作。全12セクションを PC とスマートフォンの2画面で設計し、スマートフォンではヒーローの実績サムネが横スクロールの帯に、循環図が番号リストに置き換わります。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>LP</i><i>グラデーション</i><i>図解</i><i>アコーディオン</i>
             </span>
@@ -88,8 +106,8 @@
           </span>
           <span class="card__body">
             <span class="card__meta">2026.08 ／ 周年記念サイト</span>
-            <b class="card__title">灯山デザイン室 40th（架空）</b>
-            <span class="card__desc">架空のデザイン事務所の40周年サイト。ネイビー地に原色4色だけを差す配色で、巨大ワードマーク・縦組みの引用・膨らんだ英字・散らしコラージュを組んだ。マーキー帯、弾けて散る写真、スクロール進捗で部品から組み上がるロゴ、呼吸するフロアマップまで全部CSSキーフレームで実装。全10セクションを PC・SP の2本立てで Figma に起こしてから静的 HTML 化。</span>
+            <b class="card__title">灯山デザイン室 40th</b>
+            <span class="card__desc">デザイン事務所の40周年記念サイト。ネイビー地に原色4色だけを差す配色で、巨大なワードマーク・縦組みの引用・膨らんだ英字・散らしコラージュを組みました。マーキー帯、弾けて散る写真、スクロール進捗で部品から組み上がるロゴ、呼吸するフロアマップまで、動きはすべて CSS キーフレームで実装。全10セクションを PC とスマートフォンの2画面で設計。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>縦組み</i><i>コラージュ</i><i>スクロール連動</i>
             </span>
@@ -106,8 +124,8 @@
           </span>
           <span class="card__body">
             <span class="card__meta">2026.08 ／ eスポーツチームサイト</span>
-            <b class="card__title">NOVA DECK UNION（架空）</b>
-            <span class="card__desc">競技カードゲームチームの架空サイト。収録13本で初めての暗色サイトで、黒地に発光する赤、角を斜めに落としたパネル、背景の巨大ゴースト英字で組んだ。カルーセル・タブ・ステータスバー・トーナメント表・FAQ開閉まで素のJSで実装。全10セクションを PC・SP の2本立てで Figma に起こしてから静的 HTML 化。</span>
+            <b class="card__title">NOVA DECK UNION</b>
+            <span class="card__desc">競技カードゲームチームのサイト。黒地に発光する赤、角を斜めに落としたパネル、背景の巨大なゴースト英字で組んだ暗色のデザインです。カルーセル・タブ・ステータスバー・トーナメント表・FAQ の開閉まで、外部ライブラリを使わず素の JavaScript で実装しました。全10セクションを PC とスマートフォンの2画面で設計。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>ダークUI</i><i>clip-path</i><i>カルーセル</i>
             </span>
@@ -124,8 +142,8 @@
           </span>
           <span class="card__body">
             <span class="card__meta">2026.08 ／ サービスサイト</span>
-            <b class="card__title">モリツグ（架空）</b>
-            <span class="card__desc">山林の持ち主と企業をつなぐ仲介サービス。太い黒の輪郭線とセクションごとの色替え（クリーム／黄／緑）、手描きの波線、鳥のマスコットで組んだ線画主体の1ページ。ヒーローは3層に分けてスクロール視差、雲が流れ、マスコットが4コマでコマ送りに羽ばたく。全8セクションを PC・SP の2本立てで Figma に起こしてから静的 HTML に実装。</span>
+            <b class="card__title">モリツグ</b>
+            <span class="card__desc">山林の持ち主と企業をつなぐ仲介サービスのサイト。太い黒の輪郭線とセクションごとの色替え（クリーム／黄／緑）、手描きの波線、鳥のマスコットで組んだ線画主体の1ページです。ヒーローは3層に分けてスクロール視差、雲が流れ、マスコットが4コマでコマ送りに羽ばたく——動きはすべて CSS で実装しました。全8セクションを PC とスマートフォンの2画面で設計。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>線画イラスト</i><i>マスコット</i><i>視差</i><i>CSSアニメーション</i>
             </span>
@@ -143,7 +161,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ 採用サイト</span>
             <b class="card__title">WORLD ROUTE 採用サイト</b>
-            <span class="card__desc">越境ECの架空企業の採用サイト。オレンジ一色＋グリッチ表現の1ページ構成。Figma でデザインを起こしてから静的 HTML に実装した。</span>
+            <span class="card__desc">越境 EC を手がける企業の採用サイト。オレンジ一色＋グリッチ表現の1ページ構成です。Figma でデザインを起こしてから、素の HTML / CSS / JavaScript で実装しました。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>ビルドなし</i><i>レスポンシブ</i>
             </span>
@@ -160,8 +178,8 @@
           </span>
           <span class="card__body">
             <span class="card__meta">2026.08 ／ キャンペーンサイト</span>
-            <b class="card__title">お米でつながる（架空）</b>
-            <span class="card__desc">お米をテーマにした縦長1ページ。手描き線画・有機的なブロブ・セクションごとの色替えが特徴。全8セクションを Figma で起こしてから静的 HTML に実装した。</span>
+            <b class="card__title">お米でつながる</b>
+            <span class="card__desc">お米をテーマにしたキャンペーンの縦長1ページ。手描きの線画、有機的なブロブ、セクションごとの色替えが特徴です。全8セクションを Figma で設計してから静的 HTML に実装しました。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>線画イラスト</i><i>カルーセル</i>
             </span>
@@ -179,7 +197,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ 施設サイト</span>
             <b class="card__title">道の駅 ハーベストひなた</b>
-            <span class="card__desc">架空の道の駅のトップページ。円周を回るキャッチ、梨の木に生産者が実るキービジュアル、波形のセクション区切りが特徴。全8セクションを Figma で起こしてから静的 HTML に実装した。</span>
+            <span class="card__desc">道の駅のトップページ。円周を回るキャッチ、梨の木に生産者が実るキービジュアル、波形のセクション区切りが特徴です。全8セクションを Figma で設計してから静的 HTML に実装しました。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>SVG textPath</i><i>フラットイラスト</i>
             </span>
@@ -197,7 +215,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ コーポレートサイト</span>
             <b class="card__title">ふたばホーム</b>
-            <span class="card__desc">架空のリフォーム会社。絵本のような一枚絵の世界観で、空から家の中へと降りていく縦長1ページ。全8セクションを Figma で起こしてから静的 HTML に実装した。</span>
+            <span class="card__desc">リフォーム会社のコーポレートサイト。絵本のような一枚絵の世界観で、空から家の中へと降りていく縦長1ページに構成しました。全8セクションを Figma で設計してから静的 HTML に実装。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>イラスト主体</i><i>グラデーション文字</i>
             </span>
@@ -215,7 +233,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ サービスサイト</span>
             <b class="card__title">こどもウェルネスジム KURURI</b>
-            <span class="card__desc">架空の未就学児向けウェルネスジム。ぬいぐるみのマスコット9体と原色のブロックで組んだ、全11セクションの縦長1ページ。波形の区切りとふわふわ動くマスコットが全体を繋いでいる。</span>
+            <span class="card__desc">未就学児向けウェルネスジムのサイト。ぬいぐるみのマスコット9体と原色のブロックで組んだ、全11セクションの縦長1ページです。波形の区切りと、ふわふわ動くマスコットが全体をつないでいます。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>オリジナルマスコット</i><i>波形の区切り</i>
             </span>
@@ -233,7 +251,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ コーポレートサイト</span>
             <b class="card__title">株式会社ソラリエ</b>
-            <span class="card__desc">架空のホスピタリティ企業。ホテル・レストラン・ウエディングをプロデュースする会社のトップページ。深い青と写真だけで組み、Forum と明朝で静かなトーンにした全8セクション。PC・SPの2アートボードから起こしている。</span>
+            <span class="card__desc">ホテル・レストラン・ウエディングをプロデュースするホスピタリティ企業のコーポレートサイト。深い青と写真だけで組み、Forum と明朝で静かなトーンにした全8セクションです。PC とスマートフォンの2画面で設計。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>PC＋SP</i><i>写真主体</i>
             </span>
@@ -251,7 +269,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ 店舗サイト</span>
             <b class="card__title">AXIS BARBER</b>
-            <span class="card__desc">架空のメンズバーバー。写真も文字も全編モノクロで、色を一切使わずに組んだ全8セクション。Cormorant Garamond の大きなセリフと縦組みの英字ラベルでトーンをつくっている。</span>
+            <span class="card__desc">メンズバーバーの店舗サイト。写真も文字も全編モノクロで、色を一切使わずに組んだ全8セクションです。Cormorant Garamond の大きなセリフ体と、縦組みの英字ラベルでトーンをつくっています。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>PC＋SP</i><i>モノクロ</i>
             </span>
@@ -269,7 +287,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ サービスサイト</span>
             <b class="card__title">NOKI 2nd Home Weekday</b>
-            <span class="card__desc">架空の別荘サブスクリプション。クリームの地に静かな自然写真だけを置き、彩度のある色はCTAのオレンジ1色に絞った全8セクション。縦書きのキャッチと Marcellus の大きな英字が骨格。</span>
+            <span class="card__desc">別荘のサブスクリプションサービスのサイト。クリームの地に静かな自然写真だけを置き、彩度のある色は CTA のオレンジ1色に絞った全8セクションです。縦書きのキャッチと Marcellus の大きな英字が骨格になっています。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>PC＋SP</i><i>写真主体</i>
             </span>
@@ -287,7 +305,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ クリニックサイト</span>
             <b class="card__title">あおばクリニック</b>
-            <span class="card__desc">架空の耳鼻咽喉科。水色1色＋白の清潔なトーンで、写真もロゴも有機的なブロブ形に統一した全7セクション。診療時間の表とフッターの青いカードが要。</span>
+            <span class="card__desc">耳鼻咽喉科クリニックのトップページ。水色1色＋白の清潔なトーンで、写真もロゴも有機的なブロブ形に統一した全7セクションです。診療時間の表と、フッターの大きな青いカードが要になっています。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>PC＋SP</i><i>ブロブ形</i>
             </span>
@@ -305,7 +323,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ スタジオサイト</span>
             <b class="card__title">KUJIRA PICTURES</b>
-            <span class="card__desc">架空の映像・体験デザインスタジオ。セクションごとに地の色を黒・黄・緑・青と切り替える構成で、Archivo Black の英字と極太ゴシックの和文でポップに振り切った全8セクション。</span>
+            <span class="card__desc">映像・体験デザインスタジオのサイト。セクションごとに地の色を黒・黄・緑・青と切り替える構成で、Archivo Black の英字と極太ゴシックの和文でポップに振り切った全8セクションです。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>PC＋SP</i><i>多色</i>
             </span>
@@ -323,7 +341,7 @@
           <span class="card__body">
             <span class="card__meta">2026.08 ／ オンラインストア</span>
             <b class="card__title">陶 SUE</b>
-            <span class="card__desc">架空のうつわのオンラインストア。<b>参照サイトを使わず、GPT Image 2 で起こしたモックから設計した唯一の1本</b>。生成りの紙色に墨と青磁、縦組みの明朝で組んだ全8セクション。</span>
+            <span class="card__desc">うつわのオンラインストア。生成りの紙色に墨と青磁、縦組みの明朝で組んだ全8セクションです。参照サイトを置かず、デザインモックの制作から起こしました。</span>
             <span class="card__tags">
               <i>HTML</i><i>CSS</i><i>JavaScript</i><i>Figma</i><i>PC＋SP</i><i>モック起点</i><i>EC</i>
             </span>
@@ -333,7 +351,7 @@
     </li>
 
     <li class="placeholder">
-      <p>次のサイトはここに並ぶ</p>
+      <p>制作実績は随時追加しています</p>
     </li>
 
   </ul>
@@ -341,7 +359,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>掲載しているサイトは<strong>すべて架空のブランド</strong>です。社名・ロゴ・住所・電話番号・料金・営業時間・登場人物・実績は、このために作った架空の情報で、実在しません。<br>Web サイトの構成・レイアウトの練習として組んだものです。作りかけ・実験も含むため <code>noindex</code>（検索には出しません）。</p>
+    <p>掲載しているのはすべて自主制作のコンセプトワークです。社名・ロゴ・住所・電話番号・料金・営業時間・登場人物は制作にあたって設定したもので、実在の企業・団体・施設とは関係ありません。</p>
   </div>
 </footer>
 

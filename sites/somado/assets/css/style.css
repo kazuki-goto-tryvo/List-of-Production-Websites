@@ -1,0 +1,286 @@
+@charset "utf-8";
+/* ============================================================
+   杣戸の外あそび（架空）
+   ミント色の地に、幅460pxの縦カラムが1本通る組み。PC 1440 / SP 390
+   ============================================================ */
+
+:root{
+  --mint:#E4F0E2; --grn:#1E9E4A; --ylw:#FBE477; --lgrn:#BCE9A6;
+  --white:#fff; --dark:#2E302D; --ac:#E2571F; --ink:#23281F; --sub:#5A6152;
+  --line:#06C755;
+  --col:460px;                       /* 参照元の実測どおり */
+  --pop:cubic-bezier(.68,-.6,.32,1.6);
+  --fade:cubic-bezier(.37,0,.63,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--mint);color:var(--ink);
+  font-family:"Noto Sans JP",-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  font-size:13.5px;line-height:1.85;font-weight:500;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,p,figure{margin:0}
+a{color:inherit;text-decoration:none;transition:.2s}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+b,em{font-style:normal}
+.en,.hero__en{font-family:"Baloo 2","Noto Sans JP",sans-serif}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:#fff;padding:10px 18px}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+
+/* カラム：中央より少し右（参照元 x=754/1440） */
+.pane{width:var(--col);margin-left:754px;padding:0 24px}
+.pane--grn{background:var(--grn);color:#fff}
+.pane--ylw{background:var(--ylw)}
+.pane--lgrn{background:var(--lgrn)}
+.pane--wht{background:var(--white)}
+.pane--drk{background:var(--dark);color:#fff}
+
+/* ---------- 上端マーキー ---------- */
+.mq{overflow:hidden;background:var(--grn);color:#fff;padding:6px 0;
+  font-family:"Baloo 2",sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.06em}
+.mq__t{display:flex;width:max-content;animation:mq 60s linear infinite}
+.mq__t span{padding-right:40px;white-space:nowrap}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- 01 ヒーロー ---------- */
+.hero{position:relative;padding-bottom:40px}
+.hero__col{width:var(--col);margin-left:754px;position:relative}
+.hero__ph{width:100%;height:1000px;object-fit:cover}
+.hero__logo{position:absolute;left:0;right:0;top:40px;text-align:center;color:#fff;
+  display:grid;gap:2px;padding-left:80px}
+.hero__en{font-size:12px;font-weight:700;letter-spacing:.26em}
+.hero__logo b{font-family:"Baloo 2",sans-serif;font-size:44px;font-weight:800;line-height:1}
+.hero__tag{font-size:12.5px;font-weight:700}
+
+.hero__collage{position:absolute;left:0;top:0;width:754px;height:100%;pointer-events:none}
+.cg{position:absolute;background:#fff;padding:6px;box-shadow:0 3px 10px rgba(35,40,31,.10)}
+.cg img{width:100%;height:100%;object-fit:cover}
+.cg--1{left:30px;top:130px;width:300px;height:200px;transform:rotate(-3.2deg)}
+.cg--2{left:30px;top:480px;width:260px;height:175px;transform:rotate(2.4deg)}
+.cg--3{left:285px;top:300px;width:260px;height:175px;transform:rotate(1.6deg)}
+.cg--4{left:230px;top:660px;width:350px;height:230px;transform:rotate(-1.4deg)}
+.iso{position:absolute}
+.iso--1{left:330px;top:175px;width:160px}
+.iso--2{left:60px;top:330px;width:136px}
+.iso--3{left:130px;top:720px;width:128px}
+.dot{position:absolute;background:#fff;border-radius:50%}
+.d1{left:120px;top:160px;width:9px;height:9px}.d2{left:600px;top:210px;width:12px;height:12px}
+.d3{left:70px;top:420px;width:8px;height:8px}.d4{left:640px;top:520px;width:10px;height:10px}
+.d5{left:170px;top:640px;width:11px;height:11px}.d6{left:610px;top:760px;width:8px;height:8px}
+
+.sidenav{position:absolute;left:1248px;top:700px}
+.sidenav li{position:relative;padding-left:22px;font-size:12.5px;font-weight:700;line-height:2.1}
+.sidenav li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:10px;
+  border-radius:50%;background:var(--grn)}
+.sidenav a:hover{color:var(--grn)}
+
+.linefloat{position:fixed;left:344px;top:56%;z-index:70;width:120px;height:120px;border-radius:50%;
+  background:var(--grn);color:#fff;display:grid;place-content:center;justify-items:center;gap:4px;
+  text-align:center;font-size:10px;font-weight:700;line-height:1.45;
+  animation:slowspin 12s linear infinite}
+.linefloat .ic-l{width:30px;height:27px;color:#fff}
+@keyframes slowspin{from{rotate:-4deg}50%{rotate:4deg}to{rotate:-4deg}}
+
+/* ---------- 02 イントロ ---------- */
+.intro__h{text-align:center;padding:54px 0 0;display:grid;gap:4px;position:relative}
+.intro__h span,.intro__h em{font-size:32px;font-weight:800;line-height:1.25}
+.intro__h em{position:relative;display:inline-block}
+.intro__h em::before,.intro__h em::after{content:"";position:absolute;top:6px;width:3px;height:32px;
+  background:#fff;border-radius:2px}
+.intro__h em::before{left:-24px;transform:rotate(-16deg)}
+.intro__h em::after{right:-24px;transform:rotate(16deg)}
+.intro__map{margin-top:26px;position:relative;z-index:1}
+.cloud{position:absolute;background:#fff;border-radius:50%;z-index:2}
+.cloud--1{left:762px;top:520px;width:116px;height:52px;box-shadow:42px -12px 0 -4px #fff}
+.cloud--2{left:1150px;top:320px;width:92px;height:44px;box-shadow:-32px -8px 0 -4px #fff}
+.intro__b{margin-top:26px;font-size:14.5px;line-height:2.05}
+.intro{position:relative;padding-bottom:70px}
+.strip{display:flex;gap:12px;margin:34px 0 0 694px;width:max-content}
+.strip li{position:relative;flex:none;width:200px}
+.strip img{width:100%;height:150px;object-fit:cover;border-radius:6px}
+.bub{display:inline-block;background:#fff;color:var(--grn);border-radius:999px;
+  padding:5px 15px;font-size:11.5px;font-weight:700;position:relative}
+.bub::after{content:"";position:absolute;left:22px;top:100%;border:7px solid transparent;
+  border-top-color:#fff;border-bottom:0}
+.strip .bub{position:absolute;left:6px;top:-34px;z-index:2}
+
+/* ---------- 03〜05 パネル ---------- */
+.panels .pane{position:relative;padding-top:44px;padding-bottom:34px}
+.bub--lg{font-size:14px;padding:7px 18px;background:var(--grn);color:#fff}
+.bub--lg::after{border-top-color:var(--grn)}
+.pane__ph{margin-top:22px;overflow:hidden;border-radius:10px}
+.pane__ph img{width:100%;height:190px;object-fit:cover;transition:transform .4s var(--fade)}
+.pane__ph:hover img{transform:scale(1.05)}
+.pane__en{position:absolute;right:36px;top:238px;font-family:"Baloo 2",sans-serif;
+  font-size:26px;font-weight:800;color:var(--grn);transform:rotate(-9deg);pointer-events:none}
+.pane__b{margin-top:30px;line-height:1.95}
+.pane__btn{margin-top:22px}
+.obtn{display:block;text-align:center;padding:13px 0;border:1.6px solid var(--grn);
+  color:var(--grn);font-size:15px;font-weight:700;position:relative;overflow:hidden}
+.obtn--ac{border-color:var(--ac);color:var(--ac)}
+.obtn::before{content:"";position:absolute;inset:0;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .3s var(--fade);z-index:-1}
+.obtn:hover::before{transform:scaleX(1)}
+.obtn:hover{color:#fff}
+.obtn{z-index:0;background:transparent}
+
+/* ---------- 06 ご予約 ---------- */
+.reserve{padding-top:48px;padding-bottom:40px}
+.reserve__h{text-align:center;font-size:24px;font-weight:800}
+.reserve__b{margin-top:22px;line-height:1.95}
+.reserve__btn{margin-top:26px}
+.linebtn{display:flex;align-items:center;justify-content:center;gap:14px;
+  border:1.6px solid var(--line);border-radius:8px;padding:15px 0;font-size:14.5px;font-weight:700}
+.linebtn:hover{background:var(--line);color:#fff}
+.linebtn:hover .ic-l{color:#fff}
+.ic-l{width:26px;height:24px;color:var(--line);flex:none}
+.reserve__map{margin-top:34px}
+.reserve__note{margin-top:26px;line-height:1.95}
+
+/* ---------- 07 SNS ---------- */
+.sns{padding-top:20px;padding-bottom:40px}
+.sns li + li{margin-top:20px}
+.sns__c{position:relative;display:grid;align-content:center;gap:4px;height:170px;
+  padding:0 26px;border-radius:8px;overflow:hidden;color:#fff}
+.sns__c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.sns__c::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.82}
+.sns__c--grn::before{background:var(--grn)}
+.sns__c--pnk::before{background:#E8467C}
+.sns__n{font-size:13.5px;font-weight:700}
+.sns__i{display:flex;align-items:center;gap:10px;font-family:"Baloo 2",sans-serif;
+  font-size:22px;font-weight:800}
+.sns__i svg{width:22px;height:22px}
+.sns__c:hover img{transform:scale(1.04)}
+.sns__c img{transition:transform .4s var(--fade)}
+
+/* ---------- 08 フッター ---------- */
+.ft{padding-top:48px;padding-bottom:44px;margin-bottom:0}
+.ft__h{font-size:13.5px;font-weight:700}
+.ft__co{font-size:16px;font-weight:800;margin-top:6px}
+.ft__addr{font-size:12px;color:#C9CEC4;margin-top:14px;line-height:1.9}
+.ft__links{margin-top:26px;display:grid;gap:10px}
+.ft__links li{position:relative;padding-left:20px;font-size:12.5px}
+.ft__links li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:8px;
+  border-radius:50%;background:var(--grn)}
+.ft__logo{text-align:center;margin-top:74px;display:grid;gap:2px}
+.ft__logo b{font-family:"Baloo 2",sans-serif;font-size:30px;font-weight:800;line-height:1}
+.ft__logo span{font-family:"Baloo 2",sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.24em;color:#C9CEC4}
+.ft__c{text-align:center;margin-top:36px;font-size:11px;color:#8E948A}
+
+/* ---------- ハンバーガー（SPのみ） ---------- */
+.burger{display:none;position:fixed;right:16px;top:14px;z-index:90;width:38px;height:32px;
+  background:#fff;border-radius:8px;padding:8px 9px}
+.burger span{display:block;height:2.4px;border-radius:2px;background:var(--ink);
+  transition:transform .3s var(--fade),opacity .2s}
+.burger span + span{margin-top:5.6px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ---------- 動き ---------- */
+.reveal,.reveal-list > *{opacity:0;transform:translateY(18px);
+  transition:opacity .6s var(--fade),transform .6s var(--fade)}
+.reveal.is-in,.reveal-list.is-in > *{opacity:1;transform:none}
+.reveal-list.is-in > *{transition-delay:calc(var(--d,0) * 60ms)}
+/* 行き過ぎて戻る（参照元 .is-popup） */
+.pop{opacity:0;transform:scale(.72);
+  transition:opacity .5s var(--fade),transform .8s var(--pop)}
+.pop.is-in{opacity:1}
+.cg--1.is-in{transform:scale(1) rotate(-3.2deg)}
+.cg--2.is-in{transform:scale(1) rotate(2.4deg)}
+.cg--3.is-in{transform:scale(1) rotate(1.6deg)}
+.cg--4.is-in{transform:scale(1) rotate(-1.4deg)}
+.iso.is-in,.strip .pop.is-in,.bub--lg.is-in{transform:scale(1)}
+
+/* ============================================================
+   SP（390フレームどおり）：カラムが画面幅いっぱいになる
+   ============================================================ */
+@media (max-width:900px){
+  :root{--col:100%}
+  body{font-size:12px}
+  .pane{width:auto;margin-left:0;padding:0 18px}
+  .burger{display:block}
+
+  /* ヒーロー */
+  .hero{padding-bottom:0}
+  .hero__col{width:auto;margin-left:0}
+  .hero__ph{height:470px}
+  .hero__logo{top:28px;padding-left:0;gap:0}
+  .hero__en{font-size:9.5px;letter-spacing:.22em}
+  .hero__logo b{font-size:34px}
+  .hero__tag{font-size:10.5px}
+  .hero__collage{position:relative;left:auto;top:auto;width:auto;height:230px;margin-top:16px}
+  .cg--1{left:10px;top:16px;width:150px;height:104px}
+  .cg--2{left:172px;top:30px;width:130px;height:92px}
+  .cg--3{display:none}
+  .cg--4{left:236px;top:134px;width:140px;height:96px;z-index:2}
+  .iso--1,.iso--3{display:none}
+  .iso--2{left:20px;top:134px;width:96px}
+  .d3{left:150px;top:150px}.d4{left:330px;top:20px}
+  .d1,.d2,.d5,.d6{display:none}
+
+  /* 右の縦ナビ → 全画面オーバーレイ */
+  .sidenav{position:fixed;inset:0;left:auto;top:0;width:100%;height:100%;z-index:80;
+    background:var(--mint);display:grid;place-content:center;
+    opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease}
+  .sidenav.is-open{opacity:1;visibility:visible}
+  .sidenav li{font-size:15px;line-height:2.6;padding-left:26px;
+    opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+  .sidenav.is-open li{opacity:1;transform:none;transition-delay:calc(var(--i,0) * 25ms)}
+
+  /* LINEは右下固定の丸 */
+  .linefloat{left:auto;right:14px;top:auto;bottom:16px;width:76px;height:76px;font-size:8px}
+  .linefloat .ic-l{width:22px;height:20px}
+
+  /* イントロ */
+  .intro{padding-bottom:0}
+  .intro__h{padding-top:38px}
+  .intro__h span,.intro__h em{font-size:24px}
+  .intro__h em::before,.intro__h em::after{height:24px;top:4px}
+  .intro__h em::before{left:-18px}.intro__h em::after{right:-18px}
+  .cloud--1{left:18px;top:auto;bottom:-14px;width:88px;height:40px;box-shadow:32px -10px 0 -4px #fff}
+  .cloud--2{display:none}
+  .intro__b{font-size:12.5px;line-height:2}
+  /* 写真は横スクロールの帯に */
+  .strip{margin:26px 0 0;width:auto;overflow-x:auto;padding:34px 18px 22px;
+    background:var(--grn);scrollbar-width:none}
+  .strip::-webkit-scrollbar{display:none}
+  .strip li{width:140px}
+  .strip img{height:106px}
+  .strip .bub{top:-28px;font-size:9.5px;padding:4px 11px}
+
+  /* パネル */
+  .panels .pane{padding-top:34px;padding-bottom:26px}
+  .bub--lg{font-size:11.5px;padding:6px 14px}
+  .pane__ph img{height:170px}
+  .pane__en{right:14px;top:206px;font-size:20px}
+  .pane__b{margin-top:24px;font-size:11.5px}
+  .obtn{padding:11px 0;font-size:13px}
+
+  /* 予約・SNS・フッター */
+  .reserve{padding-top:36px}
+  .reserve__h{font-size:19px}
+  .reserve__b,.reserve__note{font-size:11.5px}
+  .linebtn{font-size:12.5px;padding:13px 0}
+  .sns__c{height:170px;padding:0 22px}
+  .sns__n{font-size:12px}
+  .sns__i{font-size:19px}
+  .ft{text-align:center;padding-top:36px}
+  .ft__h{font-size:12px}.ft__co{font-size:15px}
+  .ft__addr{font-size:10.5px}
+  .ft__links li{background:#3A3D39;border-radius:15px;padding:3px 0 3px 34px;text-align:left}
+  .ft__links li::before{left:20px}
+  .ft__logo{margin-top:54px}
+  .ft__logo b{font-size:26px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.reveal-list > *{opacity:1;transform:none}
+  .pop{opacity:1;transform:scale(1)}
+  .cg--1{transform:rotate(-3.2deg)}.cg--2{transform:rotate(2.4deg)}
+  .cg--3{transform:rotate(1.6deg)}.cg--4{transform:rotate(-1.4deg)}
+}
