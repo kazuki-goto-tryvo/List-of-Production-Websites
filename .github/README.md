@@ -1,7 +1,7 @@
 # 制作サイト集
 
 Web サイトの構成・レイアウトの練習として組んだ 1 ページサイトを並べた置き場です。
-公開ページ → **https://kazuki-goto-tryvo.github.io/portfolio/**
+公開ページ → **https://kazuki-goto-tryvo.github.io/List-of-Production-Websites/**
 
 ## これは何か
 
