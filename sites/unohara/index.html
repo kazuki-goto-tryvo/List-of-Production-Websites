@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNOHARA BREWING｜株式会社ウノハラ醸造</title>
+<meta name="description" content="鵜原山のふもと、小杉川の水で仕込むクラフトビール。小杉川ヘイジーIPA・山椒セゾン・鵜原ペールエール・白桃ネオIPAを直販しています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="hd" id="hd">
+  <a class="mark" href="#top" aria-label="ウノハラ醸造 トップへ">
+    <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M2 10 Q12 0 22 10" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+  </a>
+  <nav class="hd__nav" aria-label="グローバル">
+    <a class="ln" href="#beer">BEER &amp; GOODS</a>
+    <a class="ln" href="#about">ABOUT</a>
+    <i class="hd__bar" aria-hidden="true">|</i>
+    <a class="ln" href="#cart">CART ( <b id="cartn">0</b> )</a>
+  </nav>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く"><i></i><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="メニュー" hidden>
+  <a href="#beer">BEER &amp; GOODS<span>ビールとグッズ</span></a>
+  <a href="#about">ABOUT<span>ウノハラ醸造について</span></a>
+  <a href="#news">NEWS<span>お知らせ</span></a>
+  <a href="#cart">CART<span>カート</span></a>
+</nav>
+
+<main id="main">
+
+<!-- ============ 01 ヒーロー ============ -->
+<section class="hero" id="top">
+  <figure class="hero__ph fade"><img src="assets/img/hero.webp" alt="青い面に置かれた缶とグラス" width="1200" height="800"></figure>
+  <p class="hero__c">UNOHARAらしいやり方で、<br><u class="u">ビールをつくってみたい</u>と思った。</p>
+  <p class="hero__logo"><b>UNOHARA BREWING</b><i>ウノハラブルーイング</i></p>
+  <p class="hero__scroll"><span>SCROLL DOWN</span><em aria-hidden="true"></em></p>
+  <figure class="hero__bg fade"><img src="assets/img/sc0.webp" alt="" width="1440" height="620" loading="lazy"></figure>
+</section>
+
+<!-- ============ 02 山 ============ -->
+<section class="mt">
+  <figure class="mt__ph fade"><img src="assets/img/sc2.webp" alt="朝もやの鵜原山" width="1440" height="620" loading="lazy"></figure>
+  <p class="mt__c up"><u class="u">水と、時間</u>と。<br><u class="u">急がずに</u>、ゆっくり仕込む<br>ウノハラのクラフトビール。</p>
+  <p class="mt__brand">UNOHARA BREWING</p>
+</section>
+
+<!-- ============ 03 商品一覧 ============ -->
+<section class="beer" id="beer">
+  <ul class="beer__l">
+    <li class="card up" style="--c:#2E9BD8">
+      <p class="card__top"></p>
+      <h2 class="card__h">小杉川ヘイジーIPA<span class="arw" aria-hidden="true"></span></h2>
+      <p class="card__lead">川の水で仕込んだ<br>濁りのある一本</p>
+      <p class="card__dots">. . . .</p>
+      <figure class="card__ph fade"><b class="card__badge">NEW</b><img src="assets/img/can0.webp" alt="小杉川ヘイジーIPAの缶" width="400" height="920" loading="lazy"></figure>
+      <p class="card__m"><span>香り<i data-n="4"></i></span><span>苦味<i data-n="2"></i></span><em>・</em><span>ボディ<i data-n="4"></i></span></p>
+      <p class="card__b">マンゴーと洋梨のような香り。苦味は控えめで、飲んだあとに甘い余韻が少し残ります。冷やしすぎない方がおいしい。</p>
+      <p class="card__price">¥ 6,480（6本）〜</p>
+      <p class="card__buy"><button class="bk" type="button" data-add>カートに入れる</button></p>
+    </li>
+    <li class="card up" style="--c:#5BB543">
+      <p class="card__top"></p>
+      <h2 class="card__h">山椒セゾン<span class="arw" aria-hidden="true"></span></h2>
+      <p class="card__lead">山椒を少しだけ<br>効かせた夏の一本</p>
+      <p class="card__dots">. . . .</p>
+      <figure class="card__ph fade"><b class="card__badge">限定</b><img src="assets/img/can1.webp" alt="山椒セゾンの缶" width="400" height="920" loading="lazy"></figure>
+      <p class="card__m"><span>香り<i data-n="3"></i></span><span>苦味<i data-n="3"></i></span><em>・</em><span>ボディ<i data-n="2"></i></span></p>
+      <p class="card__b">ぴりっとした後味。炭酸が強めで、揚げものと合わせると軽く流してくれます。夏のあいだだけつくります。</p>
+      <p class="card__price">¥ 6,980（6本）〜</p>
+      <p class="card__buy"><button class="bk" type="button" data-add>カートに入れる</button></p>
+    </li>
+    <li class="card up" style="--c:#F2C230">
+      <p class="card__top"></p>
+      <h2 class="card__h">鵜原ペールエール<span class="arw" aria-hidden="true"></span></h2>
+      <p class="card__lead">いちばん最初に<br>つくったビール</p>
+      <p class="card__dots">. . . .</p>
+      <figure class="card__ph fade"><b class="card__badge">定番</b><img src="assets/img/can2.webp" alt="鵜原ペールエールの缶" width="400" height="920" loading="lazy"></figure>
+      <p class="card__m"><span>香り<i data-n="3"></i></span><span>苦味<i data-n="4"></i></span><em>・</em><span>ボディ<i data-n="3"></i></span></p>
+      <p class="card__b">麦の甘さと苦味がまん中で釣り合っています。迷ったらこれ、と言えるように10年かけて調整してきた一本です。</p>
+      <p class="card__price">¥ 6,280（6本）〜</p>
+      <p class="card__buy"><button class="bk" type="button" data-add>カートに入れる</button></p>
+    </li>
+    <li class="card up" style="--c:#EE5A7C">
+      <p class="card__top"></p>
+      <h2 class="card__h">白桃ネオIPA<span class="arw" aria-hidden="true"></span></h2>
+      <p class="card__lead">桃の香りだけを<br>残したかった</p>
+      <p class="card__dots">. . . .</p>
+      <figure class="card__ph fade"><b class="card__badge">数量限定</b><img src="assets/img/can3.webp" alt="白桃ネオIPAの缶" width="400" height="920" loading="lazy"></figure>
+      <p class="card__m"><span>香り<i data-n="5"></i></span><span>苦味<i data-n="1"></i></span><em>・</em><span>ボディ<i data-n="3"></i></span></p>
+      <p class="card__b">桃の果汁は使わず、ホップの組み合わせだけで香りを出しています。苦味はほぼありません。よく冷やしてどうぞ。</p>
+      <p class="card__price">¥ 7,140（6本）〜</p>
+      <p class="card__buy"><button class="bk" type="button" data-add>カートに入れる</button></p>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ 04 缶の列 ============ -->
+<section class="row">
+  <ul class="row__l">
+    <li class="fade"><img src="assets/img/can0.webp" alt="" width="400" height="920" loading="lazy"></li>
+    <li class="fade"><img src="assets/img/can1.webp" alt="" width="400" height="920" loading="lazy"></li>
+    <li class="fade"><img src="assets/img/can2.webp" alt="" width="400" height="920" loading="lazy"></li>
+    <li class="fade"><img src="assets/img/can3.webp" alt="" width="400" height="920" loading="lazy"></li>
+  </ul>
+  <div class="row__t up">
+    <p class="card__top"></p>
+    <h2 class="row__h">私たちのつくった<br>すべてのビール<span class="arw" aria-hidden="true"></span></h2>
+    <p class="row__sub">BEER &amp; GOODS</p>
+    <p class="row__b">ウノハラ醸造がこれまでにつくったビールをすべてご覧いただけます。ご自宅で楽しめるグラスも一緒に。</p>
+  </div>
+</section>
+
+<!-- ============ 05 ABOUT ============ -->
+<section class="ab" id="about">
+  <p class="ab__side" aria-hidden="true">ABOUT｜UNOHARA BREWING</p>
+  <article class="ab__main up">
+    <p class="card__top"></p>
+    <h2 class="ab__h">鵜原山のふもと、<br>水と、風と、人が集まる谷<span class="arw" aria-hidden="true"></span></h2>
+    <p class="ab__lab">ABOUT｜UNOHARA TAPROOM（仮）</p>
+    <figure class="ab__ph fade"><img src="assets/img/iso.webp" alt="谷にあるタップルームのイラスト" width="1200" height="800" loading="lazy"></figure>
+    <p class="ab__b">2027年に開く予定の新しいタップルームです。小杉川の清流と緑にかこまれた谷で、クラフトビールと地元の食材でつくる料理、それに小さなイベントを楽しめる場所にします。</p>
+  </article>
+  <article class="ab__sub up">
+    <p class="card__top"></p>
+    <h2 class="ab__h">水を分けあう、<br>兄弟の醸造家<span class="arw" aria-hidden="true"></span></h2>
+    <p class="ab__lab">ABOUT｜醸造家</p>
+    <figure class="ab__ph fade"><img src="assets/img/brewer.webp" alt="醸造家の鵜原 湊と鵜原 岳" width="620" height="620" loading="lazy"></figure>
+    <p class="ab__b">醸造を担うのは、鵜原 湊と鵜原 岳の兄弟。性格はまったく違いますが、味の話になると不思議と結論が同じになります。</p>
+  </article>
+</section>
+
+<!-- ============ 06 海 ============ -->
+<section class="sea">
+  <figure class="sea__ph fade"><img src="assets/img/sc1.webp" alt="夜明けの海" width="1440" height="620" loading="lazy"></figure>
+  <p class="sea__side" aria-hidden="true">UNOHARA BREWING</p>
+</section>
+
+<!-- ============ 07 一杯のリード ============ -->
+<section class="toast">
+  <figure class="toast__ph fade"><img src="assets/img/sc1.webp" alt="" width="1440" height="620" loading="lazy"></figure>
+  <div class="toast__t up">
+    <p>毎日、坂をひとつ越えていく。<br>さあ、あとひと踏ん張りするか。<br>そう思えるのは、<br>その先に一杯が待っているから。</p>
+    <p>僕は、その一杯をもっと特別にしたい。<br>香りが気持ちをほどき、<br>口に含めば、肩の力がすっと抜ける。</p>
+    <p>今日という一日がねぎらわれるような。<br>また明日も頑張ろうと思えるような。<br>それぞれの「いま」に乾杯を。</p>
+  </div>
+</section>
+
+<!-- ============ 08 お知らせ ============ -->
+<section class="news" id="news">
+  <ul class="news__l">
+    <li class="nc up"><h3 class="nc__h">小杉川ヘイジーIPA<br>｜川の水で仕込む<span class="arw" aria-hidden="true"></span></h3>
+      <p class="nc__lab">お知らせ</p>
+      <figure class="nc__ph fade"><img src="assets/img/gl0.webp" alt="小杉川ヘイジーIPAとグラス" width="620" height="620" loading="lazy"></figure>
+      <p class="nc__b">マンゴーと洋梨の香りを立たせたくて、ホップを3回に分けて入れています。やわらかく、ジューシーに香る一本になりました。</p></li>
+    <li class="nc up"><h3 class="nc__h">山椒セゾン<br>｜夏だけの、ぴりっと<span class="arw" aria-hidden="true"></span></h3>
+      <p class="nc__lab">お知らせ</p>
+      <figure class="nc__ph fade"><img src="assets/img/gl1.webp" alt="山椒セゾンとグラス" width="620" height="620" loading="lazy"></figure>
+      <p class="nc__b">地元で採れた山椒をほんの少し。香りが立ちすぎないよう、仕込みの最後に短い時間だけ漬けています。</p></li>
+    <li class="nc up"><h3 class="nc__h">鵜原ペールエール<br>｜10年かけた真ん中<span class="arw" aria-hidden="true"></span></h3>
+      <p class="nc__lab">お知らせ</p>
+      <figure class="nc__ph fade"><img src="assets/img/gl2.webp" alt="鵜原ペールエールとグラス" width="620" height="620" loading="lazy"></figure>
+      <p class="nc__b">麦の甘さと苦味の釣り合いを、毎年少しずつ直してきました。今年のロットがいちばんまん中に来たと思っています。</p></li>
+    <li class="nc up"><h3 class="nc__h">白桃ネオIPA<br>｜果汁を使わずに<span class="arw" aria-hidden="true"></span></h3>
+      <p class="nc__lab">お知らせ</p>
+      <figure class="nc__ph fade"><img src="assets/img/gl3.webp" alt="白桃ネオIPAとグラス" width="620" height="620" loading="lazy"></figure>
+      <p class="nc__b">果汁を足すと甘さが勝ってしまうので、ホップの組み合わせだけで桃の香りを出しました。苦味はほぼありません。</p></li>
+  </ul>
+</section>
+
+<!-- ============ 09 締めのコピー ============ -->
+<section class="close">
+  <p class="close__c up"><u class="u">ていねいに</u>つくろう。<br><u class="u">こわがらずに</u>つくろう。</p>
+</section>
+
+<!-- ============ 10 小杉川 ============ -->
+<section class="sea sea--2">
+  <figure class="sea__ph fade"><img src="assets/img/sc3.webp" alt="小杉川の渓流" width="1440" height="620" loading="lazy"></figure>
+</section>
+
+</main>
+
+<footer class="ft" id="cart">
+  <nav class="ft__nav" aria-label="フッター">
+    <a class="ln is-here" href="#top">HOME</a><a class="ln" href="#beer">BEER &amp; GOODS</a><a class="ln" href="#about">ABOUT</a>
+    <a class="ln ft__cart" href="#cart">CART ( <b>0</b> )</a>
+  </nav>
+  <figure class="ft__can fade"><img src="assets/img/can2.webp" alt="" width="400" height="920" loading="lazy"></figure>
+  <ul class="ft__links">
+    <li><a class="ln" href="#news">ニュース</a></li><li><a class="ln" href="#">お問い合わせ</a></li>
+    <li><a class="ln" href="#">特定商取引法に基づく表記</a></li><li><a class="ln" href="#">プライバシーポリシー</a></li>
+  </ul>
+  <div class="ft__mail">
+    <p class="card__top"></p>
+    <p class="ft__mailh">メルマガの登録<span class="arw" aria-hidden="true"></span></p>
+    <p class="ft__mailb">新商品やイベント、お得な情報など</p>
+    <p class="ft__mailbtn"><a class="ln" href="#">メールアドレスを登録する</a></p>
+  </div>
+  <address class="ft__co">株式会社ウノハラ醸造 / UNOHARA BREWING<br>
+    〒259-1114 神奈川県伊勢原市上谷1188<br>TEL 0463-96-2870</address>
+  <p class="ft__c">© UNOHARA BREWING</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

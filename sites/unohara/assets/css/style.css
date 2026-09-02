@@ -1,0 +1,331 @@
+@charset "utf-8";
+/* 株式会社ウノハラ醸造 — 参照元 https://afuribrewing.com/ の構成を追った実装
+   ライブラリなし。参照元も Shopify のローディング系を除けば全部CSSのキーフレーム */
+
+:root{
+  --sky:#01A4EC; --skyL:#5ABFF8; --ink:#101010; --sub:#5A5A5A;
+  --panel:#E9EEF1; --line:#D7D7D7; --white:#fff;
+  --en:'Barlow Condensed','Noto Sans JP',sans-serif;
+  --ja:'Noto Sans JP',sans-serif;
+  --e1:cubic-bezier(.77,0,.175,1);       /* 参照元が多用している */
+  --e2:cubic-bezier(.165,.84,.44,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--ja);color:var(--ink);background:#fff;
+  font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:14px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,li,dl,dd{margin:0;padding:0;list-style:none}
+p,h1,h2,h3,figure,address{margin:0;font-style:normal}
+em,i,u{font-style:normal}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;z-index:100;background:#fff;padding:8px 14px}
+
+/* ============ 写真は必ず0.2秒でフェードイン（参照元 .js_img_body） ============ */
+.fade img{opacity:0;transition:opacity .2s linear}
+.fade.on img{opacity:1}
+
+/* ============ 出現 ============ */
+.up{opacity:0;translate:0 26px;transition:opacity .7s var(--e2),translate .7s var(--e2)}
+.up.on{opacity:1;translate:0 0}
+.beer__l .up:nth-child(2),.news__l .up:nth-child(2){transition-delay:.07s}
+.beer__l .up:nth-child(3),.news__l .up:nth-child(3){transition-delay:.14s}
+.beer__l .up:nth-child(4),.news__l .up:nth-child(4){transition-delay:.21s}
+
+/* ============ 下線が右へ抜けて左から入る（参照元 line-out / line-in） ============ */
+.ln{position:relative;display:inline-block;overflow:hidden;padding-bottom:3px}
+.ln::before,.ln::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor}
+.ln::before{translate:-101% 0}
+.ln.is-here::before,.ln:hover::before,.ln:focus-visible::before{translate:0 0}
+.ln::after{translate:-101% 0}
+.ln:hover::after,.ln:focus-visible::after{animation:lineOut .34s var(--e1) forwards}
+.ln:hover::before,.ln:focus-visible::before{animation:lineIn .34s var(--e1) .1s forwards}
+@keyframes lineOut{from{translate:0 0}to{translate:101% 0}}
+@keyframes lineIn{from{translate:-101% 0}to{translate:0 0}}
+/* 本文中の下線つきの語（動かさない） */
+.u{text-decoration:none;box-shadow:0 1px 0 0 currentColor;padding-bottom:1px}
+
+/* ============ ( ↗ ) の矢印（参照元 arrow-out / arrow-in） ============ */
+.arw{position:absolute;right:0;top:2px;width:20px;height:20px;border:1px solid var(--line);
+  border-radius:50%;overflow:hidden}
+.arw::before,.arw::after{content:'';position:absolute;left:6px;top:6px;width:7px;height:7px;
+  border-top:1.1px solid var(--ink);border-right:1.1px solid var(--ink);rotate:-45deg}
+.arw::after{translate:-140% 140%;opacity:0}
+:is(h2,h3,p):hover>.arw::before{animation:arrowOut .43s var(--e1) forwards}
+:is(h2,h3,p):hover>.arw::after{animation:arrowIn .43s var(--e1) .1s forwards}
+@keyframes arrowOut{to{translate:140% -140%;opacity:0}}
+@keyframes arrowIn{to{translate:0 0;opacity:1}}
+
+/* ============ [ ] の角括弧が外へ弾ける（参照元 brackets-bounce） ============ */
+.bk{position:relative;font-size:11.5px;font-weight:500;padding:0 16px;overflow:hidden;
+  display:inline-block;min-width:150px;text-align:center}
+.bk::before,.bk::after{position:absolute;top:0;font-weight:400;color:var(--ink);
+  transition:translate .3s var(--e2)}
+.bk::before{content:'[';left:0}
+.bk::after{content:']';right:0}
+.bk:hover::before{translate:-4px 0}
+.bk:hover::after{translate:4px 0}
+/* 押すと波が2枚、位相をずらして下から満ちる（参照元 js_waveBg_1/2） */
+.bk__wave{position:absolute;inset:auto 0 0;height:100%;background:var(--c,#2E9BD8);z-index:-1;
+  translate:0 100%;border-radius:60% 60% 0 0/26px 26px 0 0}
+.bk.is-adding{color:#fff}
+.bk.is-adding .bk__wave{animation:waveUp 1.4s var(--e2) forwards}
+.bk.is-adding .bk__wave:last-child{animation-delay:.12s}
+@keyframes waveUp{60%{translate:0 0;border-radius:60% 60% 0 0/26px 26px 0 0}
+  100%{translate:0 0;border-radius:0}}
+.bk__t{position:relative;display:inline-block}
+.bk.is-adding .bk__t{animation:swapText .77s var(--e1) forwards}
+@keyframes swapText{45%{translate:0 -140%;opacity:0}46%{translate:0 140%}100%{translate:0 0;opacity:1}}
+
+/* ============ 固定ヘッダー（下スクロールで隠れる） ============ */
+.hd{position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;
+  height:52px;padding:0 24px;color:#fff;transition:top .25s var(--e2),color .3s linear}
+.hd.is-dark{color:var(--ink)}
+.hd.is-hide{top:-56px;transition:top .6s var(--e1)}
+.hd{top:0}
+.mark{width:24px}
+.hd__nav{margin-left:auto;display:flex;align-items:center;gap:26px;
+  font-family:var(--en);font-size:14px;font-weight:500;letter-spacing:.03em}
+.hd__bar{opacity:.6}
+#cartn{font-weight:500;display:inline-block}
+#cartn.pop{animation:numBounce .5s var(--e2)}
+@keyframes numBounce{0%{translate:0 -70%;opacity:0}60%{translate:0 12%}100%{translate:0 0;opacity:1}}
+.burger{display:none;margin-left:18px;width:30px;height:18px;position:relative}
+.burger i{position:absolute;left:0;width:30px;height:1.3px;background:currentColor;
+  transition:translate .3s var(--e1),rotate .3s var(--e1),opacity .2s}
+.burger i:nth-child(1){top:0}.burger i:nth-child(2){top:8px}.burger i:nth-child(3){top:16px}
+.burger[aria-expanded=true] i:nth-child(1){translate:0 8px;rotate:45deg}
+.burger[aria-expanded=true] i:nth-child(2){opacity:0}
+.burger[aria-expanded=true] i:nth-child(3){translate:0 -8px;rotate:-45deg}
+.menu{position:fixed;inset:0;z-index:35;background:#fff;display:flex;flex-direction:column;
+  justify-content:center;gap:24px;padding:0 28px}
+.menu[hidden]{display:none}
+.menu a{font-family:var(--en);font-size:28px;font-weight:600}
+.menu a span{display:block;font-family:var(--ja);font-size:11px;color:var(--sub);margin-top:2px}
+
+/* ============ 01 ヒーロー ============ */
+.hero{position:relative;height:900px;background:linear-gradient(var(--sky),var(--skyL));overflow:hidden}
+.hero__bg{position:absolute;inset:auto 0 0;height:400px}
+.hero__bg img{width:100%;height:100%;object-fit:cover}
+.hero__ph{position:absolute;left:225px;top:120px;width:990px;height:620px;z-index:2}
+.hero__ph img{width:100%;height:100%;object-fit:cover}
+.hero__c{position:absolute;left:44px;top:296px;z-index:3;color:#fff;font-size:13.5px;
+  font-weight:500;line-height:2}
+.hero__logo{position:absolute;left:44px;bottom:64px;z-index:3;color:#fff}
+.hero__logo b{display:block;font-family:var(--en);font-size:58px;font-weight:700;
+  letter-spacing:.03em;line-height:1}
+.hero__logo i{display:block;font-size:13px;font-weight:500;margin-top:6px}
+.hero__scroll{position:absolute;right:40px;bottom:74px;z-index:3;color:#fff;
+  border-top:1.2px solid #fff;padding-top:24px;width:190px;display:flex;align-items:center}
+.hero__scroll span{font-family:var(--en);font-size:14px;font-weight:500;letter-spacing:.06em}
+.hero__scroll em{margin-left:auto;width:15px;height:15px;border:1px solid #fff;border-radius:50%;
+  position:relative;overflow:hidden}
+.hero__scroll em::before,.hero__scroll em::after{content:'';position:absolute;left:5px;top:4px;
+  width:5px;height:5px;border-right:1px solid #fff;border-bottom:1px solid #fff;rotate:45deg;
+  animation:scrArrow 1.8s var(--e1) infinite}
+.hero__scroll em::after{animation-delay:.9s}
+@keyframes scrArrow{0%{translate:0 -160%;opacity:0}40%{translate:0 0;opacity:1}
+  60%{translate:0 0;opacity:1}100%{translate:0 160%;opacity:0}}
+
+/* ============ 02 山 ============ */
+.mt{position:relative;height:780px;background:var(--ink);overflow:hidden}
+.mt__ph{position:absolute;inset:0}
+.mt__ph img{width:100%;height:100%;object-fit:cover}
+.mt__c{position:absolute;left:44px;top:496px;color:#fff;font-size:21px;font-weight:500;line-height:1.62}
+.mt__brand{position:absolute;right:110px;top:508px;color:#fff;font-family:var(--en);
+  font-size:13px;font-weight:700;letter-spacing:.04em}
+
+/* ============ 03 商品一覧 ============ */
+.beer{padding:60px 24px 40px}
+.beer__l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.card{position:relative}
+.card__top{height:0;border-top:1.4px solid var(--ink);margin-bottom:22px}
+.card__h{position:relative;font-size:17px;font-weight:500;padding-right:30px;line-height:1.4}
+.card__lead{color:var(--sub);font-size:10px;line-height:1.7;margin-top:12px}
+.card__dots{color:var(--sub);font-size:11px;letter-spacing:.2em;margin-top:16px}
+.card__ph{position:relative;background:var(--panel);height:300px;margin-top:14px;
+  display:grid;place-items:center}
+.card__ph img{width:auto;height:268px;object-fit:contain}
+.card__badge{position:absolute;left:10px;top:10px;background:#fff;font-size:9px;font-weight:500;
+  padding:3px 10px}
+.card__m{display:flex;align-items:center;gap:8px;margin-top:22px;color:var(--sub);font-size:8.5px}
+.card__m i{display:inline-flex;gap:2px;margin-left:4px;translate:0 -1px}
+.card__m i::before{content:''}
+.card__m span{display:inline-flex;align-items:center}
+.dot{width:6.2px;height:6.2px;border-radius:50%;background:var(--line)}
+.dot.on{background:var(--ink)}
+.card__b{font-size:10.5px;line-height:2;margin-top:18px}
+.card__price{border-top:1px solid var(--line);padding-top:20px;margin-top:22px;
+  font-size:13px;font-weight:500}
+.card__buy{border-bottom:1px solid var(--line);padding:22px 0;margin-top:12px}
+
+/* ============ 04 缶の列 ============ */
+.row{display:grid;grid-template-columns:minmax(0,1fr) 406px;gap:40px;
+  padding:60px 24px 40px;align-items:start}
+.row__l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;margin-left:-44px}
+.row__l img{height:520px;width:auto;margin:0 auto;object-fit:contain}
+.row__h{position:relative;font-size:18px;font-weight:500;line-height:1.5;padding-right:30px}
+.row__sub{color:var(--sub);font-family:var(--en);font-size:14px;font-weight:500;
+  letter-spacing:.04em;margin-top:28px}
+.row__b{font-size:10.5px;line-height:2;margin-top:20px}
+
+/* ============ 05 ABOUT ============ */
+.ab{display:grid;grid-template-columns:70px minmax(0,656px) minmax(0,326px);gap:44px;
+  padding:70px 24px 40px;justify-content:center}
+.ab__side{writing-mode:vertical-rl;rotate:180deg;color:var(--sub);font-family:var(--en);
+  font-size:13px;font-weight:500;letter-spacing:.14em;justify-self:center}
+.ab__h{position:relative;font-size:19px;font-weight:500;line-height:1.5;padding-right:30px}
+.ab__lab{color:var(--sub);font-family:var(--en);font-size:13px;font-weight:500;
+  letter-spacing:.02em;margin-top:26px}
+.ab__ph{margin-top:24px}
+.ab__main .ab__ph img{width:100%;height:380px;object-fit:cover}
+.ab__sub .ab__ph img{width:100%;height:250px;object-fit:cover}
+.ab__b{font-size:10.5px;line-height:1.95;margin-top:18px;
+  border-bottom:1px solid var(--line);padding-bottom:26px}
+
+/* ============ 06/10 全画面写真 ============ */
+.sea{position:relative;padding:30px 24px}
+.sea__ph img{width:100%;height:560px;object-fit:cover}
+.sea__side{position:absolute;right:2px;top:50%;translate:0 -50%;writing-mode:vertical-rl;
+  rotate:180deg;color:var(--sub);font-family:var(--en);font-size:13px;letter-spacing:.14em}
+
+/* ============ 07 一杯のリード ============ */
+.toast{display:grid;grid-template-columns:minmax(0,800px) minmax(0,336px);gap:56px;
+  padding:60px 24px;justify-content:center}
+.toast__ph img{width:100%;height:560px;object-fit:cover}
+.toast__t{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:34px 0;align-self:start}
+.toast__t p{font-size:11px;line-height:2.7}
+.toast__t p+p{margin-top:2.2em}
+
+/* ============ 08 お知らせ ============ */
+.news{padding:60px 24px 40px}
+.news__l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.nc{position:relative}
+.nc__h{position:relative;font-size:17px;font-weight:500;line-height:1.6;padding-right:30px}
+.nc__lab{color:var(--sub);font-size:10px;margin-top:24px}
+.nc__ph{margin-top:20px}
+.nc__ph img{width:100%;height:300px;object-fit:cover}
+.nc__b{font-size:10.5px;line-height:2;margin-top:26px;
+  border-bottom:1px solid var(--line);padding-bottom:28px}
+
+/* ============ 09 締めのコピー ============ */
+.close{padding:96px 24px 92px}
+.close__c{font-size:26px;font-weight:500;line-height:1.55;padding-left:20px}
+
+/* ============ 11 フッター ============ */
+.ft{position:relative;border-top:1px solid var(--line);padding:32px 24px 30px;
+  display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr) minmax(0,406px);
+  grid-template-rows:auto auto auto;column-gap:40px}
+.ft__nav{grid-column:1/4;display:flex;gap:32px;font-family:var(--en);font-size:14px;
+  font-weight:500;letter-spacing:.03em;margin-bottom:36px}
+.ft__cart{margin-left:auto}
+.ft__can{grid-column:2;grid-row:2;justify-self:center}
+.ft__can img{height:460px;width:auto;object-fit:contain}
+.ft__links{grid-column:1;grid-row:2;display:grid;gap:18px;align-content:start;font-size:11px}
+.ft__mail{grid-column:3;grid-row:2;align-self:start}
+.ft__mailh{position:relative;font-size:13px;font-weight:500;padding-right:30px}
+.ft__mailb{color:var(--sub);font-size:10px;margin-top:8px}
+.ft__mailbtn{background:var(--panel);padding:12px 16px;margin-top:16px;font-size:10.5px;color:var(--sub)}
+.ft__co{grid-column:1/3;grid-row:3;border-top:1px solid var(--line);padding-top:34px;
+  margin-top:40px;color:var(--sub);font-size:10px;line-height:2}
+.ft__c{grid-column:3;grid-row:3;border-top:1px solid var(--line);padding-top:34px;margin-top:40px;
+  color:var(--sub);font-family:var(--en);font-size:13px;text-align:right}
+
+/* ================= SP（390のフレームどおり） ================= */
+@media (max-width:900px){
+  .hd{padding:0 16px;height:46px}
+  .hd__nav{gap:0}
+  .hd__nav .ln:not(.ft__cart),.hd__bar{display:none}
+  .hd__nav .ln[href="#cart"]{display:inline-block}
+  .burger{display:block}
+
+  .hero{height:700px}
+  .hero__bg{height:240px}
+  .hero__ph{left:16px;top:90px;width:calc(100% - 32px);height:320px}
+  .hero__c{left:16px;top:440px;font-size:12px}
+  .hero__logo{left:16px;bottom:80px}
+  .hero__logo b{font-size:30px}
+  .hero__logo i{font-size:11px}
+  .hero__scroll{right:auto;left:50%;translate:-50% 0;bottom:20px;width:120px;
+    flex-direction:column;gap:8px;padding-top:16px}
+  .hero__scroll em{margin:0}
+
+  .mt{height:560px}
+  .mt__c{left:16px;top:376px;font-size:15.5px}
+  .mt__brand{display:none}
+
+  .beer{padding:44px 16px 26px}
+  .beer__l{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 8px}  /* ★SPは2列 */
+  .card__h{font-size:12.5px;padding-right:22px}
+  .arw{width:16px;height:16px}
+  .arw::before,.arw::after{left:4px;top:4px;width:6px;height:6px}
+  .card__lead{font-size:8.5px}
+  .card__ph{height:200px}
+  .card__ph img{height:176px}
+  .card__m{flex-direction:column;align-items:flex-start;gap:4px;font-size:7.5px}
+  .card__m em{display:none}
+  .card__b{font-size:8.5px;line-height:1.95}
+  .card__price{font-size:11px}
+  .bk{font-size:9.5px;min-width:0;padding:0 12px}
+
+  .row{grid-template-columns:minmax(0,1fr);gap:24px;padding:36px 0 26px}
+  .row__l{display:flex;gap:6px;margin:0;overflow-x:auto;padding:0 16px;   /* ★SPは横スクロールの帯 */
+    scroll-snap-type:x mandatory}
+  .row__l li{flex:none;scroll-snap-align:start}
+  .row__l img{height:285px}
+  .row__t{padding:0 16px}
+  .row__h{font-size:14.5px}
+  .row__sub{font-size:12px;margin-top:16px}
+  .row__b{font-size:9px;margin-top:12px}
+
+  .ab{grid-template-columns:minmax(0,1fr);gap:0;padding:40px 16px 20px}
+  .ab__side{display:none}
+  .ab__h{font-size:15px}
+  .ab__lab{font-size:11px;margin-top:16px}
+  .ab__main .ab__ph img{height:214px}
+  .ab__sub{margin-top:34px}
+  .ab__sub .ab__ph img{height:260px}
+  .ab__b{font-size:9.5px;padding-bottom:20px}
+
+  .sea{padding:30px 16px}
+  .sea__ph img{height:360px}       /* ★SPは高さ固定 */
+  .sea__side{display:none}
+
+  .toast{grid-template-columns:minmax(0,1fr);gap:0;padding:40px 16px}
+  .toast__ph img{height:300px}
+  .toast__t{margin-top:34px;padding:28px 0}
+  .toast__t p{font-size:10.5px;line-height:2.5}
+
+  .news{padding:40px 16px 20px}
+  .news__l{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 8px}  /* ★SPは2列 */
+  .nc__h{font-size:12.5px;padding-right:22px}
+  .nc__lab{font-size:8.5px;margin-top:16px}
+  .nc__ph img{height:175px}
+  .nc__b{font-size:8.5px;line-height:1.95;margin-top:16px;padding-bottom:20px}
+
+  .close{padding:84px 16px 80px}
+  .close__c{font-size:17px;padding-left:0}
+
+  .ft{grid-template-columns:minmax(0,1fr);padding:22px 16px 24px}   /* ★SPは縦積み */
+  .ft__nav{grid-column:1;gap:18px;font-size:12px;margin-bottom:22px;flex-wrap:wrap}
+  .ft__can{grid-column:1;grid-row:auto}
+  .ft__can img{height:330px}
+  .ft__links{grid-column:1;grid-row:auto;margin-top:30px;gap:16px;font-size:10.5px}
+  .ft__mail{grid-column:1;grid-row:auto;margin-top:34px}   /* ★メルマガ登録が最後 */
+  .ft__co{grid-column:1;grid-row:auto;margin-top:30px;padding-top:24px;font-size:9px}
+  .ft__c{grid-column:1;grid-row:auto;border:0;margin-top:16px;padding-top:0;text-align:left;font-size:12px}
+}
+
+/* ============ 動きを止める ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .up{opacity:1;translate:0 0;transition:none}
+  .fade img{opacity:1;transition:none}
+  .hero__scroll em::before,.hero__scroll em::after{animation:none;translate:0 0;opacity:1}
+  .ln::before,.ln::after,.arw::before,.arw::after,#cartn,.bk__wave,.bk__t{animation:none!important}
+  .arw::after{display:none}
+  .hd.is-hide{top:0}
+}
