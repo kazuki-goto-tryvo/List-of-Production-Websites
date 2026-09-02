@@ -1,0 +1,251 @@
+@charset "utf-8";
+/* ============================================================
+   ひととき雑貨店「暮らしをめぐる 島の市」
+   麻色の地・黄パネル・シアンのマーカー。PC 1440 / SP 390
+   ============================================================ */
+
+:root{
+  --linen:#D9CDB8; --ylw:#F2ED5A; --cyan:#22B3E0; --red:#D9403A;
+  --ink:#3B3226; --sub:#7A6E5C; --white:#fff;
+  --pop:cubic-bezier(.34,1.56,.64,1);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pw:640px;                                  /* 黄パネルの幅 */
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--linen);color:var(--ink);
+  font-family:"Noto Sans JP",-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  font-size:13px;line-height:1.95;font-weight:500;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,p,figure{margin:0}
+a{color:inherit;text-decoration:none}
+b,i,span{font-style:normal}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:#fff;padding:10px 18px}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* ---------- ヘッダー ---------- */
+.hd{background:var(--white)}
+.hd__in{display:flex;align-items:flex-end;gap:36px;padding:26px 56px 20px}
+.hd__b b{font-size:22px;font-weight:700}
+.hd__b span{font-size:11px;color:var(--sub);margin-left:14px}
+.hd__nav ul{display:flex;gap:44px}
+.hd__nav a{font-size:12.5px;transition:opacity .15s}
+.hd__nav a:hover{opacity:.55}
+.burger{display:none;width:34px;height:26px;background:none;border:0;padding:0;cursor:pointer;
+  margin-left:auto;flex-direction:column;justify-content:space-between}
+.burger span{display:block;height:2.4px;border-radius:2px;background:var(--ink);transition:.3s var(--ease)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(11.6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-11.6px) rotate(-45deg)}
+
+/* ---------- 左右の縦レール ---------- */
+.rails{position:fixed;inset:0;pointer-events:none;z-index:1}
+.rails__l{position:absolute;left:56px;top:22%}
+.rails__t{font-family:"Bodoni Moda",serif;font-size:15px;letter-spacing:.22em}
+.rails__l ul{display:flex;gap:20px;margin-top:14px}
+.rails__l li{writing-mode:vertical-rl;font-size:11.5px;letter-spacing:.06em;position:relative;padding-top:16px}
+.rails__l li::before{content:"";position:absolute;left:50%;top:0;translate:-50% 0;
+  border:5px solid transparent;border-bottom:8px solid var(--ink);border-top:0}
+.rails__r{position:absolute;right:52px;top:16%;writing-mode:vertical-rl;
+  font-family:"Bodoni Moda",serif;font-size:26px;font-weight:700;letter-spacing:.12em;color:var(--cyan)}
+
+/* ---------- 01 ヒーロー ---------- */
+.hero{position:relative;padding:0 0 70px}
+.hero__note{text-align:right;font-size:11px;color:var(--sub);padding:26px 56px 0}
+.hero__cg{position:relative;width:640px;height:820px;margin:0 auto}
+.cg{position:absolute;padding:3px;background:var(--ylw)}
+.cg--a{left:76px;top:34px;width:130px;rotate:-2.5deg}
+.cg--b{left:206px;top:54px;width:200px;rotate:1.6deg}
+.cg--c{left:206px;top:234px;width:200px;rotate:-1.2deg}
+.cg--d{left:100px;top:434px;width:190px;rotate:2.4deg}
+.cg--e{left:290px;top:424px;width:180px;rotate:-1.8deg}
+.cg--f{left:420px;top:454px;width:120px;rotate:2.2deg}
+.cg--g{left:300px;top:584px;width:120px;rotate:-1.4deg}
+.hero__eye{position:absolute;left:236px;top:20px;font-size:19px;font-weight:700;color:var(--cyan);z-index:3}
+.hero__t{position:absolute;left:420px;top:14px;display:grid;gap:14px;z-index:3}
+.hero__t i{display:grid;place-content:center;width:54px;height:54px;border-radius:50%;
+  background:var(--cyan);border:3px solid var(--ylw);color:#fff;font-size:26px;font-weight:700}
+.hero__lim{position:absolute;left:466px;top:368px;z-index:3;display:grid;
+  border:1.6px solid var(--red);border-radius:3px;padding:6px 10px;text-align:center}
+.hero__lim i{font-size:12px;font-weight:700;color:var(--red);line-height:1.4}
+.hero__en{position:absolute;left:24px;top:620px;z-index:3;
+  font-family:"Bodoni Moda",serif;font-size:40px;font-weight:700;line-height:1.25;color:var(--cyan)}
+.hero__lead{width:640px;margin:34px auto 0;padding-left:140px;font-size:15px;line-height:2.1}
+.hero__lead2{width:640px;margin:26px auto 0;padding-left:196px;font-size:15px}
+
+/* ---------- 黄パネル ---------- */
+.panel{background:var(--ylw);width:var(--pw);margin:0 auto;padding:70px 0 60px;position:relative;z-index:2}
+.items{display:grid;gap:110px}
+.items li{position:relative}
+.items--in{padding-left:110px}
+.items__ph{width:300px;rotate:var(--r,0deg)}
+.items__ph img{width:100%;height:250px;object-fit:cover}
+.items__m{display:grid;justify-items:start;gap:3px;margin-top:16px;padding-left:270px}
+.items--in .items__m{padding-left:270px}
+.items__m span{background:var(--cyan);color:#fff;font-size:12px;font-weight:700;padding:1px 6px}
+.items li > p:last-child{padding-left:270px;margin-top:10px}
+.buy{display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  width:96px;height:30px;border:1.3px solid var(--ink);border-radius:15px;background:var(--white);
+  font-family:"Bodoni Moda",serif;font-size:13px;font-weight:700;letter-spacing:.1em;
+  transition:transform .2s var(--pop)}
+.buy::before,.buy::after{content:"+";font-size:12px}
+.buy:hover{transform:translateY(-2px) rotate(-2deg)}
+.allitems{display:flex;justify-content:flex-end;padding-right:60px;margin-top:50px}
+.allitems a{display:grid;place-content:center;width:84px;height:84px;border-radius:50%;
+  background:var(--ink);color:#fff;text-align:center;
+  font-family:"Bodoni Moda",serif;font-size:13px;font-weight:700;line-height:1.4}
+
+/* ---------- 島のレシピ ---------- */
+.recipe{padding:70px 0;position:relative;z-index:2}
+.recipe__box{position:relative;width:var(--pw);margin:0 auto;background:var(--white);
+  border:1.4px solid var(--ink);padding:56px 56px 50px}
+.recipe__tag{position:absolute;left:44px;top:-20px;background:var(--ylw);
+  border:1.4px solid var(--ink);padding:6px 18px;font-size:13px;font-weight:700}
+.recipe__h{position:absolute;right:56px;top:56px;display:flex;gap:14px}
+.recipe__h span{writing-mode:vertical-rl;font-size:25px;font-weight:700;letter-spacing:.08em}
+.recipe__ph{width:260px}
+.recipe__ph img{width:100%;height:200px;object-fit:cover}
+.recipe__b{font-size:13px;line-height:2.1;margin-top:22px;max-width:400px}
+
+/* ---------- 読みもの ---------- */
+.story{padding:0 0 80px;position:relative;z-index:2}
+.story__ph{width:648px;margin:0 auto;background:var(--ylw);padding:4px}
+.story__ph img{width:100%;height:340px;object-fit:cover}
+.story__h{text-align:center;font-size:24px;font-weight:700;margin-top:52px}
+.story__cols{width:var(--pw);margin:26px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.story__cols p{font-size:13px;line-height:2.2}
+
+/* ---------- 締め ---------- */
+.closing{padding:60px 0 90px;position:relative;z-index:2}
+.closing__cg{position:relative;width:var(--pw);height:400px;margin:0 auto}
+.cc{position:absolute;padding:3px;background:var(--ylw)}
+.cc--1{left:70px;top:60px;width:190px;rotate:-2.6deg}
+.cc--2{left:260px;top:30px;width:180px;rotate:2.2deg}
+.cc--3{left:170px;top:230px;width:200px;rotate:1.4deg}
+.closing__h{text-align:center;font-size:30px;font-weight:800;line-height:1.5}
+.closing__b{text-align:center;font-size:13px;color:var(--sub);margin-top:18px}
+
+/* ---------- フッター ---------- */
+.ft{background:var(--white);padding:74px 56px 60px;text-align:center;position:relative;z-index:2}
+.ft__h{font-size:24px;font-weight:700}
+.ft__en{font-family:"Bodoni Moda",serif;font-size:12px;letter-spacing:.3em;color:var(--sub);margin-top:4px}
+.ft__addr{font-size:12px;line-height:2;color:var(--sub);margin-top:26px}
+.ft__links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 34px;margin-top:44px}
+.ft__links a{font-size:12.5px;transition:opacity .15s}
+.ft__links a:hover{opacity:.55}
+.ft__c{font-family:"Bodoni Moda",serif;font-size:11px;color:var(--sub);margin-top:52px;
+  border-top:1.4px solid var(--linen);padding-top:34px;max-width:640px;margin-inline:auto}
+
+/* ---------- 動き ---------- */
+.fade,.fade-list > *{opacity:0;transform:translateY(24px);
+  transition:opacity .45s ease-out,transform .7s var(--ease)}
+.fade.is-in,.fade-list.is-in > *{opacity:1;transform:none}
+.fade-list.is-in > *{transition-delay:calc(var(--d,0) * 90ms)}
+/* 弾んで出る（参照元 mvPopBounce / recipeBounceIn） */
+.pop{opacity:0;transform:scale(.7);transition:opacity .4s ease-out,transform .8s var(--pop)}
+.pop.is-in{opacity:1}
+.cg--a.is-in{transform:scale(1) rotate(-2.5deg)}.cg--b.is-in{transform:scale(1) rotate(1.6deg)}
+.cg--c.is-in{transform:scale(1) rotate(-1.2deg)}.cg--d.is-in{transform:scale(1) rotate(2.4deg)}
+.cg--e.is-in{transform:scale(1) rotate(-1.8deg)}.cg--f.is-in{transform:scale(1) rotate(2.2deg)}
+.cg--g.is-in{transform:scale(1) rotate(-1.4deg)}
+.cc--1.is-in{transform:scale(1) rotate(-2.6deg)}.cc--2.is-in{transform:scale(1) rotate(2.2deg)}
+.cc--3.is-in{transform:scale(1) rotate(1.4deg)}
+.hero__eye.is-in,.hero__t.is-in,.hero__lim.is-in,.hero__en.is-in{transform:scale(1)}
+
+/* ============================================================
+   SP（390フレームどおり）：左右のレールは消す
+   ============================================================ */
+@media (max-width:900px){
+  :root{--pw:100%}
+  body{font-size:12px}
+  .rails{display:none}
+  .hd__in{padding:18px 14px 14px;gap:12px;align-items:center}
+  .hd__b b{font-size:16px}
+  .hd__b span{display:block;margin-left:0;font-size:8.5px}
+  .burger{display:flex}
+  .hd__nav{position:fixed;inset:64px 0 auto;background:var(--white);z-index:60;
+    padding:6px 14px 22px;box-shadow:0 12px 24px rgba(59,50,38,.12);
+    opacity:0;visibility:hidden;transform:translateY(-8px);transition:.25s var(--ease)}
+  .hd__nav.is-open{opacity:1;visibility:visible;transform:none}
+  .hd__nav ul{flex-direction:column;gap:0}
+  .hd__nav li{border-bottom:1px solid var(--linen)}
+  .hd__nav a{display:block;padding:13px 4px;font-size:14px}
+
+  .hero{padding-bottom:40px}
+  .hero__note{display:none}
+  .hero__cg{width:auto;height:620px;margin:0 14px}
+  .cg--a{left:8px;top:56px;width:96px}
+  .cg--b{left:108px;top:66px;width:140px}
+  .cg--c{left:108px;top:196px;width:140px}
+  .cg--d{left:26px;top:298px;width:130px}
+  .cg--e{display:none}
+  .cg--f{left:236px;top:266px;width:92px}
+  .cg--g{display:none}
+  .hero__eye{left:106px;top:18px;font-size:13px}
+  .hero__t{left:286px;top:26px;gap:10px}
+  .hero__t i{width:40px;height:40px;font-size:20px;border-width:2.4px}
+  .hero__lim{left:286px;top:442px;padding:4px 8px}
+  .hero__lim i{font-size:10px}
+  .hero__en{left:14px;top:466px;font-size:28px}
+  .hero__lead{width:auto;margin:0 14px;padding-left:8px;font-size:12.5px}
+  .hero__lead2{width:auto;margin:20px 14px 0;padding-left:40px;font-size:12.5px}
+
+  .panel{width:auto;padding:50px 14px 46px}
+  .items{gap:80px}
+  .items--in{padding-left:40px}
+  .items__ph{width:250px}
+  .items__ph img{height:200px}
+  .items__m{padding-left:110px}
+  .items--in .items__m{padding-left:80px}
+  .items li > p:last-child{padding-left:110px}
+  .items--in > p:last-child{padding-left:80px}
+  .items__m span{font-size:10.5px}
+  .allitems{justify-content:center;padding-right:0;margin-top:40px}
+  .allitems a{width:72px;height:72px;font-size:12px}
+
+  .recipe{padding:44px 0}
+  .recipe__box{width:auto;margin:0 14px;padding:44px 20px 40px}
+  .recipe__tag{left:24px;top:-18px;font-size:11.5px;padding:5px 14px}
+  .recipe__h{right:20px;top:44px;gap:10px}
+  .recipe__h span{font-size:19px}
+  .recipe__ph{width:200px}
+  .recipe__ph img{height:156px}
+  .recipe__b{font-size:11.5px;max-width:none;margin-top:18px}
+
+  .story{padding-bottom:50px}
+  .story__ph{width:auto;margin:0 14px}
+  .story__ph img{height:210px}
+  .story__h{font-size:18px;margin-top:34px}
+  .story__cols{width:auto;margin:20px 14px 0;grid-template-columns:1fr;gap:16px}
+  .story__cols p{font-size:11.5px}
+
+  .closing{padding:40px 0 60px}
+  .closing__cg{width:auto;height:360px;margin:0 14px}
+  .cc--1{left:10px;top:20px;width:150px}
+  .cc--2{left:176px;top:0;width:150px}
+  .cc--3{left:96px;top:170px;width:160px}
+  .closing__h{font-size:22px}
+  .closing__b{font-size:11.5px}
+
+  .ft{padding:50px 14px 44px}
+  .ft__h{font-size:19px}
+  .ft__addr{font-size:10px}
+  .ft__links{flex-direction:column;gap:0;margin-top:30px}
+  .ft__links li{background:var(--linen);border-radius:16px;margin-top:10px}
+  .ft__links a{display:block;padding:5px 0;font-size:11px}
+  .ft__c{margin-top:34px;padding-top:26px;font-size:10px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .fade,.fade-list > *{opacity:1;transform:none}
+  .pop{opacity:1;transform:scale(1)}
+  .cg--a{transform:rotate(-2.5deg)}.cg--b{transform:rotate(1.6deg)}
+  .cg--c{transform:rotate(-1.2deg)}.cg--d{transform:rotate(2.4deg)}
+  .cg--e{transform:rotate(-1.8deg)}.cg--f{transform:rotate(2.2deg)}
+  .cg--g{transform:rotate(-1.4deg)}
+  .cc--1{transform:rotate(-2.6deg)}.cc--2{transform:rotate(2.2deg)}.cc--3{transform:rotate(1.4deg)}
+}
