@@ -1,0 +1,280 @@
+@charset "utf-8";
+/* ============================================================
+   榑木工芸 塗装部
+   白地・黒文字・大きな写真・細い罫線。PC 1440 / SP 390
+   ============================================================ */
+
+:root{
+  --white:#fff; --ink:#111; --sub:#666; --line:#DADADA; --acc:#C8A020;
+  --ease:cubic-bezier(.19,1,.22,1);
+  --pad:30px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--white);color:var(--ink);
+  font-family:"Noto Sans JP",-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  font-size:11.5px;line-height:1.95;font-weight:400;overflow-x:clip}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,p,figure,address{margin:0;font-style:normal}
+a{color:inherit;text-decoration:none}
+b,i,span{font-style:normal}
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:#fff;padding:10px 18px}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.sec{padding:0 var(--pad) 90px}
+.en{font-family:Inter,sans-serif;font-size:14px;font-weight:500;letter-spacing:.12em}
+
+/* ---------- [→] リンク：矢印が抜けて反対から入り直す ---------- */
+.lk{position:relative;display:inline-flex;align-items:center;gap:12px;
+  padding-left:34px;font-size:12.5px;font-weight:500}
+.lk::before,.lk::after{content:"[→]";position:absolute;left:0;color:var(--sub);
+  font-family:Inter,sans-serif}
+.lk::after{opacity:0;translate:-14px 0}
+@keyframes arrOut{to{opacity:0;translate:14px 0}}
+@keyframes arrIn{from{opacity:0;translate:-14px 0}to{opacity:1;translate:0 0}}
+.lk:hover::before{animation:arrOut 1s var(--ease) both}
+.lk:hover::after{animation:arrIn 1s var(--ease) both}
+.lk--w,.lk--w::before,.lk--w::after{color:#fff}
+.lk--w::before,.lk--w::after{color:#A8A8A8}
+
+/* ---------- 「…」メニュー ---------- */
+.dots{position:fixed;right:var(--pad);top:22px;z-index:80;width:34px;height:34px;
+  background:var(--ink);border:0;padding:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:4px}
+.dots i{width:3.4px;height:3.4px;border-radius:50%;background:#fff;transition:.3s var(--ease)}
+.dots[aria-expanded="true"] i:nth-child(1){translate:7px 0;opacity:0}
+.dots[aria-expanded="true"] i:nth-child(3){translate:-7px 0;opacity:0}
+.dots[aria-expanded="true"] i:nth-child(2){width:16px;height:1.6px;border-radius:0}
+.nav{position:fixed;inset:0;z-index:75;background:var(--white);display:grid;place-content:center;
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease}
+.nav.is-open{opacity:1;visibility:visible}
+.nav li + li{margin-top:20px}
+.nav a{display:flex;align-items:baseline;gap:18px;
+  font-family:Inter,sans-serif;font-size:34px;font-weight:500;letter-spacing:.02em}
+.nav span{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:var(--sub)}
+
+/* ---------- 01 ヒーロー ---------- */
+.hero{position:relative;padding:0 10px 10px}
+.hero__ph{overflow:hidden}
+/* 5秒かけてゆっくり引く（参照元 pagecoverImageZoom） */
+@keyframes coverZoom{from{scale:1.12}to{scale:1}}
+.hero__ph img{width:100%;height:810px;object-fit:cover;
+  animation:coverZoom 5s cubic-bezier(.25,.46,.45,.94) both}
+.hero__en{position:absolute;left:var(--pad);top:28px;
+  font-family:Inter,sans-serif;font-size:10.5px}
+.hero__h{position:absolute;left:var(--pad);top:56px;font-size:40px;font-weight:700;line-height:1.5}
+.hero__c{position:absolute;right:60px;bottom:34px;color:#fff;
+  font-family:Inter,sans-serif;font-size:26px;font-weight:500}
+.hero__in{position:absolute;left:580px;top:602px;width:280px;overflow:hidden}
+.hero__in img{width:100%;height:400px;object-fit:cover}
+.hero__bar{position:absolute;left:var(--pad);bottom:66px;width:256px;height:1.4px;background:var(--ink)}
+.hero__scroll{position:absolute;right:var(--pad);bottom:42px;
+  font-family:Inter,sans-serif;font-size:10.5px;color:var(--sub)}
+
+/* ---------- 02 大見出し ---------- */
+.big{padding:190px var(--pad) 40px;border-bottom:1px solid var(--line)}
+.big__h{font-size:54px;font-weight:700;line-height:1.3}
+
+/* ---------- 03 ABOUT ---------- */
+.about{padding-top:60px}
+.about__row{display:grid;grid-template-columns:minmax(0,640px) minmax(0,694px);gap:52px;margin-top:70px}
+.about__h{font-size:22px;font-weight:700;line-height:1.5}
+.about__cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:44px}
+.about__cols p + p{margin-top:20px}
+.about__link{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.about__b{margin-top:34px}
+.about__sm{width:240px;margin-top:56px;overflow:hidden}
+.about__sm img{width:100%;height:200px;object-fit:cover}
+.about__big{overflow:hidden}
+.about__big img{width:100%;height:700px;object-fit:cover}
+.rows{margin-top:44px}
+.rows li{border-bottom:1px solid var(--line)}
+.rows a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0}
+.rows b{font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.08em}
+.rows .lk{font-size:11.5px}
+
+/* ---------- 04 塗装スタジオ ---------- */
+.studio__row{display:grid;grid-template-columns:minmax(0,640px) minmax(0,694px);gap:52px}
+.studio__txt{padding-top:190px}
+.studio__h{font-size:20px;font-weight:700}
+.studio__b{margin-top:20px;max-width:280px}
+.studio__link{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);max-width:280px}
+.studio__sm{width:240px;margin-top:44px;overflow:hidden}
+.studio__sm img{width:100%;height:200px;object-fit:cover}
+.studio__big{overflow:hidden}
+.studio__big img{width:100%;height:600px;object-fit:cover}
+.row1{margin-top:34px;border-bottom:1px solid var(--line)}
+.row1 a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0}
+.row1 b{font-family:Inter,sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.08em}
+.acc{color:var(--acc)}
+
+/* ---------- 05 WORKS ---------- */
+.works{padding-bottom:90px}
+.works__ph{overflow:hidden}
+.works__ph img{width:100%;height:520px;object-fit:cover}
+.works__in{padding:56px var(--pad) 0}
+.works__h{font-size:20px;font-weight:700;margin-top:12px}
+.gal{margin-top:52px;display:grid;grid-template-columns:280px minmax(0,1fr) auto;
+  align-items:center;gap:30px}
+.gal__cap{grid-column:1;font-size:11.5px}
+.gal__pos{grid-column:1;display:flex;align-items:center;gap:12px;
+  font-family:Inter,sans-serif;font-size:11px;color:var(--sub);margin-top:14px}
+.gal__bar{display:block;width:200px;height:2px;background:var(--line);position:relative}
+.gal__bar b{position:absolute;left:0;top:0;height:2px;background:var(--ink);
+  width:20%;transition:width .3s linear}
+.gal__th{grid-column:2;display:flex;gap:16px}
+.gal__th li{width:104px;overflow:hidden;transition:opacity .3s}
+.gal__th img{width:100%;height:72px;object-fit:cover}
+.gal__th li.is-on{outline:1.4px solid var(--ink);outline-offset:2px}
+.gal__ctl{grid-column:3;display:flex;gap:18px;margin:0}
+.rnd{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:none;
+  cursor:pointer;display:grid;place-items:center;transition:border-color .3s}
+.rnd:hover{border-color:var(--ink)}
+.ar{display:block;width:16px;height:10px;position:relative}
+.ar::before{content:"";position:absolute;left:0;top:50%;width:16px;height:1.3px;background:var(--ink)}
+.ar::after{content:"";position:absolute;top:50%;width:7px;height:7px;
+  border-top:1.3px solid var(--ink);border-right:1.3px solid var(--ink)}
+.ar--r::after{right:0;transform:translateY(-50%) rotate(45deg)}
+.ar--l::after{left:0;transform:translateY(-50%) rotate(-135deg)}
+.ar--u{width:10px;height:16px;margin-left:8px}
+.ar--u::before{left:50%;top:0;width:1.3px;height:16px}
+.ar--u::after{left:50%;top:0;transform:translateX(-50%) rotate(-45deg)}
+.works__link{margin-top:44px}
+
+/* ---------- 06 CRAFTSMAN ---------- */
+.craft{padding-top:70px}
+.craft__h{font-size:20px;font-weight:700;margin-top:12px}
+.craft__l{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:50px;margin-top:56px}
+.craft__l figure{overflow:hidden}
+.craft__l img{width:100%;height:440px;object-fit:cover;transition:scale .6s var(--ease)}
+.craft__l li:hover img{scale:1.04}
+.craft__n{font-size:11px;color:var(--sub);margin-top:30px}
+.craft__name{font-size:18px;font-weight:700;margin-top:6px}
+.craft__b{margin-top:12px}
+.craft__link{margin-top:56px}
+
+/* ---------- 07 CONTACT ---------- */
+.cta{background:var(--ink);color:#fff;text-align:center;padding:120px 24px 130px}
+.cta__en{font-family:Inter,sans-serif;font-size:88px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.cta__h{font-size:20px;font-weight:700;margin-top:34px}
+.cta__b{font-size:12.5px;color:#A8A8A8;margin-top:8px}
+.cta__link{margin-top:70px;padding-top:22px}
+.cta__link .lk{border-top:1px solid #3A3A3A;padding-top:22px;padding-left:34px}
+
+/* ---------- フッター ---------- */
+.ft{padding:80px var(--pad) 60px}
+.ft__cols{display:grid;grid-template-columns:repeat(3,260px) minmax(0,1fr);gap:30px}
+.ft__h{font-size:12.5px;font-weight:700}
+.ft__cols ul{margin-top:20px;display:grid;gap:8px}
+.ft__cols a{color:var(--sub);transition:color .3s}
+.ft__cols a:hover{color:var(--ink)}
+.ft__addr{color:var(--sub);line-height:2.2}
+.ft__top{margin-top:56px;padding-top:34px;border-top:1px solid var(--line)}
+.ft__top .lk{padding-left:0;font-family:Inter,sans-serif;letter-spacing:.1em}
+.ft__top .lk::before,.ft__top .lk::after{content:none}
+.ft__logo{font-size:60px;font-weight:700;margin-top:80px}
+.ft__c{font-family:Inter,sans-serif;font-size:11px;color:var(--sub);margin-top:60px}
+
+/* ---------- 動き ---------- */
+.rise,.rise-list > *{opacity:0;transform:translateY(28px);
+  transition:opacity .6s ease-out,transform .9s var(--ease)}
+.rise.is-in,.rise-list.is-in > *{opacity:1;transform:none}
+.rise-list.is-in > *{transition-delay:calc(var(--d,0) * 100ms)}
+
+/* ============================================================
+   SP（390フレームどおり）
+   ============================================================ */
+@media (max-width:900px){
+  :root{--pad:16px}
+  body{font-size:11px}
+  .sec{padding:0 var(--pad) 56px}
+  .en{font-size:12px}
+  .dots{right:var(--pad);top:16px;width:28px;height:28px}
+  .nav a{font-size:24px;gap:12px}
+  .nav span{font-size:10.5px}
+
+  .hero{padding:0 12px 12px}
+  .hero__ph img{height:560px}
+  .hero__en{font-size:8px;top:26px}
+  .hero__h{font-size:27px;top:48px}
+  .hero__c{font-size:15px;right:24px;bottom:26px}
+  .hero__in{left:auto;right:24px;top:428px;width:150px}
+  .hero__in img{height:216px}
+  .hero__bar{width:134px;bottom:96px}
+  .hero__scroll{font-size:9px;bottom:74px}
+
+  .big{padding:120px var(--pad) 30px}
+  .big__h{font-size:28px}
+
+  /* ABOUT：写真が先、本文は1段 */
+  .about{padding-top:44px}
+  .about__row{grid-template-columns:minmax(0,1fr);gap:0;margin-top:24px}
+  .about__side{display:contents}
+  .about__big{order:-1;margin-bottom:34px}
+  .about__big img{height:380px}
+  .about__h{font-size:19px}
+  .about__cols{grid-template-columns:minmax(0,1fr);gap:0;margin-top:26px}
+  .about__cols > div{margin-top:20px}
+  .about__b{margin-top:20px}
+  .about__link{padding-top:20px;margin-top:20px}
+  .about__sm{width:200px;margin-top:34px;float:left;margin-right:20px}
+  .about__sm img{height:150px}
+  .rows{margin-top:34px;clear:none}
+  .rows a{flex-direction:column;align-items:flex-start;gap:2px;padding:9px 0}
+  .rows b{font-size:10px}
+  .rows .lk{font-size:9.5px;padding-left:0}
+  .rows .lk::before,.rows .lk::after{content:none}
+
+  /* 塗装スタジオ */
+  .studio__row{grid-template-columns:minmax(0,1fr);gap:0}
+  .studio__txt{padding-top:0;order:2}
+  .studio__big img{height:250px}
+  .studio__h{font-size:18px;margin-top:34px}
+  .studio__b,.studio__link{max-width:none}
+  .studio__sm{width:100%;margin-top:26px}
+  .studio__sm img{height:230px}
+  .row1{order:3;margin-top:26px}
+  .row1 a{flex-wrap:wrap;gap:8px}
+
+  /* WORKS */
+  .works__ph img{height:300px}
+  .works__in{padding-top:44px}
+  .works__h{font-size:18px}
+  .gal{grid-template-columns:minmax(0,1fr);gap:16px;margin-top:34px}
+  .gal__cap,.gal__pos,.gal__ctl{grid-column:1}
+  .gal__th{display:none}          /* SPではサムネを出さない */
+  .gal__bar{width:150px}
+  .gal__ctl{justify-content:flex-end;margin-top:-44px}
+  .rnd{width:38px;height:38px}
+  .works__link{margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+
+  /* CRAFTSMAN */
+  .craft{padding-top:44px}
+  .craft__h{font-size:18px}
+  .craft__l{grid-template-columns:minmax(0,1fr);gap:44px;margin-top:34px}
+  .craft__l img{height:230px}
+  .craft__n{margin-top:22px}
+  .craft__name{font-size:16px}
+  .craft__link{margin-top:34px}
+
+  .cta{padding:80px 16px 90px}
+  .cta__en{font-size:44px}
+  .cta__h{font-size:16px;margin-top:22px}
+  .cta__b{font-size:11px}
+  .cta__link{margin-top:50px}
+
+  .ft{padding:56px var(--pad) 44px}
+  .ft__cols{grid-template-columns:minmax(0,1fr);gap:24px}
+  .ft__addr{font-size:10px}
+  .ft__top{margin-top:34px;padding-top:26px}
+  .ft__logo{font-size:26px;margin-top:44px;line-height:1.4}
+  .ft__c{font-size:9.5px;margin-top:30px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rise,.rise-list > *{opacity:1;transform:none}
+  .hero__ph img{scale:1}
+}
