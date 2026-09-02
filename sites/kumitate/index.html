@@ -59,7 +59,7 @@
 <main id="main">
 
 <!-- ============ 01 ヒーロー ============ -->
-<section class="hero" id="top">
+<section class="hero" id="top" data-char>
   <div class="hero__in">
     <div class="hero__l">
       <h1 class="hero__h is-show">ことばを理解するAIで<br>シフトづくりをかんたんに</h1>
@@ -84,7 +84,7 @@
 </section>
 
 <!-- ============ 02 課題 ============ -->
-<section class="prob">
+<section class="prob" data-char>
   <h2 class="prob__h up"><b>シフトを組む日</b>に、<br><b>予定を入れられない</b>。</h2>
   <ul class="prob__l">
     <li class="up"><figure class="fade"><img src="assets/img/gb0.webp" alt="レジ前で画面を見る店長" width="440" height="360" loading="lazy"></figure>
@@ -97,6 +97,9 @@
       <p class="bub bub--r">朝の電話ひとつで<br>全部やり直し</p>
       <p>当日の欠勤は避けられない。<br>困るのは、その穴を埋めた結果、<br>来週まで玉突きで崩れることのほう。</p></li>
   </ul>
+  <p class="bub bub--l prob__bub" data-bubble>ぜんぶ、<br>あるあるだね</p>
+  <p class="bub bub--l prob__bub" data-bubble>ボクに<br>やらせてよ</p>
+  <svg class="ot prob__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
 </section>
 
 <!-- ============ 03 解決 ============ -->
@@ -114,24 +117,28 @@
   </ul>
 </section>
 
-<!-- ============ 04 ステップ（★スクロールで重なる） ============ -->
+<!-- ============ 04 ステップ（左の絵がスクロールで1枚ずつ切り替わる） ============ -->
 <section class="steps">
   <h2 class="steps__h up">書いて、待つ。それだけ</h2>
   <p class="steps__b up">専用の記法も、条件式もありません。ふだん口で言っていることを、そのまま打ってください。</p>
-  <ul class="steps__l" id="steps">
-    <li><b>1</b><div><h3>書く</h3><p>「土日は二人以上」「木村さんは夕方まで」。<br>箇条書きでも、文章でもかまいません。</p></div>
-      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><path d="M46 24l7 14 16 2-12 12 3 16-14-8-14 8 3-16-12-12 16-2z" fill="#0499F5"/></svg></li>
-    <li><b>2</b><div><h3>読む</h3><p>どれが絶対に守る条件で、どれが希望なのかを<br>クミタテが仕分けます。曖昧なところは聞き返します。</p></div>
-      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><rect x="26" y="30" width="40" height="32" rx="3" fill="none" stroke="#0499F5" stroke-width="4"/><path d="M36 42l20 14M56 42l-20 14" stroke="#0499F5" stroke-width="4"/></svg></li>
-    <li><b>3</b><div><h3>組む</h3><p>守る条件を全部満たす案の中から、<br>希望が最も多く通る一案を選びます。</p></div>
-      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><path d="M26 60l14-22 14 12 16-24" fill="none" stroke="#0499F5" stroke-width="5" stroke-linecap="round"/></svg></li>
-    <li><b>4</b><div><h3>返す</h3><p>いつもの表の形で戻します。<br>直したい枠はその場でつまんで動かせます。</p></div>
-      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><rect x="26" y="28" width="40" height="36" rx="3" fill="none" stroke="#0499F5" stroke-width="4"/><path d="M26 42h40M40 28v36" stroke="#0499F5" stroke-width="4"/></svg></li>
-  </ul>
+  <div class="steps__art" id="steps">
+    <div class="steps__imgs">
+      <figure class="steps__img is-show"><img src="assets/img/st0.webp" alt="チャットに希望を打ち込んでいる画面" width="620" height="520" loading="lazy"></figure>
+      <figure class="steps__img"><img src="assets/img/st1.webp" alt="条件と希望に仕分けている画面" width="620" height="520" loading="lazy"></figure>
+      <figure class="steps__img"><img src="assets/img/st2.webp" alt="カレンダーが自動で埋まっていく画面" width="620" height="520" loading="lazy"></figure>
+      <figure class="steps__img"><img src="assets/img/st3.webp" alt="組み上がった週間シフトの画面" width="620" height="520" loading="lazy"></figure>
+    </div>
+    <ol class="steps__l">
+      <li class="is-show"><b>1</b><div><h3>書く</h3><p>「土日は二人以上」「木村さんは夕方まで」。<br>箇条書きでも、文章でもかまいません。</p></div></li>
+      <li><b>2</b><div><h3>読む</h3><p>どれが絶対に守る条件で、どれが希望なのかを<br>仕分けます。曖昧なところは聞き返します。</p></div></li>
+      <li><b>3</b><div><h3>組む</h3><p>守る条件を全部満たす案の中から、<br>希望が最も多く通る一案を選びます。</p></div></li>
+      <li><b>4</b><div><h3>返す</h3><p>いつもの表の形で戻します。<br>直したい枠はその場でつまんで動かせます。</p></div></li>
+    </ol>
+  </div>
 </section>
 
 <!-- ============ 05 機能一覧 ============ -->
-<section class="feat" id="feature">
+<section class="feat" id="feature" data-char>
   <h2 class="feat__vert">できること</h2>
   <ul class="feat__l">
     <li class="up"><h3>文章から組む</h3><p>条件式に直さず、書いた文章のまま制約として扱います。</p><span class="feat__more">動画で見る</span></li>
@@ -149,7 +156,7 @@
 </section>
 
 <!-- ============ 06 数字 ============ -->
-<section class="eff" id="effect">
+<section class="eff" id="effect" data-char>
   <h2 class="eff__h up">入れた店で<b>起きたこと</b></h2>
   <div class="eff__row">
     <div class="eff__l">
@@ -158,7 +165,7 @@
     </div>
     <div class="eff__m up">
       <p class="eff__lab">1か月ぶんを組む時間</p>
-      <p class="eff__big"><b>12</b><em>分</em><i aria-hidden="true"></i></p>
+      <p class="eff__big"><b data-count="12">0</b><em>分</em><i aria-hidden="true"></i></p>
       <p class="eff__note">50名規模・6か月の実測平均。導入前は平均7時間20分でした。</p>
     </div>
     <div class="eff__d up">
@@ -176,19 +183,19 @@
 <!-- ============ 07 効果3項目 ============ -->
 <section class="eff3">
   <ul>
-    <li class="up"><b>9</b><em>割</em><p>締切までに希望が出そろう割合。<br>催促の電話が要らなくなりました。</p></li>
-    <li class="up"><b>0</b><em>件</em><p>連勤上限や配置基準の違反。<br>組んだ時点で候補から外れます。</p></li>
-    <li class="up"><b>3</b><em>日</em><p>欠勤の穴埋めにかかっていた日数が、<br>その日のうちに片づくように。</p></li>
+    <li class="up"><b data-count="9">0</b><em>割</em><p>締切までに希望が出そろう割合。<br>催促の電話が要らなくなりました。</p></li>
+    <li class="up"><b data-count="0">0</b><em>件</em><p>連勤上限や配置基準の違反。<br>組んだ時点で候補から外れます。</p></li>
+    <li class="up"><b data-count="3">0</b><em>日</em><p>欠勤の穴埋めにかかっていた日数が、<br>その日のうちに片づくように。</p></li>
   </ul>
 </section>
 
 <!-- ============ 08 料金 ============ -->
-<section class="price" id="price">
+<section class="price" id="price" data-char>
   <h2 class="price__h up">料金</h2>
   <p class="price__b up">人数ぶんの月額だけです。初期費用も、最低利用人数もありません。</p>
   <div class="price__card up">
     <p class="price__plan">1人あたり</p>
-    <p class="price__big"><b>280</b><em>円 / 月</em></p>
+    <p class="price__big"><b data-count="280">0</b><em>円 / 月</em></p>
     <p class="price__note">初期費用なし ／ 最低利用人数なし ／ 全機能</p>
     <ul class="price__feats">
       <li>文章から組む</li><li>手元の表を読む</li><li>人件費が同時に出る</li>
@@ -202,10 +209,12 @@
     <p>店舗をまたぐ配置や、独自の決まりが多い場合は<br>設定のところだけ一緒にやります。</p>
     <p class="price__b2cta"><a class="btn btn--w" href="#flow">相談する<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></a></p>
   </div>
+  <p class="bub bub--r price__bub">これだけ</p>
+  <svg class="ot price__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
 </section>
 
 <!-- ============ 09 使っている人の話 ============ -->
-<section class="voi" id="voices">
+<section class="voi" id="voices" data-char>
   <h2 class="voi__h up">使っている人の話</h2>
   <ul class="voi__l">
     <li class="up"><p class="voi__n"><span class="fade"><img src="assets/img/fc0.webp" alt="" width="300" height="300" loading="lazy"></span>小売／店長</p>
@@ -217,10 +226,12 @@
     <li class="up"><p class="voi__n"><span class="fade"><img src="assets/img/fc3.webp" alt="" width="300" height="300" loading="lazy"></span>保育／主任</p>
       <p>配置基準に足りているかが、いちばん気を張るところでした。足りない枠は理由つきで空欄のまま返ってくるので、どこを埋めればいいか一目で分かります。</p></li>
   </ul>
+  <p class="bub bub--r voi__bub">みんな<br>ありがとう</p>
+  <svg class="ot voi__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
 </section>
 
 <!-- ============ 10 はじめかた＋フォーム ============ -->
-<section class="flow" id="flow">
+<section class="flow" id="flow" data-char>
   <h2 class="flow__h up">はじめかた</h2>
   <div class="flow__row">
     <ol class="flow__steps up">
@@ -239,10 +250,14 @@
       <p class="flow__submit"><button class="btn" type="submit">送信する<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></button></p>
     </form>
   </div>
+  <div class="flow__side" aria-hidden="true">
+    <p class="bub bub--l flow__bub">ここまで<br>お疲れさま</p>
+    <svg class="ot flow__ot" viewBox="0 0 200 200"><use href="#otter"/></svg>
+  </div>
 </section>
 
 <!-- ============ 11 締め ============ -->
-<section class="close">
+<section class="close" data-char>
   <h2 class="close__h up"><b>早く</b>組むためでなく、<br><span><b>考えずに済む</b>ために。</span></h2>
   <div class="close__ph">
     <figure class="fade"><img src="assets/img/of3.webp" alt="" width="440" height="360" loading="lazy"></figure>
@@ -272,6 +287,8 @@
 
 <p class="spbar" aria-hidden="true"><a class="btn" href="#flow">無料ではじめる<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></a></p>
 
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

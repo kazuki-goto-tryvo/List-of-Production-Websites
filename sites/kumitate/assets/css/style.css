@@ -38,22 +38,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .fade img{opacity:0;transition:opacity .3s linear}
 .fade.is-show img{opacity:1}
 
-/* ============ マスコット（参照元 character-tail / -left-hand / -right-hand） ============ */
-.ot{width:150px}
-.ot .ot-hl{animation:hand .5s ease-in-out .2s infinite alternate;transform-origin:38px 140px}
-.ot .ot-hr{animation:hand .5s ease-in-out infinite alternate;transform-origin:162px 134px}
+/* ============ マスコット ============
+   ★参照元は「セクションに入ると出て、抜けると引っ込む」。出っぱなしにしない。
+     手や尻尾のループも is-show が付いているあいだだけ回す（参照元と同じ） */
+.ot{width:150px;opacity:0;translate:0 40px;
+  transition:opacity .2s ease,translate 0s .2s var(--p4)}
+.is-show>.ot,.is-show .ot{opacity:1;translate:0 0;
+  transition:opacity .2s ease,translate .4s var(--bound)}
+.is-show .ot .ot-hl{animation:hand .5s ease-in-out .2s infinite alternate;transform-origin:38px 140px}
+.is-show .ot .ot-hr{animation:hand .5s ease-in-out infinite alternate;transform-origin:162px 134px}
 @keyframes hand{to{rotate:-16deg}}
-.ot .ot-eye{animation:blink 4s steps(1) infinite}      /* 参照元 character-face */
+.is-show .ot .ot-eye{animation:blink 4s steps(1) infinite}
 @keyframes blink{0%,94%{opacity:1}95%,100%{opacity:0}}
 /* 吹き出し（参照元は steps(5) のコマ送りで出す） */
 .bub{position:absolute;background:#fff;color:var(--blueD);font-size:10.5px;line-height:1.5;
   padding:9px 16px;border-radius:20px;text-align:center;white-space:nowrap;
-  animation:pop .4s var(--bound) both}
+  opacity:0;scale:.4;transition:opacity .18s ease,scale .4s var(--bound)}
+.is-show>.bub,.is-show .bub{opacity:1;scale:1}
+/* ★順送りの吹き出しは「いま出ている1つ」だけ。JSが1.2秒ごとに付け替える */
+.is-show [data-bubble]{opacity:0;scale:.4}
+.is-show [data-bubble].is-on{opacity:1;scale:1}
 .bub::after{content:'';position:absolute;bottom:-10px;width:0;height:0;
   border-top:12px solid #fff}
 .bub--l::after{left:22px;border-right:16px solid transparent}
 .bub--r::after{right:22px;border-left:16px solid transparent}
-@keyframes pop{0%{scale:.4;opacity:0}100%{scale:1;opacity:1}}
 
 /* ============ ボタン ============ */
 .btn{display:inline-flex;align-items:center;gap:16px;background:var(--blue);color:#fff;
@@ -126,6 +134,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .hero__curve{position:absolute;left:0;right:0;bottom:-1px;height:80px;background:#fff;
   border-radius:50% 50% 0 0/100% 100% 0 0;scale:1.4 1}
 
+/* ★あとから足したキャラは絶対配置。セクションの高さを変えない（参照元と同じ重ね方） */
+.prob,.price,.voi,.flow{position:relative}
+.prob__ot{position:absolute;right:34px;bottom:8px;width:120px}
+.prob__bub{right:150px;bottom:120px}
+.price__ot{position:absolute;left:40px;bottom:-10px;width:110px}
+.price__bub{left:150px;bottom:96px}
+.voi__ot{position:absolute;right:24px;bottom:-6px;width:110px}
+.voi__bub{right:130px;bottom:92px}
+.flow__side{position:absolute;left:36px;bottom:40px;width:150px}
+.flow__ot{width:120px}
+.flow__bub{left:0;bottom:120px}
+
 /* ============ 02 課題 ============ */
 .prob{background:var(--grey);padding:80px 60px 90px}
 .prob__h{text-align:center;font-size:34px;font-weight:900;line-height:1.5}
@@ -155,31 +175,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   border-radius:2px;background:var(--blue)}
 .solve__l p{font-size:10.5px;line-height:1.95;color:var(--sub);margin-top:22px}
 
-/* ============ 04 ステップ（★スクロールで重なる） ============ */
+/* ============ 04 ステップ（★左の絵がスクロールで1枚ずつ切り替わる） ============ */
 .steps{background:linear-gradient(160deg,var(--blue),var(--blueD));color:#fff;
-  padding:80px 0 120px}
+  padding:80px 60px 110px}
 .steps__h{text-align:center;font-size:36px;font-weight:900}
-.steps__b{text-align:center;font-size:11.5px;margin-top:16px;padding:0 20px}
-.steps__l{margin-top:50px}
-/* ★stickyが効くのは親の「内容ボックス」の中だけ。padding-bottom では伸びない。
-   留めたい長さは中身（空の子要素）で足す */
-.steps__l::after{content:'';display:block;height:300px}
-.steps__l li{position:sticky;display:flex;align-items:center;gap:26px;
-  width:920px;max-width:calc(100% - 40px);margin:0 auto 40px;min-height:260px;
-  background:#fff;color:var(--ink);border-radius:20px;padding:30px 40px;
-  box-shadow:0 -14px 34px rgba(0,60,120,.14);transform-origin:50% 0;
-  /* ★ --p（0→1）はJSが入れる。CSSはそれを使うだけ */
-  scale:calc(1 - var(--p,0) * 0.06);
-  filter:brightness(calc(1 - var(--p,0) * 0.13))}
-.steps__l li:nth-child(1){top:90px}
-.steps__l li:nth-child(2){top:114px}
-.steps__l li:nth-child(3){top:138px}
-.steps__l li:nth-child(4){top:162px}
-.steps__l li>b{width:64px;height:64px;border-radius:50%;background:var(--blueL);
-  display:grid;place-items:center;font-size:32px;font-weight:900;color:var(--blue);flex:none}
-.steps__l h3{font-size:26px;font-weight:900}
-.steps__l div p{font-size:12.5px;line-height:1.9;color:var(--sub);margin-top:14px}
-.steps__i{width:92px;height:92px;margin-left:auto;flex:none}
+.steps__b{text-align:center;font-size:11.5px;margin-top:16px}
+.steps__art{display:grid;grid-template-columns:minmax(0,620px) minmax(0,1fr);gap:60px;
+  max-width:1320px;margin:50px auto 0;align-items:start}
+/* 4枚を同じ場所に重ねて、is-show の1枚だけ見せる */
+.steps__imgs{position:relative;aspect-ratio:620/520;border-radius:20px;overflow:hidden;background:#fff}
+.steps__img{position:absolute;inset:0;opacity:0;scale:1.03;
+  transition:opacity .45s var(--p4),scale .6s var(--p4)}
+.steps__img.is-show{opacity:1;scale:1}
+.steps__img img{width:100%;height:100%;object-fit:cover}
+.steps__l{display:grid;gap:14px}
+.steps__l li{display:flex;gap:20px;align-items:center;background:rgba(255,255,255,.14);
+  border-radius:14px;padding:20px 24px;min-height:120px;transition:background .35s var(--p4)}
+.steps__l li.is-show{background:#fff;color:var(--ink)}
+.steps__l li>b{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.3);
+  display:grid;place-items:center;font-size:22px;font-weight:900;color:#fff;flex:none;
+  transition:background .35s var(--p4),color .35s var(--p4)}
+.steps__l li.is-show>b{background:var(--blueL);color:var(--blue)}
+.steps__l h3{font-size:19px;font-weight:900}
+.steps__l p{font-size:11px;line-height:1.85;margin-top:8px;opacity:.9}
+.steps__l li.is-show p{color:var(--sub);opacity:1}
 
 /* ============ 05 機能一覧 ============ */
 .feat{position:relative;background:linear-gradient(160deg,var(--blue),var(--blueD));
@@ -377,22 +396,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .solve__l h3::before{height:34px;width:3px}
   .solve__l p{font-size:9px;margin-top:14px}
 
-  .steps{padding:50px 0 70px}
+  .steps{padding:50px 16px 70px}
   .steps__h{font-size:20px}
   .steps__b{font-size:9.5px;margin-top:12px}
-  .steps__l{margin-top:34px}
-  .steps__l::after{height:260px}
-  .steps__l li{width:auto;max-width:none;margin:0 16px 26px;min-height:230px;
-    flex-wrap:wrap;gap:14px;padding:22px 16px;border-radius:16px}
-  .steps__l li:nth-child(1){top:76px}             /* ★重なりは維持。差を詰める */
-  .steps__l li:nth-child(2){top:90px}
-  .steps__l li:nth-child(3){top:104px}
-  .steps__l li:nth-child(4){top:118px}
-  .steps__l li>b{width:48px;height:48px;font-size:22px}
-  .steps__l h3{font-size:19px}
-  .steps__l div{width:calc(100% - 62px)}
-  .steps__l div p{font-size:9.5px;margin-top:10px}
-  .steps__i{width:60px;height:60px}
+  .steps__art{grid-template-columns:minmax(0,1fr);gap:22px;margin-top:26px}
+  .steps__l li{padding:14px 16px;gap:14px}
+  .steps__l li>b{width:38px;height:38px;font-size:18px}
+  .steps__l h3{font-size:15px}
+  .steps__l p{font-size:9.5px;margin-top:6px}
 
   .feat{padding:50px 16px 70px}
   .feat__vert{position:static;writing-mode:horizontal-tb;font-size:24px;text-align:center;
@@ -418,6 +429,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .eff__big i{left:-20px;right:-24px}
   .eff__note{font-size:9.5px}
   .eff__d{max-width:260px;margin:0 auto}
+  .eff__dn b{font-size:34px}
+  .eff__dn em{font-size:13px}
 
   .eff3{padding:10px 16px 60px}
   .eff3 ul{grid-template-columns:minmax(0,1fr);gap:34px}
@@ -454,6 +467,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .flow__form{padding:26px 18px;border-radius:16px}
   .flow__form h3{font-size:16px}
 
+  .prob__ot,.price__ot,.voi__ot,.flow__side{width:78px}
+  .prob__ot{right:8px;bottom:4px}
+  .price__ot{left:8px;bottom:-4px;width:78px}
+  .voi__ot{right:8px;bottom:-4px;width:78px}
+  .flow__side{left:8px;bottom:12px}
+  .flow__ot{width:78px}
+  .prob__bub,.price__bub,.voi__bub,.flow__bub{display:none}
+
   .close{padding:50px 16px 70px}
   .close__h{font-size:22px}
   .close__h b{font-size:26px}
@@ -484,8 +505,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .up{opacity:1;translate:0 0;transition:none}
   .fade img{opacity:1;transition:none}
   .hero__h,.bub,.ot .ot-hl,.ot .ot-hr,.ot .ot-eye{animation:none!important;scale:1;opacity:1}
-  /* ★重なりは position:static に落とすだけで完全に止まる */
-  .steps__l li{position:static;scale:1;filter:none}
+  .steps__img{transition:none}
+  .ot,.bub{opacity:1;scale:1;translate:0 0;transition:none}
   .eff__ring{transition:none;stroke-dasharray:529 679}
   .btn:hover,.hd__cta:hover{scale:1}
 }
