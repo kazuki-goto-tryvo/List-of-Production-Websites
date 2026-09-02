@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クミタテ｜ことばで頼めば、シフトが組み上がる</title>
+<meta name="description" content="「来週の火曜、田中さん入れない」と打つだけ。残りの枠はクミタテが埋めて、そのまま配れる形で返します。1人あたり月280円・初期費用なし。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<svg class="defs" aria-hidden="true"><defs>
+  <!-- ★マスコット：水色のカワウソ（参照元の青いトラとは別のキャラ） -->
+  <symbol id="otter" viewBox="0 0 200 200">
+    <ellipse cx="100" cy="162" rx="52" ry="46" fill="#8FD6F5"/>
+    <ellipse cx="38" cy="186" rx="30" ry="13" fill="#4FB6E8" transform="rotate(-18 38 186)"/>
+    <ellipse cx="100" cy="100" rx="62" ry="55" fill="#8FD6F5"/>
+    <circle cx="48" cy="58" r="16" fill="#8FD6F5"/><circle cx="152" cy="58" r="16" fill="#8FD6F5"/>
+    <circle cx="48" cy="58" r="8" fill="#4FB6E8"/><circle cx="152" cy="58" r="8" fill="#4FB6E8"/>
+    <ellipse cx="100" cy="120" rx="34" ry="26" fill="#fff"/>
+    <g class="ot-eye" fill="none" stroke="#123" stroke-width="5" stroke-linecap="round">
+      <path d="M74 90 q10 12 20 0"/><path d="M106 90 q10 12 20 0"/>
+    </g>
+    <ellipse cx="100" cy="110" rx="8" ry="6" fill="#123"/>
+    <path d="M88 126 q12 14 24 0" fill="none" stroke="#123" stroke-width="5" stroke-linecap="round"/>
+    <ellipse class="ot-hl" cx="38" cy="156" rx="14" ry="20" fill="#8FD6F5" transform="rotate(-24 38 156)"/>
+    <ellipse class="ot-hr" cx="162" cy="150" rx="14" ry="20" fill="#8FD6F5" transform="rotate(30 162 150)"/>
+  </symbol>
+  <symbol id="logomark" viewBox="0 0 26 26">
+    <rect width="26" height="26" rx="7" fill="currentColor"/>
+    <rect x="5" y="7" width="16" height="12" rx="2" fill="#fff"/>
+    <g fill="currentColor"><rect x="7" y="10" width="3" height="3"/><rect x="11.5" y="10" width="3" height="3"/><rect x="16" y="10" width="3" height="3"/>
+      <rect x="7" y="14.5" width="3" height="3"/><rect x="11.5" y="14.5" width="3" height="3"/><rect x="16" y="14.5" width="3" height="3"/></g>
+  </symbol>
+  <symbol id="arw" viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="currentColor"/>
+    <path d="M9 13h8m-3-3 3 3-3 3" fill="none" stroke="var(--af,#0499F5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="hd">
+  <a class="logo" href="#top"><svg viewBox="0 0 26 26" aria-hidden="true"><use href="#logomark"/></svg><b>クミタテ</b></a>
+  <nav class="hd__nav" aria-label="グローバル">
+    <a href="#solve">特長</a><a href="#feature">機能</a><a href="#effect">導入効果</a><a href="#price">料金</a>
+    <a href="#voices">よくある質問</a><a href="#voices">ブログ</a><a href="#flow">資料請求</a><a href="#flow">お問い合わせ</a>
+  </nav>
+  <a class="hd__login" href="#flow">ログイン</a>
+  <a class="hd__cta" href="#flow">無料ではじめる</a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く"><i></i><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="メニュー" hidden>
+  <a href="#solve">特長</a><a href="#feature">機能</a><a href="#effect">導入効果</a>
+  <a href="#price">料金</a><a href="#voices">使っている人の話</a><a href="#flow">お問い合わせ</a>
+</nav>
+
+<main id="main">
+
+<!-- ============ 01 ヒーロー ============ -->
+<section class="hero" id="top">
+  <div class="hero__in">
+    <div class="hero__l">
+      <h1 class="hero__h is-show">ことばを理解するAIで<br>シフトづくりをかんたんに</h1>
+      <p class="hero__b">「来週の火曜、田中さん入れない」と打つだけ。<br>残りの枠はクミタテが埋めて、そのまま配れる形で返します。</p>
+      <p class="hero__cta"><a class="btn btn--w" href="#flow">無料ではじめる<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></a></p>
+      <p class="hero__movie"><button type="button"><i aria-hidden="true"></i>30秒でわかる動画</button></p>
+    </div>
+    <div class="hero__ph">
+      <figure class="fade f1"><img src="assets/img/of0.webp" alt="ノートPCに向かう店長" width="440" height="360" loading="eager"></figure>
+      <figure class="fade f2"><img src="assets/img/of1.webp" alt="" width="440" height="360" loading="eager"></figure>
+      <figure class="fade f3"><img src="assets/img/of2.webp" alt="" width="440" height="360" loading="eager"></figure>
+      <p class="bub bub--r hero__bub">まかせて、<br>組んでおくよ</p>
+      <svg class="ot hero__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
+    </div>
+  </div>
+  <ul class="hero__stats">
+    <li><i>＜ ならした作成時間 ＞</i><b>12<em>分</em></b><span>1か月ぶん</span></li>
+    <li><i>＜ ひとりあたり ＞</i><b>月280<em>円</em></b><span>初期費用なし</span></li>
+    <li><i>＜ AI活用アワード2026 ＞</i><b>大賞</b><span>受賞</span></li>
+  </ul>
+  <span class="hero__curve" aria-hidden="true"></span>
+</section>
+
+<!-- ============ 02 課題 ============ -->
+<section class="prob">
+  <h2 class="prob__h up"><b>シフトを組む日</b>に、<br><b>予定を入れられない</b>。</h2>
+  <ul class="prob__l">
+    <li class="up"><figure class="fade"><img src="assets/img/gb0.webp" alt="レジ前で画面を見る店長" width="440" height="360" loading="lazy"></figure>
+      <p class="bub bub--l">また今月も<br>半日つぶれる</p>
+      <p>土日は必ず二人。夜は資格持ちを一人。<br>頭の中の決まりごとを紙に書き出すだけで、<br>もう一時間が過ぎている。</p></li>
+    <li class="up"><figure class="fade"><img src="assets/img/gb1.webp" alt="タブレットを一緒に見る二人" width="440" height="360" loading="lazy"></figure>
+      <p class="bub bub--r">この希望、<br>どう通そう</p>
+      <p>「木曜だけ早上がり」「学校の試験週間は休み」。<br>一人ずつは通せる。全部いっぺんに通そうとすると、<br>どこかが必ず欠ける。</p></li>
+    <li class="up"><figure class="fade"><img src="assets/img/gb2.webp" alt="厨房で電話を見る店長" width="440" height="360" loading="lazy"></figure>
+      <p class="bub bub--r">朝の電話ひとつで<br>全部やり直し</p>
+      <p>当日の欠勤は避けられない。<br>困るのは、その穴を埋めた結果、<br>来週まで玉突きで崩れることのほう。</p></li>
+  </ul>
+</section>
+
+<!-- ============ 03 解決 ============ -->
+<section class="solve" id="solve">
+  <h2 class="solve__vert">クミタテが引き受けます</h2>
+  <p class="bub bub--l solve__bub">そこ、ボクの<br>得意なところ</p>
+  <svg class="ot solve__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
+  <ul class="solve__l">
+    <li class="up"><h3>決まりごとは、<br>文章のままでいい。</h3><p>表計算の条件式に直す必要はありません。「田中さんと佐藤さんは同じ日に入れない」と書けば、そのまま制約として扱います。</p></li>
+    <li class="up"><h3>いまの表を、<br>捨てなくていい。</h3><p>毎月使っている表を読み込ませると、列の意味と記号の使い方を推測します。出来上がりも同じ形式で戻るので、配り方を変えずに済みます。</p></li>
+    <li class="up"><h3>直す前提で<br>出してきません。</h3><p>制約を満たせない案は出しません。どうしても埋まらない枠は「埋まらない」と理由つきで返します。空欄の意味が分かる状態で受け取れます。</p></li>
+    <li class="up"><h3>業種ごとの決まりを、<br>毎回聞きません。</h3><p>連勤の上限、夜勤明けの扱い、資格者の必要人数。最初に一度だけ設定すれば、以降は違反する案を候補から外します。</p></li>
+    <li class="up"><h3>集めるところから、<br>配るところまで。</h3><p>提出用のリンクを送り、締切前に自動で催促します。確定したシフトはそのまま個人ごとに切り分けて配布できます。</p></li>
+    <li class="up"><h3>穴が空いたら、<br>穴だけ直します。</h3><p>欠勤が入っても全体を組み直しません。影響のある範囲だけを計算し直して、動かす人が最も少ない案を出します。</p></li>
+  </ul>
+</section>
+
+<!-- ============ 04 ステップ（★スクロールで重なる） ============ -->
+<section class="steps">
+  <h2 class="steps__h up">書いて、待つ。それだけ</h2>
+  <p class="steps__b up">専用の記法も、条件式もありません。ふだん口で言っていることを、そのまま打ってください。</p>
+  <ul class="steps__l" id="steps">
+    <li><b>1</b><div><h3>書く</h3><p>「土日は二人以上」「木村さんは夕方まで」。<br>箇条書きでも、文章でもかまいません。</p></div>
+      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><path d="M46 24l7 14 16 2-12 12 3 16-14-8-14 8 3-16-12-12 16-2z" fill="#0499F5"/></svg></li>
+    <li><b>2</b><div><h3>読む</h3><p>どれが絶対に守る条件で、どれが希望なのかを<br>クミタテが仕分けます。曖昧なところは聞き返します。</p></div>
+      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><rect x="26" y="30" width="40" height="32" rx="3" fill="none" stroke="#0499F5" stroke-width="4"/><path d="M36 42l20 14M56 42l-20 14" stroke="#0499F5" stroke-width="4"/></svg></li>
+    <li><b>3</b><div><h3>組む</h3><p>守る条件を全部満たす案の中から、<br>希望が最も多く通る一案を選びます。</p></div>
+      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><path d="M26 60l14-22 14 12 16-24" fill="none" stroke="#0499F5" stroke-width="5" stroke-linecap="round"/></svg></li>
+    <li><b>4</b><div><h3>返す</h3><p>いつもの表の形で戻します。<br>直したい枠はその場でつまんで動かせます。</p></div>
+      <svg class="steps__i" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="46" fill="#E2F0FD"/><rect x="26" y="28" width="40" height="36" rx="3" fill="none" stroke="#0499F5" stroke-width="4"/><path d="M26 42h40M40 28v36" stroke="#0499F5" stroke-width="4"/></svg></li>
+  </ul>
+</section>
+
+<!-- ============ 05 機能一覧 ============ -->
+<section class="feat" id="feature">
+  <h2 class="feat__vert">できること</h2>
+  <ul class="feat__l">
+    <li class="up"><h3>文章から組む</h3><p>条件式に直さず、書いた文章のまま制約として扱います。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>手元の表を読む</h3><p>列の意味と記号の使い方を推測して、そのまま引き継ぎます。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>人件費が同時に出る</h3><p>組み上がった瞬間に総額が出ます。予算との差もその場で分かります。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>業種の決まりを覚える</h3><p>連勤上限や資格者の必要人数を一度入れれば、以降は自動で守ります。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>穴だけ直す</h3><p>欠勤が出ても全体は組み直さず、動かす人が最も少ない案を返します。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>聞き返す</h3><p>条件が矛盾していたら黙って片方を捨てず、どちらを取るか聞きます。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>希望を集める</h3><p>提出用リンクを送り、締切前に自動で催促します。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>勤怠とつなぐ</h3><p>打刻の実績を取り込んで、予定との差を並べて見せます。</p><span class="feat__more">動画で見る</span></li>
+    <li class="up"><h3>個人ごとに配る</h3><p>確定したシフトを一人ぶんずつ切り分けて配布できます。</p><span class="feat__more">動画で見る</span></li>
+  </ul>
+  <p class="bub bub--r feat__bub">書いたことばを<br>そのまま受け取ります</p>
+  <svg class="ot feat__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
+</section>
+
+<!-- ============ 06 数字 ============ -->
+<section class="eff" id="effect">
+  <h2 class="eff__h up">入れた店で<b>起きたこと</b></h2>
+  <div class="eff__row">
+    <div class="eff__l">
+      <p class="bub bub--l eff__bub">ここが<br>変わったよ</p>
+      <svg class="ot eff__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
+    </div>
+    <div class="eff__m up">
+      <p class="eff__lab">1か月ぶんを組む時間</p>
+      <p class="eff__big"><b>12</b><em>分</em><i aria-hidden="true"></i></p>
+      <p class="eff__note">50名規模・6か月の実測平均。導入前は平均7時間20分でした。</p>
+    </div>
+    <div class="eff__d up">
+      <svg viewBox="0 0 260 260" aria-hidden="true">
+        <circle cx="130" cy="130" r="108" fill="none" stroke="#fff" stroke-width="30"/>
+        <circle class="eff__ring" cx="130" cy="130" r="108" fill="none" stroke="#2F6BD8" stroke-width="30"
+                stroke-linecap="round" transform="rotate(-90 130 130)"/>
+      </svg>
+      <p class="eff__dn"><b>7</b><em>時間</em><b>20</b><em>分</em></p>
+      <p class="eff__dnote">※導入前の平均</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 効果3項目 ============ -->
+<section class="eff3">
+  <ul>
+    <li class="up"><b>9</b><em>割</em><p>締切までに希望が出そろう割合。<br>催促の電話が要らなくなりました。</p></li>
+    <li class="up"><b>0</b><em>件</em><p>連勤上限や配置基準の違反。<br>組んだ時点で候補から外れます。</p></li>
+    <li class="up"><b>3</b><em>日</em><p>欠勤の穴埋めにかかっていた日数が、<br>その日のうちに片づくように。</p></li>
+  </ul>
+</section>
+
+<!-- ============ 08 料金 ============ -->
+<section class="price" id="price">
+  <h2 class="price__h up">料金</h2>
+  <p class="price__b up">人数ぶんの月額だけです。初期費用も、最低利用人数もありません。</p>
+  <div class="price__card up">
+    <p class="price__plan">1人あたり</p>
+    <p class="price__big"><b>280</b><em>円 / 月</em></p>
+    <p class="price__note">初期費用なし ／ 最低利用人数なし ／ 全機能</p>
+    <ul class="price__feats">
+      <li>文章から組む</li><li>手元の表を読む</li><li>人件費が同時に出る</li>
+      <li>業種の決まりを覚える</li><li>穴だけ直す</li><li>聞き返す</li>
+      <li>希望を集める</li><li>勤怠とつなぐ</li><li>個人ごとに配る</li>
+    </ul>
+    <p class="price__cta"><a class="btn" href="#flow">30日間ためす<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></a></p>
+  </div>
+  <div class="price__big2 up">
+    <h3>100名を超える場合</h3>
+    <p>店舗をまたぐ配置や、独自の決まりが多い場合は<br>設定のところだけ一緒にやります。</p>
+    <p class="price__b2cta"><a class="btn btn--w" href="#flow">相談する<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ 09 使っている人の話 ============ -->
+<section class="voi" id="voices">
+  <h2 class="voi__h up">使っている人の話</h2>
+  <ul class="voi__l">
+    <li class="up"><p class="voi__n"><span class="fade"><img src="assets/img/fc0.webp" alt="" width="300" height="300" loading="lazy"></span>小売／店長</p>
+      <p>締切を過ぎてから聞きにいくのが憂うつでした。リンクを送るようになってから、催促の電話をかけた記憶がありません。</p></li>
+    <li class="up"><p class="voi__n"><span class="fade"><img src="assets/img/fc1.webp" alt="" width="300" height="300" loading="lazy"></span>飲食／エリアマネージャー</p>
+      <p>4店舗ぶんを一人で見ています。月末に深夜まで残るのが当たり前でしたが、いまは行きの電車で終わります。</p></li>
+    <li class="up"><p class="voi__n"><span class="fade"><img src="assets/img/fc2.webp" alt="" width="300" height="300" loading="lazy"></span>介護／施設長</p>
+      <p>夜勤明けの扱いを毎回指を折って数えていました。違反する案がそもそも出てこないので、確認する作業自体がなくなりました。</p></li>
+    <li class="up"><p class="voi__n"><span class="fade"><img src="assets/img/fc3.webp" alt="" width="300" height="300" loading="lazy"></span>保育／主任</p>
+      <p>配置基準に足りているかが、いちばん気を張るところでした。足りない枠は理由つきで空欄のまま返ってくるので、どこを埋めればいいか一目で分かります。</p></li>
+  </ul>
+</section>
+
+<!-- ============ 10 はじめかた＋フォーム ============ -->
+<section class="flow" id="flow">
+  <h2 class="flow__h up">はじめかた</h2>
+  <div class="flow__row">
+    <ol class="flow__steps up">
+      <li><b>1</b><h3>相談する</h3><p>30分ほど話を聞かせてください</p></li>
+      <li><b>2</b><h3>30日ためす</h3><p>設定まで一緒にやります</p></li>
+      <li><b>3</b><h3>使いはじめる</h3><p>困ったら同じ担当が出ます</p></li>
+    </ol>
+    <form class="flow__form up" onsubmit="return false">
+      <h3>まず話を聞いてみる</h3>
+      <label>会社名<input type="text" name="company" autocomplete="organization"></label>
+      <label>お名前<input type="text" name="name" autocomplete="name"></label>
+      <label>メールアドレス<input type="email" name="email" autocomplete="email"></label>
+      <label>電話番号<input type="tel" name="tel" autocomplete="tel"></label>
+      <label>ご相談内容<textarea name="body" rows="3"></textarea></label>
+      <p class="flow__agree"><input type="checkbox" id="ag"><label for="ag">個人情報の取扱いについて に同意します</label></p>
+      <p class="flow__submit"><button class="btn" type="submit">送信する<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></button></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 11 締め ============ -->
+<section class="close">
+  <h2 class="close__h up"><b>早く</b>組むためでなく、<br><span><b>考えずに済む</b>ために。</span></h2>
+  <div class="close__ph">
+    <figure class="fade"><img src="assets/img/of3.webp" alt="" width="440" height="360" loading="lazy"></figure>
+    <figure class="fade"><img src="assets/img/gb3.webp" alt="" width="440" height="360" loading="lazy"></figure>
+    <figure class="fade"><img src="assets/img/of0.webp" alt="" width="440" height="360" loading="lazy"></figure>
+    <figure class="fade"><img src="assets/img/of2.webp" alt="" width="440" height="360" loading="lazy"></figure>
+  </div>
+  <p class="close__b up">シフトを組む日に、<br>別の予定を入れられるように。<br><br>悩む時間を減らすのではなく、<br>悩まなくていい形にしたい。</p>
+  <p class="bub bub--r close__bub">待ってるね</p>
+  <svg class="ot close__ot" viewBox="0 0 200 200" aria-hidden="true"><use href="#otter"/></svg>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="ft__in">
+    <div>
+      <a class="logo" href="#top"><svg viewBox="0 0 26 26" aria-hidden="true"><use href="#logomark"/></svg><b>クミタテ</b></a>
+      <address>株式会社クミタテ / KUMITATE Inc.<br>〒150-0043 東京都渋谷区道玄坂1丁目14-8<br>TEL 03-6427-5580</address>
+    </div>
+    <div><p class="ft__h">サービス</p><ul><li><a href="#solve">特長</a></li><li><a href="#feature">機能</a></li><li><a href="#effect">導入効果</a></li><li><a href="#price">料金</a></li></ul></div>
+    <div><p class="ft__h">資料</p><ul><li><a href="#flow">資料請求</a></li><li><a href="#voices">よくある質問</a></li><li><a href="#voices">ブログ</a></li><li><a href="#voices">導入事例</a></li></ul></div>
+    <div><p class="ft__h">会社</p><ul><li><a href="#">会社概要</a></li><li><a href="#">採用情報</a></li><li><a href="#flow">お問い合わせ</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+  </div>
+  <p class="ft__c">© KUMITATE Inc.</p>
+</footer>
+
+<p class="spbar" aria-hidden="true"><a class="btn" href="#flow">無料ではじめる<svg viewBox="0 0 26 26" aria-hidden="true"><use href="#arw"/></svg></a></p>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
