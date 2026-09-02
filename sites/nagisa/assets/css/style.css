@@ -1,0 +1,361 @@
+@charset "utf-8";
+/* 株式会社ナギサ印刷「NAGISA LINKS」— 参照元 https://links.taiyo-p.co.jp/ の構成を追った実装
+   参照元は GSAP を読んでいるが ScrollTrigger は無い（scrub も pin も無い）。
+   判定基準どおりライブラリは足さず、全部CSSと素のJSで組んでいる。 */
+
+:root{
+  --blue:#1E2AD2; --flower:#FFC93C; --leafc:#38C6E8;
+  --green:#12B26A; --yellow:#F5C518; --sky:#38A7E8; --pink:#F26FC4;
+  --orange:#FF6A13; --purple:#9B5DE5; --neon:#0FF007;
+  --ink:#2A2A2A; --white:#fff; --grey:#EDEDED; --sub:#6B6B6B;
+  --en:'Barlow Condensed','Noto Sans JP',sans-serif;
+  --ja:'Noto Sans JP',sans-serif;
+  --pop:cubic-bezier(.34,1.56,.64,1);      /* 参照元のメニューが使う overshoot */
+  --e:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--ja);color:var(--ink);background:#fff;font-weight:700;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,li{margin:0;padding:0;list-style:none}
+p,h1,h2,figure,address{margin:0;font-style:normal}
+b,i,em{font-style:normal}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+.defs{position:absolute;width:0;height:0}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;z-index:100;background:#fff;padding:8px 14px}
+
+/* ============ 出現 ============ */
+.up{opacity:0;translate:0 30px;transition:opacity .7s var(--e),translate .7s var(--e)}
+.up.on{opacity:1;translate:0 0}
+/* ★色面そのものは隠さない。JSが動かない／スクロールされない環境でも面は見える。
+   （figma-diff がスクロール無しで撮ると、面ごと消えた絵と比較されてしまう） */
+.pn__box.up,.ct__box.up{opacity:1}
+.fade img{opacity:0;transition:opacity .3s linear}
+.fade.on img{opacity:1}
+
+/* ============ ロゴ（十字のマーク＋2行の英字） ============ */
+.logo{display:flex;align-items:center;gap:9px}
+.logo b{display:grid;grid-template-columns:repeat(3,6px);grid-auto-rows:6px;gap:0}
+.logo b i{background:currentColor}
+.logo b i:nth-child(1){grid-area:1/2}.logo b i:nth-child(2){grid-area:2/1}
+.logo b i:nth-child(3){grid-area:2/2}.logo b i:nth-child(4){grid-area:2/3}
+.logo b i:nth-child(5){grid-area:3/2}.logo b i:nth-child(6){grid-area:4/2}
+.logo b i:nth-child(7){grid-area:4/1}.logo b i:nth-child(8){grid-area:4/3}
+.logo span{font-family:var(--en);font-size:11px;font-weight:700;letter-spacing:.22em;line-height:1.5}
+.logo--w{color:#fff}
+
+/* ============ 上部ナビ（白帯。スクロールで出る） ============ */
+.hd{position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;gap:34px;
+  height:62px;padding:0 40px;background:#fff;
+  translate:0 -100%;transition:translate .4s var(--e)}
+.hd.on{translate:0 0}
+.hd__nav{display:flex;gap:34px;font-family:var(--en);font-size:16px;font-weight:700;letter-spacing:.04em}
+.hd__nav a{position:relative}
+.hd__nav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;
+  background:currentColor;scale:0 1;transform-origin:left;transition:scale .3s var(--e)}
+.hd__nav a:hover::after{scale:1 1}
+.hd__nav .is-cur{color:#C9C9C9}
+
+/* ============ MENU ボタン（参照元 .menu-button svg の overshoot） ============ */
+.mbtn{position:fixed;right:44px;top:18px;z-index:50;display:flex;align-items:center;gap:10px;
+  background:#fff;border-radius:16px;padding:7px 12px 7px 16px}
+.mbtn span{font-family:var(--en);font-size:15px;font-weight:700;letter-spacing:.06em}
+.mbtn__f{width:22px;height:22px;color:var(--pink);transition:scale .4s var(--pop),rotate .6s var(--e)}
+.mbtn:hover .mbtn__f{scale:1.25;rotate:60deg}
+.mbtn[aria-expanded=true] .mbtn__f{rotate:135deg}
+/* メニューは円形に開く（参照元 #iris-clip-nav-path） */
+.menu{position:fixed;inset:0;z-index:45;background:var(--blue);color:#fff;
+  display:flex;flex-direction:column;justify-content:center;gap:18px;padding:0 8vw;
+  clip-path:circle(0% at calc(100% - 60px) 34px);
+  transition:clip-path .6s var(--pop)}
+.menu[hidden]{display:none}
+.menu.open{clip-path:circle(150% at calc(100% - 60px) 34px)}
+.menu a{font-family:var(--en);font-size:34px;font-weight:700;letter-spacing:.04em}
+.menu a i{display:block;font-family:var(--ja);font-size:12px;margin-top:2px;opacity:.85}
+
+/* ============ 01 KV ============ */
+.kv{position:relative;height:900px;background:var(--blue);overflow:hidden}
+.kv__c{position:absolute;right:56px;top:120px;display:flex;flex-direction:row-reverse;gap:28px;color:#fff}
+.kv__c b{writing-mode:vertical-rl;font-size:92px;font-weight:900;line-height:1.04;letter-spacing:.02em}
+.kv__mark{position:absolute;left:50%;top:280px;translate:-50% 0;width:300px;text-align:center}
+.kv__flower{width:260px;height:260px;color:var(--flower);margin:0 auto;
+  animation:boyoyon .6s ease-out .3s both,spin 5s cubic-bezier(.39,.575,.565,1) 1.1s infinite}
+.kv__leaf{width:300px;height:105px;color:var(--leafc);margin:-24px auto 0;
+  animation:boing .7s ease-out both}
+@keyframes spin{to{rotate:360deg}}
+@keyframes boyoyon{0%{scale:0}60%{scale:1.18}100%{scale:1}}
+@keyframes boing{0%{translate:0 60px;scale:.6 1.3;opacity:0}
+  60%{translate:0 -6px;scale:1.1 .9;opacity:1}100%{translate:0 0;scale:1 1}}
+.kv__scroll{position:absolute;left:22px;bottom:60px;display:flex;flex-direction:column;
+  align-items:center;gap:14px;color:#fff}
+.kv__scroll i{width:1.6px;height:104px;background:#fff;transform-origin:top;
+  animation:kvbar 2.2s var(--e) infinite}
+@keyframes kvbar{0%{scale:1 0}45%{scale:1 1}70%{scale:1 1;opacity:1}100%{scale:1 1;opacity:0}}
+.kv__scroll span{writing-mode:vertical-rl;rotate:180deg;font-family:var(--en);font-size:13px;
+  font-weight:700;letter-spacing:.2em}
+
+/* ============ 02 リード ============ */
+.lead{position:relative;padding:130px 60px 110px;overflow:hidden}
+.lead__h{font-size:62px;font-weight:900;line-height:1.16}
+.lead__b{font-size:15px;line-height:2.5;margin-top:30px}
+.lead__leaf{position:absolute;right:340px;top:330px;width:220px;color:var(--green)}
+.lead__peng{position:absolute;right:150px;bottom:70px;width:90px}
+/* マスコットが歩く（参照元 top-meow-walk / -bounce / -wobble） */
+.walk{animation:walk 9s linear infinite,bounce .5s ease-in-out infinite alternate}
+@keyframes walk{0%{translate:0 0}45%{translate:-560px 0}50%{translate:-560px 0;scale:-1 1}
+  95%{translate:0 0;scale:-1 1}100%{translate:0 0}}
+@keyframes bounce{to{translate:0 -10px}}
+
+/* ============ 03-08 タブ付きパネル ============ */
+.pn{padding:24px 40px 38px}
+.pn__box{position:relative;border-radius:26px;padding:56px 26px 44px;
+  background:var(--c)}
+/* 左上のタブ（参照元の形。上辺の左だけ一段上がる） */
+.pn__box::before{content:'';position:absolute;left:0;top:-24px;width:160px;height:50px;
+  background:var(--c);border-radius:26px 0 0 0}
+.pn__box::after{content:'';position:absolute;left:160px;top:-24px;width:26px;height:26px;
+  background:var(--c);
+  -webkit-mask:radial-gradient(26px at 26px 26px,#0000 98%,#000);
+  mask:radial-gradient(26px at 26px 26px,#0000 98%,#000)}
+.pn--green .pn__box{--c:var(--green)}
+.pn--yellow .pn__box{--c:var(--yellow)}
+.pn--sky .pn__box{--c:var(--sky)}
+.pn--pink .pn__box{--c:var(--pink)}
+.pn--orange .pn__box{--c:var(--orange)}
+.pn--purple .pn__box{--c:var(--purple)}
+.pn__en{position:absolute;left:26px;top:-14px;font-family:var(--en);font-size:15px;
+  font-weight:700;letter-spacing:.06em}
+.pn__ja{font-size:26px;font-weight:900;margin-top:-22px}
+.pn__more{position:absolute;right:26px;top:16px}
+.pn__more a{display:inline-flex;align-items:center;gap:14px;font-size:13px}
+.pn__more svg,.ct__more svg,.sh__go,.sh__l svg,.ft__nav svg{width:32px;height:32px;fill:var(--ink);--gofg:#fff}
+/* ホバーで鼓動する（参照元 heartbeat 1.2s infinite） */
+.pn__more a:hover svg,.ct__more a:hover svg,.sh__l li:hover svg,.ft__nav a:hover svg,
+.ft__top a:hover i{animation:heartbeat 1.2s ease-in-out infinite}
+@keyframes heartbeat{0%,100%{scale:1}20%{scale:1.18}40%{scale:.96}60%{scale:1.1}}
+/* 「無料」の爆発バッジ（参照元 printing-pop / free-slap） */
+.pn__badge{position:absolute;left:430px;top:-32px;width:92px;height:92px;
+  display:grid;place-items:center;color:#fff;font-size:20px;font-weight:900;background:var(--ink);
+  clip-path:polygon(50% 0%,59% 15%,74% 8%,76% 25%,92% 24%,86% 39%,100% 50%,86% 61%,92% 76%,
+    76% 75%,74% 92%,59% 85%,50% 100%,41% 85%,26% 92%,24% 75%,8% 76%,14% 61%,0% 50%,14% 39%,
+    8% 24%,24% 25%,26% 8%,41% 15%);
+  animation:slap .5s var(--pop) both;rotate:-8deg}
+@keyframes slap{0%{scale:1.9;rotate:-30deg;opacity:0}100%{scale:1;rotate:-8deg;opacity:1}}
+.pn__inner{background:#fff;border-radius:20px;padding:36px 0 34px;margin-top:24px;overflow:hidden}
+/* 写真の帯が横に流れ続ける（参照元 top-slider-loop） */
+.strip{display:flex;gap:18px;padding-left:28px;width:max-content;
+  animation:slide 34s linear infinite;animation-play-state:paused}
+/* ★画面に入るまで帯は動かさない（見えない所で流していても意味がない） */
+.pn__box.on .strip{animation-play-state:running}
+.pn__inner:hover .strip{animation-play-state:paused}
+@keyframes slide{to{translate:-50% 0}}
+.strip li{flex:none;width:220px}
+.strip figure{height:176px;border-radius:10px;overflow:hidden}
+.strip img{width:100%;height:100%;object-fit:cover}
+.strip p{font-size:10.5px;color:var(--sub);margin-top:24px}
+.strip__tile{display:grid;place-items:center;height:176px;width:220px;border-radius:10px;
+  background:var(--blue);color:#fff;font-family:var(--en);font-size:19px;letter-spacing:.06em}
+
+/* ============ 06 OUR SHARES ============ */
+.sh__head{position:relative;display:flex;align-items:center;gap:20px;background:var(--grey);
+  border-radius:16px;padding:18px 26px;margin-top:22px}
+.sh__tag{font-family:var(--en);font-size:20px;font-weight:700;letter-spacing:.08em}
+.sh__face{width:66px;height:66px;border-radius:50%;overflow:hidden;border:3px solid var(--pink);flex:none;
+  animation:sway 5s ease-in-out infinite}
+@keyframes sway{0%,100%{rotate:-3deg}50%{rotate:3deg}}
+.sh__face img{width:100%;height:100%;object-fit:cover}
+.sh__t{font-size:19px;font-weight:900}
+.sh__n{font-size:11px;color:var(--sub);margin-top:4px}
+.sh__go{position:absolute;right:26px;top:50%;translate:0 -50%}
+.sh__l{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:34px}
+.sh__l li{position:relative;background:var(--ink);color:#fff;border-radius:16px;padding:26px 26px 62px}
+.sh__l p{font-size:14px;line-height:1.7;margin-top:12px}
+.sh__l svg{position:absolute;right:22px;bottom:18px;fill:#fff;--gofg:#2A2A2A}
+.sh__peng{position:absolute;right:40px;bottom:-6px;width:80px;animation:wobble 3s ease-in-out infinite}
+@keyframes wobble{0%,100%{rotate:-6deg}50%{rotate:6deg}}
+
+/* ============ 09 CONTACT ============ */
+.ct{padding:70px 60px 60px}
+.ct__box{position:relative;background:var(--ink);color:#fff;border-radius:28px;padding:64px 56px 70px}
+.ct__en{font-family:var(--en);font-size:16px;font-weight:700;letter-spacing:.06em}
+.ct__ja{font-size:34px;font-weight:900;margin-top:20px}
+.ct__b{font-size:13px;color:#B9B9B9;margin-top:14px}
+.ct__more{margin-top:38px}
+.ct__more a{display:inline-flex;align-items:center;gap:16px;font-size:13px}
+.ct__more svg{width:36px;height:36px;fill:#fff;--gofg:#2A2A2A}
+/* 拍手が飛ぶ（参照元 clap-fly / hand-clap-left / -right） */
+.ct__hand{position:absolute;right:180px;top:50%;translate:0 -50%;width:80px;height:80px;
+  background:#fff;rotate:-12deg;
+  clip-path:polygon(6% 62%,2% 30%,12% 18%,20% 26%,24% 44%,26% 12%,36% 4%,46% 12%,44% 46%,
+    52% 16%,64% 12%,70% 24%,60% 52%,74% 34%,86% 36%,88% 48%,68% 78%,44% 92%,20% 86%);
+  animation:clap 1.6s ease-in-out infinite}
+@keyframes clap{0%,100%{translate:0 0;rotate:-12deg}50%{translate:-10px 0;rotate:-22deg}}
+.ct__hand i{position:absolute;left:-38px;width:26px;height:3px;background:#fff;border-radius:2px;
+  animation:clapfly 1.6s ease-out infinite}
+.ct__hand i:nth-child(1){top:14px;animation-delay:0s}
+.ct__hand i:nth-child(2){top:36px;width:32px;animation-delay:.25s}
+.ct__hand i:nth-child(3){top:58px;animation-delay:.5s}
+@keyframes clapfly{0%{translate:22px 0;opacity:0}30%{opacity:1}100%{translate:-16px 0;opacity:0}}
+
+/* ============ 10 写真グリッド ============ */
+.gz{padding:20px 0 0}
+.gz__l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:0 12px}
+.gz__l li{aspect-ratio:288/256;overflow:hidden}
+.gz__l img{width:100%;height:100%;object-fit:cover}
+.gz__tile{display:grid;place-items:center;background:var(--neon);color:var(--ink);position:relative}
+.gz__tile svg{width:74px}
+.gz__tile b{position:absolute;left:0;right:0;bottom:14px;text-align:center;
+  font-family:var(--en);font-size:25px;letter-spacing:.04em}
+.gz__tile--type{display:block;padding:12px 6px;overflow:hidden}
+.gz__tile--type i{display:block;font-family:var(--en);font-size:34px;color:#fff;
+  letter-spacing:.02em;line-height:2.1;white-space:nowrap}
+
+/* ============ 11 マーキー＋フッター ============ */
+.ft{position:relative;padding-top:0}
+.mq{position:relative;height:340px;overflow:hidden;display:flex;align-items:center}
+/* ロゴが60秒かけて1周（参照元 global-aside-loop 60s linear infinite） */
+.mq__t{display:flex;gap:0;width:max-content;animation:loop 60s linear infinite}
+.mq__t span{display:inline-flex;align-items:center;gap:40px;padding-right:40px;
+  font-family:var(--en);font-size:62px;font-weight:900;letter-spacing:.02em;white-space:nowrap}
+.mq__t svg{width:64px;height:64px}
+@keyframes loop{to{translate:-50% 0}}
+.mq__cut{position:absolute;left:50%;top:-30px;translate:-50% 0;width:300px;height:auto}
+.ft__top{position:absolute;right:44px;top:210px;text-align:center;z-index:3}
+.ft__top a{font-family:var(--en);font-size:13px;font-weight:700}
+.ft__top i{display:block;width:36px;height:36px;margin:6px auto 0;border:1.6px solid var(--ink);
+  border-radius:50%;position:relative}
+.ft__top i::before{content:'';position:absolute;left:11px;top:15px;width:12px;height:12px;
+  border-top:2px solid var(--ink);border-left:2px solid var(--ink);rotate:45deg}
+.ft__in{background:var(--ink);color:#fff;display:grid;
+  grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:70px;padding:70px 70px 0}
+.ft__card{position:relative;background:var(--blue);border-radius:10px;height:300px;
+  display:flex;align-items:center;justify-content:space-around;padding:0 30px}
+.ft__flower{position:absolute;left:110px;top:70px;width:140px;color:var(--flower)}
+.ft__leaf{position:absolute;left:90px;top:186px;width:180px;color:var(--leafc)}
+.ft__kv{display:flex;flex-direction:row-reverse;gap:10px;margin-left:auto}
+.ft__kv b{writing-mode:vertical-rl;font-size:26px;font-weight:900;line-height:1.08}
+.ft__h{font-size:34px;font-weight:900}
+.ft__nav{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:26px 0;margin-top:44px}
+.ft__nav a{display:inline-flex;align-items:center;gap:14px;color:var(--c);
+  font-family:var(--en);font-size:19px;font-weight:700;letter-spacing:.04em;width:max-content}
+.ft__nav svg{width:26px;height:26px;fill:var(--c);--gofg:#2A2A2A}
+.ft__pp{font-size:12px!important;color:#fff!important;align-self:center}
+.logo--w{margin-top:56px}
+.logo--w b{grid-template-columns:repeat(3,11px);grid-auto-rows:11px}
+.logo--w span{font-size:19px}
+.ft__co{background:var(--ink);color:#9A9A9A;font-size:10px;font-weight:400;line-height:2;
+  padding:0 70px 10px;margin-top:-96px}
+.ft__c{background:var(--ink);color:#9A9A9A;font-family:var(--en);font-size:13px;
+  text-align:right;padding:40px 70px 30px}
+
+/* ================= SP（390のフレームどおり） ================= */
+@media (max-width:900px){
+  .hd{display:none}                       /* ★SPは MENU ボタンだけ */
+  .mbtn{right:14px;top:14px;padding:6px 10px 6px 14px}
+  .mbtn span{font-size:13px}
+  .menu{clip-path:circle(0% at calc(100% - 40px) 30px);padding:0 28px;gap:14px}
+  .menu.open{clip-path:circle(150% at calc(100% - 40px) 30px)}
+  .menu a{font-size:24px}
+
+  .kv{height:700px}
+  .kv__c{right:22px;top:80px;gap:12px}
+  .kv__c b{font-size:40px}                /* ★縦組みのまま小さく */
+  .kv__mark{left:150px;translate:-50% 0;top:270px;width:200px}
+  .kv__flower{width:156px;height:156px}
+  .kv__leaf{width:180px;height:63px;margin-top:-14px}
+  .kv__scroll{left:12px;bottom:36px}
+  .kv__scroll i{height:70px}
+  .kv__scroll span{font-size:11px}
+
+  .lead{padding:74px 16px 90px}
+  .lead__h{font-size:34px}
+  .lead__b{font-size:12.5px;line-height:2.4;margin-top:20px}
+  .lead__leaf{right:20px;top:auto;bottom:120px;width:150px}
+  .lead__peng{right:auto;left:70px;bottom:30px;width:70px}
+  @keyframes walk{0%{translate:0 0}45%{translate:180px 0}50%{translate:180px 0;scale:-1 1}
+    95%{translate:0 0;scale:-1 1}100%{translate:0 0}}
+
+  .pn{padding:18px 12px 26px}
+  .pn__box{border-radius:18px;padding:40px 16px 30px}
+  .pn__box::before{top:-18px;width:116px;height:38px;border-radius:18px 0 0 0}
+  .pn__box::after{left:116px;top:-18px;width:18px;height:18px;
+    -webkit-mask:radial-gradient(18px at 18px 18px,#0000 98%,#000);
+    mask:radial-gradient(18px at 18px 18px,#0000 98%,#000)}
+  .pn__en{left:16px;top:-10px;font-size:12px}
+  .pn__ja{font-size:17px;margin-top:-16px}
+  .pn__more{position:static;margin-top:12px}
+  .pn__more a{font-size:11px;gap:10px}
+  .pn__more svg{width:24px;height:24px}
+  .pn__badge{left:auto;right:10px;top:-24px;width:64px;height:64px;font-size:14px}
+  .pn__inner{border-radius:14px;padding:28px 0 26px;margin-top:18px}
+  .strip{gap:14px;padding-left:14px}      /* ★SPでも帯はそのまま流す */
+  .strip li{width:150px}
+  .strip figure{height:120px;border-radius:8px}
+  .strip p{font-size:8.5px;margin-top:18px}
+  .strip__tile{width:150px;height:120px;font-size:14px}
+
+  .sh__head{gap:12px;padding:14px 16px;flex-wrap:wrap}
+  .sh__tag{font-size:15px}
+  .sh__face{width:50px;height:50px;border-width:2px}
+  .sh__t{font-size:14px}
+  .sh__n{font-size:9px}
+  .sh__go{position:static;translate:0 0;margin-left:auto}
+  .sh__l{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:18px}  /* ★1列 */
+  .sh__l li{padding:16px 18px 46px}
+  .sh__l p{font-size:12px}
+  .sh__peng{display:none}
+
+  .ct{padding:40px 12px 50px}
+  .ct__box{border-radius:20px;padding:40px 22px 52px}
+  .ct__en{font-size:13px}
+  .ct__ja{font-size:24px;margin-top:14px}
+  .ct__b{font-size:10.5px}
+  .ct__more{margin-top:26px}
+  .ct__more svg{width:30px;height:30px}
+  .ct__hand{right:24px;top:auto;bottom:22px;translate:0 0;width:60px;height:60px}
+  .ct__hand i{display:none}
+
+  .gz__l{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;padding:0}  /* ★2列×4段 */
+  .gz__l li{aspect-ratio:194/214}
+  .gz__tile svg{width:56px}
+  .gz__tile b{font-size:17px;bottom:10px}
+  .gz__tile--type i{font-size:22px;line-height:2.6}
+
+  .mq{height:190px}
+  .mq__t span{font-size:44px;gap:24px;padding-right:24px}
+  .mq__t svg{width:40px;height:40px}
+  .mq__cut{width:150px;top:-10px}
+  .ft__top{right:14px;top:126px}
+  .ft__top a{font-size:11px}
+  .ft__top i{width:30px;height:30px}
+  .ft__top i::before{left:9px;top:12px;width:10px;height:10px}
+  .ft__in{grid-template-columns:minmax(0,1fr);gap:34px;padding:40px 12px 0}
+  .ft__card{height:220px;padding:0 18px}
+  .ft__flower{left:70px;top:44px;width:96px}
+  .ft__leaf{left:60px;top:126px;width:116px}
+  .ft__kv b{font-size:18px}
+  .ft__h{font-size:22px}
+  .ft__nav{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:26px}  /* ★1列 */
+  .ft__nav a{font-size:15px}
+  .ft__nav span{display:none}
+  .logo--w{margin-top:34px}
+  .logo--w b{grid-template-columns:repeat(3,9px);grid-auto-rows:9px}
+  .logo--w span{font-size:15px}
+  .ft__co{padding:0 12px 10px;margin-top:26px;font-size:9px}
+  .ft__c{padding:20px 12px 24px;text-align:left;font-size:11px}
+}
+
+/* ============ 動きを止める ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .up{opacity:1;translate:0 0;transition:none}
+  .fade img{opacity:1;transition:none}
+  /* ★流す系は位置を戻してから止める。途中で固めない */
+  .strip,.mq__t,.walk{animation:none!important;translate:0 0!important;scale:1 1!important}
+  .kv__flower,.kv__leaf,.kv__scroll i,.sh__face,.sh__peng,.ct__hand,.ct__hand i,
+  .pn__badge{animation:none!important;scale:1!important;translate:0 0!important;opacity:1!important}
+  .menu{transition:none}
+}
