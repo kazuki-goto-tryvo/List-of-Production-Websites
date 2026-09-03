@@ -86,8 +86,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .hd__mk{display:block;font-size:100px;line-height:1;font-weight:900;letter-spacing:0}
 .hd__ember{position:absolute;left:calc(50% + 40px);top:8.8px;width:10.4px;height:10.4px;border-radius:50%;background:var(--ember)}
 
-.hd__plate{position:absolute;left:28.194%;top:136px;width:43.889%;height:108px;background:var(--white);
+.hd__plate{position:absolute;left:28.194%;top:136px;width:43.889%;height:108px;
+  background:rgba(255,255,255,calc(1 - var(--hp)));
   border-radius:3px;transform:translateY(calc(var(--hp) * -116px));height:calc(108px - var(--hp) * 48px);overflow:hidden}
+/* スクロール後は白い板を消して、黒いピルだけを影付きで浮かせる */
+.pill{box-shadow:0 8px 24px rgba(31,26,22,calc(var(--hp) * .28))}
 .hd__sub{position:absolute;left:0;right:0;top:76.2px;text-align:center;font-size:14px;line-height:1;
   font-weight:700;letter-spacing:5px;text-indent:5px;opacity:calc(1 - var(--hp) * 2)}
 
