@@ -156,7 +156,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .duo__h{font-size:29px;line-height:44px;font-weight:700}
 .duo__b{font-size:14.5px;line-height:27px;font-weight:500}
 .duo__label{position:absolute;left:52.5%;top:330.8px;transform:translateX(-50%);
-  font-size:40px;line-height:1;font-weight:700;letter-spacing:3px;text-indent:3px;white-space:nowrap}
+  font-size:40px;line-height:1;font-weight:700;letter-spacing:3px;text-indent:3px;white-space:nowrap;
+  /* 写真の縁にまたがる配置なので、写真の上では白・地の上では墨に反転させる */
+  color:var(--white);mix-blend-mode:difference}
 /* s3 は本文が少し上 */
 #relax .duo__txt{top:487px}
 #relax .duo__b{margin-top:36px}
