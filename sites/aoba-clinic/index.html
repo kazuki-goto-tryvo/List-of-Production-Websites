@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Outfit:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 </head>
 <body>
 <a class="skip" href="#main">本文へスキップ</a>
@@ -31,16 +32,16 @@
 
   <nav class="gnav" aria-label="メインメニュー">
     <ul class="gnav__main">
-      <li><a href="#message">当院について</a></li><li><a href="#care">診療案内</a></li>
-      <li><a href="#facility">院内案内</a></li><li><a href="#">求人情報</a></li>
+      <li><a href="about.html">当院について</a></li><li><a href="care.html">診療案内</a></li>
+      <li><a href="about.html#facility">院内案内</a></li><li><a href="recruit.html">求人情報</a></li>
     </ul>
     <ul class="gnav__sub">
-      <li><a href="#news">お知らせ</a></li><li><a href="#access">交通アクセス</a></li>
-      <li><a href="#">予約方法</a></li><li><a href="#">お問い合わせ</a></li>
+      <li><a href="news.html">お知らせ</a></li><li><a href="access.html">交通アクセス</a></li>
+      <li><a href="care.html#reserve">予約方法</a></li><li><a href="access.html#contact">お問い合わせ</a></li>
     </ul>
   </nav>
 
-  <a class="webres" href="#"><i></i><b>Web予約</b><em>(24時間受付)</em></a>
+  <a class="webres" href="care.html#reserve"><i></i><b>Web予約</b><em>(24時間受付)</em></a>
 
   <figure class="hero__ph">
     <img src="assets/img/hero.webp" alt="耳を診てもらう子ども">
@@ -48,10 +49,32 @@
   </figure>
 
   <p class="telbar"><a href="tel:0538723611"><i></i>0538-72-3611</a><span>診療日時</span></p>
-  <button class="menubtn" type="button" aria-label="メニュー"><span></span><span></span><span></span><em>メニュー</em></button>
+  <button class="menubtn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span><em>メニュー</em></button>
 </header>
 
+<!-- ============ ドロワー（ハンバーガーで開く） ============ -->
+<nav class="drawer" id="drawer" aria-label="サイト内の全ページ" hidden>
+  <div class="drawer__panel">
+    <button class="drawer__close" type="button">とじる</button>
+    <ul class="drawer__list">
+      <li><a href="index.html" aria-current="page">ホーム</a></li>
+      <li><a href="about.html">当院について</a></li>
+      <li><a href="care.html">診療案内</a></li>
+      <li><a href="about.html#facility">院内案内</a></li>
+      <li><a href="news.html">お知らせ</a></li>
+      <li><a href="access.html">交通アクセス</a></li>
+      <li><a href="care.html#reserve">予約方法</a></li>
+      <li><a href="access.html#contact">お問い合わせ</a></li>
+      <li><a href="recruit.html">求人情報</a></li>
+      <li><a href="privacy.html">プライバシーポリシー</a></li>
+    </ul>
+    <a class="drawer__tel" href="tel:0538723611"><span>お電話のお問い合わせ</span><b>0538-72-3611</b></a>
+  </div>
+</nav>
+
 <main id="main">
+
+<h1 class="sr">あおばクリニック｜かえで市の耳鼻咽喉科</h1>
 
 <!-- ============ 2. MESSAGE ============ -->
 <section class="msg" id="message">
@@ -67,7 +90,7 @@
       <p>どれもゆっくり進むので、気づいたときには慣れてしまっています。<br>こじれる前に見つけて手当てするのが、この科の仕事です。</p>
       <p>あおばクリニックは、みみ・はな・のどを診る、かえで市青葉台の耳鼻咽喉科です。<br>お子さまからご高齢の方まで、日々の不調を引き受ける町の診療所として続けています。</p>
       <p>青葉台に根ざした、かかりつけ医としてどうぞお気軽にご相談ください。</p>
-      <a class="ulink" href="#">当院について<i></i></a>
+      <a class="ulink" href="about.html">当院について<i></i></a>
     </div>
   </div>
 </section>
@@ -75,14 +98,15 @@
 <!-- ============ 3. NEWS ============ -->
 <section class="news" id="news">
   <div class="news__head">
-    <h2 class="en reveal">NEWS</h2>
-    <a class="btn reveal" href="#">お知らせ一覧<i></i></a>
+    <h2 class="sr">お知らせ</h2>
+    <p class="en reveal" aria-hidden="true">NEWS</p>
+    <a class="btn reveal" href="news.html">お知らせ一覧<i></i></a>
   </div>
   <ul class="news__list">
-    <li class="reveal"><a href="#"><img src="assets/img/news0.webp" alt=""><time>2026.08.06</time><b>8月の診療スケジュール</b><span>お知らせ</span></a></li>
-    <li class="reveal"><a href="#"><img src="assets/img/news1.webp" alt=""><time>2026.07.28</time><b>Webサイト公開のお知らせ</b><span>お知らせ</span></a></li>
-    <li class="reveal"><a href="#"><img src="assets/img/news2.webp" alt=""><time>2026.07.10</time><b>求人募集についてのお知らせ</b><span>採用情報</span></a></li>
-    <li class="reveal"><a href="#"><img src="assets/img/news3.webp" alt=""><time>2026.06.24</time><b>院長就任のご挨拶と診療について</b><span>お知らせ</span></a></li>
+    <li class="reveal"><a href="news.html"><img src="assets/img/news0.webp" alt=""><time>2026.08.06</time><b>8月の診療スケジュール</b><span>お知らせ</span></a></li>
+    <li class="reveal"><a href="news.html"><img src="assets/img/news1.webp" alt=""><time>2026.07.28</time><b>Webサイト公開のお知らせ</b><span>お知らせ</span></a></li>
+    <li class="reveal"><a href="news.html"><img src="assets/img/news2.webp" alt=""><time>2026.07.10</time><b>求人募集についてのお知らせ</b><span>お知らせ</span></a></li>
+    <li class="reveal"><a href="news.html"><img src="assets/img/news3.webp" alt=""><time>2026.06.24</time><b>院長就任のご挨拶と診療について</b><span>お知らせ</span></a></li>
   </ul>
   <ul class="strip" aria-hidden="true">
     <li><img src="assets/img/kids0.webp" alt=""></li><li><img src="assets/img/kids1.webp" alt=""></li>
@@ -96,15 +120,15 @@
     <li class="reveal"><img src="assets/img/ear.webp" alt="耳の診察"><span class="blob"></span>
       <b>みみ</b><em>の診療</em>
       <p>耳の痛みや耳鳴り、聞こえづらさなどに幅広く対応し、症状に合わせた治療で日常の負担を軽くしていきます。</p>
-      <a class="btn" href="#">詳細をみる<i></i></a></li>
+      <a class="btn" href="care.html#ear">詳細をみる<i></i></a></li>
     <li class="reveal"><img src="assets/img/nose.webp" alt="鼻の診察"><span class="blob"></span>
       <b>はな</b><em>の診療</em>
       <p>鼻づまりやくしゃみ、繰り返す鼻水などの症状を丁寧に診察し、原因を見きわめたうえで適切な治療につなげていきます。</p>
-      <a class="btn" href="#">詳細をみる<i></i></a></li>
+      <a class="btn" href="care.html#nose">詳細をみる<i></i></a></li>
     <li class="reveal"><img src="assets/img/throat.webp" alt="のどの診察"><span class="blob"></span>
       <b>のど</b><em>の診療</em>
       <p>のどの痛みや声のかすれ、違和感などの症状をしっかり見極め、急な不調から続く症状まで幅広く対応して整えていきます。</p>
-      <a class="btn" href="#">詳細をみる<i></i></a></li>
+      <a class="btn" href="care.html#throat">詳細をみる<i></i></a></li>
   </ul>
   <div class="care__foot">
     <div class="reveal">
@@ -112,7 +136,7 @@
       <h2>小さなお子さまから、ご高齢の方まで。</h2>
       <p class="note">苦しい検査はできるだけ短く、説明はできるだけ具体的に。「今日はここまで、次はこうします」を毎回お伝えしています。</p>
     </div>
-    <a class="btn btn--c reveal" href="#">診療案内をみる<i></i></a>
+    <a class="btn btn--c reveal" href="care.html">診療案内をみる<i></i></a>
   </div>
 </section>
 
@@ -122,7 +146,7 @@
     <p class="en en--c">FACILITY</p>
     <h2>院内案内</h2>
     <p class="note">待合室はベビーカーのまま入れる広さに。<br>診察室は音が漏れにくい造りにしています。</p>
-    <a class="btn" href="#">院内をみる<i></i></a>
+    <a class="btn" href="about.html#facility">院内をみる<i></i></a>
   </div>
   <img class="fac__a reveal" src="assets/img/corridor.webp" alt="院内の廊下">
   <img class="fac__b reveal" src="assets/img/reception.webp" alt="受付カウンター">
@@ -138,7 +162,7 @@
     <img class="reveal" src="assets/img/exterior.webp" alt="クリニックの外観">
     <address class="reveal">〒412-0825 みどり県かえで市青葉台1-2-3<br>ファックス： 0538-72-3612</address>
     <p class="note reveal">青葉台駅 東口より 徒歩5分<br>バス停「青葉台二丁目」より 徒歩2分<br>駐車場 12台（第2駐車場あり）</p>
-    <a class="btn btn--c reveal" href="#">Googleマップで見る<i></i></a>
+    <a class="btn btn--c reveal" href="https://www.google.com/maps" target="_blank" rel="noopener">Googleマップで見る<i></i></a>
   </div>
 
   <div class="hours reveal">
@@ -170,7 +194,7 @@
 
     <div class="ft__act">
       <a class="ft__tel" href="tel:0538723611"><span>お電話のお問い合わせ</span><b><i></i>0538-72-3611</b><small>受付時間： 8:45-12:15 ／ 14:20-17:45</small></a>
-      <a class="ft__web" href="#"><b><i></i>Web予約</b><small>(24時間受付)</small></a>
+      <a class="ft__web" href="care.html#reserve"><b><i></i>Web予約</b><small>(24時間受付)</small></a>
     </div>
 
     <div class="ft__hours">
@@ -187,9 +211,9 @@
 
     <nav class="ft__nav" aria-label="フッターメニュー">
       <ul>
-        <li><a href="#message">当院について</a></li><li><a href="#care">診療案内</a></li>
-        <li><a href="#facility">院内案内</a></li><li><a href="#access">交通アクセス</a></li>
-        <li><a href="#news">お知らせ</a></li><li><a href="#">求人情報</a></li>
+        <li><a href="about.html">当院について</a></li><li><a href="care.html">診療案内</a></li>
+        <li><a href="about.html#facility">院内案内</a></li><li><a href="access.html">交通アクセス</a></li>
+        <li><a href="news.html">お知らせ</a></li><li><a href="recruit.html">求人情報</a></li>
       </ul>
     </nav>
 
@@ -199,7 +223,7 @@
       <li>▲：土曜午後は 14:30〜16:30 の短縮診療です</li>
     </ul>
   </div>
-  <p class="ft__links"><a href="#">プライバシーポリシー</a><a href="#">サイトマップ</a><a href="#">お問い合わせ</a></p>
+  <p class="ft__links"><a href="privacy.html">プライバシーポリシー</a><a href="privacy.html#sitemap">サイトマップ</a><a href="access.html#contact">お問い合わせ</a></p>
   <p class="copy">© AOBA CLINIC</p>
 </footer>
 
