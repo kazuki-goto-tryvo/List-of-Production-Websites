@@ -13,6 +13,11 @@ used-references.json
 sites/sokuri/
 assets/thumbs/sokuri.webp
 
+# クミタテは出来が及ばないため掲載・公開しない（2026-09-05 指示）
+# ファイルはローカルに残してある
+sites/kumitate/
+assets/thumbs/kumitate.webp
+
 # OS
 Thumbs.db
 .DS_Store
