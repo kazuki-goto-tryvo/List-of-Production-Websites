@@ -1,0 +1,484 @@
+@charset "utf-8";
+/* ながいゆうべ ── クリエイターの夜会 */
+
+:root{
+  --night:#1C1E1F;
+  --night2:#222425;
+  --ink:#101112;
+  --cream:#E8E2D6;
+  --cream2:#E5E0D4;
+  --floor:#4E4E4C;
+  --floor2:#666764;
+  --line:rgba(232,226,214,.22);
+  --sub:rgba(232,226,214,.62);
+  --sub2:rgba(232,226,214,.45);
+  --inksub:rgba(16,17,18,.62);
+
+  --min:"Shippori Mincho",'Hiragino Mincho ProN','Yu Mincho',serif;
+  --minb:"Shippori Mincho B1","Shippori Mincho",'Hiragino Mincho ProN',serif;
+  --en:Poppins,"Shippori Mincho",sans-serif;
+  --dela:"Dela Gothic One","Shippori Mincho B1",sans-serif;
+  --ease:cubic-bezier(.4,.4,0,1);
+
+  /* 版面。1440 のアートボードを基準にして、広い画面では 1440 の中央寄せに落ち着かせる */
+  --edge:max(4.1667%, calc((100% - 1440px) / 2 + 60px));
+  --cw:min(83.8889%, 1208px);
+  --railr:max(3.47%, calc((100% - 1440px) / 2 + 50px));
+
+  --p:0;    /* ヒーローの進行度 */
+  --q1:0;   /* フィナーレ 光条とランプ */
+  --q2:0;   /* フィナーレ 人物 */
+}
+
+/* ══════════ reset ══════════ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--night);
+  color:var(--cream);
+  font-family:var(--min);
+  font-weight:400;
+  line-height:1.8;
+  letter-spacing:.02em;
+}
+h1,h2,p,dl,dd,dt,figure,ol,ul{margin:0}
+ol,ul{padding:0;list-style:none}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+em{font-style:normal}
+.en{font-family:var(--en)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--cream);color:var(--ink);padding:10px 18px}
+.skip:focus{left:0}
+:focus-visible{outline:1px solid var(--cream);outline-offset:4px}
+
+/* 全体の砂目。スクロールしても動かさない */
+body::after{
+  content:"";position:fixed;inset:0;z-index:90;pointer-events:none;
+  background:url("../img/noise.png") repeat;
+  opacity:.05;mix-blend-mode:overlay;
+}
+
+/* ══════════ 右端の縦組みレール ══════════ */
+.rail{
+  position:fixed;z-index:100;
+  writing-mode:vertical-rl;text-orientation:upright;
+  font-family:var(--min);letter-spacing:.18em;
+}
+.rail--brand{top:44px;right:var(--railr)}
+.rail__kicker{display:block;font-size:12px;line-height:24px;color:var(--sub)}
+.rail__name{display:block;font-size:13px;line-height:24px;color:var(--cream)}
+.rail--cta{
+  bottom:40px;right:var(--railr);font-size:13px;line-height:24px;color:var(--cream);
+  transition:transform .5s var(--ease),opacity .3s;
+}
+.rail--cta::before{
+  content:"";position:absolute;left:-4px;top:0;bottom:0;width:1px;
+  background:var(--cream);opacity:0;transform:scaleY(0);transform-origin:top;
+  transition:transform .45s var(--ease),opacity .2s;
+}
+.rail--cta:hover::before,.rail--cta:focus-visible::before{opacity:.8;transform:scaleY(1)}
+.rail--cta:hover,.rail--cta:focus-visible{transform:translateY(-4px)}
+
+/* ══════════ 共通 ══════════ */
+main{display:block}
+section{display:flow-root;position:relative}
+.inner{width:var(--cw);margin-left:var(--edge)}
+
+/* かすれ罫。監視は親、拭き取りは子 */
+.rule{height:6px}
+.rule > i{
+  display:block;height:6px;
+  background:url("../img/rule.svg") repeat-x 0 0;background-size:400px 6px;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 1.1s ease-out;
+}
+.rule.is-in > i{clip-path:inset(0)}
+
+/* [ Label ] */
+.tag{
+  font-family:var(--en);font-weight:700;font-size:12px;line-height:18px;
+  letter-spacing:.4px;color:var(--cream);
+}
+
+/* 見出し（Archive / Organizer） */
+.dhead{font-family:var(--minb);font-weight:800;font-size:34px;line-height:44px;letter-spacing:1px}
+
+/* 下線つきリンク */
+.ulink{position:relative;display:inline-block}
+.ulink::after{
+  content:"";position:absolute;left:0;right:0;bottom:-.28em;height:1px;
+  background:currentColor;opacity:.55;transform-origin:left;
+  transition:transform .4s var(--ease),opacity .3s;
+}
+.ulink:hover::after,.ulink:focus-visible::after{opacity:1;animation:redraw .5s var(--ease)}
+@keyframes redraw{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+
+/* 枠線ボタン */
+.btn{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  height:58px;border:1px solid rgba(232,226,214,.85);overflow:hidden;
+  font-size:15px;letter-spacing:1px;color:var(--cream);
+  transition:color .35s var(--ease);
+}
+.btn::before{
+  content:"";position:absolute;inset:0;background:var(--cream);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.btn:hover,.btn:focus-visible{color:var(--ink)}
+.btn:hover::before,.btn:focus-visible::before{transform:scaleX(1)}
+.btn__t{position:relative;z-index:1}
+
+/* 出現 */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+.reveal[style*="--d"]{transition-delay:calc(var(--d) * 60ms)}
+
+/* ══════════ 01 ヒーロー ══════════ */
+.hero{height:min(1000px,100svh);min-height:560px}
+.hero__art{position:sticky;top:0;height:100%;overflow:hidden;background:var(--night)}
+.hero__img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+  filter:blur(calc(8px * var(--p)));
+  transform:scale(calc(1 + .8 * var(--p)));
+  opacity:calc(1 - var(--p));
+  will-change:transform,filter,opacity;
+}
+.hero__veil{position:absolute;inset:0;background:var(--night);opacity:calc(.18 * (1 - var(--p)))}
+
+/* ══════════ 02 イントロ ══════════ */
+.intro{height:1232px;overflow:hidden}
+.intro__deco{
+  position:absolute;inset:0;
+  background:url("../img/intro-deco.webp") no-repeat 50% 0;background-size:100% 100%;
+}
+.intro__body{position:relative;text-align:center;color:var(--ink)}
+.intro__logo{
+  margin-top:341px;font-family:var(--minb);font-weight:800;
+  font-size:104px;line-height:104px;letter-spacing:2px;
+}
+.intro__logo2{margin-left:-2px}
+.intro__jp{margin-top:91px;font-size:19px;line-height:34px}
+.intro__jp p{margin:0}
+.intro__en{
+  margin-top:30px;font-family:var(--en);font-weight:400;
+  font-size:12px;line-height:19px;letter-spacing:.6px;color:var(--inksub);
+}
+
+/* ══════════ 03 開催概要 ══════════ */
+.venue{
+  padding-left:max(7.9861%, calc((100% - 1440px) / 2 + 115px));
+  padding-right:max(11.9444%, calc((100% - 1440px) / 2 + 172px));
+  padding-bottom:331px;
+}
+.venue__grid{display:grid;grid-template-columns:494fr 107fr 552fr;align-items:start}
+.venue__left{grid-column:1;align-self:stretch}
+.venue__right{grid-column:3}
+.venue__poster{position:sticky;top:60px;margin-top:7px}
+.venue__poster img{width:100%;height:auto}
+.venue__giant{
+  margin-top:124px;font-family:var(--dela);font-weight:400;
+  font-size:84px;line-height:92px;letter-spacing:0;color:var(--cream);
+}
+.venue__body{padding-left:20.29%}
+.venue__thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+.venue__thumbs img{width:100%;aspect-ratio:136/78;object-fit:cover}
+.venue__text{margin-top:213px}
+.venue__text p{font-size:16.5px;line-height:34px;margin:0}
+.venue__text p + p{margin-top:24px}
+.venue__cta{margin-top:36px;font-size:16px;line-height:26px}
+
+/* ══════════ 04 Information ══════════ */
+.sec--info{padding-top:79px;padding-bottom:17px}
+.sec--info .tag{margin-top:10px}
+.info{margin-top:17px;border-bottom:1px solid var(--line)}
+.info__row{
+  display:grid;grid-template-columns:768fr 440fr;
+  border-top:1px solid var(--line);padding:15px 0 29px;
+}
+.info__no{grid-column:1;font-family:var(--en);font-weight:600;font-size:12px;line-height:24px;letter-spacing:1px;color:var(--sub)}
+.info__label{grid-column:2;grid-row:1;font-size:13.5px;line-height:24px}
+.info__val{grid-column:2;grid-row:1;text-align:right;font-size:13px;line-height:24px;margin:0}
+.info__val span{display:block}
+
+/* ══════════ 05 Guest ══════════ */
+.sec--guest{padding-top:57px;padding-bottom:58px}
+.sec--guest .tag{margin-top:10px}
+.guest{margin-top:67px}
+.guest__row{
+  display:grid;grid-template-columns:546fr 108fr 114fr 440fr;align-items:start;
+  padding:8px 0 31px;border-bottom:1px solid var(--line);
+}
+.guest__who{grid-column:1}
+.guest__photo{grid-column:2;overflow:hidden}
+.guest__photo img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .6s var(--ease)}
+.guest__row:hover .guest__photo img{transform:scale(1.06)}
+.guest__bio{grid-column:4;margin-top:-3px;font-size:13px;line-height:24px}
+.guest__role{font-size:12px;line-height:20px;color:var(--sub)}
+.guest__name{margin-top:5px;font-size:20px;line-height:28px}
+.guest__links{margin-top:13px;font-size:11px;line-height:16px}
+.lrow{display:block}
+.lrow__k{font-family:var(--en);color:var(--sub);margin-right:3px}
+.guest__links .ulink{font-family:var(--en)}
+
+/* ══════════ 06 Timetable ══════════ */
+.sec--tt{padding-top:57px;padding-bottom:34px}
+.tt__head{display:grid;grid-template-columns:118fr 1090fr;margin-top:10px;align-items:start}
+.tt__lead{font-size:12px;line-height:18px;color:var(--sub)}
+.tt{margin-top:59px;border-bottom:1px solid var(--line)}
+.tt__row{
+  display:grid;grid-template-columns:166fr 602fr 440fr;align-items:start;
+  border-top:1px solid var(--line);padding:15px 0 29px;
+}
+.tt__time{font-family:var(--en);font-weight:600;font-size:12px;line-height:24px;letter-spacing:.4px;color:var(--sub)}
+.tt__prog{font-size:13.5px;line-height:22px;margin-top:1px}
+.tt__detail{font-size:13px;line-height:24px}
+
+/* ══════════ 07 Sponsors ══════════ */
+.sec--sp{padding-top:57px;padding-bottom:48px}
+.sec--sp .tag{margin-top:10px}
+.sp__grid{display:grid;grid-template-columns:661fr 107fr 440fr;align-items:start;margin-top:44px}
+.sp__left{grid-column:1}
+.sp__right{grid-column:3;margin-top:136px}
+.sp__list li{padding-bottom:9px;margin-bottom:28px;border-bottom:1px solid rgba(232,226,214,.30)}
+.sp__list a{display:block;font-size:14px;line-height:20px;transition:opacity .3s,transform .4s var(--ease)}
+.sp__list a:hover,.sp__list a:focus-visible{transform:translateX(6px)}
+.sp__note{margin-top:19px;text-align:right;font-size:11px;line-height:16px;color:var(--sub2)}
+.sp__body{font-size:13px;line-height:24px}
+.sp__mail{margin-top:40px;font-size:13px;line-height:24px}
+.sp__mailk{color:var(--sub)}
+
+/* ══════════ 08 Teaser ══════════ */
+.sec--teaser{padding-top:57px;padding-bottom:122px}
+.sec--teaser .tag{margin-top:10px}
+.ts__grid{display:grid;grid-template-columns:660fr 108fr 440fr;align-items:start;margin-top:49px}
+.ts__left{grid-column:1}
+.ts__right{grid-column:3;margin-top:12px}
+.ts__fig{overflow:hidden}
+.ts__fig img{width:100%;aspect-ratio:660/371;object-fit:cover;transition:transform .8s var(--ease)}
+.ts__fig:hover img{transform:scale(1.04)}
+.ts__cap{margin-top:17px;font-size:13px;line-height:24px;color:var(--sub)}
+.ts__right p{font-size:13.5px;line-height:27px}
+.ts__right p + p{margin-top:22px}
+.ts__cta{margin-top:98px}
+
+/* ══════════ 09 Archive ══════════ */
+.sec--arch{padding-top:42px;padding-bottom:142px}
+.arch__grid{display:grid;grid-template-columns:166fr 344fr 300fr 398fr;align-items:start;margin-top:195px}
+.arch__year{grid-column:1;font-family:var(--en);font-weight:600;font-size:12px;line-height:24px;letter-spacing:1px;color:var(--sub);margin-top:2px}
+.arch__body{grid-column:2;max-width:278px;font-size:13px;line-height:24px}
+.arch__poster{grid-column:3;margin-top:-141px;overflow:hidden}
+.arch__poster img{width:300px;max-width:100%;aspect-ratio:300/450;object-fit:cover;transition:transform .8s var(--ease)}
+.arch__poster:hover img{transform:scale(1.04)}
+.arch__link{grid-column:4;text-align:right;font-size:13px;line-height:24px}
+
+/* ══════════ 10 Organizer ══════════ */
+.sec--org{padding-top:44px;padding-bottom:134px}
+.org__grid{display:grid;grid-template-columns:546fr 108fr 114fr 440fr;align-items:start;margin-top:67px}
+.org__who{grid-column:1;margin-top:2px}
+.org__photo{grid-column:2;margin-top:5px;overflow:hidden}
+.org__photo img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .6s var(--ease)}
+.org__photo:hover img{transform:scale(1.06)}
+.org__bio{grid-column:4;font-size:13px;line-height:24px}
+.org__bio p + p{margin-top:14px}
+.org__foot{
+  display:flex;justify-content:flex-end;gap:33px;margin-top:129px;
+  font-size:11px;line-height:16px;color:var(--sub2);
+}
+
+/* ══════════ 11 フィナーレ ══════════ */
+.finale{height:1362px;background:var(--ink)}
+.finale__stage{position:sticky;top:0;height:1362px;overflow:hidden}
+.fin__slogan{
+  position:absolute;left:0;right:0;top:68px;text-align:center;
+  font-family:var(--minb);font-weight:800;font-size:44px;line-height:52px;letter-spacing:3px;
+  color:var(--cream);z-index:5;
+}
+.fin__cord{position:absolute;left:50%;top:150px;width:1.6px;height:145px;margin-left:-.8px;background:var(--cream);opacity:.75;z-index:4}
+.fin__beam{
+  position:absolute;left:50%;top:295px;width:900px;height:1000px;
+  margin-left:-450px;transform-origin:50% 0;
+  transform:rotate(calc(5deg * (1 - var(--q1))));
+  clip-path:polygon(46.5% 0,53.5% 0,100% 100%,0 100%);
+  background:linear-gradient(180deg,rgba(232,226,214,.34),rgba(232,226,214,.06) 62%,rgba(232,226,214,0));
+  filter:blur(7px);opacity:var(--q1);z-index:2;
+}
+.fin__lamp{
+  position:absolute;left:50%;top:150px;width:270px;height:270px;margin-left:-135px;
+  object-fit:contain;transform-origin:50% 0;
+  transform:rotate(calc(-7deg * (1 - var(--q1))));z-index:4;
+}
+.fin__figure{
+  position:absolute;left:0;top:380px;width:100%;height:870px;object-fit:cover;object-position:50% 50%;
+  opacity:var(--q2);filter:blur(calc(6px * (1 - var(--q2))));z-index:1;
+}
+.fin__grain{
+  position:absolute;left:0;bottom:62px;width:100%;height:100px;z-index:3;
+  background:url("../img/finale-grain.webp") no-repeat 0 0;background-size:100% 100%;
+}
+.fin__floor{position:absolute;left:0;bottom:0;width:100%;height:112px;background:var(--cream);z-index:2}
+
+/* ══════════ 〜1200px 中間（余白を詰める） ══════════ */
+@media (max-width:1200px){
+  .intro{height:auto;padding-bottom:280px}
+  .intro__deco{background-size:100% 100%}
+  .intro__logo{margin-top:26vw;font-size:8.7vw;line-height:1}
+  .intro__jp{margin-top:7.6vw;font-size:1.6vw;line-height:2.85vw}
+  .intro__en{margin-top:2.5vw;font-size:1.05vw;line-height:1.66vw}
+  .venue__giant{margin-top:86px;font-size:6.6vw;line-height:7.3vw}
+  .venue__text{margin-top:140px}
+  .venue__cta{margin-top:32px}
+  .venue{padding-bottom:220px}
+  .arch__grid{margin-top:150px}
+  .arch__poster{margin-top:-100px}
+  .sec--arch{padding-bottom:100px}
+  .ts__cta{margin-top:70px}
+  .sec--teaser{padding-bottom:90px}
+  .org__foot{margin-top:96px;gap:40px}
+  .sec--org{padding-bottom:100px}
+  .sp__right{margin-top:110px}
+}
+
+/* ══════════ 〜900px ＝ SPフレームの形 ══════════ */
+@media (max-width:900px){
+  :root{
+    --edge:24px;
+    --cw:calc(100% - 48px);
+    --railr:8px;
+  }
+
+  /* 上のレールはヒーローの中だけ。下のCTAレールだけが追従する（本文の右端と当たらない位置） */
+  .rail--brand{position:absolute;top:44px;right:8px}
+  .rail__kicker{font-size:10px;line-height:19px}
+  .rail__name{font-size:11px;line-height:19px}
+  .rail--cta{bottom:34px;font-size:11px;line-height:19px}
+
+  /* 01 ヒーロー */
+  .hero{height:min(804px,100svh);min-height:520px}
+  .hero__img{object-position:64% 50%}
+
+  /* 02 イントロ */
+  .intro{height:1296px;padding-bottom:0;text-align:left}
+  .intro__deco{background-image:url("../img/intro-deco-sp.webp")}
+  .intro__body{text-align:left;margin-left:24px;margin-right:24px}
+  .intro__logo{margin-top:96px;font-size:64px;line-height:80px;letter-spacing:1px}
+  .intro__logo1,.intro__logo2{display:block;margin-left:0}
+  .intro__jp{margin-top:34px;font-size:17px;line-height:30px}
+  .intro__en{margin-top:32px;font-size:9.5px;line-height:17px;letter-spacing:0}
+
+  /* 03 開催概要 — 縦積み。ポスターは最後 */
+  .venue{padding:0 24px 25px;}
+  .venue__grid{display:flex;flex-direction:column}
+  .venue__left{order:2}
+  .venue__right{order:1}
+  .venue__giant{margin-top:55px;font-size:46px;line-height:56px}
+  .venue__body{padding-left:0}
+  .venue__thumbs{gap:12px;margin-top:45px}
+  .venue__text{margin-top:38px}
+  .venue__text p{font-size:15px;line-height:27px}
+  .venue__text p + p{margin-top:20px}
+  .venue__cta{margin-top:34px;font-size:15px}
+  .venue__left{margin-top:52px}
+  .venue__poster{position:static;margin:0 70px}
+
+  /* 04 Information — ラベル左／値右の2カラム。連番は消す */
+  .sec--info{padding-top:47px;padding-bottom:20px}
+  .sec--info .tag{margin-top:8px}
+  .info{margin-top:16px}
+  .info__no{display:none}
+  .info__row{grid-template-columns:116px 1fr;padding:22px 0 30px}
+  .info__label{grid-column:1;font-size:13px;line-height:22px}
+  .info__val{grid-column:2;grid-row:auto;text-align:left;font-size:12px;line-height:22px}
+
+  /* 05 Guest — 縦積み */
+  .sec--guest{padding-top:47px;padding-bottom:30px}
+  .guest{margin-top:58px}
+  /* SPフレームの順番は 肖像 → 肩書き → 名前 → リンク → 略歴 */
+  .guest__row{display:flex;flex-direction:column;padding:0 0 60px;border-bottom:0}
+  .guest__row::after{content:"";order:4;display:block;height:1px;background:var(--line);margin-top:30px}
+  .guest__row:last-child::after{display:none}
+  .guest__photo{order:1;width:100px}
+  .guest__who{order:2}
+  .guest__bio{order:3;margin-top:13px}
+  .guest__role{margin-top:16px;font-size:11px}
+  .guest__links{margin-top:11px;line-height:18px}
+
+  /* 06 Timetable — 縦積み */
+  .sec--tt{padding-top:47px;padding-bottom:30px}
+  .tt__head{display:block;margin-top:8px}
+  .tt__lead{margin-top:12px;font-size:12px;line-height:24px}
+  .tt{margin-top:34px}
+  .tt__row{display:block;padding:20px 0 78px}
+  .tt__prog{margin-top:12px;font-size:14px}
+  .tt__detail{margin-top:12px}
+
+  /* 07 Sponsors — 縦積み。社名は全幅の下線リンク */
+  .sec--sp{padding-top:47px;padding-bottom:36px}
+  .sp__grid{display:block;margin-top:30px}
+  .sp__list li{padding-bottom:8px;margin-bottom:26px}
+  .sp__note{margin-top:14px;font-size:10px}
+  .sp__right{margin-top:30px}
+  .sp__mail{margin-top:34px}
+
+  /* 08 Teaser — 縦積み。CTAは全幅 */
+  .sec--teaser{padding-top:41px;padding-bottom:16px}
+  .sec--teaser .tag{margin-top:8px}
+  .ts__grid{display:block;margin-top:24px}
+  .ts__fig img{aspect-ratio:342/192}
+  .ts__cap{margin-top:6px;font-size:12px}
+  .ts__right{margin-top:11px}
+  .ts__right p{font-size:13px;line-height:24px}
+  .ts__right p + p{margin-top:18px}
+  .ts__cta{margin-top:22px}
+  .btn{height:52px;font-size:14px}
+
+  /* 09 Archive */
+  .sec--arch{padding-top:34px;padding-bottom:80px}
+  .dhead{font-size:30px;line-height:40px}
+  .arch__grid{display:block;margin-top:26px}
+  .arch__body{max-width:none;margin-top:20px}
+  .arch__poster{margin:36px 36px 0;overflow:hidden}
+  .arch__poster img{width:100%}
+  .arch__link{margin-top:38px;text-align:left}
+
+  /* 10 Organizer */
+  .sec--org{padding-top:34px;padding-bottom:34px}
+  .org__grid{display:flex;flex-direction:column;margin-top:28px}
+  .org__photo{order:1;width:100px;margin-top:0}
+  .org__who{order:2;margin-top:26px}
+  .org__bio{order:3;margin-top:22px}
+  .org__foot{display:block;margin-top:44px;font-size:10px}
+  .org__cr{display:block;margin-top:4px}
+
+  /* 11 フィナーレ */
+  .finale,.finale__stage{height:1353px}
+  .fin__slogan{top:56px;font-size:28px;line-height:36px;letter-spacing:2px}
+  .fin__cord{top:130px;height:115px;width:1.4px;margin-left:-.7px}
+  .fin__beam{top:245px;width:420px;margin-left:-210px;height:960px;filter:blur(5px)}
+  .fin__lamp{top:150px;width:180px;height:180px;margin-left:-90px}
+  .fin__figure{top:300px;height:900px}
+  .fin__grain{bottom:113px;height:80px}
+  .fin__floor{height:153px}
+}
+
+/* ══════════ 〜560px ══════════ */
+@media (max-width:560px){
+  .intro__logo{font-size:min(64px,17vw);line-height:1.25}
+  .venue__giant{font-size:min(46px,12.2vw);line-height:1.22}
+  .venue__poster{margin:0 24px}
+  .arch__poster{margin:36px 24px 0}
+  .info__row{grid-template-columns:96px 1fr}
+}
+
+/* ══════════ 動きを止める ══════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .rule > i{clip-path:inset(0) !important}
+  .hero__img{filter:none !important;transform:none !important;opacity:1 !important}
+  .hero__veil{opacity:.18 !important}
+  .fin__beam,.fin__lamp,.fin__figure{opacity:1 !important;filter:none !important;transform:none !important}
+  .fin__beam{transform:rotate(0deg) !important}
+  .fin__lamp{transform:rotate(0deg) !important}
+}
