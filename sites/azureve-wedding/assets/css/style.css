@@ -1,0 +1,605 @@
+@charset "utf-8";
+/* AZUREVE — アジュレーヴ */
+
+:root{
+  --blue:#17307F;
+  --blue2:#24449B;
+  --pale:#E9EFFA;
+  --gold:#A98B4E;
+  --ivory:#F4F1EC;
+  --ink:#23282F;
+  --ink3:#8A8F98;
+  --line:#DBD8D2;
+  --lk:#C6CEE6;
+  --min:"Shippori Mincho",serif;
+  --en:"Cormorant Infant","Shippori Mincho",serif;
+  --lato:"Lato","Noto Sans JP",sans-serif;
+  --jp:"Noto Sans JP",sans-serif;
+  --ease:cubic-bezier(.65,0,.35,1);
+  --ease2:cubic-bezier(.22,1,.36,1);
+  --hd:80px;
+  --gut:24px;   /* SPの左右余白。カルーセルの帯が画面端まで届く量にも使う */
+}
+
+/* ---------- リセット ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#fff;color:var(--ink);
+  font:400 15px/1.8 var(--jp);
+  letter-spacing:.02em;
+}
+h1,h2,h3,p,ul,li,figure,blockquote,dl{margin:0;padding:0}
+ul{list-style:none}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+em{font-style:normal}
+svg{display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:#fff;color:var(--blue);padding:10px 18px}
+.skip:focus{left:8px;top:8px}
+
+.wrap{width:1140px;max-width:calc(100% - 60px);margin-inline:auto}
+.lg{font-family:var(--en);font-weight:300;letter-spacing:.17em;line-height:1}
+
+/* ---------- 共通のあしらい ---------- */
+.ar{width:20px;height:8px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;flex:none}
+.chev{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1;flex:none;opacity:.7}
+.chev circle{stroke-width:.8}
+
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:14px;
+  height:46px;padding:0 22px;color:#fff;font-size:13px;font-weight:500;letter-spacing:.06em;
+  clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px);
+  overflow:hidden;
+}
+.btn span{position:relative}
+.btn--gold{background:var(--gold)}
+.btn--blue{background:var(--blue)}
+.btn .ar{margin-left:auto;transition:transform .3s var(--ease2)}
+.btn:hover .ar{transform:translateX(5px)}
+
+/* ---------- ヘッダー ---------- */
+.hd{position:fixed;inset:0 0 auto;z-index:100;height:var(--hd);color:#fff}
+.hd__in{display:flex;align-items:center;height:100%;padding-inline:150px}
+.hd__logo{display:flex;align-items:baseline;gap:12px}
+.hd__logo .lg{font-size:21px}
+.hd__sub{font-size:10.5px;letter-spacing:.13em}
+.hd__nav{display:flex;align-items:center;gap:28px;margin-left:auto}
+.hd__nav a{font-size:11px;letter-spacing:.05em;position:relative;padding-bottom:4px}
+.hd__nav a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease2);
+}
+.hd__nav a:hover::after{transform:scaleX(1)}
+.hd__bar{width:1px;height:14px;background:currentColor;opacity:.5}
+.hd.is-float{background:#fff;color:var(--blue);border-bottom:1px solid var(--line)}
+.js .hd.is-float{animation:headerIn .4s var(--ease2) both}
+.hd.is-float .hd__sub{color:var(--ink3)}
+.hb{display:none}
+
+/* SPの全画面メニュー */
+.menu{position:fixed;inset:0;z-index:99;background:var(--blue);color:#fff;overflow:auto}
+.menu[hidden]{display:none}
+.menu__in{padding:120px 32px 64px}
+.menu__lg{font-size:30px;margin-bottom:36px}
+.menu ul li{border-top:1px solid rgba(255,255,255,.22)}
+.menu ul li:last-child{border-bottom:1px solid rgba(255,255,255,.22)}
+.menu ul a{display:block;padding:18px 4px;font-family:var(--min);font-size:17px;letter-spacing:.06em}
+.menu__tel{margin-top:40px;font-size:11px;letter-spacing:.14em;color:var(--lk)}
+.menu__tel a{display:block;margin-top:8px;font-family:var(--lato);font-size:26px;letter-spacing:.06em;color:#fff}
+
+/* ============ s1 ヒーロー ============ */
+.hero{position:relative;height:810px;overflow:hidden;background:var(--blue)}
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:52% 60%}
+/* 負の delay で、読み込んだ瞬間から途中の状態で動かす */
+.js .hero__img{animation:kenburns 24s ease-in-out -6s infinite alternate}
+.hero__veil{position:absolute;inset:0;background:#0B1A45;opacity:.20}
+.hero__copy{position:absolute;left:150px;top:409px;color:#fff}
+.hero__en{font-family:var(--en);font-style:italic;font-weight:300;font-size:94px;line-height:1;letter-spacing:4px}
+.hero__jp{font-family:var(--min);font-weight:400;font-size:42px;line-height:1;letter-spacing:2px;margin-top:19px}
+.hero__jp span{display:inline}
+.hero__sub{font-family:var(--lato);font-weight:400;font-size:11.5px;line-height:1;letter-spacing:3.4px;margin-top:26px;padding-left:2px}
+.js .hero__en,.js .hero__jp,.js .hero__sub{opacity:0;transform:translateY(24px)}
+.js body.is-ready .hero__en,
+.js body.is-ready .hero__jp,
+.js body.is-ready .hero__sub{animation:fadeIn 1s var(--ease) both}
+.js body.is-ready .hero__jp{animation-delay:.18s}
+.js body.is-ready .hero__sub{animation-delay:.36s}
+.hd-sentinel{position:absolute;left:0;bottom:0;width:1px;height:1px}
+
+/* ============ s2 イントロ ============ */
+.intro{position:relative;padding-top:237px;padding-bottom:195px}
+.intro__lead{font-family:var(--min);font-weight:400;font-size:33px;line-height:52px;letter-spacing:2px}
+.intro__lead span{display:block}
+
+.collage{position:relative;width:100%;margin-top:79px;padding-bottom:116.667%}  /* 1330 / 1140 */
+.cg{position:absolute;overflow:hidden;
+  left:calc(1% * var(--x) / 11.4);
+  top:calc(1% * var(--y) / 13.3);
+  width:calc(1% * var(--w) / 11.4);
+  height:calc(1% * var(--h) / 13.3);
+}
+.cg img{width:100%;height:100%;object-fit:cover}
+
+.intro__body{max-width:600px;margin:128px auto 0;text-align:center}
+.intro__body p{font-size:16px;line-height:36px;letter-spacing:.8px}
+.intro__body p+p{margin-top:72px}
+.intro__close{margin-top:330px;text-align:center}
+.intro__small{font-size:12px;letter-spacing:3px;color:var(--ink3);line-height:1.4}
+.intro__lg{font-size:62px;color:var(--blue);margin-top:57px}
+.intro__kana{font-size:11px;letter-spacing:5px;color:var(--ink3);margin-top:19px;line-height:1.4}
+.intro__slogan{font-family:var(--min);font-size:22px;letter-spacing:2px;margin-top:84px;line-height:1.4}
+
+/* 追従のCTAバッジ */
+.badge{
+  position:absolute;right:84px;top:234px;z-index:20;
+  width:112px;height:112px;border-radius:50%;background:var(--blue);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  font-size:10.5px;line-height:17px;text-align:center;letter-spacing:.04em;
+}
+.badge .ar{margin-top:2px}
+.badge:hover{background:var(--blue2)}
+
+/* ============ s3 全幅フォト ============ */
+.wide{height:880px;overflow:hidden}
+.wide img{width:100%;height:100%;object-fit:cover}
+
+/* ============ s4 6 REASONS 帯 ============ */
+.band{
+  padding-top:101px;padding-bottom:100px;color:#fff;
+  background:linear-gradient(180deg,var(--blue2) 0%,var(--blue) 100%);
+}
+.band__lead{font-family:var(--min);font-size:25px;line-height:40px;letter-spacing:2px;text-align:center}
+.band__lead span{display:block}
+.band__head{display:block;text-align:center;margin-top:59px}
+.band__en{display:block;font-family:var(--en);font-weight:300;font-size:46px;line-height:1;letter-spacing:5px}
+.band__jp{display:block;font-size:12px;font-weight:400;letter-spacing:2.4px;margin-top:15px;line-height:1.4}
+.band__anchors{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:78px}
+.band__anchors a{display:flex;flex-direction:column;align-items:center}
+.band__no{font-family:var(--lato);font-weight:300;font-size:10px;letter-spacing:2.4px;color:var(--gold);line-height:1.4}
+.band__ttl{
+  display:block;font-family:var(--min);font-size:16px;line-height:28px;letter-spacing:1.2px;
+  margin-top:11px;text-align:center;position:relative;padding-bottom:2px;
+}
+.band__ttl::after{
+  content:"";position:absolute;left:12%;right:12%;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transition:transform .3s var(--ease2);
+}
+.band__anchors a:hover .band__ttl::after{transform:scaleX(1)}
+.band__anchors .chev{margin-top:18px;opacity:.75}
+
+/* ============ s5..s10 理由 ============ */
+.reason{padding-bottom:120px;scroll-margin-top:96px}
+.reason__top{position:relative;min-height:880px}
+.reason__pic{position:absolute;top:0;right:0;width:51.389%;height:880px;overflow:hidden}
+.reason--even .reason__pic{right:auto;left:0}
+.reason__top .wrap{position:relative;z-index:1}
+.reason__txt{width:41.23%;padding-top:222px}
+.reason--even .reason__txt{width:42.11%;margin-left:57.89%}
+
+.rnum{display:flex;align-items:flex-end;gap:14px;height:80px}
+.rnum span{font-family:var(--lato);font-weight:300;font-size:10px;letter-spacing:3px;color:var(--gold);padding-bottom:24px;line-height:1}
+.rnum b{font-family:var(--en);font-weight:300;font-size:78px;line-height:1;color:var(--gold)}
+.reason--even .rnum{justify-content:flex-end}
+
+.reason__title{
+  position:relative;margin-top:16px;padding-left:26px;
+  font-family:var(--min);font-weight:500;font-size:29px;line-height:48px;letter-spacing:2.4px;color:var(--blue);
+}
+.reason__title span{display:block}
+.reason__title::before{
+  content:"";position:absolute;left:0;top:-10px;width:2px;height:150px;background:var(--blue);
+}
+.js .reason__title::before{transform:scaleY(0);transform-origin:top}
+.js .reason__title.is-vis::before{animation:ruleIn .9s var(--ease) forwards}
+.reason__body{margin-top:36px;font-size:15px;line-height:31px;letter-spacing:.5px}
+
+.quote{position:relative;margin-top:40px;border:1px solid var(--line);border-radius:4px;padding:30px 28px 26px}
+.quote__mark{position:absolute;left:26px;top:12px;font-family:var(--en);font-size:26px;color:var(--line);line-height:1}
+.quote blockquote{font-size:13px;line-height:26px;letter-spacing:.4px}
+.quote figcaption{display:grid;grid-template-columns:48px 1fr;column-gap:14px;align-items:center;margin-top:26px}
+.quote figcaption img{grid-row:1/4;width:48px;height:48px;border-radius:50%;object-fit:cover}
+.quote__name{font-size:12.5px;font-weight:500;line-height:20px}
+.quote__org,.quote__role{font-size:10.5px;color:var(--ink3);line-height:16px;letter-spacing:.4px}
+
+/* カルーセル + お客様の声 */
+.car{display:grid;grid-template-columns:38.6% 13.16% 48.24%;margin-top:80px}
+.car__track{
+  display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.car__track::-webkit-scrollbar{display:none}
+.car__slide{flex:0 0 100%;scroll-snap-align:start}
+.car__slide img{width:100%;aspect-ratio:440/294;object-fit:cover}
+.car__dots{display:flex;gap:7.6px;margin-top:22px;padding-left:4px}
+.car__dots button{width:6.4px;height:6.4px;border-radius:50%;background:var(--blue);opacity:.25;transition:opacity .3s}
+.car__dots button[aria-selected="true"]{opacity:1}
+.car__cap{margin-top:22px;font-size:13px;line-height:24px;color:var(--ink3);letter-spacing:.4px}
+.car__nav{display:flex;flex-direction:column;align-items:center;gap:11px;padding-top:68px}
+.car__arw{
+  width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:#fff;
+  display:grid;place-items:center;color:var(--ink);transition:border-color .3s,background .3s;
+}
+.car__arw svg{width:20px;height:8px;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round}
+.car__arw:hover{border-color:var(--blue);background:var(--pale)}
+
+.voice{border-left:1px solid var(--line);padding:25px 0 0 40px}
+.voice__label{font-size:11px;letter-spacing:1.6px;color:var(--ink3);line-height:1.4}
+.voice__head{margin-top:13px}
+.voice__btn{
+  display:flex;align-items:flex-start;gap:20px;width:100%;text-align:left;
+  font-family:var(--min);font-weight:500;font-size:18px;line-height:1.5;letter-spacing:1px;color:var(--blue);
+}
+.pm{
+  flex:none;margin-left:auto;position:relative;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;
+}
+.pm i{position:absolute;left:50%;top:50%;background:var(--ink3);transition:transform .3s var(--ease2)}
+.pm i:first-child{width:14px;height:1.2px;transform:translate(-50%,-50%)}
+.pm i:last-child{width:1.2px;height:14px;transform:translate(-50%,-50%)}
+.voice__btn[aria-expanded="true"] .pm i:last-child{transform:translate(-50%,-50%) scaleY(0)}
+.voice__body{overflow:hidden;transition:max-height .4s var(--ease2)}
+.voice__body p{padding-top:14px;font-size:12.5px;line-height:23px;letter-spacing:.3px}
+.voice__thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:26px}
+.voice__thumbs img{width:100%;aspect-ratio:160/106;object-fit:cover}
+
+/* 3カード */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:45px;margin-top:66px}
+.cards img{width:100%;aspect-ratio:350/220;object-fit:cover}
+.cards h3{font-family:var(--min);font-weight:500;font-size:17px;line-height:1.5;letter-spacing:1px;margin-top:22px}
+.cards p{margin-top:10px;font-size:12.5px;line-height:22px;color:var(--ink3);letter-spacing:.3px}
+
+/* 花師 */
+.stylist{margin-top:46px;border-top:1px solid var(--line);padding-top:30px}
+.stylist__en{font-family:var(--lato);font-weight:300;font-size:11px;letter-spacing:3px;color:var(--gold);line-height:1.4}
+.stylist__row{display:grid;grid-template-columns:76px 1fr;column-gap:26px;margin-top:26px}
+.stylist__row>img{width:76px;height:76px;border-radius:50%;object-fit:cover}
+.stylist__role{font-size:11px;letter-spacing:1.4px;color:var(--ink3);line-height:1.4}
+.stylist__name{font-family:var(--min);font-weight:600;font-size:22px;letter-spacing:2px;line-height:1.3;margin-top:6px}
+.stylist__name em{font-family:var(--jp);font-weight:400;font-size:11px;letter-spacing:.6px;color:var(--ink3);margin-left:14px}
+.stylist__bio{margin-top:8px;font-size:12.5px;line-height:22px;letter-spacing:.3px}
+
+/* CTA帯 */
+.cta{margin-top:126px}
+.reason--even.has-cards .cta{margin-top:70px}
+.cta__row{
+  display:flex;align-items:center;gap:22px;height:96px;padding-inline:32px;
+  width:77.19%;margin-inline:auto;
+}
+.cta__row+.cta__row{margin-top:20px}
+.cta__row--ivory{background:var(--ivory)}
+.cta__row--pale{background:var(--pale)}
+.cta__sq{flex:none;width:15px;height:15px;border:1px solid var(--gold);border-radius:2px}
+.cta__row--pale .cta__sq{border-color:var(--blue)}
+.cta__row p{font-size:13.5px;letter-spacing:.6px;line-height:1.6}
+.cta__row .btn{width:270px;margin-left:auto}
+
+/* ============ s11 WEDDING HALLS ============ */
+.halls{padding-top:182px;padding-bottom:10px}
+.halls__lead{font-family:var(--min);font-size:30px;line-height:48px;letter-spacing:2px}
+.halls__lead span{display:block}
+.halls__head{display:block;margin-top:110px}
+.halls__en{display:block;font-family:var(--en);font-weight:300;font-size:46px;line-height:1;letter-spacing:4px}
+.halls__jp{display:block;font-size:12px;font-weight:400;letter-spacing:1.4px;margin-top:13px;padding-left:2px;line-height:1.4}
+.pills{display:flex;flex-wrap:wrap;gap:16px;margin-top:56px}
+.pills a{
+  display:flex;align-items:center;gap:8px;height:48px;padding-inline:24px;
+  background:var(--ivory);border-radius:999px;font-size:13px;letter-spacing:.8px;
+  transition:background .3s;
+}
+.pills .chev{width:12px;height:12px;color:var(--gold);opacity:.9;stroke-width:1.6}
+.pills a:hover{background:#EBE6DC}
+
+.hall{position:relative;margin-top:62px;padding-bottom:40px;border-bottom:1px solid var(--line);scroll-margin-top:96px}
+.hall+.hall{margin-top:50px}
+.hall__area{display:flex;align-items:baseline;gap:20px;font-size:11px;line-height:1.4}
+.hall__areaen{font-family:var(--lato);font-weight:300;letter-spacing:3px;color:var(--ink3)}
+.hall__body{position:relative}
+.hall__ttl{display:block}
+.hall__brand{font-family:var(--lato);font-weight:300;font-size:9px;letter-spacing:2px;color:var(--ink3);margin-top:60px;line-height:1}
+.hall__en{font-family:var(--en);font-weight:300;font-size:44px;line-height:1;letter-spacing:2px;margin-top:-12px;padding-left:72px}
+.hall__jp{font-family:var(--min);font-weight:500;font-size:19px;letter-spacing:1.6px;color:var(--blue);margin-top:16px;line-height:1.4}
+.hall__catch{font-size:13px;letter-spacing:.6px;margin-top:10px;line-height:1.5}
+.hall__access{font-size:11px;color:var(--ink3);letter-spacing:.6px;margin-top:7px;line-height:1.4}
+.hall__btns{position:absolute;left:57.89%;top:112px;display:flex;gap:20px}
+.hall__btns .btn{width:230px;padding-inline:20px;font-size:12.5px}
+.hall__pics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:21px;margin-top:34px}
+.hall__pics img{width:100%;aspect-ratio:366/230;object-fit:cover}
+
+/* ============ s12 フッター ============ */
+.ft{background:var(--blue);color:#fff;padding-top:91px;padding-bottom:45px}
+.ft__cols{display:grid;grid-template-columns:270px 280px 444px 1fr;grid-template-rows:200px auto}
+.ft__c1{grid-area:1/1/3/2}
+.ft__c2{grid-area:1/2/2/3}
+.ft__c3{grid-area:2/2/3/3}
+.ft__c4{grid-area:1/3/3/4}
+.ft__cd{grid-area:1/4/3/5;padding-top:0}
+.ft__cols h2{font-size:13px;font-weight:500;letter-spacing:1.2px;line-height:1.3}
+.ft__cols ul{margin-top:11px}
+.ft__cols li a{display:inline-block;font-size:12px;line-height:28px;letter-spacing:.6px;color:var(--lk);transition:color .3s}
+.ft__cols li a:hover{color:#fff}
+.ft__sns{display:flex;gap:12px;margin-top:-7px}
+.ft__sns a{display:block;width:32px;height:32px;transition:opacity .3s}
+.ft__sns a:hover{opacity:.65}
+.ft__sns svg{width:32px;height:32px;fill:none;stroke:#fff;stroke-width:1}
+.ft__sns .ring{opacity:.55}
+.ft__sns .dot{fill:#fff;stroke:none}
+.ft__sns .gl{fill:#fff;stroke:none;font-family:var(--lato);font-weight:700;font-size:13px;text-anchor:middle}
+.ft__corp{margin-top:44px}
+.ft__corp li a{display:inline-block;font-size:12px;line-height:26px;letter-spacing:.6px;color:var(--lk)}
+.ft__corp li a:hover{color:#fff}
+
+.ft__end{
+  display:flex;align-items:baseline;gap:56px;
+  margin-top:117px;border-top:1px solid rgba(255,255,255,.25);padding-top:36px;
+}
+.ft__lg{font-size:32px}
+.ft__slogan{font-family:var(--min);font-size:13px;letter-spacing:1.4px;color:var(--lk)}
+.ft__copy{margin-left:auto;font-family:var(--lato);font-size:10.5px;letter-spacing:.8px;color:var(--lk)}
+
+/* ---------- 出現 ---------- */
+.js .reveal{opacity:0;transform:translateY(28px)}
+.js .reveal.is-in{animation:fadeIn .8s var(--ease) both;animation-delay:var(--d,0ms)}
+/* コラージュだけ：ずり上げず、ぼけから合う。
+   transform はパララックスが使うので、出現アニメでは触らない */
+.js .reveal--blur{
+  opacity:0;filter:blur(14px);
+  transform:translate3d(0,var(--py,0px),0);transition:transform .1s ease-out;
+}
+.js .reveal--blur.is-in{animation:blurFade 1.2s var(--ease) both}
+/* 出し終わったら filter を捨てる。blur を残したままにすると、
+   縦に長い画面で描画が破綻して写真がぼけたまま残ることがある */
+.js .reveal--blur.is-done{animation:none;opacity:1;filter:none}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blurFade{from{opacity:0;filter:blur(14px)}to{opacity:1;filter:blur(0)}}
+@keyframes ruleIn{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes headerIn{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
+
+/* ============================================================
+   中間（1440 → 900 の補間）
+   ============================================================ */
+@media (max-width:1279px){
+  .hd__in{padding-inline:40px}
+  .hd__nav{gap:20px}
+  .hero__copy{left:40px}
+  .hero__en{font-size:74px}
+  .hero__jp{font-size:34px}
+  .intro__lead{font-size:28px;line-height:46px}
+  .reason__title{font-size:25px;line-height:42px}
+  .reason__title::before{height:132px}
+  .rnum b{font-size:64px}
+  .halls__en,.band__en{font-size:40px}
+  .hall__en{font-size:36px}
+  .hall__btns{top:104px}
+  .hall__btns .btn{width:190px}
+  .cta__row{width:100%}
+}
+
+/* ============================================================
+   SP（390基準）
+   ============================================================ */
+@media (max-width:900px){
+  :root{--hd:86px}
+  body{font-size:14px}
+  .wrap{width:auto;max-width:none;margin-inline:var(--gut)}
+
+  /* --- ヘッダー：藍のバー --- */
+  .hd{height:86px;background:var(--blue);color:#fff;border-bottom:0}
+  .hd.is-float{background:var(--blue);color:#fff;border-bottom:0}
+  .js .hd.is-float{animation:none}
+  .hd__in{padding-inline:24px;justify-content:center;position:relative}
+  .hd__logo{flex-direction:column;align-items:center;gap:5px}
+  .hd__logo .lg{font-size:19px}
+  .hd__sub{font-size:9.5px;letter-spacing:.12px;color:var(--lk)}
+  .hd.is-float .hd__sub{color:var(--lk)}
+  .hd__nav{display:none}
+  .hb{
+    display:flex;flex-direction:column;align-items:center;gap:0;
+    position:absolute;right:24px;top:22px;width:46px;height:44px;color:#fff;
+  }
+  .hb i{display:block;width:32px;height:1px;background:currentColor;transition:transform .24s var(--ease2),opacity .24s var(--ease2)}
+  .hb i:first-child{transform:translateY(4px)}
+  .hb i:last-child{transform:translateY(11px)}
+  .hb em{margin-top:20px;font-family:var(--lato);font-size:8px;letter-spacing:1.4px}
+  .hb[aria-expanded="true"] i:first-child{transform:translateY(8px) rotate(28deg)}
+  .hb[aria-expanded="true"] i:last-child{transform:translateY(7px) rotate(-28deg)}
+
+  /* --- s1 ヒーロー --- */
+  .hero{height:1000px;padding-top:86px;background:#fff;overflow:hidden}
+  .hero__img{position:static;width:100%;height:500px;object-fit:cover}
+  .hero__veil{display:none}
+  .hero__copy{position:static;color:var(--blue);margin:54px 24px 0}
+  .hero__en{font-size:46px;letter-spacing:2px}
+  .hero__jp{font-size:25px;line-height:40px;letter-spacing:1.6px;margin-top:19px}
+  .hero__jp span{display:block}
+  .hero__sub{font-size:10.5px;letter-spacing:3px;margin-top:23px;padding-left:1px}
+  .hd-sentinel{bottom:auto;top:586px}
+
+  /* --- s2 イントロ --- */
+  .intro{padding-top:96px;padding-bottom:158px}
+  .intro__lead{font-size:24px;line-height:42px;letter-spacing:1.6px}
+  .collage{margin-top:140px;padding-bottom:274.85%}   /* 940 / 342 */
+  .cg{
+    left:calc(1% * var(--sx) / 3.42);
+    top:calc(1% * var(--sy) / 9.4);
+    width:calc(1% * var(--sw) / 3.42);
+    height:calc(1% * var(--sh) / 9.4);
+  }
+  .cg--pc{display:none}
+  .intro__body{max-width:none;margin-top:101px;text-align:left}
+  .intro__body p{font-size:14px;line-height:30px;letter-spacing:.4px}
+  .intro__body p+p{margin-top:100px}
+  .intro__close{margin-top:130px}
+  .intro__small{font-size:11px;letter-spacing:2.4px}
+  .intro__lg{font-size:46px;margin-top:46px}
+  .intro__kana{font-size:10px;letter-spacing:4px;margin-top:14px}
+  .intro__slogan{font-size:17px;letter-spacing:1.4px;margin-top:69px}
+  .badge{right:16px;top:206px;width:88px;height:88px;font-size:9px;line-height:15px;gap:4px}
+  .badge .ar{width:16px}
+
+  /* --- s3 --- */
+  .wide{height:480px}
+
+  /* --- s4 帯 --- */
+  .band{padding-top:68px;padding-bottom:78px}
+  .band__lead{font-size:20px;line-height:32px;letter-spacing:1.4px}
+  .band__head{margin-top:34px}
+  .band__en{font-size:34px;letter-spacing:3.4px}
+  .band__jp{font-size:10.5px;letter-spacing:1.6px;margin-top:10px}
+  .band__anchors{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:45px}
+  .band__anchors a{
+    height:140px;justify-content:flex-start;padding-top:22px;
+    border:1px solid rgba(255,255,255,.38);
+  }
+  .band__no{font-size:8px;letter-spacing:1.6px}
+  .band__ttl{font-size:12.5px;line-height:22px;letter-spacing:.6px;margin-top:7px}
+  .band__anchors .chev{width:20px;height:20px;margin-top:14px}
+
+  /* --- s5..s10 理由 --- */
+  .reason{padding-bottom:60px;scroll-margin-top:90px}
+  .reason__top{min-height:0}
+  .reason__pic{position:static;width:100%;height:300px}
+  .reason__pic img{width:100%;height:100%;object-fit:cover}
+  .reason__txt,.reason--even .reason__txt{width:auto;margin-left:0;padding-top:33px}
+  .rnum,.reason--even .rnum{justify-content:flex-end;height:46px;gap:10px}
+  .rnum span{font-size:8px;letter-spacing:2.4px;padding-bottom:14px}
+  .rnum b{font-size:46px}
+  .reason__title{margin-top:16px;padding-left:20px;font-size:21px;line-height:42px;letter-spacing:1.6px}
+  .reason__title::before{height:126px;top:-13px}
+  .reason__body{margin-top:30px;font-size:14px;line-height:29px;letter-spacing:.4px}
+  .quote{margin-top:45px;padding:28px 22px 24px}
+  .quote__mark{left:22px;top:10px;font-size:24px}
+  .quote blockquote{font-size:12.5px;line-height:24px;letter-spacing:.2px}
+  .quote figcaption{grid-template-columns:44px 1fr;column-gap:12px;margin-top:22px}
+  .quote figcaption img{width:44px;height:44px}
+  .quote__name{font-size:12px;line-height:19px}
+  .quote__org,.quote__role{font-size:10px;line-height:16px;letter-spacing:.2px}
+
+  .car{display:block;margin-top:60px}
+  /* 右に次の1枚が覗くピーク型。画面の右端まで帯を伸ばす */
+  .car__track{margin-right:calc(var(--gut) * -1);gap:36px;overflow-x:auto}
+  .car__slide{flex:0 0 300px}
+  .car__slide img{aspect-ratio:300/200}
+  .car__dots{margin-top:24px;padding-left:3px}
+  .car__cap{margin-top:18px;font-size:12.5px;line-height:22px;letter-spacing:.2px}
+  .car__nav{flex-direction:row;justify-content:center;gap:22px;padding-top:0;margin-top:56px}
+  .car__arw{width:48px;height:48px}
+  .voice{border-left:0;border-top:1px solid var(--line);padding:32px 0 0}
+  .voice__label{font-size:10px;letter-spacing:1.4px}
+  .voice__head{margin-top:13px}
+  .voice__btn{font-size:16px;letter-spacing:.8px;gap:14px}
+  .pm{width:32px;height:32px}
+  .voice__body p{font-size:12.5px;line-height:23px;padding-top:16px}
+  .voice__thumbs{gap:10px;margin-top:20px}
+
+  .cards{grid-template-columns:1fr;gap:36px;margin-top:78px}
+  .cards li{display:grid;grid-template-columns:140px minmax(0,1fr);column-gap:16px;align-items:start}
+  .cards img{grid-row:1/3;aspect-ratio:140/94}
+  .cards h3{margin-top:2px;font-size:15px;letter-spacing:.8px}
+  .cards p{margin-top:8px;font-size:11.5px;line-height:20px;letter-spacing:.2px}
+
+  .stylist{margin-top:78px;padding-top:26px}
+  .stylist__en{font-size:10px;letter-spacing:2.2px}
+  /* 「顔＋肩書・名前」の行の下に、経歴を全幅で置く */
+  .stylist__row{grid-template-columns:64px 1fr;column-gap:16px;margin-top:22px;align-items:center}
+  .stylist__row>img{width:64px;height:64px;grid-row:1/3}
+  .stylist__txt{display:contents}
+  .stylist__role{grid-column:2;grid-row:1;font-size:10px;letter-spacing:1.2px;align-self:end}
+  .stylist__name{grid-column:2;grid-row:2;font-size:20px;letter-spacing:1.6px;align-self:start}
+  .stylist__name em{font-size:10px;margin-left:10px}
+  .stylist__bio{grid-column:1/-1;grid-row:3;margin-top:30px;font-size:12.5px;line-height:22px;letter-spacing:.2px}
+
+  .cta,.reason--even.has-cards .cta{margin-top:78px}
+  .cta__row{display:block;height:auto;width:auto;padding:44px 20px 24px}
+  .cta__row+.cta__row{margin-top:20px}
+  .cta__sq{display:none}
+  .cta__row p{font-size:12px;line-height:24px;letter-spacing:.2px}
+  .cta__row .btn{width:100%;margin:24px 0 0;justify-content:center;gap:0;position:relative}
+  .cta__row .btn .ar{position:absolute;right:20px;margin:0}
+
+  /* --- s11 会場 --- */
+  .halls{padding-top:89px;padding-bottom:0}
+  .halls__lead{font-size:22px;line-height:38px;letter-spacing:1.6px}
+  .halls__head{margin-top:65px}
+  .halls__en{font-size:32px;letter-spacing:3px}
+  .halls__jp{font-size:10.5px;letter-spacing:1.2px;margin-top:10px;padding-left:1px}
+  .pills{gap:10px;margin-top:33px}
+  .pills a{height:40px;padding-inline:18px;font-size:12px;letter-spacing:.6px;gap:6px}
+  .pills .chev{width:10px;height:10px}
+  .hall{margin-top:60px;padding-bottom:38px;scroll-margin-top:90px}
+  .hall+.hall{margin-top:42px}
+  .hall__area{gap:16px;font-size:10px}
+  .hall__areaen{letter-spacing:2.4px}
+  .hall__brand{display:none}
+  .hall__en{display:none}
+  .hall__jp{font-size:18px;letter-spacing:1.2px;margin-top:18px}
+  .hall__catch{font-size:12px;letter-spacing:.4px;margin-top:10px}
+  .hall__access{font-size:10px;letter-spacing:.4px;margin-top:7px}
+  /* 「写真 → ボタン」の順に積む */
+  .hall{display:flex;flex-direction:column}
+  .hall__area{order:1}
+  .hall__body{display:contents}
+  .hall__ttl{order:2}
+  .hall__pics{order:3}
+  .hall__btns{order:4}
+  .hall__btns{position:static;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+  .hall__btns .btn{
+    width:100%;height:42px;padding-inline:14px;font-size:11px;
+    justify-content:center;gap:0;position:relative;
+  }
+  .hall__btns .btn .ar{position:absolute;right:14px;margin:0;width:16px}
+  .hall__pics{grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+  .hall__pics img{aspect-ratio:166/112}
+  .hall__pic3{display:none}
+
+  /* --- s12 フッター --- */
+  .ft{padding-top:81px;padding-bottom:26px}
+  .ft__cols{grid-template-columns:1fr 1fr;grid-template-rows:auto;column-gap:24px}
+  .ft__c1{grid-area:1/1/2/2}
+  .ft__c2{grid-area:2/1/3/2}
+  .ft__c3{grid-area:1/2/2/3}
+  .ft__c4{grid-area:2/2/3/3}
+  .ft__cd{display:contents}
+  .ft__cd .ft__corp{grid-area:3/2/4/3;margin-top:44px}
+  .ft__cd .ft__sns{grid-area:4/1/5/3;justify-content:center;margin-top:66px;gap:14px}
+  .ft__cols h2{font-size:12px;letter-spacing:1px}
+  .ft__cols ul{margin-top:8px}
+  .ft__cols li a{font-size:11.5px;line-height:26px;letter-spacing:.4px}
+  .ft__c2{margin-top:52px}
+  .ft__c4{margin-top:46px}
+  .ft__sns svg,.ft__sns a{width:30px;height:30px}
+  .ft__corp li a{font-size:11.5px;line-height:26px}
+  .ft__end{
+    display:block;text-align:center;margin-top:56px;padding-top:40px;
+  }
+  .ft__lg{font-size:30px}
+  .ft__slogan{font-size:12px;letter-spacing:1.2px;margin-top:26px}
+  .ft__copy{margin:20px 0 0;font-size:10px;letter-spacing:.6px}
+}
+
+/* さらに狭いとき（SPフレームの390未満は縮小して読ませる） */
+@media (max-width:389px){
+  :root{--gut:18px}
+  .hero__en{font-size:40px}
+  .hero__jp{font-size:22px;line-height:36px}
+  .band__anchors{gap:8px}
+  .band__ttl{font-size:11.5px}
+  .halls__en{font-size:28px}
+}
+
+/* ---------- 動きを止める ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .reveal,.js .reveal.is-in,.js .reveal--blur{opacity:1;transform:none;filter:none}
+  .js .hero__en,.js .hero__jp,.js .hero__sub{opacity:1;transform:none}
+  .js .hero__img{transform:none}
+  .js .reason__title::before,.js .reason__title.is-vis::before{transform:none}
+  /* 高さのアニメは切るが、開閉そのものは効かせる（JSが即時に高さを入れる） */
+  .voice__body{max-height:none}
+  html{scroll-behavior:auto}
+}
