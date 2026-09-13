@@ -1,0 +1,530 @@
+/* MATCHA by SETSUSUI — 雪翠 抹茶コレクション */
+
+:root{
+  --bg:#E8EFE6; --cream:#F1ECD7; --sand:#D8CBA7;
+  --g900:#0C522E; --g700:#005C2F; --g400:#8FBC78;
+  --mist:#D7E1E3; --mist-blue:#D5E7F5;
+  --gold-1:#EBD9AB; --gold-2:#C9A85F; --gold-ink:#3A2E12;
+  --white:#fff; --muted:#8EB09C; --rule:#C8D2C6;
+  --card-soft:#DEE7DC; --sold-bg:#D5DCD2; --sold-ink:#6E7D6D;
+  --jp:"Shippori Mincho",serif;
+  --en:"Marcellus",serif;
+  --it:"Cormorant Garamond",serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* ---------- reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+/* ★ scroll-behavior:smooth は html に付けない。付けると scrollTo(0,0) まで
+   「ゆっくり上へ戻るスクロール」になり、参照元ゆずりの reveal の巻き戻しが全部走ってしまう。
+   アンカーのなめらか移動は main.js 側で1件ずつ掛ける */
+body{margin:0;background:var(--bg);color:var(--g700);font-family:var(--jp);font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+/* ★ body に overflow-x:hidden を付けない（origin の position:sticky が死ぬ） */
+h1,h2,h3,h4,p,figure,address,ul{margin:0;padding:0}
+ul{list-style:none}
+address{font-style:normal}
+em{font-style:normal}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--g700);outline-offset:3px}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--g900);color:#fff;padding:10px 18px;font-size:14px}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- ロゴ ---------- */
+.logo{--s:24px;display:inline-flex;flex-direction:column;align-items:center;color:var(--g900);
+  font-family:var(--en);line-height:1}
+.logo__leaf{width:calc(var(--s) * 1.03);height:calc(var(--s) * 1.25);
+  fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.logo--menu{--s:26px}
+.logo__name{font-size:var(--s);letter-spacing:.3em;margin-right:-.3em}
+.logo__rule{display:block;width:calc(var(--s) * 7.06);height:1px;background:currentColor;
+  margin-top:calc(var(--s) * .35)}
+.logo__sub{font-family:var(--it);font-size:calc(var(--s) * .34);letter-spacing:.18em;
+  margin-right:-.18em;margin-top:calc(var(--s) * .378);white-space:nowrap}
+
+/* ---------- ゴールドのピル ---------- */
+.pill{display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--gold-1) 0%,#DCC488 52%,var(--gold-2) 100%);
+  color:var(--gold-ink);font-family:var(--jp);font-weight:500;letter-spacing:1.4px;
+  border-radius:999px;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.pill:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(12,82,46,.2)}
+
+/* ---------- 右上の Menu ---------- */
+.menu-shell{position:fixed;top:22px;right:22px;z-index:60;opacity:0;pointer-events:none;
+  transition:opacity .4s var(--ease)}
+body.is-scrolled .menu-shell,body.menu-open .menu-shell{opacity:1;pointer-events:auto}
+.menu-btn{width:52px;height:44px;background:var(--white);border-radius:3px;color:var(--g900);
+  display:flex;flex-direction:column;align-items:center;padding-top:12.4px;
+  box-shadow:0 2px 10px rgba(12,82,46,.08)}
+.menu-btn__bars{display:block;width:22px}
+.menu-btn__bars i{display:block;height:1.1px;background:currentColor;
+  transition:transform .3s var(--ease),opacity .2s}
+.menu-btn__bars i + i{margin-top:4.4px}
+.menu-btn__label{font-family:var(--en);font-size:11px;line-height:1;margin-top:1.7px}
+body.menu-open .menu-btn__bars i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+body.menu-open .menu-btn__bars i:nth-child(2){opacity:0}
+body.menu-open .menu-btn__bars i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+.menu-panel{position:fixed;inset:0;z-index:55;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+body.menu-open .menu-panel{opacity:1;visibility:visible}
+.menu-panel__inner{text-align:center}
+.menu-panel__list{margin-top:52px}
+.menu-panel__list li{opacity:0;translate:0 14px;transition:opacity .5s var(--ease),translate .5s var(--ease)}
+body.menu-open .menu-panel__list li{opacity:1;translate:0 0}
+body.menu-open .menu-panel__list li:nth-child(1){transition-delay:.12s}
+body.menu-open .menu-panel__list li:nth-child(2){transition-delay:.18s}
+body.menu-open .menu-panel__list li:nth-child(3){transition-delay:.24s}
+body.menu-open .menu-panel__list li:nth-child(4){transition-delay:.30s}
+body.menu-open .menu-panel__list li:nth-child(5){transition-delay:.36s}
+.menu-panel__list a{display:inline-block;padding:13px 8px;font-size:18px;letter-spacing:2px;color:var(--g900)}
+.menu-panel__list a:hover{color:var(--gold-2)}
+.menu-panel__tel{margin-top:46px;font-family:var(--it);font-size:15px;letter-spacing:1.2px;color:var(--g700)}
+.menu-panel__tel span{display:block;margin-top:8px;font-family:var(--jp);font-size:12px;color:var(--muted)}
+
+/* ================= s1 ヒーロー 880 ================= */
+.hero{height:880px;padding:10px;animation:hero-inset 1.2s var(--ease) both}
+.hero__frame{position:relative;height:100%;overflow:hidden;border-radius:18px;
+  animation:hero-radius 1.2s var(--ease) both}
+.hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@keyframes hero-inset{from{padding:0}to{padding:10px}}
+@keyframes hero-radius{from{border-radius:0}to{border-radius:18px}}
+
+.hero__nav{position:absolute;left:46px;top:46px;transition:opacity .4s var(--ease)}
+body.is-scrolled .hero__nav{opacity:0;pointer-events:none}
+.hero__nav li{opacity:0;translate:0 -12px;
+  animation:drop-in 1s var(--ease) both;animation-delay:calc(1.4s + var(--i) * .08s)}
+.hero__nav a{position:relative;display:inline-block;font-size:14px;line-height:36px;
+  letter-spacing:.6px;color:var(--g900)}
+.hero__nav a::after{content:"";position:absolute;left:0;right:100%;bottom:7px;height:1px;
+  background:currentColor;transition:right .45s var(--ease)}
+.hero__nav a:hover::after{right:0}
+
+.hero__logo{--s:24px;position:absolute;left:50%;top:37px;margin-left:-84.7px;opacity:.78;
+  animation:logo-drop 1.4s var(--ease) 1.2s both}
+@keyframes logo-drop{from{opacity:0;translate:0 -20px}to{opacity:.78;translate:0 0}}
+@keyframes drop-in{from{opacity:0;translate:0 -12px}to{opacity:1;translate:0 0}}
+
+.hero__copy{position:absolute;left:79%;top:98px;transform:translateX(-50%);
+  font-family:var(--en);font-weight:400;color:var(--g900);text-align:center;white-space:nowrap}
+.hero__copy span{display:block;line-height:1;opacity:0;translate:0 40px;
+  animation:rise-in 1.4s var(--ease) both;animation-delay:calc(1.4s + var(--i) * .22s)}
+.hero__copy-1{font-size:min(80px,5.56vw);letter-spacing:4px;padding-left:4px}
+.hero__copy-2{font-family:var(--it);font-style:italic;font-weight:300;
+  font-size:min(58px,4.03vw);margin-top:18px}
+.hero__copy-3{font-size:min(80px,5.56vw);letter-spacing:5px;padding-left:5px;margin-top:16px}
+@keyframes rise-in{from{opacity:0;translate:0 40px}to{opacity:1;translate:0 0}}
+
+.hero__cta{position:absolute;left:50%;bottom:48px;translate:-50% 0;
+  width:284px;height:58px;font-size:15px;animation:cta-in 1.2s var(--ease) 2.1s both}
+@keyframes cta-in{from{opacity:0;translate:-50% 24px}to{opacity:1;translate:-50% 0}}
+
+/* ================= s2 コレクションについて 1170 ================= */
+.about__inner{max-width:1440px;margin:0 auto;
+  padding:209px clamp(24px,13.2vw,190px) 270px;
+  display:grid;grid-template-columns:minmax(0,392px) minmax(0,1fr);
+  column-gap:clamp(40px,10.7vw,154px)}
+.about__fig{overflow:hidden}
+.about__fig img{width:100%;aspect-ratio:392/606;object-fit:cover;
+  transition:transform 1.2s var(--ease)}
+.about__fig:hover img{transform:scale(1.04)}
+.about__body{padding-top:82px}
+.about__h2{font-size:36px;font-weight:500;line-height:55.8px;letter-spacing:1.08px;color:var(--g900)}
+.about__h2 span{display:block}
+.about__text{margin-top:72px}
+.about__text p{font-size:17px;line-height:40px;letter-spacing:.5px;color:var(--g700)}
+.about__text p + p{margin-top:20px}
+.about__rule{display:block;width:64px;height:1px;background:var(--gold-2);margin-top:25px}
+
+/* ================= s3 ギャラリー 720 ================= */
+.gallery{position:relative;height:720px;overflow:hidden}
+.gallery__track{display:flex;align-items:flex-start;gap:32px;width:max-content;
+  animation:marquee 26s linear infinite;animation-play-state:paused}
+.gallery.is-in .gallery__track{animation-play-state:running}
+.gallery.is-in .gallery__track:hover{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.gallery__item{flex:0 0 auto;overflow:hidden;opacity:0;translate:0 30px;
+  transition:opacity .8s var(--ease),translate .8s var(--ease);
+  transition-delay:calc(var(--i,0) * .06s)}
+.gallery.is-in .gallery__item{opacity:1;translate:0 0}
+.gallery__item img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.gallery.is-in .gallery__item:hover img{transform:scale(1.06)}
+.gi--a{width:340px;height:420px;margin-top:70px}
+.gi--b{width:418px;height:390px;margin-top:106px}
+.gi--c{width:314px;height:350px;margin-top:150px}
+.gi--d{width:418px;height:400px;margin-top:90px}
+.gallery__cta{display:none}
+
+/* ================= s4 抹茶のこと 5400（sticky＋進捗） ================= */
+.origin{height:5400px}
+.origin__sticky{position:sticky;top:0;height:900px}
+.origin__inner{position:relative;height:900px;max-width:1440px;margin:0 auto}
+
+.origin__head{position:absolute;right:5%;top:77.6px;z-index:2;
+  display:flex;flex-direction:column;align-items:flex-end}
+.origin__eyebrow{font-size:13px;line-height:1;letter-spacing:2px;color:var(--g900);opacity:.4}
+.origin__en{font-family:var(--en);font-size:80px;line-height:1;letter-spacing:1px;
+  color:var(--g900);margin-top:21px}
+
+.origin__panels{position:absolute;inset:0}
+.op{position:absolute;inset:0;pointer-events:none}
+.op.is-active{pointer-events:auto}
+.op__fig{position:absolute;left:10px;top:12px;width:40.9%;height:876px;overflow:hidden}
+.op__fig img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.op.is-active .op__fig img{opacity:1}
+
+.ti{position:absolute;left:46.7%;top:520px;right:5%}
+.ti > *{opacity:0;translate:0 20px;
+  transition:opacity .3s var(--ease),translate .3s var(--ease)}
+.op.is-active .ti > *{opacity:1;translate:0 0;
+  transition-duration:.7s;transition-delay:calc(var(--i) * .08s)}
+.op.is-out .ti > *{opacity:0;translate:0 -8px;
+  transition-duration:.3s;transition-delay:calc((3 - var(--i)) * .03s)}
+.op.is-active .ti__no{opacity:.4}
+.ti__no{display:block;font-family:var(--it);font-size:13px;line-height:1;letter-spacing:3px;color:var(--g900)}
+.ti__h{font-size:30px;font-weight:500;line-height:48px;letter-spacing:2.4px;color:var(--g900);margin-top:14px}
+.ti__sub{font-size:17px;font-weight:500;line-height:24px;letter-spacing:1.6px;color:var(--g700);margin-top:22px}
+.ti__desc{font-size:17px;line-height:34px;letter-spacing:.5px;color:var(--g700);margin-top:82px}
+.ti--sub .ti__desc{margin-top:48px}
+
+/* ================= s5 味わいで選ぶ 4100 ================= */
+.items{padding-top:174px}
+.items__head{text-align:center}
+.items__h{font-size:32px;font-weight:500;line-height:1;letter-spacing:3px;color:var(--g900);padding-left:3px}
+.items__en{font-family:var(--en);font-size:44px;line-height:1;letter-spacing:2px;
+  color:var(--g900);margin-top:23px;padding-left:2px}
+.feats{margin-top:147px}
+.items{padding-bottom:180px}
+.br-sp{display:none}
+
+.feat{position:relative;max-width:1440px;margin:0 auto;padding:0 72px;
+  display:grid;grid-template-columns:320px 120px minmax(0,1fr)}
+.feat--1{min-height:1080px}
+.feat--2{min-height:1510px}
+.feat--3{min-height:910px}
+.feat__vert{display:none}
+.feat__head{grid-column:1;position:sticky;top:120px;align-self:start;padding-top:41px}
+.feat__en{font-family:var(--en);font-size:64px;font-weight:400;line-height:1;
+  letter-spacing:1px;color:var(--g900)}
+.feat__jp{font-size:17px;line-height:32px;letter-spacing:1px;color:var(--g700);margin-top:25px}
+.feat__rows{grid-column:3;padding-top:var(--rt)}
+.feat--1 .feat__rows{--rt:180px}
+.feat--2 .feat__rows{--rt:240px}
+.feat--3 .feat__rows{--rt:280px}
+
+.prod{display:grid;grid-template-columns:440px minmax(0,1fr);column-gap:38px}
+.feat--1 .prod + .prod{margin-top:120px}
+.feat--2 .prod + .prod{margin-top:200px}
+.feat--1 .prod__fig{height:320px}
+.feat--2 .prod__fig,.feat--3 .prod__fig{height:400px}
+.prod__fig{overflow:hidden}
+.prod__fig img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);
+  transition:transform 1.2s var(--ease)}
+.prod.is-in .prod__fig img{transform:scale(1)}
+.prod.is-in .prod__fig:hover img{transform:scale(1.05)}
+.prod__txt{padding-top:32px}
+.prod--tag .prod__txt{padding-top:14px}
+.prod__tag{display:inline-flex;align-items:center;justify-content:center;width:74px;height:24px;
+  border-radius:12px;background:var(--g700);color:var(--white);font-size:12px;letter-spacing:1px;line-height:1}
+.prod__name{font-size:20px;font-weight:500;line-height:1;letter-spacing:1.2px;color:var(--g900)}
+.prod--tag .prod__name{margin-top:30px}
+.prod__price{font-family:var(--it);font-size:15px;line-height:1;letter-spacing:1px;margin-top:18px}
+.prod__desc{font-size:15px;line-height:28px;letter-spacing:.4px;margin-top:30px}
+.prod__rule{display:block;height:1px;background:var(--rule);margin-top:47px}
+
+/* ================= s6 商品一覧 1720 ================= */
+.lineup{padding-top:101px;padding-bottom:164px}
+.lineup__head{text-align:center}
+.lineup__en{font-family:var(--en);font-size:64px;font-weight:400;line-height:1;
+  letter-spacing:2px;color:var(--g900);padding-left:2px}
+.lineup__jp{font-size:14px;line-height:1;letter-spacing:4px;color:var(--g700);
+  margin-top:22px;padding-left:4px}
+.lineup__grid{max-width:1440px;margin:89px auto 0;padding:0 72px;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:36px;row-gap:62px}
+.lineup__sub{margin-top:126px;text-align:center;font-size:20px;font-weight:500;line-height:1;
+  letter-spacing:3px;color:var(--g900);padding-left:3px}
+.lineup__sub + .lineup__grid{margin-top:50px}
+.card__fig{overflow:hidden;aspect-ratio:408/264}
+.card__fig img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);
+  transition:transform 1.2s var(--ease)}
+.card.is-in .card__fig img{transform:scale(1)}
+.card.is-in .card__fig:hover img{transform:scale(1.05)}
+.card__name{font-size:15px;font-weight:400;line-height:24px;letter-spacing:.6px;
+  color:var(--g900);margin-top:12px}
+.card__meta{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:10px;min-height:26px}
+.card__price{font-family:var(--it);font-size:13px;line-height:1;letter-spacing:.8px}
+.sold{display:inline-flex;align-items:center;justify-content:center;width:88px;height:26px;
+  border-radius:13px;background:var(--sold-bg);color:var(--sold-ink);
+  font-family:var(--it);font-size:12px;letter-spacing:.4px;flex:0 0 auto}
+
+/* ================= s7 取扱店舗 690 ================= */
+.shops__inner{max-width:1440px;margin:0 auto;padding:108px 182px 124px 180px;
+  display:grid;grid-template-columns:minmax(0,532px) minmax(0,447px);
+  column-gap:99px;justify-content:space-between}
+.shops__en{font-family:var(--en);font-size:52px;font-weight:400;line-height:1;
+  letter-spacing:1px;color:var(--g900)}
+.shops__jp{font-size:13px;line-height:1;letter-spacing:3px;color:var(--g700);margin-top:20px}
+.acc{margin-top:38px}
+.acc__h{font-size:inherit;font-weight:400}
+.acc__btn{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  width:100%;height:52px;border-bottom:1px solid var(--rule);
+  font-size:14px;letter-spacing:1px;color:var(--g900);text-align:left;
+  transition:color .3s}
+.acc__btn:hover{color:var(--gold-2)}
+.acc__mark{position:relative;flex:0 0 auto;width:18px;height:18px;border-radius:50%;background:var(--g700)}
+.acc__mark::before,.acc__mark::after{content:"";position:absolute;left:50%;top:50%;
+  background:var(--white);transition:transform .3s var(--ease)}
+.acc__mark::before{width:8.3px;height:1.3px;transform:translate(-50%,-50%)}
+.acc__mark::after{width:1.3px;height:8.3px;transform:translate(-50%,-50%)}
+.acc__btn[aria-expanded="true"] .acc__mark::after{transform:translate(-50%,-50%) scaleY(0)}
+.acc__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.acc__panel.is-open{grid-template-rows:1fr}
+.acc__panel > div{overflow:hidden}
+.acc__panel ul{padding:12px 0 16px}
+.acc__panel li{font-size:13px;line-height:30px;letter-spacing:.6px;color:var(--g700)}
+
+.shops__right{padding-top:12px}
+.slider{position:sticky;top:60px;min-height:446px;background:var(--card-soft);padding:24px 15px 12px}
+.slider__title{margin-left:7px;font-size:20px;line-height:1;letter-spacing:2px;color:var(--g900)}
+.slider__stage{position:relative;height:372px;margin-top:18px}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s var(--ease)}
+.slide.is-active{opacity:1;pointer-events:auto}
+.slide img{width:100%;height:300px;object-fit:cover}
+.slide figcaption{padding-left:7px}
+.slide__name{display:block;font-size:15px;line-height:1;letter-spacing:.6px;color:var(--g900);margin-top:22px}
+.slide__price{display:block;font-family:var(--it);font-size:13px;line-height:1;letter-spacing:.8px;margin-top:14px}
+.slider__ui{position:absolute;right:27px;top:378px;display:flex;align-items:center;gap:12px}
+.slider__pause{width:16px;height:16px;display:grid;place-items:center}
+.slider__pause span{display:block;width:8px;height:9px;
+  border-left:2.4px solid var(--g700);border-right:2.4px solid var(--g700)}
+.slider__pause[aria-pressed="true"] span{width:0;height:0;border:0;
+  border-left:9px solid var(--g700);border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
+.slider__dots{display:flex;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:background .3s}
+.dot.is-active{background:var(--g700)}
+
+/* ================= s8 フッター 860 ================= */
+.foot{position:relative;padding:343px 24px 158px;text-align:center;color:var(--g700)}
+.foot__logo{--s:28px;color:var(--gold-2)}
+.foot__sns{display:flex;justify-content:center;gap:18px;margin-top:64px}
+.foot__sns a{display:grid;place-items:center;width:22px;height:22px;color:var(--g900);
+  transition:color .3s,transform .5s var(--ease)}
+.foot__sns a:hover{color:var(--gold-2);transform:translateY(-3px)}
+.foot__sns svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5}
+.foot__addr{margin-top:63px;font-size:13px;line-height:1;letter-spacing:.6px}
+.foot__addr-2{margin-left:.6em}
+.foot__tel{margin-top:17px;font-size:13px;line-height:1;letter-spacing:.6px}
+.foot__tel a{border-bottom:1px solid transparent;transition:border-color .3s}
+.foot__tel a:hover{border-bottom-color:currentColor}
+.foot__copy{margin-top:62px;font-family:var(--it);font-size:12px;line-height:1;
+  letter-spacing:1.2px;color:var(--g900);opacity:.4}
+.backtop{position:absolute;right:72px;top:480px;height:150px;
+  display:flex;flex-direction:column;align-items:center;color:var(--g700)}
+.backtop span{writing-mode:vertical-rl;font-family:var(--it);font-size:12px;
+  line-height:1;letter-spacing:1.2px}
+.backtop::after{content:"";width:1px;height:34px;background:currentColor;margin-top:auto;
+  transition:height .4s var(--ease)}
+.backtop:hover::after{height:46px}
+
+/* ================= reveal（戻ると引っ込む） ================= */
+.reveal{opacity:0;translate:0 40px;
+  transition:opacity .9s var(--ease),translate .9s var(--ease);
+  transition-delay:calc(var(--i,0) * .05s)}
+.reveal.is-in{opacity:1;translate:0 0}
+
+/* JSが動かないときも空にしない（1枚目だけ出す）。動いていれば必ず1枚 is-active なので出番はない */
+.origin__panels:not(:has(.op.is-active)) .op:first-child .op__fig img{opacity:1}
+.origin__panels:not(:has(.op.is-active)) .op:first-child .ti > *{opacity:1;translate:0 0}
+.origin__panels:not(:has(.op.is-active)) .op:first-child .ti__no{opacity:.4}
+.slider__stage:not(:has(.slide.is-active)) .slide:first-child{opacity:1}
+
+/* =======================================================================
+   〜1200px  絶対配置を詰める（中間・補間）
+   ======================================================================= */
+@media (max-width:1200px){
+  .hero__nav{left:32px;top:36px}
+  .feat{grid-template-columns:260px 60px minmax(0,1fr);padding:0 40px}
+  .prod{grid-template-columns:minmax(0,380px) minmax(0,1fr);column-gap:28px}
+  .lineup__grid{padding:0 40px}
+  .shops__inner{padding:108px 40px 100px;column-gap:48px}
+  .backtop{right:32px}
+}
+
+/* =======================================================================
+   〜900px  ここから SPフレーム（390幅）のかたち
+   ======================================================================= */
+@media (max-width:900px){
+
+  /* ---- s1 hero 844 ---- */
+  .hero{height:844px;padding:8px;animation-name:hero-inset-sp}
+  .hero__frame{border-radius:14px;animation-name:hero-radius-sp}
+  @keyframes hero-inset-sp{from{padding:0}to{padding:8px}}
+  @keyframes hero-radius-sp{from{border-radius:0}to{border-radius:14px}}
+  .hero__nav{display:none}                       /* SPは縦ナビを出さない。Menu だけ */
+  .menu-shell{opacity:1;pointer-events:auto}
+  .hero__logo{--s:19px;top:29px;margin-left:-67.1px}
+  .hero__copy{left:50%;top:120.8px}
+  .hero__copy-1{font-size:34px;letter-spacing:2px;padding-left:2px}
+  .hero__copy-2{font-size:26px;margin-top:20px}
+  .hero__copy-3{font-size:34px;letter-spacing:2px;padding-left:2px;margin-top:18px}
+  .hero__cta{width:225px;height:50px;font-size:14px;bottom:42px}
+
+  /* ---- s2 about 758（縦積み・写真が先） ---- */
+  .about__inner{display:block;padding:20px 24px 41px}
+  .about__fig img{aspect-ratio:342/252;object-position:top}
+  .about__body{padding-top:32px}
+  .about__h2{font-size:24px;line-height:38px;letter-spacing:.8px}
+  .about__text{margin-top:31px}
+  .about__text p{font-size:14px;line-height:30px;letter-spacing:.4px}
+  .about__text p + p{margin-top:18px}
+  .about__rule{display:none}
+
+  /* ---- s3 gallery 433（3列グリッド＋CTA） ---- */
+  .gallery{height:auto;padding:24px 24px 53px;overflow:visible;text-align:center}
+  .gallery__track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px;width:auto;animation:none}
+  .gallery__item{width:auto;height:130px;margin-top:0}
+  .gallery__item:nth-child(n+7){display:none}     /* SPは6枚 */
+  .gallery__cta{display:inline-flex;width:225px;height:50px;font-size:14px;margin-top:36px}
+
+  /* ---- s4 origin 4000（sticky をやめて3回積む） ---- */
+  .origin{height:auto}
+  .origin__sticky{position:static;height:auto}
+  .origin__inner{position:static;height:auto;padding-bottom:249px}
+  .origin__head{position:static;align-items:flex-start;padding:89.6px 24px 0}
+  .origin__eyebrow{opacity:.4}
+  .origin__en{font-size:32px;margin-top:39.4px}
+  .origin__panels{position:static}
+  .op{position:static;pointer-events:auto}
+  .op + .op{margin-top:249.2px}
+  .op:first-child{margin-top:106px}
+  .op__fig{position:static;width:auto;height:640px}
+  .op__fig img{opacity:1}
+  .ti{position:static;padding:0 24px}
+  .ti > *,.op.is-active .ti > *,.op.is-out .ti > *{opacity:1;translate:0 0;transition-delay:0s}
+  .op .ti__no{opacity:.4;font-size:12px;margin-top:56.4px}
+  .ti__h{font-size:20px;line-height:36px;letter-spacing:1.6px;margin-top:20px}
+  .ti__sub{font-size:15px;line-height:18px;letter-spacing:1.2px;margin-top:10px}
+  .ti__desc{font-size:14px;line-height:30px;letter-spacing:.4px;margin-top:41px}
+  .ti--sub .ti__desc{margin-top:49px}
+
+  /* ---- s5 items 4340（見出しを上に・商品1列・縦書きラベル） ---- */
+  .items{padding-top:120.8px;padding-bottom:330px}
+  .br-sp{display:inline}
+  .items__h{font-size:24px;letter-spacing:2px;padding-left:2px}
+  .items__en{font-size:26px;letter-spacing:1px;margin-top:30.4px;padding-left:1px}
+  .feats{margin-top:98.8px}
+  .feat{display:block;padding:0 0 0 58px;min-height:0}
+  .feat--1,.feat--2,.feat--3{min-height:0}
+  .feat--2{margin-top:59px}
+  .feat--3{margin-top:220px}
+  .feat__vert{display:block;position:absolute;left:18px;top:210px;
+    writing-mode:vertical-rl;font-family:var(--it);font-size:12px;letter-spacing:1.6px;
+    color:var(--g900);opacity:.4}
+  .feat__head{position:static;padding-top:48px}
+  .feat__en{font-size:40px}
+  .feat__jp{font-size:16px;line-height:28px;margin-top:21.2px}
+  .feat__rows{padding-top:0;padding-right:24px}
+  .feat--1 .feat__rows{margin-top:54.8px}
+  .feat--2 .feat__rows{margin-top:94.8px}
+  .feat--3 .feat__rows{margin-top:134.8px}
+  .prod{display:block}
+  .feat--1 .prod + .prod{margin-top:70.9px}
+  .feat--2 .prod + .prod{margin-top:199.9px}
+  .feat--1 .prod__fig{height:300px}
+  .feat--2 .prod__fig{height:340px}
+  .feat--3 .prod__fig{height:360px}
+  .prod__txt{padding-top:29.2px}
+  .prod--tag .prod__txt{padding-top:18px}
+  .prod__tag{width:68px;height:22px;border-radius:11px;font-size:11px;letter-spacing:.8px}
+  .prod__name{font-size:16px;letter-spacing:.8px}
+  .prod--tag .prod__name{margin-top:25.2px}
+  .prod__price{font-size:14px;letter-spacing:.8px;margin-top:15.6px}
+  .prod__desc{font-size:13px;line-height:24px;letter-spacing:.3px;margin-top:17.3px}
+  .prod__rule{display:none}
+
+  /* ---- s6 lineup 1170（3列→2列） ---- */
+  .lineup{padding-top:62.4px;padding-bottom:55.6px}
+  .lineup__en{font-size:32px;letter-spacing:1px;padding-left:1px}
+  .lineup__jp{font-size:12px;letter-spacing:4px;margin-top:16px}
+  .lineup__grid{margin-top:47.6px;padding:0 24px;
+    grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:25.6px}
+  .lineup__sub{margin-top:62px;font-size:17px}
+  .lineup__sub + .lineup__grid{margin-top:36.6px}
+  .card__fig{aspect-ratio:164/110}
+  .card__name{font-size:13px;line-height:22px;letter-spacing:.4px;margin-top:11.6px}
+  .card__meta{margin-top:8.8px;min-height:20px;gap:6px}
+  .card__price{font-size:12px;letter-spacing:.6px}
+  .sold{width:68px;height:20px;border-radius:10px;font-size:12px}
+
+  /* ---- s7 shops 970（縦積み・アコーディオンが先） ---- */
+  .shops__inner{display:block;padding:62.4px 24px 24px}
+  .shops__en{font-size:32px}
+  .shops__jp{font-size:12px;letter-spacing:3px;margin-top:14px}
+  .acc{margin-top:37.7px}
+  .acc__btn{height:56px;font-size:13px;letter-spacing:.8px}
+  .acc__mark{width:16px;height:16px}
+  .acc__panel li{font-size:13px;line-height:28px}
+  .shops__right{padding-top:0;margin-top:65.9px}
+  .slider{position:static;min-height:386px;padding:24px 14px 37px}
+  .slider__title{margin-left:6px;font-size:17px}
+  .slider__stage{height:293px;margin-top:15px}
+  .slide img{height:230px}
+  .slide figcaption{padding-left:6px}
+  .slide__name{font-size:14px;letter-spacing:.5px;margin-top:24.8px}
+  .slide__price{font-size:12px;letter-spacing:.6px;margin-top:11.6px}
+  .slider__ui{right:22px;top:256px}
+
+  /* ---- s8 footer 590 ---- */
+  .foot{padding:135px 24px 111px}
+  .foot__logo{--s:22px}
+  .foot__sns{gap:13px;margin-top:52.6px}
+  .foot__sns a,.foot__sns svg{width:21px;height:21px}
+  .foot__addr{margin-top:50.2px;font-size:11px;line-height:24px;letter-spacing:.4px}
+  .foot__addr-1,.foot__addr-2{display:block;margin-left:0}
+  .foot__tel{margin-top:10.5px;font-size:11px;letter-spacing:.4px}
+  .foot__telnote{font-size:11px}
+  .foot__copy{margin-top:49.8px;font-size:10px;letter-spacing:1px}
+  .backtop{right:24px;top:300px;height:110px}
+  .backtop span{font-size:11px}
+
+  .menu-panel__list a{font-size:17px}
+}
+
+@media (max-width:560px){
+  .foot__telnote{display:block;margin-top:6px}
+}
+
+/* =======================================================================
+   動きを止める
+   ======================================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-delay:0s !important;
+    animation-iteration-count:1 !important;transition-duration:.001ms !important;
+    transition-delay:0s !important}
+  /* 止めたときに要素が消えないよう、全部「終値」で静止させる */
+  .hero{padding:10px}
+  .hero__frame{border-radius:18px}
+  .hero__nav li,.hero__copy span{opacity:1;translate:0 0}
+  .hero__logo{opacity:.78;translate:0 0}
+  .hero__cta{opacity:1;translate:-50% 0}
+  .gallery__track{animation:none;transform:none}
+  .gallery__item,.reveal{opacity:1;translate:0 0}
+  .prod__fig img,.card__fig img{transform:none}
+  /* sticky セクションを空にしない。JS が1枚を is-active にし続けるので、
+     ここでは「出ている1枚を一瞬で切り替える」だけにする（1枚目を固定すると重なる） */
+  .op.is-active .op__fig img,.op.is-active .ti > *{opacity:1;translate:0 0}
+  .op.is-active .ti__no{opacity:.4}
+  .op.is-out .ti > *{opacity:0}
+  @media (max-width:900px){
+    .hero{padding:8px}
+    .hero__frame{border-radius:14px}
+    .op .op__fig img{opacity:1}
+    .op .ti > *{opacity:1;translate:0 0}
+  }
+}
