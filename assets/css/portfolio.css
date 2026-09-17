@@ -42,21 +42,21 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .
   gap: 28px; padding: 56px 0 80px;
 }
 
-.card { height: 100%; }
-.card__link {
+.card {
   display: flex; flex-direction: column; height: 100%;
   background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
   overflow: hidden;
   transition: transform .28s cubic-bezier(.2,.7,.25,1), border-color .28s, box-shadow .28s;
 }
-.card__link:hover {
+.card__link { display: flex; flex-direction: column; flex: 1; }
+.card:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
   box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
 }
 .card__thumb { display: block; overflow: hidden; background: #0e0f13; aspect-ratio: 760 / 475; }
 .card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.25,1); }
-.card__link:hover .card__thumb img { transform: scale(1.05); }
+.card:hover .card__thumb img { transform: scale(1.05); }
 
 .card__body { display: block; padding: 20px 22px 24px; }
 .card__meta { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--ink-dim); }
@@ -67,6 +67,15 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .
   font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .03em;
   padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-dim);
 }
+
+/* 参考サイト: 暗い面では黒字が読めないので、カード下端を白い帯にする */
+.card__ref {
+  display: block; padding: 11px 22px;
+  background: #fff; color: #111; font-size: 12.5px; font-weight: 700;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.card__ref:hover { background: #e9eaef; }
+.card__ref:focus-visible { outline-offset: -3px; }
 
 .placeholder {
   display: grid; place-items: center; min-height: 260px;
