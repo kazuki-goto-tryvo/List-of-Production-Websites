@@ -68,14 +68,14 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .
   padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-dim);
 }
 
-/* 参考サイト: 暗い面では黒字が読めないので、カード下端を白い帯にする */
+/* 参考サイト: 暗い面では黒字が読めないので、淡いグレーの小さな札に黒字で置く */
 .card__ref {
-  display: block; padding: 11px 22px;
-  background: #fff; color: #111; font-size: 12.5px; font-weight: 700;
-  text-decoration: underline; text-underline-offset: 3px;
+  align-self: flex-start; margin: 0 22px 18px; padding: 1px 8px;
+  background: #b9bdc8; color: #111; border-radius: 4px;
+  font-size: 10.5px; font-weight: 500; line-height: 1.8;
+  opacity: .55; transition: opacity .2s;
 }
-.card__ref:hover { background: #e9eaef; }
-.card__ref:focus-visible { outline-offset: -3px; }
+.card__ref:hover, .card__ref:focus-visible { opacity: 1; }
 
 .placeholder {
   display: grid; place-items: center; min-height: 260px;
