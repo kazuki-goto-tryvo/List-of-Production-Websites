@@ -18,6 +18,11 @@ assets/thumbs/sokuri.webp
 sites/kumitate/
 assets/thumbs/kumitate.webp
 
+# 株式会社ノビルフィールドは非公開（2026-10-03 指示）
+# ファイルはローカルに残してある
+sites/nobiru-field/
+assets/thumbs/nobiru-field.webp
+
 # OS
 Thumbs.db
 .DS_Store
