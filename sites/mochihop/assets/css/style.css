@@ -354,6 +354,7 @@ a:hover > .sqbtn::after, .sqbtn:hover::after { transform: translateX(0); }
   .fixcta__mail i { left: 1.6rem; width: 2.4rem; height: 1.7rem; margin-top: -.8rem; border: .18rem solid var(--ink); border-radius: .2rem; }
   .fixcta__mail i::after { content: ""; position: absolute; left: 50%; top: -.55rem; width: 1.4rem; height: 1.4rem; margin-left: -.7rem; border: .18rem solid var(--ink); border-width: 0 .18rem .18rem 0; transform: scaleY(.8) rotate(45deg); }
   .fixcta__line i { width: 2.6rem; height: 2.4rem; margin-top: -1.2rem; border-radius: .7rem; background: #06C755; }
+  .fixcta__tel i { background: var(--teal); }
   .fixcta__line i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 1.7rem; height: 1.3rem; margin: -.65rem 0 0 -.85rem; border-radius: 50%; background: #fff; }
 
   /* 01 */

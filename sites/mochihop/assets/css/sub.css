@@ -1,0 +1,295 @@
+@charset "utf-8";
+/* 下層ページ用。style.css（ヘッダー・フッター・ボタン）の上に重ねて読む。
+   TOPは絶対配置だが、下層は普通の流し込みで組む。1rem = 10px（1440幅） */
+
+.sub .hd { animation: none; }
+.sub .fixcta { animation: none; }
+
+.wrap { position: relative; width: 120rem; margin: 0 auto; }
+.pic { position: relative; display: block; overflow: hidden; border-radius: 2.4rem; }
+.pic img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- ページの見出し ---------- */
+.phd { position: relative; overflow: hidden; background: var(--cream); padding: 21rem 0 10rem; text-align: center; }
+.phd__en { font-family: var(--en); font-weight: 800; font-size: 8.8rem; line-height: 1; letter-spacing: .04em; color: var(--c, var(--teal)); }
+.phd__ja { margin-top: 2.2rem; font-size: 2.2rem; font-weight: 900; line-height: 1.5; }
+.phd__lead { margin-top: 2.6rem; font-size: 1.6rem; font-weight: 700; line-height: 2.1; }
+.phd .blob { z-index: 0; }
+.phd__en, .phd__ja, .phd__lead { position: relative; z-index: 1; }
+.phd__b1 { left: -6rem; top: 14rem; width: 34rem; height: 22rem; background: var(--mint); }
+.phd__b2 { right: -4rem; bottom: -6rem; width: 30rem; height: 18rem; background: #F6DCC0; }
+.phd__d1 { left: 17rem; top: 19rem; width: 14rem; height: 14rem; }
+.phd__d2 { right: 16rem; top: 22rem; width: 11rem; height: 11rem; }
+.crumb { position: absolute; left: 12rem; bottom: 3.2rem; z-index: 1; display: flex; gap: 1.2rem; font-size: 1.2rem; color: var(--gray); }
+.crumb li + li::before { content: "／"; margin-right: 1.2rem; }
+.crumb a { text-decoration: underline; text-underline-offset: .3em; }
+
+/* ---------- セクション ---------- */
+.sec { padding: 12rem 0; background: #fff; }
+.sec--cream { background: var(--cream); }
+.ttl { margin-bottom: 6rem; text-align: center; }
+.ttl__en { font-family: var(--en); font-weight: 800; font-size: 1.4rem; line-height: 1; letter-spacing: .24em; color: var(--c, var(--teal)); }
+.ttl__ja { margin-top: 1.4rem; font-size: 3.4rem; font-weight: 900; line-height: 1.5; }
+.ttl--l { text-align: left; }
+.leadc { text-align: center; font-size: 1.7rem; font-weight: 700; line-height: 2.2; }
+.prose p { font-size: 1.6rem; line-height: 2.2; }
+.prose p + p { margin-top: 2.2rem; }
+.prose .em { font-size: 2.6rem; font-weight: 900; line-height: 1.7; }
+.sign { margin-top: 3.2rem; text-align: right; font-size: 1.4rem; font-weight: 700; }
+.sign b { margin-left: 1.2rem; font-size: 2rem; font-weight: 900; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
+.split--r .pic { order: 2; }
+.more { margin-top: 6rem; text-align: center; }
+.btn.is-flow { position: relative; display: inline-flex; width: 28rem; text-align: left; }
+.btn.is-flow span { padding-right: 6rem; }
+.note { margin-top: 2rem; font-size: 1.3rem; line-height: 1.9; color: var(--gray); }
+
+/* ---------- 表（会社概要・募集要項・事業所） ---------- */
+.tbl { width: 100%; border-collapse: collapse; border-top: .2rem solid var(--ink); font-size: 1.5rem; line-height: 1.9; }
+.tbl th, .tbl td { padding: 2.4rem 2.4rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.tbl th { width: 24rem; font-weight: 900; }
+.tbl td ul li { position: relative; padding-left: 1.6rem; }
+.tbl td ul li::before { content: ""; position: absolute; left: 0; top: 1.1rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--teal); }
+
+/* ---------- 3つの柱・カード ---------- */
+.cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; }
+.card { position: relative; padding: 4.8rem 4rem 4.4rem; background: #fff; border-radius: 2.4rem; }
+.sec:not(.sec--cream) .card { background: var(--cream); }
+.card__no { font-family: var(--en); font-weight: 800; font-size: 4.4rem; line-height: 1; color: var(--c); }
+.card__h { margin-top: 2rem; font-size: 2.2rem; font-weight: 900; line-height: 1.5; }
+.card__p { margin-top: 1.6rem; font-size: 1.5rem; line-height: 2; }
+.card__icon { position: absolute; right: 3rem; top: 3rem; width: 8rem; height: 8rem; object-fit: contain; }
+
+/* ---------- 沿革 ---------- */
+.hist li { display: grid; grid-template-columns: 16rem 1fr; padding: 2.2rem 0; border-bottom: 1px solid var(--line); font-size: 1.5rem; line-height: 1.9; }
+.hist li:first-child { border-top: 1px solid var(--line); }
+.hist time { font-family: var(--en); font-weight: 600; color: var(--teal); }
+
+/* ---------- 療育プログラムの詳細 ---------- */
+.prog + .prog { margin-top: 10rem; }
+.prog .pic { aspect-ratio: 1; }
+.prog__no { display: inline-block; padding: .4rem 1.6rem; border: .25rem solid var(--c); border-radius: 2rem; font-family: var(--en); font-weight: 800; font-size: 1.4rem; color: var(--c); }
+.prog__name { margin-top: 1.8rem; font-size: 3.6rem; font-weight: 900; line-height: 1.4; color: var(--c); }
+.prog__catch { margin-top: 1rem; font-size: 1.8rem; font-weight: 900; line-height: 1.7; }
+.prog__p { margin-top: 2.4rem; font-size: 1.55rem; line-height: 2.1; }
+.aim { margin-top: 3rem; padding: 2.8rem 3.2rem; background: var(--cream); border-radius: 1.6rem; }
+.aim__h { font-size: 1.4rem; font-weight: 900; color: var(--c); }
+.aim ul { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: .8rem 1rem; }
+.aim li { padding: .2rem 1.4rem; background: #fff; border-radius: 2rem; font-size: 1.35rem; font-weight: 700; }
+
+/* ---------- 1日の過ごし方 ---------- */
+.days { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.day { padding: 5rem 4.8rem; background: #fff; border-radius: 2.4rem; }
+.day__h { display: flex; align-items: baseline; gap: 1.6rem; font-size: 2.4rem; font-weight: 900; }
+.day__h small { font-size: 1.3rem; font-weight: 700; color: var(--gray); }
+.day__tag { display: inline-block; margin-bottom: 1.2rem; padding: .2rem 1.2rem; border-radius: .4rem; background: var(--c); color: #fff; font-family: var(--en); font-weight: 800; font-size: 1.2rem; letter-spacing: .1em; }
+.tl { position: relative; margin-top: 3.6rem; }
+.tl::before { content: ""; position: absolute; left: 7.4rem; top: 1rem; bottom: 1rem; width: .2rem; background: var(--line); }
+.tl li { position: relative; display: grid; grid-template-columns: 6rem 1fr; gap: 4rem; padding: 1.4rem 0; }
+.tl li::before { content: ""; position: absolute; left: 6.8rem; top: 2.3rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: #fff; border: .3rem solid var(--c); }
+.tl time { font-family: var(--en); font-weight: 600; font-size: 1.5rem; line-height: 2.6rem; }
+.tl b { display: block; font-size: 1.6rem; font-weight: 900; line-height: 2.6rem; }
+.tl span { display: block; font-size: 1.35rem; line-height: 1.9; color: var(--gray); }
+
+/* ---------- サービス4つ ---------- */
+.svcs { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.svc { overflow: hidden; background: #fff; border-radius: 2.8rem; scroll-margin-top: 14rem; }
+.svc .pic { aspect-ratio: 3 / 2; border-radius: 0; }
+.svc__head { position: relative; padding: 3.2rem 4rem 2.8rem; background: var(--c); color: var(--ink2, #fff); }
+.svc__type { font-size: 1.4rem; font-weight: 700; letter-spacing: .2rem; }
+.svc__logo { margin-top: .6rem; font-family: var(--logo); font-size: 3.8rem; line-height: 1.2; }
+.svc__mascot { position: absolute; right: 2.4rem; top: -6rem; width: 11rem; height: 11rem; object-fit: contain; }
+.svc__body { padding: 3.2rem 4rem 4rem; }
+.svc__body > p { font-size: 1.5rem; line-height: 2; }
+.spec { margin-top: 2.4rem; font-size: 1.4rem; line-height: 1.8; }
+.spec div { display: grid; grid-template-columns: 11rem 1fr; padding: 1.2rem 0; border-top: 1px solid var(--line); }
+.spec dt { font-weight: 900; }
+.spec dd { margin: 0; }
+
+/* ---------- ご利用の流れ ---------- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem 4rem; counter-reset: step; }
+.step { position: relative; padding: 5.6rem 3.6rem 3.6rem; background: #fff; border-radius: 2.4rem; }
+.step__no { position: absolute; left: 3.6rem; top: -2.8rem; width: 5.6rem; height: 5.6rem; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-family: var(--en); font-weight: 800; font-size: 2rem; }
+.step__h { font-size: 2rem; font-weight: 900; line-height: 1.5; }
+.step__p { margin-top: 1.4rem; font-size: 1.45rem; line-height: 2; }
+
+/* ---------- 料金 ---------- */
+.fees { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.fee { padding: 4.8rem 4.4rem; border: .25rem solid var(--ink); border-radius: 2.4rem; text-align: center; background: #fff; }
+.fee__h { font-size: 1.7rem; font-weight: 900; }
+.fee__v { margin-top: 1.6rem; font-size: 1.6rem; font-weight: 900; }
+.fee__v b { font-family: var(--en); font-size: 6.4rem; font-weight: 800; line-height: 1; color: var(--c); margin: 0 .4rem; }
+.fee__p { margin-top: 1.8rem; font-size: 1.4rem; line-height: 1.9; text-align: left; }
+
+/* ---------- よくある質問 ---------- */
+.faq { border-top: .2rem solid var(--ink); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { position: relative; display: block; padding: 2.8rem 7rem 2.8rem 6rem; font-size: 1.7rem; font-weight: 900; line-height: 1.7; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before, .faq .a::before { position: absolute; left: 1.4rem; font-family: var(--en); font-weight: 800; font-size: 2.2rem; line-height: 1.3; }
+.faq summary::before { content: "Q"; top: 2.8rem; color: var(--teal); }
+.faq summary::after { content: ""; position: absolute; right: 2.4rem; top: 50%; width: 1.4rem; height: 1.4rem; margin-top: -1rem; border: solid var(--ink); border-width: 0 .25rem .25rem 0; transform: rotate(45deg); transition: transform .3s; }
+.faq details[open] summary::after { transform: rotate(-135deg); margin-top: -.3rem; }
+.faq .a { position: relative; padding: 0 7rem 3rem 6rem; font-size: 1.5rem; line-height: 2; }
+.faq .a::before { content: "A"; top: -.4rem; color: var(--rasp); }
+
+/* ---------- 事業所 ---------- */
+.offices { display: grid; gap: 4rem; }
+.ofc { display: grid; grid-template-columns: 44rem 1fr; gap: 5.6rem; padding: 4rem; background: #fff; border-radius: 2.8rem; scroll-margin-top: 14rem; }
+.ofc .pic { aspect-ratio: 4 / 3; border-radius: 2rem; }
+.ofc .badge { left: auto; right: 1.6rem; top: 1.6rem; }
+.ofc__type { font-size: 1.3rem; font-weight: 700; color: var(--c); letter-spacing: .1rem; }
+.ofc__name { margin-top: .6rem; font-size: 2.6rem; font-weight: 900; line-height: 1.5; }
+.ofc .tbl { margin-top: 2.4rem; border-top-width: 1px; border-top-color: var(--line); font-size: 1.4rem; }
+.ofc .tbl th, .ofc .tbl td { padding: 1.4rem 1rem; }
+.ofc .tbl th { width: 12rem; }
+.ofc__tel { font-family: var(--en); font-weight: 600; }
+
+/* ---------- 採用 ---------- */
+.rhero { position: relative; height: 56rem; overflow: hidden; }
+.rhero img { width: 100%; height: 100%; object-fit: cover; }
+.jobs { display: grid; gap: 4rem; }
+.job { padding: 4.8rem 5.6rem; background: #fff; border-radius: 2.8rem; }
+.job__h { display: flex; align-items: center; gap: 1.6rem; margin-bottom: 2.8rem; font-size: 2.6rem; font-weight: 900; }
+.job__h i { font-style: normal; padding: .2rem 1.2rem; border-radius: .4rem; background: var(--c); color: #fff; font-size: 1.2rem; font-weight: 700; }
+
+/* ---------- お問い合わせフォーム ---------- */
+.tels { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 8rem; }
+.telc { padding: 4rem; background: var(--cream); border-radius: 2.4rem; text-align: center; }
+.telc__h { font-size: 1.6rem; font-weight: 900; }
+.telc__v { display: block; margin-top: 1.2rem; font-family: var(--en); font-weight: 800; font-size: 4rem; line-height: 1.2; }
+.telc__p { margin-top: 1rem; font-size: 1.3rem; color: var(--gray); }
+.form { width: 88rem; margin: 0 auto; }
+.field { display: grid; grid-template-columns: 24rem 1fr; gap: 3.2rem; padding: 2.8rem 0; border-bottom: 1px solid var(--line); }
+.field:first-of-type { border-top: .2rem solid var(--ink); }
+.field__l { padding-top: 1.2rem; font-size: 1.5rem; font-weight: 900; line-height: 1.6; }
+.req, .opt { display: inline-block; margin-left: .8rem; padding: 0 .8rem; border-radius: .4rem; font-size: 1.1rem; line-height: 2rem; vertical-align: .2rem; }
+.req { background: var(--rasp); color: #fff; }
+.opt { background: var(--line); }
+.form input[type="text"], .form input[type="email"], .form input[type="tel"], .form select, .form textarea {
+  width: 100%; padding: 1.4rem 1.6rem; border: .15rem solid var(--line); border-radius: 1rem; background: #fff;
+  font: inherit; font-size: 1.6rem; color: var(--ink);
+}
+.form textarea { min-height: 20rem; resize: vertical; line-height: 1.8; }
+.form input:focus, .form select:focus, .form textarea:focus { border-color: var(--teal); outline: none; }
+.form [aria-invalid="true"] { border-color: var(--rasp); background: #FFF5F7; }
+.radios { display: flex; flex-wrap: wrap; gap: 1.2rem 2.8rem; padding-top: 1.2rem; font-size: 1.5rem; }
+.radios label, .agree label { display: inline-flex; align-items: center; gap: .8rem; cursor: pointer; }
+.radios input, .agree input { width: 2rem; height: 2rem; accent-color: var(--teal); }
+.err { display: none; margin-top: .8rem; font-size: 1.3rem; color: var(--rasp); font-weight: 700; }
+.is-err .err { display: block; }
+.agree { margin-top: 4rem; text-align: center; font-size: 1.5rem; }
+.agree a { text-decoration: underline; text-underline-offset: .3em; }
+.submit { display: block; width: 32rem; height: 6.4rem; margin: 4rem auto 0; border: 0; border-radius: 1rem; background: var(--ink); color: #fff; font: inherit; font-size: 1.6rem; font-weight: 700; cursor: pointer; transition: background .3s; }
+.submit:hover { background: var(--teal); }
+.thanks { width: 88rem; margin: 0 auto; padding: 8rem 4rem; background: var(--cream); border-radius: 2.8rem; text-align: center; }
+.thanks[hidden] { display: none; }
+.thanks__h { font-size: 2.8rem; font-weight: 900; }
+.thanks__p { margin-top: 2rem; font-size: 1.5rem; line-height: 2; }
+.thanks img { width: 14rem; height: 14rem; margin: 0 auto 2rem; object-fit: contain; }
+
+/* ---------- プライバシーポリシー ---------- */
+.policy { width: 96rem; margin: 0 auto; }
+.policy h2 { margin-top: 5.6rem; padding-left: 1.6rem; border-left: .5rem solid var(--teal); font-size: 2rem; font-weight: 900; line-height: 1.5; }
+.policy p, .policy li { font-size: 1.5rem; line-height: 2.1; }
+.policy p { margin-top: 1.6rem; }
+.policy ol { margin-top: 1.2rem; padding-left: 2.4rem; list-style: decimal; }
+.policy .date { margin-top: 5.6rem; text-align: right; font-size: 1.4rem; }
+
+/* ================= 900px以下 ================= */
+@media (max-width: 900px) {
+  .wrap { width: 34.2rem; }
+  .phd { padding: 12rem 0 7rem; }
+  .phd__en { font-size: 4.4rem; }
+  .phd__ja { margin-top: 1.4rem; font-size: 1.6rem; }
+  .phd__lead { margin: 2rem 2.4rem 0; font-size: 1.35rem; line-height: 2; text-align: left; }
+  .phd__b1 { left: -8rem; top: 8rem; width: 20rem; height: 12rem; }
+  .phd__b2 { width: 16rem; height: 10rem; }
+  .phd .deco { display: none; }
+  .crumb { left: 2.4rem; bottom: 2rem; font-size: 1.05rem; }
+
+  .sec { padding: 7rem 0; }
+  .ttl { margin-bottom: 4rem; }
+  .ttl__ja { font-size: 2.4rem; }
+  .leadc { font-size: 1.4rem; text-align: left; }
+  .prose p { font-size: 1.4rem; line-height: 2.1; }
+  .prose .em { font-size: 2rem; }
+  .split, .cards3, .days, .svcs, .fees, .tels { grid-template-columns: 1fr; gap: 3.2rem; }
+  .split--r .pic { order: 0; }
+  .more { margin-top: 4rem; }
+  .btn.is-flow { width: 26rem; }
+
+  .tbl { font-size: 1.35rem; }
+  .tbl th, .tbl td { display: block; width: auto; padding: 1.4rem .4rem; }
+  .tbl th { padding-bottom: 0; border-bottom: 0; }
+  .card { padding: 3.6rem 2.8rem; }
+  .card__h { font-size: 1.9rem; }
+  .card__p { font-size: 1.35rem; }
+  .card__icon { width: 6rem; height: 6rem; right: 2rem; top: 2rem; }
+  .hist li { grid-template-columns: 9rem 1fr; font-size: 1.35rem; }
+
+  .prog + .prog { margin-top: 7rem; }
+  .prog__name { font-size: 2.6rem; }
+  .prog__catch { font-size: 1.5rem; }
+  .prog__p { font-size: 1.35rem; }
+  .aim { padding: 2.4rem 2rem; }
+  .aim li { font-size: 1.2rem; }
+
+  .day { padding: 3.6rem 2.4rem; }
+  .day__h { flex-wrap: wrap; font-size: 2rem; gap: .4rem 1.2rem; }
+  .tl::before { left: 6.2rem; }
+  .tl li { grid-template-columns: 5rem 1fr; gap: 3rem; }
+  .tl li::before { left: 5.6rem; }
+  .tl time { font-size: 1.3rem; }
+  .tl b { font-size: 1.45rem; }
+  .tl span { font-size: 1.25rem; }
+
+  .svc__head { padding: 2.8rem 2.4rem 2.4rem; }
+  .svc__logo { font-size: 2.8rem; }
+  .svc__mascot { width: 8rem; height: 8rem; top: -4.4rem; right: 1.6rem; }
+  .svc__body { padding: 2.4rem 2.4rem 3.2rem; }
+  .svc__body > p { font-size: 1.35rem; }
+  .spec { font-size: 1.3rem; }
+  .spec div { grid-template-columns: 8.4rem 1fr; }
+
+  .steps { grid-template-columns: 1fr; gap: 4.4rem; }
+  .step { padding: 4.8rem 2.8rem 2.8rem; }
+  .step__no { left: 2.8rem; }
+  .step__h { font-size: 1.8rem; }
+  .step__p { font-size: 1.35rem; }
+  .fee { padding: 3.6rem 2.4rem; }
+  .fee__v b { font-size: 4.8rem; }
+
+  .faq summary { padding: 2.2rem 4.4rem 2.2rem 4.4rem; font-size: 1.45rem; }
+  .faq summary::before { left: .6rem; top: 2.1rem; font-size: 1.9rem; }
+  .faq summary::after { right: 1.2rem; width: 1.1rem; height: 1.1rem; }
+  .faq .a { padding: 0 1rem 2.4rem 4.4rem; font-size: 1.35rem; }
+  .faq .a::before { left: .6rem; font-size: 1.9rem; }
+
+  .ofc { grid-template-columns: 1fr; gap: 2.4rem; padding: 2rem 2rem 2.8rem; border-radius: 2rem; }
+  .ofc__name { font-size: 1.9rem; }
+  .ofc .tbl th, .ofc .tbl td { padding: 1rem .4rem; }
+  .ofc .tbl th { padding-bottom: 0; }
+
+  .rhero { height: 26rem; }
+  .job { padding: 3.6rem 2.4rem; }
+  .job__h { flex-wrap: wrap; font-size: 2rem; gap: .8rem 1.2rem; margin-bottom: 2rem; }
+
+  .tels { margin-bottom: 5.6rem; }
+  .telc { padding: 3.2rem 2rem; }
+  .telc__v { font-size: 3rem; }
+  .form, .thanks { width: auto; }
+  .field { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.4rem 0; }
+  .field__l { padding-top: 0; font-size: 1.4rem; }
+  .radios { font-size: 1.4rem; gap: 1rem 2rem; }
+  .agree { font-size: 1.3rem; }
+  .submit { width: 100%; }
+  .thanks { padding: 5.6rem 2.4rem; }
+  .thanks__h { font-size: 2.2rem; }
+
+  .policy { width: auto; }
+  .policy h2 { font-size: 1.7rem; margin-top: 4.4rem; }
+  .policy p, .policy li { font-size: 1.35rem; }
+
+  .sub main { padding-bottom: 7rem; } /* 下端固定ボタンのぶん */
+}
