@@ -432,7 +432,7 @@ body.is-ready .hd{transform:none}
   .slider__track li{width:300px;height:200px;margin-right:20px;border-radius:8px}
 
   /* sp10 */
-  .ft__top{height:262px;padding:40px 24px 0;display:block;text-align:center}
+  .ft__top{min-height:262px;height:auto;padding:40px 24px 28px;display:block;text-align:center}
   .ft__info p{font-size:12px;line-height:22px;letter-spacing:.03em}
   .ft__info .ft__company{font-size:20px;letter-spacing:.07em;margin-bottom:18px}
   .ft__nav{padding-top:27px;text-align:center}

@@ -22,7 +22,8 @@
     return { show: show, next: function () { show(i + 1); }, prev: function () { show(i - 1); }, get index() { return i; } };
   }
 
-  // MV: 7秒ごとにクロスフェード
+  // MV: 7秒ごとにクロスフェード（下層ページには無い）
+  if (document.querySelector('.mv')) (function () {
   var mvSlides = document.querySelectorAll('.mv__slide');
   var dots = document.querySelectorAll('.mv__dot');
   var pause = document.querySelector('.mv__pause');
@@ -44,19 +45,21 @@
   });
   if (reduce) { pause.setAttribute('aria-pressed', 'true'); pause.setAttribute('aria-label', 'スライドを再生'); }
   else mvPlay();
+  })();
 
   // SCROLL表示は y≥300 で消す／SPメニューはヒーローを過ぎたら地を付ける
   var scrollMark = document.querySelector('.mv__scroll');
   var menuBtn = document.querySelector('.spmenu');
   function onScroll() {
     var y = scrollY;
-    scrollMark.classList.toggle('is-hidden', y >= 300);
+    if (scrollMark) scrollMark.classList.toggle('is-hidden', y >= 300);
     menuBtn.classList.toggle('is-solid', y >= 600);
   }
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // 採用: 大は5秒ごと・小は大の次の1枚
+  // 採用: 大は5秒ごと・小は大の次の1枚（下層ページには無い）
+  if (document.querySelector('.rec__frame')) (function () {
   var big = document.querySelectorAll('.rec__frame .rec__slide');
   var small = document.querySelectorAll('.rec__small .rec__slide');
   var sm = fader(small);
@@ -72,6 +75,7 @@
   recBox.addEventListener('focusin', function () { clearInterval(recTimer); });
   recBox.addEventListener('focusout', recPlay);
   recPlay();
+  })();
 
   // フッターナビ: PCは開きっぱなし、SPは＋で開閉
   var cols = document.querySelectorAll('.ft__col');

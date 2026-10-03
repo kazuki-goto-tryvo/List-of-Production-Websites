@@ -73,22 +73,22 @@
     var y = window.scrollY, vh = window.innerHeight, sp = spMq.matches;
     var scrolled = y > 360;
     hd.classList.toggle('is-scrolled', scrolled);
-    mv.classList.toggle('is-scrolled', scrolled);
+    if (mv) mv.classList.toggle('is-scrolled', scrolled);
 
     // 右端のバー：進捗と事業ごとの色
     var max = root.scrollHeight - vh;
-    sbar.style.setProperty('--sp', max > 0 ? clamp(y / max) : 0);
+    if (sbar) sbar.style.setProperty('--sp', max > 0 ? clamp(y / max) : 0);
     var col = '';
     for (var i = 0; i < bars.length; i++) {
       var r = bars[i].getBoundingClientRect();
       if (r.top <= vh / 2 && r.bottom > vh / 2) col = bars[i].dataset.bar;
     }
-    if (col) sbar.style.setProperty('--bar', col); else sbar.style.removeProperty('--bar');
+    if (sbar && col) sbar.style.setProperty('--bar', col); else if (sbar) sbar.style.removeProperty('--bar');
 
     if (reduce) return;
 
     // ヒーロー写真が左47%に縮む
-    if (!sp) {
+    if (!sp && about) {
       var p = clamp(y / vh);
       root.style.setProperty('--p', p.toFixed(4));
       var at = about.getBoundingClientRect();
@@ -122,7 +122,7 @@
     }
 
     // ABOUT の貼り付き写真は、縮み終わった瞬間のスライドに合わせる
-    if (!sp && slides.length) {
+    if (!sp && about && slides.length) {
       var img = d.querySelector('.about__photo'), src = slides[cur].querySelector('img').getAttribute('src');
       if (img.getAttribute('src') !== src && root.style.getPropertyValue('--ap') === '0') img.setAttribute('src', src);
     }
