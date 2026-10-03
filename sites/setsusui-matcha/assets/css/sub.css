@@ -1,0 +1,320 @@
+/* MATCHA by SETSUSUI — 下層ページ（style.css の上に重ねる） */
+
+/* 下層は縦ナビがないので Menu を最初から出す。オープニングの動きは持ち込まない */
+body.sub .menu-shell{opacity:1;pointer-events:auto}
+.br-pc{display:inline}
+[id]{scroll-margin-top:32px}
+
+/* ---------- ページ見出し（ヒーローと同じ角丸の額） ---------- */
+.phd{padding:10px}
+.phd__frame{display:grid;grid-template-columns:minmax(0,1fr) 44%;min-height:560px;
+  border-radius:18px;overflow:hidden;background:var(--cream)}
+.phd--plain .phd__frame{grid-template-columns:minmax(0,1fr);min-height:440px}
+.phd__body{display:flex;flex-direction:column;padding:46px 72px 48px}
+.phd__logo{--s:22px;align-self:flex-start;opacity:.85;transition:opacity .3s}
+.phd__logo:hover{opacity:1}
+.phd__en{margin-top:auto;padding-top:72px;font-family:var(--en);font-size:80px;line-height:1;
+  letter-spacing:1px;color:var(--g900)}
+.phd__ja{display:flex;align-items:center;gap:16px;margin-top:24px;font-size:16px;font-weight:500;
+  line-height:1.6;letter-spacing:4px;color:var(--g900)}
+.phd__ja::before{content:"";flex:0 0 auto;width:40px;height:1px;background:var(--gold-2)}
+.phd__lead{margin-top:36px;font-size:17px;line-height:34px;letter-spacing:.5px;color:var(--g700)}
+.phd__fig{position:relative}
+.phd__fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.crumb{display:flex;flex-wrap:wrap;margin:48px 0 0;padding:0;list-style:none;
+  font-size:12px;line-height:20px;letter-spacing:1px;color:var(--muted)}
+.crumb li + li::before{content:"／";margin:0 8px}
+.crumb a{color:var(--g700);border-bottom:1px solid transparent;transition:border-color .3s}
+.crumb a:hover{border-bottom-color:currentColor}
+
+/* ---------- セクションの器 ---------- */
+.sec{padding:140px 0}
+.sec--tight{padding:72px 0 0}
+.sec--soft{background:var(--card-soft)}
+.sec--cta{padding:0 0 40px}
+.sec--soft + .sec--cta{padding-top:120px}
+.wrap{max-width:1296px;margin:0 auto;padding:0 72px}
+.wrap--narrow{max-width:1000px}
+
+.ttl__en{font-family:var(--en);font-size:52px;line-height:1;letter-spacing:1px;color:var(--g900)}
+.ttl__ja{margin-top:20px;font-size:14px;font-weight:500;line-height:1.6;letter-spacing:3px;color:var(--g700)}
+.ttl--c{text-align:center;margin-bottom:72px}
+.ttl--c .ttl__ja{padding-left:3px}
+
+.prose{margin-top:48px}
+.prose p{font-size:17px;line-height:37.4px;letter-spacing:.5px;color:var(--g700)}
+.prose p + p{margin-top:22px}
+.prose--c{margin-top:0}
+.lead-c{margin:-40px 0 56px;text-align:center;font-size:16px;line-height:32px;letter-spacing:.5px}
+.note{margin-top:48px;font-size:13px;line-height:26px;letter-spacing:.4px;color:var(--g700)}
+.note--c{text-align:center}
+.more{margin-top:56px;text-align:center}
+.tlink{color:var(--g900);border-bottom:1px solid var(--gold-2);transition:color .3s}
+.tlink:hover{color:var(--gold-2)}
+
+/* ゴールドのピル（大きさだけ足す） */
+.btn{min-width:284px;height:58px;padding:0 36px;font-size:15px}
+
+/* ---------- 写真＋文章 ---------- */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:96px;align-items:center}
+.split--rev .split__fig{order:2}
+.split__fig{overflow:hidden;border-radius:4px}
+.split__fig img{width:100%;aspect-ratio:748/492;object-fit:cover}
+.split__fig--tall img{aspect-ratio:4/5}
+.sign{margin-top:40px;font-size:22px;font-weight:500;letter-spacing:3px;color:var(--g900)}
+.sign span{display:block;margin-bottom:8px;font-size:12px;letter-spacing:2px;color:var(--g700)}
+.sign__note{margin-top:16px;font-size:13px;line-height:26px;letter-spacing:.4px;color:var(--g700)}
+
+/* ---------- 3つの柱 ---------- */
+.craft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:0;padding:0;list-style:none}
+.craft li{padding-top:28px;border-top:1px solid var(--gold-2)}
+.craft--box li{padding:36px 32px 32px;border-top:0;background:var(--cream);border-radius:4px}
+.craft__no{display:block;font-family:var(--it);font-size:15px;line-height:1;letter-spacing:3px;color:var(--g900);opacity:.5}
+.craft__h{margin-top:18px;font-size:22px;font-weight:500;line-height:1.5;letter-spacing:2px;color:var(--g900)}
+.craft p{margin-top:18px;font-size:15px;line-height:30px;letter-spacing:.4px}
+.craft p.craft__link{margin-top:20px}
+
+/* ---------- あゆみ・表 ---------- */
+.hist,.tbl{margin:0}
+.hist div{display:grid;grid-template-columns:140px minmax(0,1fr);align-items:baseline;
+  padding:22px 0;border-bottom:1px solid var(--rule)}
+.hist div:first-child{border-top:1px solid var(--rule)}
+.hist dt{font-family:var(--en);font-size:26px;line-height:1;letter-spacing:1px;color:var(--g900)}
+.hist dd{margin:0;font-size:16px;line-height:30px;letter-spacing:.5px}
+
+.tbl div{display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:24px;
+  padding:24px 0;border-bottom:1px solid var(--rule)}
+.tbl div:first-child{border-top:1px solid var(--rule)}
+.tbl dt{font-size:15px;font-weight:500;line-height:30px;letter-spacing:1px;color:var(--g900)}
+.tbl dd{margin:0;font-size:15px;line-height:30px;letter-spacing:.4px}
+.tbl--s{margin-top:40px}
+.tbl--s div{grid-template-columns:120px minmax(0,1fr);padding:16px 0}
+.tbl--s dt,.tbl--s dd{font-size:14px;line-height:26px}
+
+/* ---------- 目次 ---------- */
+.toc{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0 0 8px;padding:0;list-style:none}
+.toc a{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 24px;border:1px solid var(--g700);
+  border-radius:999px;font-size:14px;letter-spacing:1px;color:var(--g900);transition:background .3s,color .3s}
+.toc a::after{content:"↓";font-family:var(--it);font-size:13px}
+.toc a:hover{background:var(--g700);color:var(--white)}
+
+/* ---------- 商品カード ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:72px 56px}
+.pgrid--2{max-width:1000px;margin:0 auto}
+.pcard__fig{overflow:hidden;border-radius:4px}
+.pcard__fig img{width:100%;aspect-ratio:408/264;object-fit:cover;transition:transform 1.2s var(--ease)}
+.pcard__fig:hover img{transform:scale(1.05)}
+.pcard__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:24px}
+.pcard__name{font-size:20px;font-weight:500;line-height:1.5;letter-spacing:1.2px;color:var(--g900)}
+.pcard__price{display:flex;align-items:center;gap:12px;flex:0 0 auto;font-family:var(--it);font-size:18px;
+  line-height:1;letter-spacing:1px}
+.pcard__desc{margin-top:16px;font-size:15px;line-height:28px;letter-spacing:.4px}
+.pcard__spec{margin:20px 0 0}
+.pcard__spec div{display:grid;grid-template-columns:72px minmax(0,1fr);padding:10px 0;border-top:1px solid var(--rule)}
+.pcard__spec div:last-child{border-bottom:1px solid var(--rule)}
+.pcard__spec dt{font-size:13px;line-height:22px;letter-spacing:1px;color:var(--g900)}
+.pcard__spec dd{margin:0;font-size:13px;line-height:22px;letter-spacing:.4px}
+
+/* ---------- 店舗一覧 ---------- */
+#list .toc{margin-bottom:24px}
+.region{margin-top:64px}
+.region__h{display:flex;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--g700);
+  font-size:20px;font-weight:500;letter-spacing:2px;color:var(--g900)}
+.region__h span{font-family:var(--it);font-size:14px;letter-spacing:1px;color:var(--g700)}
+.slist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:40px}
+.slist li{padding:20px 0;border-bottom:1px solid var(--rule)}
+.slist__name{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:500;letter-spacing:1px;color:var(--g900)}
+.slist__addr,.slist__hours{margin-top:6px;font-size:13px;line-height:22px;letter-spacing:.4px}
+.slist__hours{color:var(--g700);opacity:.8}
+.tag{display:inline-flex;align-items:center;height:20px;padding:0 9px;border-radius:10px;
+  background:var(--g700);color:var(--white);font-size:11px;font-weight:400;letter-spacing:1px}
+
+/* ---------- よくある質問 ---------- */
+.faq details{border-bottom:1px solid var(--rule)}
+.faq details:first-child{border-top:1px solid var(--rule)}
+.faq summary{display:flex;align-items:center;gap:18px;padding:24px 0;cursor:pointer;list-style:none;
+  font-size:16px;line-height:28px;letter-spacing:.8px;color:var(--g900)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--gold-2)}
+.faq__q{flex:0 0 auto;font-family:var(--en);font-size:22px;line-height:1;color:var(--gold-2)}
+.faq__t{flex:1 1 auto}
+.faq details[open] .acc__mark::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq__a{display:flex;gap:18px;padding:0 0 26px}
+.faq__a .faq__q{color:var(--g700)}
+.faq__a p{font-size:15px;line-height:30px;letter-spacing:.4px}
+
+/* ---------- 締めの案内 ---------- */
+.cta{padding:80px 48px;border-radius:18px;background:var(--cream);text-align:center}
+.cta__h{font-size:28px;font-weight:500;line-height:1.5;letter-spacing:2px;color:var(--g900)}
+.cta__p{margin-top:20px;font-size:16px;line-height:32px;letter-spacing:.5px}
+.cta__btns{display:flex;align-items:center;justify-content:center;gap:40px;margin-top:40px}
+.cta__tel{font-family:var(--it);font-size:22px;letter-spacing:1.5px;color:var(--g900);text-align:left}
+.cta__tel span{display:block;margin-top:6px;font-family:var(--jp);font-size:12px;letter-spacing:.6px;color:var(--g700)}
+
+/* ---------- お問い合わせ ---------- */
+.tels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.telc{padding:40px 24px;border-radius:4px;background:var(--cream);text-align:center}
+.telc__h{font-size:14px;letter-spacing:2px;color:var(--g700)}
+.telc__v{display:inline-block;margin-top:14px;font-family:var(--en);font-size:36px;line-height:1;letter-spacing:2px;color:var(--g900)}
+.telc__p{margin-top:14px;font-size:13px;letter-spacing:.6px}
+
+.form{max-width:1000px;margin:120px auto 0}
+.form .ttl--c{margin-bottom:24px}
+.form__lead{margin-bottom:48px;text-align:center;font-size:15px;line-height:28px;letter-spacing:.4px}
+.field{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:32px;padding:26px 0;border-top:1px solid var(--rule)}
+.field__l{display:flex;align-items:center;gap:10px;align-self:start;padding-top:13px;
+  font-size:15px;font-weight:500;letter-spacing:1px;color:var(--g900)}
+.req,.opt{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:10px;font-size:11px;font-weight:400;letter-spacing:1px}
+.req{background:var(--g700);color:var(--white)}
+.opt{background:var(--sold-bg);color:var(--sold-ink)}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field select,.field textarea{
+  width:100%;height:52px;padding:0 16px;border:1px solid var(--rule);border-radius:3px;background:var(--white);
+  font:inherit;font-size:16px;color:var(--g900);transition:border-color .3s}
+.field textarea{height:200px;padding:14px 16px;line-height:1.8;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--g700)}
+.field input::placeholder,.field textarea::placeholder{color:#9AAE9F}
+.radios{display:flex;flex-wrap:wrap;gap:10px 12px;padding-top:4px}
+.radios label{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border:1px solid var(--rule);
+  border-radius:999px;background:var(--white);font-size:14px;letter-spacing:.5px;color:var(--g900);cursor:pointer}
+.radios label:has(input:checked){border-color:var(--g700);background:var(--g700);color:var(--white)}
+.radios input,.agree input{accent-color:var(--g700)}
+.err{display:none;margin-top:8px;font-size:13px;letter-spacing:.4px;color:#A6412B}
+.is-err .err{display:block}
+.is-err input,.is-err textarea{border-color:#A6412B}
+.agree{padding-top:40px;border-top:1px solid var(--rule);text-align:center}
+.agree label{display:inline-flex;align-items:center;gap:10px;font-size:15px;letter-spacing:.5px;cursor:pointer}
+.agree input{width:20px;height:20px}
+.submit{min-width:320px;height:62px;font-size:16px;cursor:pointer}
+
+.thanks{max-width:1000px;margin:120px auto 0;padding:80px 32px;border-radius:18px;background:var(--cream);text-align:center}
+.thanks:focus{outline:none}
+.thanks__en{display:block;font-family:var(--en);font-size:52px;line-height:1;color:var(--g900)}
+.thanks__h{margin-top:28px;font-size:24px;font-weight:500;letter-spacing:2px;color:var(--g900)}
+.thanks__p{margin-top:24px;font-size:15px;line-height:30px;letter-spacing:.4px}
+
+/* ---------- プライバシーポリシー ---------- */
+.policy p,.policy li{font-size:15px;line-height:32px;letter-spacing:.4px}
+.policy h2{margin-top:56px;padding-bottom:12px;border-bottom:1px solid var(--rule);
+  font-size:20px;font-weight:500;letter-spacing:1.5px;color:var(--g900)}
+.policy h2 + p,.policy h2 + ol{margin-top:20px}
+.policy ol{padding-left:1.5em}
+.policy .date{margin-top:56px;text-align:right;font-size:13px}
+
+/* ---------- 下層のフッターは上の余白を詰める ---------- */
+body.sub .foot{padding-top:160px}
+body.sub .backtop{top:200px}
+
+/* =======================================================================
+   〜1200px
+   ======================================================================= */
+@media (max-width:1200px){
+  .wrap{padding:0 40px}
+  .phd__body{padding:40px 40px 44px}
+  .split{column-gap:56px}
+  .slist{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* =======================================================================
+   〜900px  SP（390幅）
+   ======================================================================= */
+@media (max-width:900px){
+  .br-pc{display:none}
+  .phd{padding:8px}
+  .phd__frame{display:flex;flex-direction:column;min-height:0;border-radius:14px}
+  .phd--plain .phd__frame{min-height:0}
+  .phd__body{padding:29px 24px 32px}
+  .phd__logo{--s:19px}
+  .phd__en{padding-top:64px;font-size:40px}
+  .phd__ja{gap:12px;margin-top:18px;font-size:15px;letter-spacing:3px}
+  .phd__ja::before{width:28px}
+  .phd__lead{margin-top:22px;font-size:14px;line-height:28px}
+  .crumb{margin-top:28px;font-size:11px}
+  .phd__fig img{position:static;height:220px}
+
+  .sec{padding:80px 0}
+  .sec--tight{padding:48px 0 0}
+  .sec--cta{padding:0 0 24px}
+  .sec--soft + .sec--cta{padding-top:64px}
+  .wrap{padding:0 24px}
+  .ttl__en{font-size:32px}
+  .ttl__ja{margin-top:14px;font-size:12px}
+  .ttl--c{margin-bottom:44px}
+  .prose{margin-top:32px}
+  .prose p{font-size:14px;line-height:30.8px;letter-spacing:.4px}
+  .prose p + p{margin-top:18px}
+  .lead-c{margin:-20px 0 36px;font-size:14px;line-height:28px;text-align:left}
+  .note{margin-top:32px;font-size:12px;line-height:22px}
+  .note--c{text-align:left}
+  .more{margin-top:40px}
+  .btn{min-width:0;width:100%;max-width:300px;height:52px;padding:0 20px;font-size:14px}
+
+  .split{display:flex;flex-direction:column;gap:36px}
+  .split--rev .split__fig{order:0}
+  .split__body{width:100%}
+  .sign{margin-top:28px;font-size:19px}
+  .sign__note{font-size:12px;line-height:22px}
+
+  .craft{grid-template-columns:minmax(0,1fr);gap:28px}
+  .craft--box li{padding:28px 22px 24px}
+  .craft__h{margin-top:14px;font-size:18px}
+  .craft p{margin-top:12px;font-size:14px;line-height:26px}
+
+  .hist div{grid-template-columns:72px minmax(0,1fr);padding:16px 0}
+  .hist dt{font-size:18px}
+  .hist dd{font-size:14px;line-height:26px}
+  .tbl div,.tbl--s div{display:block;padding:16px 0}
+  .tbl dt,.tbl--s dt{font-size:13px;line-height:24px}
+  .tbl dd,.tbl--s dd{margin-top:4px;font-size:14px;line-height:26px}
+  .tbl--s{margin-top:28px}
+
+  .toc{justify-content:flex-start;gap:8px}
+  .toc a{height:38px;padding:0 16px;font-size:13px}
+
+  .pgrid{grid-template-columns:minmax(0,1fr);gap:48px}
+  .pcard__head{margin-top:18px}
+  .pcard__name{font-size:17px}
+  .pcard__price{font-size:16px}
+  .pcard__price .sold{width:68px;height:20px;border-radius:10px}
+  .pcard__desc{margin-top:12px;font-size:14px;line-height:26px}
+  .pcard__spec dt,.pcard__spec dd{font-size:12px}
+
+  .region{margin-top:44px}
+  .region__h{font-size:17px}
+  .slist{grid-template-columns:minmax(0,1fr)}
+  .slist li{padding:16px 0}
+  .slist__name{font-size:15px}
+
+  .faq summary{gap:12px;padding:18px 0;font-size:14px;line-height:24px}
+  .faq__q{font-size:18px}
+  .faq__a{gap:12px;padding-bottom:20px}
+  .faq__a p{font-size:14px;line-height:26px}
+
+  .cta{padding:48px 22px;border-radius:14px}
+  .cta__h{font-size:20px}
+  .cta__p{margin-top:14px;font-size:14px;line-height:26px}
+  .cta__btns{flex-direction:column;gap:24px;margin-top:28px}
+  .cta__tel{font-size:20px;text-align:center}
+
+  .tels{grid-template-columns:minmax(0,1fr);gap:14px}
+  .telc{padding:28px 16px}
+  .telc__v{font-size:28px}
+  .form{margin-top:72px}
+  .form__lead{margin-bottom:32px;font-size:14px;text-align:left}
+  .field{display:block;padding:20px 0}
+  .field__l{padding-top:0;margin-bottom:12px;font-size:14px}
+  .radios{gap:8px}
+  .radios label{height:40px;padding:0 14px;font-size:13px}
+  .agree label{font-size:14px}
+  .submit{min-width:0;width:100%;max-width:320px;height:56px;font-size:15px}
+  .thanks{margin-top:72px;padding:48px 22px;border-radius:14px}
+  .thanks__en{font-size:34px}
+  .thanks__h{font-size:19px}
+  .thanks__p{font-size:14px;line-height:26px;text-align:left}
+
+  .policy p,.policy li{font-size:14px;line-height:28px}
+  .policy h2{margin-top:40px;font-size:17px}
+
+  body.sub .foot{padding-top:100px}
+  body.sub .backtop{top:110px}
+}

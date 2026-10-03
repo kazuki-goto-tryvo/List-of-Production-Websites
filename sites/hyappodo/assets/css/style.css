@@ -446,7 +446,7 @@ body.is-ready .fv__blob{opacity:1;transform:none}
 body.is-ready .fv__col>*{transform:none}
 
 /* 見出しは1文字ずつ左から入る（txEffect_02） */
-.ch{display:inline-block;opacity:0;transform:translateX(-1em);
+.ch{display:inline-block;font-style:normal;opacity:0;transform:translateX(-1em);
   transition:opacity .6s ease,transform .6s ease;transition-delay:calc(var(--i,0)*20ms)}
 body.is-ready .fv .ch,.reveal.is-in .ch{opacity:1;transform:none}
 

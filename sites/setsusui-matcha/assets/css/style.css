@@ -83,6 +83,14 @@ body.menu-open .menu-panel__list li:nth-child(4){transition-delay:.30s}
 body.menu-open .menu-panel__list li:nth-child(5){transition-delay:.36s}
 .menu-panel__list a{display:inline-block;padding:13px 8px;font-size:18px;letter-spacing:2px;color:var(--g900)}
 .menu-panel__list a:hover{color:var(--gold-2)}
+/* 下層ページへのリンク（セクションの下に小さく横並び） */
+.menu-panel{overflow-y:auto}
+.menu-panel__inner{margin:auto;padding:40px 24px}
+.menu-panel__pages{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 22px;max-width:560px;
+  margin:26px auto 0;padding-top:26px;border-top:1px solid var(--rule)}
+.menu-panel__pages a{display:inline-block;padding:6px 2px;font-size:14px;letter-spacing:1.2px;color:var(--g700);
+  transition:color .3s}
+.menu-panel__pages a:hover,.menu-panel__pages a[aria-current]{color:var(--gold-2)}
 .menu-panel__tel{margin-top:46px;font-family:var(--it);font-size:15px;letter-spacing:1.2px;color:var(--g700)}
 .menu-panel__tel span{display:block;margin-top:8px;font-family:var(--jp);font-size:12px;color:var(--muted)}
 
@@ -261,6 +269,8 @@ body.is-scrolled .hero__nav{opacity:0;pointer-events:none}
 .sold{display:inline-flex;align-items:center;justify-content:center;width:88px;height:26px;
   border-radius:13px;background:var(--sold-bg);color:var(--sold-ink);
   font-family:var(--it);font-size:12px;letter-spacing:.4px;flex:0 0 auto}
+.lineup__more{margin-top:96px;text-align:center}
+.lineup__more .pill{width:284px;height:58px;font-size:15px}
 
 /* ================= s7 取扱店舗 690 ================= */
 .shops__inner{max-width:1440px;margin:0 auto;padding:108px 182px 124px 180px;
@@ -287,6 +297,9 @@ body.is-scrolled .hero__nav{opacity:0;pointer-events:none}
 .acc__panel > div{overflow:hidden}
 .acc__panel ul{padding:12px 0 16px}
 .acc__panel li{font-size:13px;line-height:30px;letter-spacing:.6px;color:var(--g700)}
+.shops__more{display:inline-block;margin-top:28px;font-size:14px;letter-spacing:1px;color:var(--g900);
+  border-bottom:1px solid var(--gold-2);transition:color .3s}
+.shops__more:hover{color:var(--gold-2)}
 
 .shops__right{padding-top:12px}
 .slider{position:sticky;top:60px;min-height:446px;background:var(--card-soft);padding:24px 15px 12px}
@@ -311,7 +324,11 @@ body.is-scrolled .hero__nav{opacity:0;pointer-events:none}
 /* ================= s8 フッター 860 ================= */
 .foot{position:relative;padding:343px 24px 158px;text-align:center;color:var(--g700)}
 .foot__logo{--s:28px;color:var(--gold-2)}
-.foot__sns{display:flex;justify-content:center;gap:18px;margin-top:64px}
+.foot__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 32px;max-width:900px;margin:56px auto 0}
+.foot__nav a{font-size:13px;line-height:28px;letter-spacing:1px;color:var(--g900);
+  border-bottom:1px solid transparent;transition:border-color .3s,color .3s}
+.foot__nav a:hover{color:var(--gold-2);border-bottom-color:currentColor}
+.foot__sns{display:flex;justify-content:center;gap:18px;margin-top:44px}
 .foot__sns a{display:grid;place-items:center;width:22px;height:22px;color:var(--g900);
   transition:color .3s,transform .5s var(--ease)}
 .foot__sns a:hover{color:var(--gold-2);transform:translateY(-3px)}
@@ -483,7 +500,14 @@ body.is-scrolled .hero__nav{opacity:0;pointer-events:none}
   /* ---- s8 footer 590 ---- */
   .foot{padding:135px 24px 111px}
   .foot__logo{--s:22px}
-  .foot__sns{gap:13px;margin-top:52.6px}
+  .foot__nav{gap:2px 20px;max-width:300px;margin-top:44px}
+  .foot__nav a{font-size:12px}
+  .foot__sns{gap:13px;margin-top:36px}
+  .lineup__more{margin-top:48px}
+  .lineup__more .pill{width:225px;height:50px;font-size:14px}
+  .shops__more{font-size:13px}
+  .menu-panel__pages{gap:2px 18px;margin-top:20px;padding-top:20px}
+  .menu-panel__pages a{font-size:13px}
   .foot__sns a,.foot__sns svg{width:21px;height:21px}
   .foot__addr{margin-top:50.2px;font-size:11px;line-height:24px;letter-spacing:.4px}
   .foot__addr-1,.foot__addr-2{display:block;margin-left:0}

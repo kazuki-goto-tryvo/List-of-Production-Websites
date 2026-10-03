@@ -507,6 +507,15 @@ small{font-size:inherit}
   position:absolute;left:44px;top:356px;
   font-family:var(--en);font-weight:400;font-size:11px;letter-spacing:.6px;line-height:1;
 }
+/* 下層ページへの小さなリンク列（コピーライトの上） */
+.ft__links{position:absolute;left:44px;top:318px}
+.ft__links ul{display:flex;flex-wrap:wrap;gap:8px 26px}
+.ft__links li{line-height:1}
+.ft__links a{
+  font-family:var(--en);font-weight:500;font-size:11px;letter-spacing:1.2px;line-height:1;
+  padding-bottom:3px;border-bottom:1px solid transparent;transition:border-color .35s var(--ease3);
+}
+.ft__links a:hover{border-bottom-color:currentColor}
 
 /* ============================================================
    11. 中間（〜1200）— 左右のあきを詰める
@@ -523,6 +532,7 @@ small{font-size:inherit}
   .cpt__eq{right:12%}
   .ft__locks{right:24px}
   .ft__copy{left:24px}
+  .ft__links{left:24px}
 }
 
 /* ============================================================
@@ -652,6 +662,8 @@ small{font-size:inherit}
   .lock--store em{font-size:10px}
   .ft__slash::before{background:var(--gray)}
   .ft__copy{left:0;right:0;top:392px;text-align:center;color:var(--sub)}
+  .ft__links{left:24px;right:24px;top:172px}
+  .ft__links ul{justify-content:center;gap:14px 22px}
 }
 
 /* 390 より下は素直に縮める */

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お問い合わせ ｜ ケアラーのつどい かさねて</title>
+<meta name="description" content="ケアラーのつどい かさねてへのお問い合わせ。つどいへの参加や会員登録、ヤングケアラーの相談時間、出張講座のご依頼、冊子のご請求、ご寄付について受けつけています。">
+<meta property="og:title" content="お問い合わせ ｜ ケアラーのつどい かさねて">
+<meta property="og:description" content="ケアラーのつどい かさねてへのお問い合わせ。つどいへの参加や会員登録、ヤングケアラーの相談時間、出張講座のご依頼、冊子のご請求、ご寄付について受けつけています。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="assets/img/event-2.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&family=Yomogi&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body class="sub" id="top">
+
+<a class="skip" href="#main">本文へ移動する</a>
+
+<header class="hd">
+  <a class="hd__logo" href="index.html" aria-label="かさねて トップへ">かさねて</a>
+  <nav class="gnav" id="gnav" aria-label="メインメニュー">
+    <ul class="gnav__list">
+      <li><a href="meetup.html">オンラインのつどい</a></li>
+      <li><a href="voices.html">みんなの声</a></li>
+      <li><a href="events.html">イベント・活動報告</a></li>
+      <li><a href="about.html">私たちについて</a></li>
+      <li><a href="contact.html" aria-current="page">お問い合わせ</a></li>
+    </ul>
+  </nav>
+  <button class="ham" id="ham" type="button" aria-expanded="false" aria-controls="gnav">
+    <span class="ham__bars" aria-hidden="true"></span>
+    <span class="ham__txt">メニュー</span>
+  </button>
+</header>
+<div class="layer" id="layer"></div>
+
+<main id="main">
+  <div class="phd">
+    <div class="phd__bg" aria-hidden="true"></div>
+    <img class="phd__hand" style="--r:30deg" src="assets/img/hand-5.webp" alt="" aria-hidden="true">
+    <div class="phd__in">
+      <p class="phd__en en" aria-hidden="true">Contact</p>
+      <h1 class="phd__ja">お問い合わせ</h1>
+      <p class="phd__lead">つどいのこと、活動のこと、<br class="br-pc">どんなことでもお気軽にどうぞ。</p>
+      <ol class="crumb"><li><a href="index.html">トップ</a></li><li aria-current="page">お問い合わせ</li></ol>
+    </div>
+    <div class="phd__wave" aria-hidden="true"></div>
+  </div>
+
+  <section class="sec">
+    <div class="sec__in cwrap">
+      <aside class="cinfo">
+        <h2 class="cinfo__h">お電話・FAX・メール</h2>
+        <p class="cinfo__tel en"><a href="tel:0539194820">053-919-4820</a></p>
+        <p class="cinfo__time">受付 火・木・土 10:00–16:00<br>（祝日・年末年始を除く）</p>
+        <dl class="cinfo__dl">
+          <div><dt>FAX</dt><dd>053-919-4821</dd></div>
+          <div><dt>メール</dt><dd>hello@kasanete-care.org</dd></div>
+          <div><dt>所在地</dt><dd>〒432-8021<br>静岡県浜松市中央区佐鳴台四丁目23-11<br>佐鳴台コミュニティ棟 2F</dd></div>
+        </dl>
+        <p class="cinfo__note">世話人はボランティアのため、お返事に3日ほどいただくことがあります。急な体調の変化など、すぐに対応が必要なときは、かかりつけ医や担当のケアマネジャー、地域包括支援センターへご連絡ください。</p>
+      </aside>
+
+      <div class="cform">
+        <form class="form" id="form" novalidate>
+          <p class="form__lead"><span class="req">必須</span>の項目はかならずご記入ください。</p>
+          <div class="field" data-req="radio">
+            <p class="field__l" id="l-type">お問い合わせの種類<span class="req">必須</span></p>
+            <div class="radios" role="radiogroup" aria-labelledby="l-type">
+              <label class="radio"><input type="radio" name="type" value="meetup"><span>つどい・会員登録について</span></label>
+              <label class="radio"><input type="radio" name="type" value="youth"><span>ヤングケアラーの相談時間</span></label>
+              <label class="radio"><input type="radio" name="type" value="lecture"><span>出張講座のご依頼</span></label>
+              <label class="radio"><input type="radio" name="type" value="report"><span>冊子のご請求</span></label>
+              <label class="radio"><input type="radio" name="type" value="donate"><span>ご寄付について</span></label>
+              <label class="radio"><input type="radio" name="type" value="other"><span>ボランティア・取材・その他</span></label>
+            </div>
+            <p class="err">お問い合わせの種類を選んでください</p>
+          </div>
+          <div class="field" data-req>
+            <label class="field__l" for="f-name">お名前<span class="req">必須</span></label>
+            <input class="input" id="f-name" name="name" type="text" autocomplete="name" placeholder="例）浜名 さくら">
+            <p class="err">お名前を入力してください</p>
+          </div>
+          <div class="field">
+            <label class="field__l" for="f-nick">つどいで使うニックネーム<span class="opt">任意</span></label>
+            <input class="input" id="f-nick" name="nick" type="text" placeholder="例）さくら">
+          </div>
+          <div class="field" data-req="email">
+            <label class="field__l" for="f-mail">メールアドレス<span class="req">必須</span></label>
+            <input class="input" id="f-mail" name="mail" type="email" autocomplete="email" inputmode="email" placeholder="例）sakura@mail.jp">
+            <p class="err">メールアドレスを正しく入力してください</p>
+          </div>
+          <div class="field">
+            <label class="field__l" for="f-tel">電話番号<span class="opt">任意</span></label>
+            <input class="input" id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="例）09012345678">
+          </div>
+          <div class="field" data-req>
+            <label class="field__l" for="f-msg">お問い合わせ内容<span class="req">必須</span></label>
+            <textarea class="input input--area" id="f-msg" name="msg" rows="7" placeholder="冊子のご請求の場合は、冊子の名前と送り先のご住所をお書きください。"></textarea>
+            <p class="err">お問い合わせ内容を入力してください</p>
+          </div>
+          <div class="agree" data-req="check">
+            <label><input type="checkbox" name="agree"><span><a class="tlink" href="privacy.html" target="_blank">プライバシーポリシー</a>に同意する</span></label>
+            <p class="err">プライバシーポリシーへの同意が必要です</p>
+          </div>
+          <p class="form__act"><button class="btn btn--submit submit" type="submit">送信する<span class="btn__dot" aria-hidden="true"></span></button></p>
+        </form>
+
+        <div class="thanks" id="thanks" hidden tabindex="-1">
+          <p class="thanks__en en">Thank you</p>
+          <h2 class="thanks__h">お問い合わせを受けつけました</h2>
+          <p class="thanks__p">内容を確認して、世話人から3日ほどでご連絡します。<br class="br-pc">お急ぎのときは、お電話（053-919-4820）でもどうぞ。</p>
+          <p class="act act--c"><a class="btn" href="index.html">トップへ戻る<span class="btn__dot" aria-hidden="true"></span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft" id="s_contact">
+  <div class="ft__inner">
+    <div class="ft__l">
+      <h2 class="ft__h">お問い合わせ</h2>
+      <p class="ft__lead">つどいのこと、活動のこと、<br>どんなことでもお気軽にどうぞ。</p>
+      <p class="ft__act"><a class="btn" href="contact.html">お問い合わせフォーム<span class="btn__dot" aria-hidden="true"></span></a></p>
+      <p class="ft__lh">はじめての方へ・よくあるご質問</p>
+      <ul class="ft__links">
+        <li><a href="meetup.html#first"><span class="lico" aria-hidden="true"></span>はじめての方へ</a></li>
+        <li><a href="meetup.html#faq"><span class="lico" aria-hidden="true"></span>よくあるご質問</a></li>
+        <li><a href="privacy.html"><span class="lico" aria-hidden="true"></span>プライバシーポリシー</a></li>
+      </ul>
+    </div>
+    <div class="ft__r">
+      <p class="ft__slogan"><span>その手を</span><span>すこし</span><span>ゆるめて</span></p>
+      <p class="ft__logo">かさねて</p>
+      <ul class="sns">
+        <li><a aria-label="Instagram">
+          <svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><rect x="1" y="1" width="20" height="20" rx="6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="11" cy="11" r="5.3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="16.7" cy="5.3" r="1.3" fill="currentColor"/></svg>
+        </a></li>
+        <li><a aria-label="X">
+          <svg viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path d="M2 2 L20 20 M20 2 L2 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </a></li>
+        <li><a aria-label="YouTube">
+          <svg viewBox="0 0 30 22" aria-hidden="true" focusable="false"><rect x="0" y="3" width="30" height="16" rx="4.4" fill="currentColor"/><path d="M12.4 7.4 L19.9 11.1 L12.4 14.8 Z" fill="#FDF6ED"/></svg>
+        </a></li>
+      </ul>
+      <p class="ft__copy en">Copyright © KASANETE All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact.js"></script>
+</body>
+</html>

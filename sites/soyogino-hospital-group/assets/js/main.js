@@ -15,7 +15,7 @@
   // ヒーロー写真のクロスフェード（5秒ごと）
   var slides = $$('.hero__slide');
   var cur = 0;
-  setInterval(function () {
+  if (slides.length > 1) setInterval(function () {
     if (reduce.matches || document.hidden) return;
     slides[cur].classList.remove('is-active');
     cur = (cur + 1) % slides.length;
@@ -40,13 +40,13 @@
 
   // ヘッダーの背景・フッター手前で隠す／固定エントリーを消す
   var hd = $('#hd'), entry = $('#entry'), ft = $('#footer');
-  var onScroll = function () { hd.classList.toggle('is-solid', scrollY > 80); };
+  var onScroll = function () { if (hd) hd.classList.toggle('is-solid', scrollY > 80); };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  new IntersectionObserver(function (es) {
+  if (ft) new IntersectionObserver(function (es) {
     var on = es[0].isIntersecting;
-    hd.classList.toggle('is-hide', on);
-    entry.classList.toggle('is-off', on);
+    if (hd) hd.classList.toggle('is-hide', on);
+    if (entry) entry.classList.toggle('is-off', on);
   }, { rootMargin: '0px 0px -20% 0px' }).observe(ft);
 
   // SPメニュー
@@ -61,13 +61,17 @@
       setTimeout(function () { if (!menu.classList.contains('is-open')) menu.hidden = true; }, reduce.matches ? 0 : 400);
     }
   };
+  if (btn && menu) {
   btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
   $$('[data-close]', menu).forEach(function (el) { el.addEventListener('click', function () { setMenu(false); }); });
   addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); btn.focus(); } });
   isSp.addEventListener('change', function () { if (!isSp.matches) setMenu(false); });
+  }
 
   // ビジョン：SPはまちの絵を固定したまま横へ送る（scrub 1.6 相当の追従）
+  // 下層ページにはビジョンの絵が無いので、ここで終わる
   var mv = $('.vision__mv'), stage = $('.vision__stage'), track = $('.vision__track');
+  if (!mv || !stage || !track) return;
   var dist = 0, x = 0, raf = 0, last = 0;
   function measure() {
     if (!isSp.matches || reduce.matches) {
@@ -101,6 +105,6 @@
   isSp.addEventListener('change', measure);
   reduce.addEventListener('change', measure);
   var town = $('.vision__town');
-  if (town.complete) measure(); else town.addEventListener('load', measure);
+  if (!town || town.complete) measure(); else town.addEventListener('load', measure);
   addEventListener('load', measure);
 })();

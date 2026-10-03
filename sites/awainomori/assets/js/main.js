@@ -1,4 +1,4 @@
-/* 社会福祉法人 あわいの森 — トップページ */
+/* 社会福祉法人 あわいの森 — 共通（トップと下層ページ） */
 (function () {
   'use strict';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -32,17 +32,20 @@
   // 01 流れ続ける写真帯
   var band = document.getElementById('heroBand');
   var bandBtn = document.querySelector('.hero__pause');
+  if (band && bandBtn) {
   bandBtn.addEventListener('click', function () {
     var paused = !band.classList.contains('is-paused');
     band.classList.toggle('is-paused', paused);
     setPressed(bandBtn, paused, '写真の流れを一時停止', '写真の流れを再開');
   });
   if (reduce) { band.classList.add('is-paused'); setPressed(bandBtn, true, '写真の流れを一時停止', '写真の流れを再開'); }
+  }
 
   // 02 私たちについて：写真のフェード切替
   var slides = document.querySelectorAll('#aboutSlides img');
   var aboutBtn = document.querySelector('.about__pause');
   var ai = 0, aboutTimer = null;
+  if (slides.length && aboutBtn) {
   function aboutNext() {
     slides[ai].classList.remove('is-active');
     ai = (ai + 1) % slides.length;
@@ -55,9 +58,11 @@
   }
   aboutBtn.addEventListener('click', function () { aboutPlay(!aboutTimer); });
   aboutPlay(!reduce);
+  }
 
   // 07 写真スライダー（前／一時停止／次）
   var track = document.querySelector('.slider__track');
+  if (track) {
   var n = track.children.length, si = 0, sliderTimer = null;
   var pauseBtn = document.querySelector('.ctrl__pause');
   function go(i) {
@@ -75,6 +80,7 @@
   pauseBtn.addEventListener('click', function () { sliderPlay(!sliderTimer); });
   go(0);
   sliderPlay(!reduce);
+  }
 
   // メニュー（右からのドロワー）
   var drawer = document.getElementById('drawer');
@@ -99,13 +105,14 @@
 
   // 検索パネル
   var fs = document.querySelector('.fixsearch');
-  var fsBtn = fs.querySelector('.fixbtn--search');
+  var fsBtn = fs && fs.querySelector('.fixbtn--search');
   function search(open) {
+    if (!fs) return;
     fs.classList.toggle('is-open', open);
     fsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (open) setTimeout(function () { fs.querySelector('input').focus(); }, reduce ? 0 : 200);
   }
-  fsBtn.addEventListener('click', function () { search(!fs.classList.contains('is-open')); });
+  if (fsBtn) fsBtn.addEventListener('click', function () { search(!fs.classList.contains('is-open')); });
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
@@ -126,7 +133,7 @@
         p.hidden = !hit;
         if (hit) { shown++; p.classList.add('is-in'); }
       });
-      empty.hidden = shown > 0;
+      if (empty) empty.hidden = shown > 0;
     });
   });
 })();

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>向いてる仕事さがし ｜ ミルジョブ 牧場ではたらく人の図鑑</title>
+<meta name="description" content="5つの質問に答えると、酪農の7つの職種のなかから、あなたに近い仕事を2つ紹介します。">
+<meta property="og:title" content="向いてる仕事さがし ｜ ミルジョブ">
+<meta property="og:description" content="5つの質問に答えると、酪農の7つの職種のなかから、あなたに近い仕事を2つ紹介します。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="assets/img/kv-01.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body id="top" class="page sub is-past">
+
+<a class="skip" href="#main">本文へ移動する</a>
+
+<div class="veil" id="veil" hidden></div>
+
+  <header class="hd">
+    <a class="hd__logo" href="index.html" aria-label="ミルジョブ トップへ">
+      <span class="mark" aria-hidden="true"></span><span class="mark__t">MILJOB</span>
+    </a>
+    <button class="ham" id="ham" type="button" aria-expanded="false" aria-controls="nav">
+      <span class="ham__b" aria-hidden="true"></span>
+      <span class="sr">メニューを開く</span>
+    </button>
+  </header>
+
+  <!-- 左パネル：ページの見出し（SPではページ上部） -->
+  <section class="pcleft phd" aria-labelledby="phd_h">
+    <div class="pcleft__in">
+      <div class="phd__ph">
+          <span class="phd__t"><img src="assets/img/shindan.webp" alt="向いてる仕事さがしのキャラクターたち" width="341" height="341" loading="eager" decoding="async"></span>
+          <span class="phd__t"><img src="assets/img/chara-2.webp" alt="搾乳スタッフのキャラクター" width="341" height="341" loading="eager" decoding="async"></span>
+          <span class="phd__t"><img src="assets/img/chara-7.webp" alt="チーズ職人のキャラクター" width="341" height="341" loading="eager" decoding="async"></span>
+          <span class="phd__t phd__t--pc"><img src="assets/img/chara-4.webp" alt="獣医師のキャラクター" width="341" height="341" loading="lazy" decoding="async"></span>
+          <span class="phd__t phd__t--pc"><img src="assets/img/chara-3.webp" alt="育成スタッフのキャラクター" width="341" height="341" loading="lazy" decoding="async"></span>
+          <span class="phd__t phd__t--pc"><img src="assets/img/chara-1.webp" alt="酪農ヘルパーのキャラクター" width="341" height="341" loading="lazy" decoding="async"></span>
+      </div>
+      <div class="phd__body">
+        <p class="phd__en" aria-hidden="true"><span class="otl" data-t="CHECK">CHECK</span></p>
+        <h1 class="phd__ja" id="phd_h">向いてる仕事さがし</h1>
+        <p class="phd__lead">5つの質問に答えるだけで、7つの職種のなかからあなたに近い仕事がわかります。</p>
+        <ol class="crumb" aria-label="現在地"><li><a href="index.html">トップ</a></li><li><a href="index.html#s_other">読む・試す・数える</a></li><li aria-current="page">向いてる仕事さがし</li></ol>
+      </div>
+    </div>
+  </section>
+
+    <main id="main">
+      <section class="sec" aria-labelledby="sq_h">
+        <h2 class="pill reveal reveal--pop" id="sq_h">5つの質問</h2>
+        <p class="sec__lead reveal">考えこまずに、<br>近いと思うものを選んでください。<br>答えに近い職種を2つ出します。</p>
+        <form class="quiz" id="quiz" novalidate>
+          <fieldset class="qz box" data-q="1">
+            <legend class="qz__q"><span class="qz__n" data-t="Q1">Q1</span>朝はどちらに近い？</legend>
+            <div class="qz__o">
+              <label><input type="radio" name="q1" value="1,2"><span>早起きは得意。目覚ましより先に起きる</span></label>
+              <label><input type="radio" name="q1" value="4,7"><span>夜型だけど、決めた時間には起きられる</span></label>
+              <label><input type="radio" name="q1" value="3,6"><span>時間より、動物のそばにいられるかが大事</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="qz box" data-q="2">
+            <legend class="qz__q"><span class="qz__n" data-t="Q2">Q2</span>いちばん楽しいのはどんなとき？</legend>
+            <div class="qz__o">
+              <label><input type="radio" name="q2" value="1,5"><span>体を動かしているとき</span></label>
+              <label><input type="radio" name="q2" value="2,6"><span>小さな変化に気づいたとき</span></label>
+              <label><input type="radio" name="q2" value="7,3"><span>何かが形になっていくとき</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="qz box" data-q="3">
+            <legend class="qz__q"><span class="qz__n" data-t="Q3">Q3</span>好きな教科は？</legend>
+            <div class="qz__o">
+              <label><input type="radio" name="q3" value="4,6"><span>理科・生物</span></label>
+              <label><input type="radio" name="q3" value="5,1"><span>体育・技術</span></label>
+              <label><input type="radio" name="q3" value="7,3"><span>家庭科・美術</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="qz box" data-q="4">
+            <legend class="qz__q"><span class="qz__n" data-t="Q4">Q4</span>働き方のイメージは？</legend>
+            <div class="qz__o">
+              <label><input type="radio" name="q4" value="1,4,5"><span>いろいろな場所を回りたい</span></label>
+              <label><input type="radio" name="q4" value="2,3"><span>同じ場所で、毎日の変化を見ていたい</span></label>
+              <label><input type="radio" name="q4" value="7,5"><span>自分の手で、ものを作っていたい</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="qz box" data-q="5">
+            <legend class="qz__q"><span class="qz__n" data-t="Q5">Q5</span>まわりの人からよく言われるのは？</legend>
+            <div class="qz__o">
+              <label><input type="radio" name="q5" value="3,1"><span>面倒見がいいね</span></label>
+              <label><input type="radio" name="q5" value="2,6"><span>落ち着いているね</span></label>
+              <label><input type="radio" name="q5" value="7,5"><span>こだわりが強いね</span></label>
+              <label><input type="radio" name="q5" value="4,6"><span>なんでも知りたがるね</span></label>
+            </div>
+          </fieldset>
+          <p class="quiz__err" id="quiz_err" hidden>まだ答えていない質問があります</p>
+          <p class="cta"><button class="btn" type="submit">結果を見る<span class="ar" aria-hidden="true"></span></button></p>
+        </form>
+      </section>
+
+      <section class="sband res" id="result" aria-labelledby="res_h" hidden tabindex="-1">
+        <h2 class="pill pill--n reveal reveal--pop" id="res_h">あなたに近い仕事</h2>
+        <div class="res__main job is-in" id="res_main"></div>
+        <div class="res__tx" id="res_tx"></div>
+        <p class="res__sub" id="res_sub"></p>
+        <p class="cta"><button class="btn btn--md btn--cream" type="button" id="retry">もう一度やる<span class="ar" aria-hidden="true"></span></button></p>
+      </section>
+
+      <section class="sec" aria-labelledby="sn_h">
+        <h2 class="h2s" id="sn_h">結果はあくまで入口です</h2>
+        <p class="sec__p">向いているかどうかは、実際に牛のそばに立ってみるといちばんよくわかります。気になる職種が見つかったら、仕事の中身を読んだり、牧場で1日過ごしてみたりしてください。</p>
+        <p class="cta"><a class="btn" href="jobs.html">7つのお仕事を読む<span class="ar" aria-hidden="true"></span></a></p>
+        <p class="cta cta--2"><a class="btn" href="taiken.html">1日ファームワークを見る<span class="ar" aria-hidden="true"></span></a></p>
+      </section>
+      <footer class="ft">
+        <ul class="ft__nav">
+          <li><a href="index.html">トップ</a></li><li><a href="about.html">ミルジョブについて</a></li>
+          <li><a href="jobs.html">7つのお仕事</a></li><li><a href="voice.html">働く人に会いに行く</a></li>
+          <li><a href="taiken.html">職場体験</a></li><li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+        <p class="ft__lk"><a href="about.html#org">運営団体</a>　｜　<a href="privacy.html">個人情報の取り扱い</a></p>
+        <p>Copyright © Hokuo Dairy Career Council<br>All rights reserved.</p>
+      </footer>
+    </main>
+
+  <aside class="pcside" id="nav">
+    <div class="pcside__in">
+      <p class="pcside__logo"><span class="mark" aria-hidden="true"></span><span class="mark__t">MILJOB</span></p>
+      <button class="dclose" id="dclose" type="button"><span class="sr">メニューを閉じる</span></button>
+      <nav aria-label="サイト内メニュー">
+        <ul class="nav">
+          <li><a class="nav__a" href="index.html">トップ</a></li>
+          <li><a class="nav__a" href="index.html#s_news">お知らせ</a></li>
+          <li><a class="nav__a" href="about.html">ミルジョブについて</a></li>
+          <li class="grp is-open">
+            <div class="grp__h"><a class="nav__a" href="jobs.html">7つのお仕事</a>
+              <button class="grp__t" type="button" aria-expanded="true"><span class="sr">7つのお仕事の項目を開閉する</span></button></div>
+            <ul class="grp__l">
+              <li><a href="jobs.html#job-1">酪農ヘルパー</a></li><li><a href="jobs.html#job-5">削蹄師</a></li>
+              <li><a href="jobs.html#job-2">搾乳スタッフ</a></li><li><a href="jobs.html#job-6">家畜人工授精師</a></li>
+              <li><a href="jobs.html#job-3">育成スタッフ</a></li><li><a href="jobs.html#job-7">チーズ職人</a></li>
+              <li><a href="jobs.html#job-4">大動物獣医師</a></li>
+            </ul>
+          </li>
+          <li class="grp is-open">
+            <div class="grp__h"><a class="nav__a nav__a--cur" href="index.html#s_other">読む・試す・数える</a>
+              <button class="grp__t" type="button" aria-expanded="true"><span class="sr">読む・試す・数えるの項目を開閉する</span></button></div>
+            <ul class="grp__l grp__l--1">
+              <li><a href="voice.html">働く人に会いに行く</a></li>
+              <li><a href="about.html#manga">まんが 牛舎の朝</a></li>
+              <li><a href="about.html#num">3つの数字</a></li>
+              <li><a href="shindan.html" aria-current="page">向いてる仕事さがし</a></li>
+            </ul>
+          </li>
+          <li class="grp is-open">
+            <div class="grp__h"><a class="nav__a" href="taiken.html">体験・お問い合わせ</a>
+              <button class="grp__t" type="button" aria-expanded="true"><span class="sr">体験・お問い合わせの項目を開閉する</span></button></div>
+            <ul class="grp__l grp__l--1">
+              <li><a href="taiken.html#farms">加盟牧場を探す</a></li>
+              <li><a href="taiken.html#farmwork">職場体験に申し込む</a></li>
+              <li><a href="about.html#school">先生・保護者の方へ</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="pcside__sns">
+        <p class="pcside__ttl"><a href="index.html#s_sns">SNSでも会えます</a></p>
+        <p class="pcside__lead">＼牧場の日常と募集をお知らせ／</p>
+        <ul class="sns sns--sm">
+          <li><a class="sns__c" aria-label="Instagram">
+            <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><rect x="27" y="27" width="46" height="46" rx="13" fill="none" stroke="#E1306C" stroke-width="5.3"/><circle cx="50" cy="50" r="10.8" fill="none" stroke="#E1306C" stroke-width="5.3"/><circle cx="62.9" cy="37.1" r="3" fill="#E1306C"/></svg></a></li>
+          <li><a class="sns__c" aria-label="X">
+            <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true"><g transform="translate(27,27) scale(1.9167)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#1A1A1A"/></g></svg></a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+<div class="fixbar" id="fixbar">
+  <a class="btn btn--bar" href="taiken.html">職場体験に申し込む<span class="ar" aria-hidden="true"></span></a>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  var JOBS = [{"n":1,"name":"酪農ヘルパー","c":"#F49B17","rb":"牧場の休みをつくる助っ人","fs":24,"fit":["早起きが苦にならない","初めての場所でも動ける","段取りを覚えるのが好き"]},{"n":2,"name":"搾乳スタッフ","c":"#23B3D3","rb":"一頭ずつの体調を読む","fs":24,"fit":["同じ作業を丁寧にくり返せる","小さな変化に気づく","生き物の体に興味がある"]},{"n":3,"name":"育成スタッフ","c":"#FCC92C","rb":"子牛を母牛に育てる","fs":24,"fit":["世話を焼くのが好き","記録をつけるのが苦にならない","長い目で成長を見守れる"]},{"n":4,"name":"大動物獣医師","c":"#2FA438","rb":"牛の不調を見つけて治す","fs":24,"fit":["理科や生物が好き","自分で判断して動ける","体力に自信がある"]},{"n":5,"name":"削蹄師","c":"#845BA3","rb":"牛の足元をととのえる","fs":26,"fit":["手先を使う作業が好き","体を動かすのが得意","職人の世界にひかれる"]},{"n":6,"name":"家畜人工授精師","c":"#E9473B","rb":"次の一頭へつなぐ","fs":20,"fit":["生き物のしくみに興味がある","計画を立てるのが好き","記録をきちんと残せる"]},{"n":7,"name":"チーズ職人","c":"#E84994","rb":"牧場のミルクを形にする","fs":26,"fit":["こつこつ作るのが好き","食べることに興味がある","毎日の小さな違いを楽しめる"]}];
+  var form = document.getElementById('quiz'), res = document.getElementById('result');
+  var err = document.getElementById('quiz_err');
+  function card(j) {
+    return '<a class="job__a" href="jobs.html#job-' + j.n + '" style="--c:' + j.c + '">' +
+      '<span class="job__net" aria-hidden="true"></span>' +
+      '<span class="job__ph"><img src="assets/img/job-' + j.n + '.webp" alt="' + j.name + 'の仕事の様子" width="240" height="200"></span>' +
+      '<img class="job__ch" src="assets/img/chara-' + j.n + '.webp" alt="" width="220" height="220">' +
+      '<span class="job__rb">' + j.rb + '</span>' +
+      '<span class="job__nm otl" style="--fs:' + j.fs + 'px" data-t="' + j.name + '">' + j.name + '</span>' +
+      '<span class="job__bd" aria-hidden="true"><svg viewBox="0 0 34 41" width="34" height="41"><path d="M11.5 8.2a5.5 5.5 0 0 1 11 0v8.8h-11z" fill="var(--c)" stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round"/><circle cx="17" cy="24" r="13" fill="var(--c)" stroke="#1A1A1A" stroke-width="2.4"/><path d="M10.9 24h11.3M18 19.8L22.2 24 18 28.2" fill="none" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>';
+  }
+  Array.prototype.forEach.call(form.querySelectorAll('input'), function (r) {
+    r.addEventListener('input', function () {
+      r.closest('.qz').classList.remove('is-err');
+      if (!form.querySelector('.qz.is-err')) err.hidden = true;
+    });
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var score = [0, 0, 0, 0, 0, 0, 0, 0], miss = null;
+    Array.prototype.forEach.call(form.querySelectorAll('.qz'), function (q) {
+      var c = q.querySelector('input:checked');
+      q.classList.toggle('is-err', !c);
+      if (!c) { if (!miss) miss = q; return; }
+      c.value.split(',').forEach(function (n) { score[+n] += 1; });
+    });
+    if (miss) { err.hidden = false; miss.scrollIntoView({ block: 'center' }); return; }
+    // 同点なら、体験から入りやすい順（ヘルパー→搾乳→育成→チーズ→削蹄→授精→獣医）
+    var order = [1, 2, 3, 7, 5, 6, 4];
+    var rank = order.slice().sort(function (a, b) { return score[b] - score[a] || order.indexOf(a) - order.indexOf(b); });
+    var a = JOBS[rank[0] - 1], b = JOBS[rank[1] - 1];
+    document.getElementById('res_main').innerHTML = card(a);
+    document.getElementById('res_tx').innerHTML = '<p><b>' + a.name + '</b>は、こんな人に向いています。</p><ul class="chips"><li>' + a.fit.join('</li><li>') + '</li></ul>';
+    document.getElementById('res_sub').innerHTML = '2番目に近いのは <a href="jobs.html#job-' + b.n + '">' + b.name + '</a> でした。';
+    res.hidden = false;
+    res.scrollIntoView({ block: 'start' });
+    res.focus({ preventScroll: true });
+  });
+  document.getElementById('retry').addEventListener('click', function () {
+    form.reset(); res.hidden = true; form.scrollIntoView({ block: 'start' });
+  });
+})();
+</script>
+</body>
+</html>
