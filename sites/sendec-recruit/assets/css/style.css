@@ -374,6 +374,11 @@ body.is-ready .hero__entry{transition-delay:.7s}
 .totop__tx{font-family:Barlow,sans-serif;font-size:13px;font-weight:700;line-height:1}
 .ft__cr{position:absolute;left:0;right:0;top:512px;text-align:center;
   font-family:Barlow,sans-serif;font-size:12px;line-height:1;color:var(--gray)}
+/* フッターのリンク（下層ページと共通） */
+.ft__nav{position:absolute;left:24px;right:24px;top:84px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 34px;
+  font-size:14px;font-weight:500;letter-spacing:.6px;line-height:1.8}
+.ft__nav a{position:relative;z-index:1;background:rgba(255,255,255,.85);padding:0 4px;transition:color .3s}
+.ft__nav a:hover{color:var(--blue)}
 
 /* ══════════ スクロールで出す（M5） ══════════ */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
@@ -545,14 +550,15 @@ body.is-ready .hero__entry{transition-delay:.7s}
   .rc__lead{position:static;margin-top:26px;font-size:14px;line-height:1.9;letter-spacing:.4px}
   .rc__btns{position:static;width:auto;margin-top:24px;grid-template-columns:minmax(0,1fr);gap:15px}
 
-  .ft{height:330px}
+  .ft{height:372px}
+  .ft__nav{top:226px;gap:4px 20px;font-size:13px;letter-spacing:.3px}
   .ft .strip{height:80px}
   .strip--f1{top:60px}
   .strip--f2{display:none}
   .ft .strip__set{gap:34px;padding-right:34px}
   .totop{left:calc(50% - 31px);top:145px;width:62px;height:60px}
   .totop__tx{font-size:11px}
-  .ft__cr{top:305px;font-size:11px}
+  .ft__cr{top:344px;font-size:11px}
 }
 
 /* SPフレームは390幅。それより狭いときだけ字間で詰める（文字サイズは変えない） */

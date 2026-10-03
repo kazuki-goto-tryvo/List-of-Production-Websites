@@ -1,0 +1,53 @@
+/* エントリーフォーム：必須項目の確認と送信後の完了表示 */
+(function () {
+  'use strict';
+  var form = document.getElementById('form');
+  var thanks = document.getElementById('thanks');
+  if (!form) return;
+
+  /* entry.html?type=career のように応募区分を引き継ぐ */
+  var type = new URLSearchParams(location.search).get('type');
+  if (type) {
+    var r = form.querySelector('input[name="type"][value="' + type + '"]');
+    if (r) r.checked = true;
+  }
+
+  function check(box) {
+    var kind = box.getAttribute('data-req');
+    var ok;
+    if (kind === 'radio') ok = !!box.querySelector('input:checked');
+    else if (kind === 'check') ok = box.querySelector('input').checked;
+    else {
+      var input = box.querySelector('input, textarea');
+      var v = input.value.trim();
+      ok = kind === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) : v !== '';
+      input.setAttribute('aria-invalid', String(!ok));
+    }
+    box.classList.toggle('is-err', !ok);
+    return ok;
+  }
+
+  /* 直したそばからエラーを消す。change だとフォーカスが外れた瞬間に行が縮み、
+     次のクリックが空振りするので input で見る */
+  Array.prototype.forEach.call(form.querySelectorAll('[data-req]'), function (box) {
+    box.addEventListener('input', function () { if (box.classList.contains('is-err')) check(box); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var first = null;
+    Array.prototype.forEach.call(form.querySelectorAll('[data-req]'), function (box) {
+      if (!check(box) && !first) first = box;
+    });
+    if (first) {
+      first.scrollIntoView({ block: 'center' });
+      var f = first.querySelector('input, textarea');
+      if (f) f.focus({ preventScroll: true });
+      return;
+    }
+    form.hidden = true;
+    thanks.hidden = false;
+    thanks.scrollIntoView({ block: 'center' });
+    thanks.focus({ preventScroll: true });
+  });
+})();

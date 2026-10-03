@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お問い合わせ｜榑木工芸 塗装部</title>
+<meta name="description" content="榑木工芸 塗装部への塗装のご相談・お見積り、スタジオ見学、採用についてのお問い合わせはこちらから。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body class="sub" id="top">
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="shd">
+  <a class="shd__logo" href="index.html"><span class="shd__en">Kureki Kougei Furniture Finishing Dept.</span><span class="shd__ja">榑木工芸 塗装部</span></a>
+</header>
+
+<button class="dots" id="menubtn" aria-expanded="false" aria-controls="nav" aria-label="メニューを開く">
+  <i></i><i></i><i></i>
+</button>
+
+<nav class="nav" id="nav" aria-label="グローバル">
+  <ul>
+    <li><a href="index.html">TOP<span>トップ</span></a></li>
+    <li><a href="about.html">ABOUT<span>塗装部について</span></a></li>
+    <li><a href="studio.html">STUDIO<span>塗装スタジオ</span></a></li>
+    <li><a href="works.html">WORKS<span>仕上げた面</span></a></li>
+    <li><a href="craftsman.html">CRAFTSMAN<span>職人紹介</span></a></li>
+    <li><a href="company.html">COMPANY<span>会社概要</span></a></li>
+    <li><a href="recruit.html">RECRUIT<span>採用情報</span></a></li>
+    <li><a href="contact.html" aria-current="page">CONTACT<span>お問い合わせ</span></a></li>
+  </ul>
+</nav>
+
+<main id="main">
+<div class="phd">
+  <p class="phd__en" aria-hidden="true">CONTACT</p>
+  <h1 class="phd__ja">お問い合わせ</h1>
+  <p class="phd__lead">図面の段階でも、色の相談だけでもかまいません。<br>2営業日以内にご返信します。</p>
+  <ol class="crumb"><li><a href="index.html">トップ</a></li><li aria-current="page">お問い合わせ</li></ol>
+</div>
+
+<section class="blk blk--top">
+  <div class="tels rise-list">
+    <div><p class="tels__h">お電話</p><a class="tels__v" href="tel:0356204470">03-5620-4470</a><p class="tels__p">平日 8:30〜17:30</p></div>
+    <div><p class="tels__h">メール</p><a class="tels__v tels__v--m" href="mailto:info@kureki-kougei.co.jp">info@kureki-kougei.co.jp</a><p class="tels__p">図面や写真の添付もこちらへ</p></div>
+  </div>
+
+  <form class="form" id="form" novalidate>
+    <div class="sh"><p class="en rise">FORM</p><h2 class="sh__h rise">お問い合わせフォーム</h2></div>
+    <div class="field" data-req="radio"><p class="field__l" id="l-type">お問い合わせの種類<span class="req">必須</span></p>
+      <div><div class="radios" role="radiogroup" aria-labelledby="l-type">
+        <label><input type="radio" name="type" value="estimate">塗装のご相談・お見積り</label>
+        <label><input type="radio" name="type" value="visit">スタジオ見学</label>
+        <label><input type="radio" name="type" value="recruit">採用について</label>
+        <label><input type="radio" name="type" value="other">その他</label>
+      </div><p class="err">お問い合わせの種類を選んでください</p></div></div>
+    <div class="field"><label class="field__l" for="f-co">会社名<span class="opt">任意</span></label>
+      <div><input type="text" id="f-co" name="company" autocomplete="organization"></div></div>
+    <div class="field" data-req><label class="field__l" for="f-name">お名前<span class="req">必須</span></label>
+      <div><input type="text" id="f-name" name="name" autocomplete="name" placeholder="例）白河 太郎"><p class="err">お名前を入力してください</p></div></div>
+    <div class="field" data-req="email"><label class="field__l" for="f-mail">メールアドレス<span class="req">必須</span></label>
+      <div><input type="email" id="f-mail" name="email" autocomplete="email" placeholder="半角英数字で入力してください"><p class="err">メールアドレスを正しく入力してください</p></div></div>
+    <div class="field"><label class="field__l" for="f-tel">電話番号<span class="opt">任意</span></label>
+      <div><input type="tel" id="f-tel" name="tel" autocomplete="tel" placeholder="例）03-1234-5678"></div></div>
+    <div class="field" data-req><label class="field__l" for="f-msg">お問い合わせ内容<span class="req">必須</span></label>
+      <div><textarea id="f-msg" name="message" placeholder="用途・樹種・数量・ご希望の仕上げや納期など、わかる範囲でお書きください"></textarea><p class="err">お問い合わせ内容を入力してください</p></div></div>
+    <div class="agree" data-req="check"><label><input type="checkbox" name="agree"><span><a href="privacy.html" target="_blank">プライバシーポリシー</a>に同意する</span></label><p class="err">プライバシーポリシーへの同意が必要です</p></div>
+    <button class="submit" type="submit">この内容で送信する</button>
+  </form>
+
+  <div class="thanks" id="thanks" hidden tabindex="-1">
+    <p class="en">THANK YOU</p>
+    <h2 class="thanks__h">お問い合わせを受け付けました</h2>
+    <p>内容を確認のうえ、2営業日以内に担当者よりご連絡します。<br>お急ぎの場合は、お電話（03-5620-4470）でもお気軽にどうぞ。</p>
+    <p class="more"><a class="lk" href="index.html">トップへ戻る</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="ft__cols">
+    <div><p class="ft__h">塗装部について</p><ul><li><a href="about.html#philosophy">考え方</a></li><li><a href="craftsman.html">職人紹介</a></li><li><a href="about.html#development">人材育成</a></li><li><a href="works.html">仕上げた面</a></li></ul></div>
+    <div><p class="ft__h">設備</p><ul><li><a href="studio.html">塗装スタジオ</a></li><li><a href="studio.html#feature">設備と特徴</a></li><li><a href="studio.html#finish">対応できる仕上げ</a></li><li><a href="studio.html#flow">仕上げまでの流れ</a></li></ul></div>
+    <div><p class="ft__h">会社</p><ul><li><a href="company.html">会社概要</a></li><li><a href="company.html#history">沿革</a></li><li><a href="recruit.html">採用情報</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="privacy.html">プライバシーポリシー</a></li></ul></div>
+    <address class="ft__addr">榑木工芸株式会社 塗装部<br>代表取締役 榑木 遼太郎<br>
+      本社 〒135-0021 東京都江東区白河2丁目11-6<br>
+      塗装スタジオ 〒135-0022 東京都江東区三好3丁目4-19<br>
+      TEL 03-5620-4470 ／ 創業 1954年</address>
+  </div>
+  <p class="ft__top"><a class="lk" href="#top">BACK TO TOP<span class="ar ar--u"></span></a></p>
+  <p class="ft__logo">榑木工芸 塗装部</p>
+  <p class="ft__c">© KUREKI KOUGEI CO., LTD.</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact.js"></script>
+</body>
+</html>

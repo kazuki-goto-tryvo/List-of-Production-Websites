@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>エントリー・お問い合わせ｜碧原鉄道 障がい者採用サイト</title>
+<meta name="description" content="碧原鉄道 障がい者採用のエントリー、しごと発見セミナーの申し込み、職場見学の相談、採用についての質問を受け付けています。">
+<meta property="og:title" content="エントリー・お問い合わせ｜碧原鉄道 障がい者採用サイト">
+<meta property="og:description" content="碧原鉄道 障がい者採用のエントリー、しごと発見セミナーの申し込み、職場見学の相談、採用についての質問を受け付けています。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="assets/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body class="sub">
+<a class="skip" href="#main">本文へ移動する</a>
+
+<a class="logotab" href="index.html" aria-label="碧原鉄道 障がい者採用 トップへ">
+  <span class="logotab__en">AR</span>
+  <span class="logotab__ja">碧原鉄道</span>
+  <span class="logotab__sub">障がい者採用</span>
+</a>
+
+<header class="hd" id="top">
+  <nav class="hd__pill" aria-label="サイト内ナビゲーション">
+    <a href="workplace.html">職場のこと</a>
+    <a href="members.html">はたらく人</a>
+    <a href="seminar.html">セミナー</a>
+    <a href="requirements.html#flow">選考の流れ</a>
+  </nav>
+  <a class="btn btn--pill hd__entry" href="entry.html">ENTRY・MY PAGE<i class="btn__ic btn__ic--plus" aria-hidden="true"></i></a>
+</header>
+
+<main id="main">
+
+<div class="ph">
+  <div class="ph__card">
+    <span class="shape shape--p1 mv-vert" aria-hidden="true"></span>
+    <span class="shape shape--p2 mv-horz" aria-hidden="true"></span>
+    <span class="shape shape--p3 mv-diag" aria-hidden="true"></span>
+    <span class="shape shape--p4 mv-diag" aria-hidden="true"></span>
+    <div class="ph__in">
+      <p class="ph__en" aria-hidden="true">ENTRY</p>
+      <h1 class="ph__h">エントリー・お問い合わせ</h1>
+      <p class="ph__lead">エントリーを受け付けると、マイページの登録案内をメールでお送りします。セミナーの申し込みや、応募前の質問もこちらからどうぞ。</p>
+      <ol class="bc" aria-label="現在の位置"><li><a href="index.html">トップ</a></li><li aria-current="page">エントリー・お問い合わせ</li></ol>
+    </div>
+  </div>
+</div>
+
+<section class="sb">
+  <div class="inner">
+    <div class="contact">
+      <p class="contact__h"><span class="mk" aria-hidden="true"></span>採用事務局</p>
+      <p class="contact__t">平日 10:00〜17:00（年末年始を除く）。電話が使いにくい方は、下のフォームかメールでご連絡ください。</p>
+      <dl class="contact__grid">
+        <div><dt>新卒採用</dt><dd><a href="tel:045-100-8431">045-100-8431</a></dd></div>
+        <div><dt>キャリア採用</dt><dd><a href="tel:045-100-8432">045-100-8432</a></dd></div>
+        <div><dt>メール</dt><dd class="contact__mail"><a href="mailto:recruit@aohara-railway.co.jp">recruit@aohara-railway.co.jp</a></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+<section class="sb" id="form-area">
+  <div class="inner">
+    <div class="sec__top">
+      <h2 class="sechead">
+        <span class="sechead__en">FORM</span>
+        <span class="sechead__ja">入力フォーム</span>
+      </h2>
+      <p class="sb__lead">採用事務局から3営業日以内に、メールでご連絡します。障がいについて書きたくないことは、空欄のままでかまいません。</p>
+    </div>
+    <div class="sb__body">
+      <form class="fm" id="form" novalidate>
+        <div class="fm__row" data-req="radio">
+          <p class="fm__lb" id="type-lb">ご用件<span class="req">必須</span></p>
+          <div>
+            <div class="fm__ch" role="radiogroup" aria-labelledby="type-lb">
+              <label><input type="radio" name="type" value="new">新卒採用のエントリー</label>
+              <label><input type="radio" name="type" value="career">キャリア採用のエントリー</label>
+              <label><input type="radio" name="type" value="seminar">しごと発見セミナーの申し込み</label>
+              <label><input type="radio" name="type" value="visit">職場見学の相談</label>
+              <label><input type="radio" name="type" value="question">そのほかの質問</label>
+            </div>
+            <p class="fm__err">ご用件を選んでください。</p>
+          </div>
+        </div>
+        <div class="fm__row">
+          <label class="fm__lb" for="f-course">希望する区分<span class="opt">任意</span></label>
+          <div>
+            <select id="f-course" name="course">
+              <option value="">選んでください</option>
+              <option>総合職</option><option>エリア総合職</option><option>ジョブ型</option><option>まだ決めていない</option>
+            </select>
+            <p class="fm__note">エントリーの方のみ。迷っている場合は「まだ決めていない」を選んでください。</p>
+          </div>
+        </div>
+        <div class="fm__row" data-req="text">
+          <label class="fm__lb" for="f-name">お名前<span class="req">必須</span></label>
+          <div>
+            <input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="f-name-err">
+            <p class="fm__err" id="f-name-err">お名前を入力してください。</p>
+          </div>
+        </div>
+        <div class="fm__row" data-req="text">
+          <label class="fm__lb" for="f-kana">ふりがな<span class="req">必須</span></label>
+          <div>
+            <input type="text" id="f-kana" name="kana" aria-describedby="f-kana-err">
+            <p class="fm__err" id="f-kana-err">ふりがなを入力してください。</p>
+          </div>
+        </div>
+        <div class="fm__row" data-req="email">
+          <label class="fm__lb" for="f-mail">メールアドレス<span class="req">必須</span></label>
+          <div>
+            <input type="email" id="f-mail" name="email" autocomplete="email" inputmode="email" aria-describedby="f-mail-err">
+            <p class="fm__note">マイページの登録案内をこのアドレスへお送りします。</p>
+            <p class="fm__err" id="f-mail-err">メールアドレスを正しい形で入力してください。</p>
+          </div>
+        </div>
+        <div class="fm__row">
+          <label class="fm__lb" for="f-tel">電話番号<span class="opt">任意</span></label>
+          <div>
+            <input type="tel" id="f-tel" name="tel" autocomplete="tel" inputmode="tel">
+            <p class="fm__note">電話での連絡を希望しない方は、空欄でかまいません。</p>
+          </div>
+        </div>
+        <div class="fm__row">
+          <p class="fm__lb" id="contact-lb">希望する連絡方法<span class="opt">任意</span></p>
+          <div>
+            <div class="fm__ch" role="group" aria-labelledby="contact-lb">
+              <label><input type="checkbox" name="contact" value="メール">メール</label>
+              <label><input type="checkbox" name="contact" value="電話">電話</label>
+              <label><input type="checkbox" name="contact" value="チャット">チャット</label>
+              <label><input type="checkbox" name="contact" value="手話通訳つきのオンライン面談">手話通訳つきのオンライン面談</label>
+              <label><input type="checkbox" name="contact" value="筆談">筆談</label>
+            </div>
+          </div>
+        </div>
+        <div class="fm__row">
+          <label class="fm__lb" for="f-care">配慮の希望<span class="opt">任意</span></label>
+          <div>
+            <textarea id="f-care" name="care" placeholder="例：面接はオンラインで、文字でのやりとりを希望します"></textarea>
+            <p class="fm__note">セミナーや面接で必要なこと（手話通訳、文字支援、座席の位置など）を書いてください。</p>
+          </div>
+        </div>
+        <div class="fm__row">
+          <label class="fm__lb" for="f-msg">ご質問・ご相談<span class="opt">任意</span></label>
+          <div>
+            <textarea id="f-msg" name="message"></textarea>
+            <p class="fm__note">見学したい職場や、グループ会社への応募の希望もこちらへ。</p>
+          </div>
+        </div>
+        <div class="fm__agree" data-req="check">
+          <label><input type="checkbox" name="agree" value="1"><span><a href="privacy.html">個人情報の取り扱い</a>に同意する</span></label>
+          <p class="fm__err">送信には、個人情報の取り扱いへの同意が必要です。</p>
+        </div>
+        <div class="fm__submit"><button class="btn btn--pill submit" type="submit">この内容で送信する<i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></button></div>
+      </form>
+      <div class="thanks" id="thanks" tabindex="-1" hidden>
+        <p class="thanks__en">THANK YOU</p>
+        <h3 class="thanks__h">受け付けました</h3>
+        <p class="tx">ご連絡ありがとうございます。採用事務局から3営業日以内に、ご入力のメールアドレスへご連絡します。届かない場合は、お手数ですがお電話でお知らせください。</p>
+        <a class="btn btn--pill" href="index.html">トップへ戻る<i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="inner">
+    <section class="cta" aria-label="エントリー">
+      <div class="cta__l">
+        <p class="cta__slogan reveal"><span>わたしの速度で、</span><span>まちをつなぐ。</span></p>
+        <p class="cta__sub reveal">碧原鉄道 障がい者採用</p>
+      </div>
+      <div class="cta__fig reveal">
+        <img src="assets/img/circle-4.webp" alt="ノートパソコンに向かう手元。机の上にマグカップと緑色の電車の置物がある" width="640" height="557">
+      </div>
+      <ul class="cta__links">
+        <li class="reveal reveal--m"><a href="entry.html?type=new"><span class="cta__tag">新卒</span><span class="cta__tx summary-text">エントリー・マイページ</span><i class="btn__ic btn__ic--ne" aria-hidden="true"></i></a></li>
+        <li class="reveal reveal--m"><a href="entry.html?type=career"><span class="cta__tag">キャリア</span><span class="cta__tx summary-text">エントリー・マイページ</span><i class="btn__ic btn__ic--ne" aria-hidden="true"></i></a></li>
+        <li class="reveal reveal--m"><a href="group.html#works"><span class="cta__tag">碧原ワークス</span><span class="cta__tx summary-text">採用情報を見る</span><i class="btn__ic btn__ic--ne" aria-hidden="true"></i></a></li>
+      </ul>
+    </section>
+  </div>
+
+  <a class="to-top" href="#top"><i class="to-top__ic" aria-hidden="true"></i><span class="to-top__tx">BACK TO TOP</span></a>
+
+  <div class="ft">
+    <div class="inner ft__inner">
+      <div class="ft__brand">
+        <p class="ft__logo"><span class="ft__logo-a">AOHARA</span><span class="ft__logo-b">RAILWAY</span></p>
+        <p class="ft__co">碧原鉄道株式会社</p>
+        <a class="btn btn--pill btn--outline" href="about.html">碧原鉄道について<i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a>
+      </div>
+
+      <nav class="ft__rel" aria-label="関連リンク">
+        <p class="ft__cap"><span class="mk" aria-hidden="true"></span>関連リンク</p>
+        <ul>
+          <li><a href="index.html"><span class="link-title">採用情報トップ</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+          <li><a href="requirements.html#new"><span class="link-title">新卒採用・インターンシップ</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+          <li><a href="requirements.html#career"><span class="link-title">キャリア採用</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+        </ul>
+      </nav>
+
+      <nav class="ft__oth" aria-label="そのほかの採用情報">
+        <p class="ft__cap"><span class="mk" aria-hidden="true"></span>そのほかの採用情報</p>
+        <ul>
+          <li><a href="group.html#works"><span class="link-title">碧原ワークス採用</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+          <li><a href="group.html#group"><span class="link-title">碧原グループ採用情報</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+          <li><a href="group.html#parttime"><span class="link-title">駅係員アルバイト</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+          <li><a href="group.html#medical"><span class="link-title">医療職採用</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+          <li><a href="group.html#staffing"><span class="link-title">人材紹介・人材派遣</span><i class="btn__ic btn__ic--arrow" aria-hidden="true"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="ft__copy"><span class="inner"><a class="ft__pp" href="privacy.html">個人情報の取り扱い</a>Copyright © AOHARA RAILWAY Co., Ltd. All Rights Reserved.</span></p>
+  </div>
+</footer>
+
+<!-- SP：下端固定バー -->
+<nav class="spbar" aria-label="サイト内ナビゲーション（モバイル）">
+  <a href="workplace.html"><span class="spbar__ic spbar__ic--bldg" aria-hidden="true"></span>職場のこと</a>
+  <a href="members.html"><span class="spbar__ic spbar__ic--person" aria-hidden="true"></span>はたらく人</a>
+  <a href="seminar.html"><span class="spbar__ic spbar__ic--screen" aria-hidden="true"></span>セミナー</a>
+  <a href="requirements.html#flow"><span class="spbar__ic spbar__ic--doc" aria-hidden="true"></span>選考の流れ</a>
+  <a class="spbar__entry" href="entry.html" aria-current="page"><span>ENTRY</span><span>MY PAGE</span></a>
+</nav>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact.js"></script>
+</body>
+</html>

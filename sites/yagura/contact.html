@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ご相談・お問い合わせ｜株式会社ヤグラ設計機構</title>
+<meta name="description" content="ヤグラ設計機構へのご相談・お問い合わせ。構造設計、意匠設計・工事監理、既存建物の調査・改修設計のご相談をお受けしています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Noto+Sans+JP:wght@200;300;400;500;700&family=Noto+Serif+JP:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body class="sub">
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="hd" id="hd">
+  <a class="logo" href="index.html" aria-label="ヤグラ設計機構 トップへ">
+    <b>YDA</b><i><span>YAGURA</span><span>Design Alliance</span><span>Inc.</span></i>
+  </a>
+  <nav class="hd__nav" aria-label="グローバル">
+    <a class="ul" href="member.html">Member</a><a class="ul" href="works.html">Works</a><a class="ul" href="service.html">Service</a><a class="ul" href="about.html">Company</a><a class="ul" href="contact.html" aria-current="page">Contact</a>
+  </nav>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く">
+    <i></i><i></i><i></i>
+  </button>
+</header>
+
+<nav class="menu" id="menu" aria-label="メニュー" hidden>
+  <a href="index.html">Top<span>トップ</span></a>
+  <a href="member.html">Member<span>メンバー</span></a>
+  <a href="works.html">Works<span>実績</span></a>
+  <a href="service.html">Service<span>業務内容</span></a>
+  <a href="about.html">Company<span>事務所について</span></a>
+  <a href="contact.html" aria-current="page">Contact<span>ご相談・お問い合わせ</span></a>
+</nav>
+
+<main id="main">
+<div class="phd" style="--bg:var(--green);--fg:var(--teal);--tc:var(--ink)">
+  <svg class="phd__grid" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke">
+      <rect x="560" y="190" width="320" height="140"/>
+      <path d="M0 0 L560 190 M1440 0 L880 190 M0 520 L560 330 M1440 520 L880 330"/>
+      <path opacity=".6" d="M240 0 L640 190 M480 0 L720 190 M720 0 L760 190 M960 0 L800 190 M1200 0 L840 190 M240 520 L640 330 M480 520 L720 330 M720 520 L760 330 M960 520 L800 330 M1200 520 L840 330 M0 130 L560 238 M0 260 L560 260 M0 390 L560 283 M1440 130 L880 238 M1440 260 L880 260 M1440 390 L880 283"/>
+    </g>
+  </svg>
+  <div class="phd__in">
+    <p class="phd__en" aria-hidden="true">Contact</p>
+    <h1 class="phd__ja">ご相談・お問い合わせ</h1>
+    <p class="phd__lead">計画の段階や図面の有無は問いません。<br>2営業日以内に担当者からご連絡します。</p>
+    <ol class="crumb"><li><a href="index.html">Top</a></li><li>ご相談・お問い合わせ</li></ol>
+  </div>
+</div>
+<section class="sb">
+  <div class="sb__in ct">
+    <aside class="ct__info">
+      <div class="ct__box">
+        <p class="ct__lab">Tel</p>
+        <p class="ct__tel"><a href="tel:0358257710">03-5825-7710</a></p>
+        <p class="ct__note">平日 9:30〜18:00</p>
+      </div>
+      <div class="ct__box">
+        <p class="ct__lab">Mail</p>
+        <p class="ct__mail">info@yagura-da.jp</p>
+        <p class="ct__note">図面や写真がある場合は、メールに添付してお送りいただけます。</p>
+      </div>
+      <div class="ct__box">
+        <p class="ct__lab">Before you write</p>
+        <ul class="ct__l">
+          <li>建設地（市区町村まで）</li>
+          <li>建物の用途とおおよその規模</li>
+          <li>既存の建物の場合は、建てられた年と図面の有無</li>
+          <li>ご希望の時期</li>
+        </ul>
+        <p class="ct__note">分かる範囲で書いていただければ、最初の打合せが早く進みます。</p>
+      </div>
+    </aside>
+
+    <div class="ct__main">
+      <form class="form" id="form" novalidate>
+        <div class="f-row" data-req="radio">
+          <p class="f-lab" id="l-type">ご相談の種類<em class="req">必須</em></p>
+          <div class="f-radios" role="radiogroup" aria-labelledby="l-type">
+            <label><input type="radio" name="type" value="structure"><span>構造設計</span></label>
+            <label><input type="radio" name="type" value="architecture"><span>意匠設計・工事監理</span></label>
+            <label><input type="radio" name="type" value="renovation"><span>既存建物の調査・改修</span></label>
+            <label><input type="radio" name="type" value="other"><span>そのほか</span></label>
+          </div>
+          <p class="f-err">ご相談の種類を選んでください。</p>
+        </div>
+        <div class="f-row" data-req="text">
+          <label class="f-lab" for="f-name">お名前<em class="req">必須</em></label>
+          <input id="f-name" name="name" type="text" autocomplete="name">
+          <p class="f-err">お名前を入力してください。</p>
+        </div>
+        <div class="f-row">
+          <label class="f-lab" for="f-org">会社名・事務所名</label>
+          <input id="f-org" name="org" type="text" autocomplete="organization">
+        </div>
+        <div class="f-row" data-req="email">
+          <label class="f-lab" for="f-mail">メールアドレス<em class="req">必須</em></label>
+          <input id="f-mail" name="mail" type="email" autocomplete="email">
+          <p class="f-err">メールアドレスを正しく入力してください。</p>
+        </div>
+        <div class="f-row">
+          <label class="f-lab" for="f-tel">電話番号</label>
+          <input id="f-tel" name="tel" type="tel" autocomplete="tel">
+        </div>
+        <div class="f-row">
+          <label class="f-lab" for="f-site">建設地・建物の所在地</label>
+          <input id="f-site" name="site" type="text">
+        </div>
+        <div class="f-row" data-req="text">
+          <label class="f-lab" for="f-msg">ご相談内容<em class="req">必須</em></label>
+          <textarea id="f-msg" name="msg" rows="7"></textarea>
+          <p class="f-err">ご相談内容を入力してください。</p>
+        </div>
+        <div class="f-row f-agree" data-req="check">
+          <label><input type="checkbox" name="agree"><span><a href="privacy.html">個人情報の取り扱い</a>に同意する</span></label>
+          <p class="f-err">内容をご確認のうえ、同意にチェックを入れてください。</p>
+        </div>
+        <p class="f-sub"><button class="btn submit" type="submit">送信する</button></p>
+      </form>
+
+      <div class="thanks" id="thanks" tabindex="-1" hidden>
+        <p class="thanks__en" aria-hidden="true">Thank you</p>
+        <h2 class="thanks__ja">送信が完了しました</h2>
+        <p>お問い合わせいただき、ありがとうございます。内容を確認し、2営業日以内に担当者からご連絡します。</p>
+        <p>急ぎのご用件は、お電話（<a href="tel:0358257710">03-5825-7710</a>）でもお受けしています。</p>
+        <p class="f-sub"><a class="btn" href="index.html">トップへ戻る</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="cp" id="company">
+  <p class="cp__h"><span>Company Profile</span></p>
+  <div class="cp__cols">
+    <dl><dt>名称</dt><dd>株式会社ヤグラ設計機構 / YDA<br>ヤグラセッケイキコウ</dd>
+        <dt>所在地</dt><dd>〒101-0032 東京都千代田区岩本町3丁目8-14 イワモトビル5F</dd>
+        <dt>TEL</dt><dd><a href="tel:0358257710">03-5825-7710</a></dd>
+        <dt>設立</dt><dd>2011年4月</dd></dl>
+    <dl><dt>事務所登録</dt><dd>一級建築士事務所 東京都知事登録 第64118号</dd>
+        <dt>所属団体</dt><dd>一般社団法人 日本構造設計技術会<br>一般社団法人 東京建築設計協会<br>公益社団法人 全国意匠設計士会</dd></dl>
+  </div>
+  <div class="cp__ft">
+    <a class="logo logo--big" href="index.html" aria-label="ヤグラ設計機構 トップへ"><b>YDA</b><i><span>YAGURA</span><span>Design Alliance</span><span>Inc.</span></i></a>
+    <nav class="cp__nav" aria-label="フッター">
+      <a class="ul" href="member.html">Member</a><a class="ul" href="works.html">Works</a><a class="ul" href="service.html">Service</a><a class="ul" href="about.html">Company</a><a class="ul" href="contact.html">Contact</a><a class="ul" href="privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+  <p class="cp__c">© YAGURA Design Alliance Inc.</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/contact.js"></script>
+</body>
+</html>

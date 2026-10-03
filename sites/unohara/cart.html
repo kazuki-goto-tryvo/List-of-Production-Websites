@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カート｜UNOHARA BREWING 株式会社ウノハラ醸造</title>
+<meta name="description" content="ウノハラ醸造のオンラインショップのカート。ご注文内容の確認とお届け先の入力。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body class="sub" id="top">
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="hd is-dark" id="hd">
+  <a class="mark" href="index.html" aria-label="ウノハラ醸造 トップへ">
+    <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M2 10 Q12 0 22 10" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+  </a>
+  <nav class="hd__nav" aria-label="グローバル">
+    <a class="ln" href="beer.html">BEER &amp; GOODS</a>
+    <a class="ln" href="about.html">ABOUT</a>
+    <i class="hd__bar" aria-hidden="true">|</i>
+    <a class="ln hd__cart is-here" href="cart.html" aria-current="page">CART ( <b id="cartn">0</b> )</a>
+  </nav>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く"><i></i><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="メニュー" hidden>
+  <a href="index.html">HOME<span>トップページ</span></a>
+  <a href="beer.html">BEER &amp; GOODS<span>ビールとグッズ</span></a>
+  <a href="about.html">ABOUT<span>ウノハラ醸造について</span></a>
+  <a href="index.html#news">NEWS<span>お知らせ</span></a>
+  <a href="cart.html">CART<span>カート</span></a>
+  <a href="contact.html">CONTACT<span>お問い合わせ</span></a>
+</nav>
+
+<main id="main">
+<div class="phd">
+  <p class="card__top"></p>
+  <div class="phd__in">
+    <div>
+      <p class="phd__en" aria-hidden="true">CART</p>
+      <h1 class="phd__ja">カート</h1>
+    </div>
+    <div class="phd__side">
+      <p class="phd__lead">ご注文の内容を確かめて、お届け先を入力してください。ビールはすべてクール便でお送りします。</p>
+      <ol class="crumb"><li><a class="ln" href="index.html">HOME</a></li><li>カート</li></ol>
+    </div>
+  </div>
+</div>
+
+<section class="sec" id="cartbox">
+  <div class="sec__head">
+    <p class="card__top"></p>
+    <p class="sec__lab">YOUR CART</p>
+    <h2 class="sec__h">カートの中身</h2>
+  </div>
+  <div class="ct" id="ct">
+    <ul class="ct__l" id="ctList"></ul>
+    <div class="ct__empty" id="ctEmpty" hidden>
+      <p>カートにはまだ何も入っていません。</p>
+      <p class="sec__more"><a class="ln" href="beer.html">ビールとグッズを見る</a></p>
+    </div>
+    <dl class="ct__sum" id="ctSum">
+      <div><dt>小計</dt><dd id="ctSub">¥ 0</dd></div>
+      <div><dt>送料（クール便）</dt><dd id="ctShip">¥ 0</dd></div>
+      <div class="ct__total"><dt>合計（税込）</dt><dd id="ctTotal">¥ 0</dd></div>
+      <p class="ct__note">北海道・沖縄へのお届けは、送料が1,980円になります。税込11,000円以上で送料無料。</p>
+    </dl>
+  </div>
+</section>
+
+<section class="sec sec--panel" id="order">
+  <div class="sec__head">
+    <p class="card__top"></p>
+    <p class="sec__lab">ORDER</p>
+    <h2 class="sec__h">お届け先の入力</h2>
+    <p class="sec__lead">お支払い方法のご案内は、ご注文の確認メールでお送りします。</p>
+  </div>
+  <div class="fm">
+    <form class="form" id="form" novalidate>
+      <div class="field" data-req><label class="field__l" for="f-name">お名前<span class="req">必須</span></label>
+        <input class="in" id="f-name" name="name" type="text" autocomplete="name"><p class="err">お名前を入力してください</p></div>
+      <div class="field" data-req><label class="field__l" for="f-kana">ふりがな<span class="req">必須</span></label>
+        <input class="in" id="f-kana" name="kana" type="text"><p class="err">ふりがなを入力してください</p></div>
+      <div class="field" data-req="email"><label class="field__l" for="f-mail">メールアドレス<span class="req">必須</span></label>
+        <input class="in" id="f-mail" name="mail" type="email" autocomplete="email"><p class="err">メールアドレスを正しく入力してください</p></div>
+      <div class="field" data-req><label class="field__l" for="f-tel">電話番号<span class="req">必須</span></label>
+        <input class="in" id="f-tel" name="tel" type="tel" autocomplete="tel"><p class="err">電話番号を入力してください</p></div>
+      <div class="field" data-req><label class="field__l" for="f-zip">郵便番号<span class="req">必須</span></label>
+        <input class="in in--s" id="f-zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code"><p class="err">郵便番号を入力してください</p></div>
+      <div class="field" data-req><label class="field__l" for="f-addr">ご住所<span class="req">必須</span></label>
+        <input class="in" id="f-addr" name="addr" type="text" autocomplete="street-address"><p class="err">ご住所を入力してください</p></div>
+      <div class="field"><label class="field__l" for="f-date">お届け希望日<span class="opt">任意</span></label>
+        <select class="in in--s" id="f-date" name="date"><option>指定なし</option><option>ご注文日から5日目</option><option>ご注文日から6日目</option><option>ご注文日から7日目</option><option>ご注文日から8日目以降（備考に記入）</option></select></div>
+      <div class="field" data-req="radio"><p class="field__l">お支払い方法<span class="req">必須</span></p>
+        <div class="rad">
+          <label><input type="radio" name="pay" value="card"><span>クレジットカード</span></label>
+          <label><input type="radio" name="pay" value="bank"><span>銀行振込（前払い）</span></label>
+          <label><input type="radio" name="pay" value="cod"><span>代金引換（手数料330円）</span></label>
+        </div><p class="err">お支払い方法を選んでください</p></div>
+      <div class="field"><label class="field__l" for="f-note">備考<span class="opt">任意</span></label>
+        <textarea class="in" id="f-note" name="note" rows="4"></textarea></div>
+      <div class="agree" data-req="check"><label><input type="checkbox" name="age"><span>20歳以上です</span></label><p class="err">20歳未満の方からのご注文はお受けしていません</p></div>
+      <div class="agree" data-req="check"><label><input type="checkbox" name="agree"><span><a class="tl" href="privacy.html" target="_blank">プライバシーポリシー</a>と<a class="tl" href="tokushoho.html" target="_blank">特定商取引法に基づく表記</a>を確認しました</span></label><p class="err">内容をご確認のうえ、チェックを入れてください</p></div>
+      <p class="fm__send"><button class="sbtn submit" type="submit" id="orderBtn"><span>ORDER</span>この内容で注文する</button></p>
+      <p class="fm__warn" id="ctWarn" hidden>カートが空のため、注文できません。</p>
+    </form>
+    <div class="thanks" id="thanks" hidden tabindex="-1">
+      <p class="card__top"></p>
+      <p class="sec__lab">THANK YOU</p>
+      <h2 class="thanks__h">ご注文を受け付けました</h2>
+      <p class="thanks__p">ご入力のメールアドレスに、ご注文の確認メールをお送りします。発送の準備ができしだい、あらためてご連絡します。<br>メールが届かない場合は、お電話（0463-96-2870）でお知らせください。</p>
+      <p class="sec__more"><a class="ln" href="index.html">トップへ戻る</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <nav class="ft__nav" aria-label="フッター">
+    <a class="ln" href="index.html">HOME</a><a class="ln" href="beer.html">BEER &amp; GOODS</a><a class="ln" href="about.html">ABOUT</a>
+    <a class="ln ft__cart is-here" href="cart.html">CART ( <b>0</b> )</a>
+  </nav>
+  <figure class="ft__can fade"><img src="assets/img/can2.webp" alt="" width="400" height="920" loading="lazy"></figure>
+  <ul class="ft__links">
+    <li><a class="ln" href="index.html#news">ニュース</a></li><li><a class="ln" href="contact.html">お問い合わせ</a></li>
+    <li><a class="ln" href="tokushoho.html">特定商取引法に基づく表記</a></li><li><a class="ln" href="privacy.html">プライバシーポリシー</a></li>
+  </ul>
+  <div class="ft__mail">
+    <p class="card__top"></p>
+    <p class="ft__mailh"><a href="contact.html?type=magazine">メルマガの登録</a><span class="arw" aria-hidden="true"></span></p>
+    <p class="ft__mailb">新商品やイベント、お得な情報など</p>
+    <p class="ft__mailbtn"><a class="ln" href="contact.html?type=magazine">メールアドレスを登録する</a></p>
+  </div>
+  <address class="ft__co">株式会社ウノハラ醸造 / UNOHARA BREWING<br>
+    〒259-1114 神奈川県伊勢原市上谷1188<br>TEL 0463-96-2870</address>
+  <p class="ft__c">© UNOHARA BREWING</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/form.js"></script>
+<script src="assets/js/cart.js"></script>
+</body>
+</html>

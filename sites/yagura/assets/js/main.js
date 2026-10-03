@@ -80,6 +80,8 @@
   /* ---- 右端のドットナビ＋ヘッダーの色（参照元 top-pagenavigation__dot） ---- */
   const secs = $$('[data-label]');
   const pg = $('#pgnav');
+  // ★下層ページにはドットナビが無い（ヘッダーの色も固定）ので、ここから先はTOPだけ
+  if (pg) {
   pg.innerHTML = secs.map((s, i) =>
     `<li><button type="button" data-i="${i}" aria-label="${s.dataset.label}へ"></button></li>`).join('');
   const lis = $$('li', pg);
@@ -97,6 +99,7 @@
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
   secs.forEach(s => navIO.observe(s));
+  }
 
   /* ---- Projects の before / after ワイプ ---- */
   $$('[data-ba]').forEach(fig => {

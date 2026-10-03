@@ -274,3 +274,11 @@ b,i{font-style:normal}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rise,.rise-list > *{opacity:1;transform:none}
 }
+
+/* 商品カード全体を詳細ページへのリンクに（下層ページ追加 2026-10-03） */
+.prods__a{position:absolute;inset:0;z-index:4}
+.prods__a:focus-visible{outline-offset:6px}
+/* 既存の不具合修正（2026-10-03）: MENUの文字と三本線が重なる／矢印の先端がボタン右端に飛ぶ */
+.burger{padding-right:48px}
+.arw--w{position:relative;bottom:auto;right:auto}
+@media (max-width:900px){ .burger{padding-right:0;width:26px} }

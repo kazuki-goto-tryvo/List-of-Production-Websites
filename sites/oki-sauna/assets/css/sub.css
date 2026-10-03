@@ -1,0 +1,325 @@
+@charset "UTF-8";
+/* 熾 -蕗原サウナ- 下層ページ（style.css のあとに読む）
+   TOPの色・書体・罫・注記アイコン・六角ボタン・黒いCTAバーをそのまま使い、
+   位置指定ではなく文書の流れで組む */
+
+/* ---------- ヘッダー：判子アニメはTOPだけ ---------- */
+.js body.sub .stamp,.js body.sub.is-ready .stamp{opacity:1;animation:none}
+
+/* ---------- ページの頭 ---------- */
+.phd{position:relative;padding-top:244px;overflow:hidden}
+.phd__nav{display:none}
+.phd__in{position:relative;margin-left:25.972%;width:67.083%;padding-top:110px}
+.phd__en{font-family:var(--en);font-size:96px;line-height:1;font-weight:300;letter-spacing:4px;color:var(--ink);margin-left:-5px}
+.phd__ja{margin-top:30px;font-size:30px;line-height:1.4;font-weight:700;letter-spacing:3px;color:var(--moss)}
+.phd__ja::before{content:"〔 "}
+.phd__ja::after{content:" 〕"}
+.phd__ja::before,.phd__ja::after{color:var(--ink);font-weight:500}
+.phd__lead{margin-top:34px;font-size:16px;line-height:32px;font-weight:500}
+.crumb{display:flex;flex-wrap:wrap;list-style:none;margin:40px 0 0;padding:0;font-size:12px;line-height:1.6;color:var(--gray)}
+.crumb li+li::before{content:"／";margin:0 .6em;color:var(--grayL)}
+.crumb a{border-bottom:1px solid currentColor;transition:color .3s}
+.crumb a:hover{color:var(--moss)}
+.phd__seal{left:auto;right:0;top:118px}
+.phd__ink{left:66%;top:240px;width:440px;height:290px;opacity:.55}
+.phd__photo{margin:84px 0 0 13.194%;width:86.806%;height:520px;overflow:hidden}
+.phd__photo img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- 節：左に縦組みの見出し、右に本文カラム ---------- */
+.ss{position:relative;display:grid;grid-template-columns:25.972% 67.083%;padding:130px 0 140px}
+.sub [id]{scroll-margin-top:90px}
+.ss--warm{background:var(--warm)}
+.ss__hd{position:relative;justify-self:center;align-self:start;position:sticky;top:110px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.ss__en{font-family:var(--en);font-size:12px;line-height:1;font-weight:500;letter-spacing:1.5px;color:var(--moss);
+  writing-mode:vertical-rl}
+.ss__h{writing-mode:vertical-rl;font-size:40px;line-height:1.2;font-weight:900;letter-spacing:6px;white-space:nowrap}
+.ss__body{min-width:0}
+.ss__body>*+*{margin-top:44px}
+
+.txt{font-size:15px;line-height:30px;font-weight:500}
+.txt+.txt{margin-top:18px}
+.prose{max-width:780px}
+.prose p{font-size:15px;line-height:30px;font-weight:500}
+.prose p+p{margin-top:22px}
+.prose .em{margin-bottom:38px;font-size:26px;line-height:44px;font-weight:700}
+.prose--msg{max-width:720px}
+.sign{margin-top:40px!important;text-align:right;font-size:13px!important}
+.sign b{display:block;margin-top:4px;font-size:22px;font-weight:700;letter-spacing:4px}
+.sh3{font-size:26px;line-height:40px;font-weight:700}
+.sh3+.txt{margin-top:26px}
+.sh4{font-size:19px;line-height:1.4;font-weight:700;color:var(--moss);letter-spacing:1px}
+.more{margin-top:40px}
+.ul{border-bottom:1px solid currentColor}
+
+/* 写真 */
+.pic{overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ez)}
+.pic:hover img{transform:scale(1.04)}
+.pic--t{aspect-ratio:760/1000}
+.pic--w{height:420px}
+.pic--band{height:440px;margin-top:56px!important}
+.duo2>*+*{margin-top:56px}
+.pair{display:grid;grid-template-columns:40% 1fr;gap:56px;align-items:start}
+.pair--r{grid-template-columns:1fr 40%}
+.pair--r>.pic{order:2}
+.pair>div>*+*{margin-top:26px}
+.pair .sh3+.txt{margin-top:26px}
+.pair .txt+.txt{margin-top:18px}
+
+/* 表（TOPの料金表と同じ罫） */
+.tbl{width:100%;border-collapse:collapse;border-top:1.4px solid var(--ink);border-bottom:1px solid var(--ink)}
+.tbl th,.tbl td{padding:14px 10px;text-align:left;vertical-align:top;font-size:14px;line-height:1.8}
+.tbl th{width:190px;font-weight:700;color:var(--moss);white-space:nowrap}
+.tbl td{font-weight:500}
+.tbl tr+tr th,.tbl tr+tr td{border-top:1px dashed var(--grayL)}
+.tbl a{border-bottom:1px solid currentColor}
+.ss__body>.tbl{max-width:860px}
+
+/* 注記 */
+.notes li+li{margin-top:14px}
+.notes .note{font-size:13px;line-height:22px}
+.notes .note__i{top:5px}
+.notes .note a{border-bottom:1px solid currentColor}
+
+/* 2列 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+.two>*>*+*{margin-top:22px}
+.dots li{position:relative;padding:9px 0 9px 22px;font-size:14px;line-height:1.7;border-bottom:1px dashed var(--grayL)}
+.dots li:last-child{border-bottom:0}
+.dots li::before{content:"";position:absolute;left:8px;top:11px;width:1.2px;height:calc(100% - 22px);background:var(--ink)}
+
+/* 流れ */
+.steps{list-style:none;padding:0;margin:0;counter-reset:s;border-top:1.4px solid var(--ink)}
+.step{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:30px 0;border-bottom:1px dashed var(--grayL)}
+.step:last-child{border-bottom:1px solid var(--ink)}
+.step__no{font-family:var(--en);font-size:44px;line-height:1;font-weight:300;color:var(--ember)}
+.step__h{font-size:19px;line-height:1.5;font-weight:700}
+.step__p{margin-top:8px;font-size:14px;line-height:1.9;font-weight:500}
+
+/* 時刻のながれ */
+.tl{list-style:none;padding:0;margin:0;position:relative}
+.tl::before{content:"";position:absolute;left:96px;top:10px;bottom:10px;width:1.2px;background:var(--ink)}
+.tl li{display:grid;grid-template-columns:96px 1fr;gap:34px;padding:12px 0;position:relative}
+.tl li::before{content:"";position:absolute;left:91px;top:21px;width:11px;height:11px;border-radius:50%;background:var(--ember)}
+.tl time{font-family:var(--en);font-size:18px;line-height:1.6;font-weight:500;text-align:right;padding-right:14px;white-space:nowrap}
+.tl b{display:block;font-size:16px;line-height:1.7;font-weight:700}
+.tl span{display:block;font-size:13.5px;line-height:1.8;color:var(--gray)}
+
+/* 料金・設備（TOPの部品を本文カラムの中で使う） */
+.ss .tabs,.ss .price{margin-top:44px}
+.ss .info__tax{margin-top:40px}
+.ss .info__tax+.notes{margin-top:16px}
+.ss .fac__icons{margin-top:0;padding-left:0;justify-content:center}
+.goods--sub{margin-top:0}
+.goods--sub .goods__notes{margin-top:30px}
+
+/* 宿 */
+.inn{display:grid;grid-template-columns:40% 1fr;gap:48px;align-items:start;padding-top:44px;border-top:1px solid var(--ink)}
+.inn>div>*+*{margin-top:22px}
+.inn__h{font-size:24px;line-height:1.4;font-weight:700}
+.pic--inn{aspect-ratio:840/600}
+
+/* 季節 */
+.seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.season .pic{aspect-ratio:3/4}
+.season__en{margin-top:18px;font-family:var(--en);font-size:12px;letter-spacing:1.5px;color:var(--moss);font-weight:500}
+.season__h{margin-top:4px;font-size:24px;line-height:1.4;font-weight:900}
+.season__p{margin-top:10px;font-size:13.5px;line-height:1.9;font-weight:500}
+
+/* 地図 */
+.amap{display:grid;grid-template-columns:1fr;gap:40px}
+.amap__info{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto auto auto;column-gap:64px;align-items:start}
+.amap__info>*{grid-column:1}
+.amap__info .acc__links{grid-column:2;grid-row:3/6;align-self:end;margin-top:0;border-top:0;padding-top:0}
+.amap__info .acc__zip{margin-top:32px}
+.amap__map{aspect-ratio:929/840;overflow:hidden;background:#EFEEE9}
+.amap__map svg{width:100%;height:100%;display:block}
+.route{list-style:none;padding:0;margin:0;counter-reset:r}
+.route li{position:relative;padding:0 0 26px 58px;counter-increment:r}
+.route li::before{content:counter(r);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--ember);color:#fff;
+  font-family:var(--en);font-size:15px;font-weight:600;line-height:34px;text-align:center}
+.route li:not(:last-child)::after{content:"";position:absolute;left:16.5px;top:40px;bottom:6px;border-left:1.4px dashed var(--grayL)}
+.route b{display:block;font-size:17px;line-height:34px;font-weight:700}
+.route span{display:block;font-size:14px;line-height:1.9;font-weight:500}
+
+/* 下の黒いバー */
+.tail{padding:110px 0 120px}
+.cta--sub{margin-top:0}
+
+/* ---------- ご予約フォーム ---------- */
+.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.way{padding:30px 26px;background:var(--white);border-top:3px solid var(--moss)}
+.way__h{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--moss)}
+.way__v{display:block;margin-top:12px;font-family:var(--en);font-size:28px;line-height:1.3;font-weight:500;letter-spacing:.5px;word-break:break-all}
+.way__v--s{font-size:18px}
+.way__p{margin-top:12px;font-size:12.5px;line-height:1.8;color:var(--gray)}
+
+.form{background:var(--white);padding:24px 48px 56px}
+.field{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:24px 0;border-bottom:1px dashed var(--grayL)}
+.field__l{padding-top:10px;font-size:14.5px;font-weight:700;line-height:1.6}
+.field__h{margin-top:8px;font-size:12px;line-height:1.7;color:var(--gray)}
+.req,.opt{display:inline-block;margin-left:8px;padding:0 8px;border-radius:10px;font-size:11px;line-height:19px;font-weight:700;vertical-align:1px}
+.req{background:var(--ember);color:#fff}
+.opt{background:#EFEDE7;color:var(--gray)}
+.form input[type="text"],.form input[type="email"],.form input[type="tel"],.form input[type="date"],.form select,.form textarea{
+  width:100%;padding:12px 14px;border:1.3px solid var(--grayL);border-radius:3px;background:var(--bg);
+  font:inherit;font-size:16px;font-weight:500;color:var(--ink)}
+.form textarea{min-height:170px;resize:vertical;line-height:1.8}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--moss);outline:none;background:#fff}
+.form [aria-invalid="true"]{border-color:var(--ember);background:#FBF1EC}
+.radios{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:10px;font-size:14.5px}
+.radios label,.agree label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.radios input,.agree input{width:18px;height:18px;margin:0;accent-color:var(--moss)}
+.resv[hidden],.field[hidden]{display:none}
+.err{display:none;margin-top:8px;font-size:12.5px;color:var(--ember);font-weight:700}
+.is-err .err{display:block}
+.agree{margin-top:36px;text-align:center;font-size:14.5px}
+.agree a{border-bottom:1px solid currentColor}
+.submit{display:block;width:320px;max-width:100%;height:70px;margin:30px auto 0;background:var(--fill);color:#fff;
+  font-size:16px;font-weight:700;letter-spacing:1px;transition:background .3s var(--ez)}
+.submit:hover{background:var(--moss)}
+.form__note{margin-top:18px;text-align:center;font-size:12px;color:var(--gray)}
+.thanks{position:relative;background:var(--white);padding:72px 40px 64px;text-align:center}
+.thanks[hidden]{display:none}
+.thanks__seal{position:relative;left:auto;top:auto;margin:0 auto 26px}
+.thanks__h{font-size:26px;line-height:1.6;font-weight:700}
+.thanks__p{margin-top:20px;font-size:14.5px;line-height:2}
+.thanks .more{margin-top:34px}
+
+/* ---------- プライバシーポリシー ---------- */
+.ss--policy{display:block;padding-top:110px}
+.policy{margin-left:25.972%;width:67.083%;max-width:860px}
+.policy h2{margin-top:52px;padding-bottom:10px;border-bottom:1px solid var(--ink);font-size:19px;line-height:1.5;font-weight:700;color:var(--moss)}
+.policy p,.policy li{font-size:14.5px;line-height:2}
+.policy p{margin-top:16px}
+.policy ol{margin-top:12px;padding-left:22px;list-style:decimal}
+.policy .date{margin-top:52px;text-align:right;font-size:13px}
+
+/* ---------- フッター：サイトマップを足す ---------- */
+.ft__nav{position:absolute;left:47.5%;top:58px}
+.ft__nav ul{display:grid;grid-template-columns:repeat(2,auto);gap:14px 56px}
+.ft__nav a{font-size:13.5px;line-height:1.5;font-weight:500;transition:opacity .3s}
+.ft__nav a:hover,.ft__nav a[aria-current]{opacity:.65}
+
+.sp{display:none}
+
+/* ============================ SP ============================ */
+@media (max-width:900px){
+  .sp{display:inline}
+  .pc{display:none}
+
+  .phd{padding-top:162px}
+  .phd__nav{display:flex;justify-content:center;gap:72px;padding-top:46px}
+  .phd__nav .gnav__a{width:70px;font-size:14px}
+  .phd__in{margin:0 24px;width:auto;padding-top:56px}
+  .phd__en{font-size:46px;letter-spacing:2px;margin-left:-2px}
+  .phd__ja{margin-top:18px;font-size:20px;letter-spacing:1.5px}
+  .phd__lead{margin-top:22px;font-size:13.5px;line-height:25px}
+  .phd__lead br{display:none}
+  .crumb{margin-top:26px;font-size:11px}
+  .phd__seal{top:62px;width:35.6px;height:46.2px;border-width:2.6px;border-radius:9px}
+  .phd__seal b{font-size:17.6px;line-height:19px}
+  .phd__ink{left:auto;right:-30px;top:200px;width:200px;height:135px;opacity:.4}
+  .phd__photo{margin:44px 0 0;width:100%;height:240px}
+
+  .ss{display:block;padding:64px 24px 72px}
+  .ss__hd{position:static;display:block;margin-bottom:30px;text-align:center}
+  .ss__en{writing-mode:horizontal-tb;font-size:11px}
+  .ss__h{margin-top:8px;writing-mode:horizontal-tb;font-size:23px;line-height:1.4;letter-spacing:2px;white-space:normal}
+  .ss__body>*+*{margin-top:32px}
+
+  .txt,.prose p{font-size:13.5px;line-height:25px}
+  .prose .em{margin-bottom:26px;font-size:19px;line-height:32px}
+  .sign b{font-size:19px}
+  .sh3{font-size:20px;line-height:32px}
+  .sh3+.txt,.pair .sh3+.txt{margin-top:18px}
+  .sh4{font-size:17px}
+  .more{margin-top:32px}
+
+  .pic--w{height:220px}
+  .pic--band{height:220px;margin-top:36px!important}
+  .pic--t{aspect-ratio:4/3}
+  .pair,.pair--r{grid-template-columns:1fr;gap:28px}
+  .pair--r>.pic{order:0}
+  .pair>div>*+*{margin-top:20px}
+
+  .tbl th,.tbl td{display:block;width:auto;padding:0 4px}
+  .tbl th{padding-top:12px;font-size:12.5px}
+  .tbl td{padding-bottom:12px;font-size:13px;line-height:1.75}
+  .tbl tr+tr td{border-top:0}
+  .notes .note{font-size:11.5px;line-height:19px}
+
+  .two{grid-template-columns:1fr;gap:32px}
+  .dots li{font-size:13px}
+
+  .step{grid-template-columns:52px 1fr;gap:12px;padding:22px 0}
+  .step__no{font-size:30px}
+  .step__h{font-size:16px}
+  .step__p{font-size:12.5px;line-height:1.85}
+
+  .tl::before{left:62px}
+  .tl li{grid-template-columns:62px 1fr;gap:22px;padding:10px 0}
+  .tl li::before{left:57px;top:19px}
+  .tl time{font-size:14px;padding-right:10px}
+  .tl b{font-size:14.5px}
+  .tl span{font-size:12px}
+
+  .ss .tabs{margin-top:28px}
+  .ss .price{margin-top:44px}
+  .ss .fac__icons{gap:34px 20px}
+
+  .inn{grid-template-columns:1fr;gap:22px;padding-top:32px}
+  .inn__h{font-size:20px}
+  .inn>div>*+*{margin-top:16px}
+
+  .seasons{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .season__en{margin-top:12px;font-size:10.5px}
+  .season__h{font-size:19px}
+  .season__p{font-size:12px;line-height:1.8}
+
+  .amap{grid-template-columns:1fr;gap:28px}
+  .amap__map{order:-1;margin:0 -24px}
+  .amap__info{display:block}
+  .amap__info .acc__links{margin-top:12px;padding-top:16px;border-top:1px dashed var(--grayL)}
+  .route li{padding-left:48px}
+  .route li::before{width:30px;height:30px;line-height:30px;font-size:13px}
+  .route li:not(:last-child)::after{left:14.5px;top:36px}
+  .route b{font-size:15px;line-height:30px}
+  .route span{font-size:12.5px}
+
+  .tail{padding:56px 0 64px}
+
+  .ways{grid-template-columns:1fr;gap:12px}
+  .way{padding:22px 20px}
+  .way__v{font-size:24px}
+  .way__v--s{font-size:16px}
+  .ss--warm .form,.ss--warm .thanks{margin:0 -12px}
+  .form{padding:8px 18px 36px}
+  .field{grid-template-columns:1fr;gap:10px;padding:18px 0}
+  .field__l{padding-top:0;font-size:13.5px}
+  .radios{flex-direction:column;gap:12px;padding-top:2px;font-size:13.5px}
+  .agree{margin-top:28px;font-size:13.5px}
+  .submit{height:62px;font-size:15px}
+  .form__note{text-align:left;font-size:11.5px}
+  .thanks{padding:52px 20px 48px}
+  .thanks__h{font-size:19px}
+  .thanks__p{font-size:13px;text-align:left}
+  .thanks__p br{display:none}
+
+  .ss--policy{padding-top:56px}
+  .policy{margin:0;width:auto}
+  .policy h2{margin-top:40px;font-size:16.5px}
+  .policy p,.policy li{font-size:13px;line-height:1.95}
+
+  /* フッター：情報バーを伸ばしてサイトマップを入れる */
+  .sub .ft{height:1237px}
+  .sub .ft__bar{height:597px}
+  .ft__nav{left:24px;right:24px;top:316px;padding-top:24px;border-top:1px solid rgba(255,255,255,.4)}
+  .ft__nav ul{grid-template-columns:1fr 1fr;gap:14px 16px}
+  .ft__nav a{font-size:12.5px}
+  .sub .ft__r{top:525px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .pic:hover img{transform:none}
+}

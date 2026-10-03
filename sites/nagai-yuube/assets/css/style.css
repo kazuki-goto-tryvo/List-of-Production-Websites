@@ -482,3 +482,10 @@ section{display:flow-root;position:relative}
   .fin__beam{transform:rotate(0deg) !important}
   .fin__lamp{transform:rotate(0deg) !important}
 }
+
+/* 下層ページへのリンク（Organizer の下） */
+.org__links{display:flex;flex-wrap:wrap;gap:6px 22px;margin-right:auto;color:var(--sub)}
+.org__links .ulink:hover,.org__links .ulink:focus-visible{color:var(--cream)}
+@media (max-width:900px){
+  .org__links{margin-bottom:22px;gap:10px 20px;font-size:11px}
+}

@@ -6,6 +6,7 @@
 
   /* ---- MENU（円形に開く。参照元 #iris-clip-nav-path） ---- */
   const btn = $('#mbtn'), menu = $('#menu');
+  if (btn && menu) {
   menu.hidden = true;
   btn.setAttribute('aria-label', 'メニューを開く');
   btn.addEventListener('click', () => {
@@ -19,6 +20,7 @@
     btn.setAttribute('aria-expanded', 'false');
     menu.classList.remove('open'); setTimeout(() => { menu.hidden = true; }, 600);
   }));
+  }
 
   /* ---- 写真の帯を途切れさせない：同じ並びをもう1組足して -50% で回す ---- */
   $$('[data-strip]').forEach(ul => {
@@ -43,6 +45,8 @@
 
   /* ---- 上部の白いナビはKVを抜けてから出す ---- */
   const hd = $('#hd'), kv = $('.kv');
+  if (!hd) return;
+  if (!kv) { hd.classList.add('on'); return; }   /* 下層ページは最初から出しておく */
   const onScroll = () => hd.classList.toggle('on', window.scrollY > kv.offsetHeight - 120);
   onScroll();
   addEventListener('scroll', onScroll, { passive: true });

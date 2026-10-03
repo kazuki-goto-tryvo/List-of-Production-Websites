@@ -106,7 +106,8 @@
     b.addEventListener('click', function () { setMenu(!menuOpen); });
   });
   Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
-    if (a.getAttribute('href').charAt(0) === '#') a.addEventListener('click', function () { setMenu(false); });
+    /* 同じページ内へ飛ぶリンク（index.html#… や works.html#movie を含む）は閉じてから飛ぶ */
+    if ((a.getAttribute('href') || '').indexOf('#') !== -1) a.addEventListener('click', function () { setMenu(false); });
   });
 
   /* ───────── M10 Entry モーダル ───────── */
@@ -149,15 +150,15 @@
   var PEOPLE = [
     { ph: 'ph-person-main', alt: '夜の現場でヘルメットをかぶり笑顔で立つ技術者',
       catch: ['見えない電気を、', '確かめながら渡していく。'], tag: '鉄道電気（電車線）', who: 'K.S.　2016年入社' },
-    { ph: 'ph-person-b', alt: '鉄塔を背に立つベテランの変電技術者',
+    { ph: 'ph-person-b', alt: '鉄塔を背に立つ変電技術者',
       catch: ['止まらないことを、', '当たり前にする仕事です。'], tag: '変電・受電設備', who: 'M.T.　2019年入社' },
     { ph: 'ph-person-a', alt: '信号設備の盤の前に立つ女性技術者',
       catch: ['合図がきちんと届く。', 'そのために、何度でも確かめます。'], tag: '信号通信', who: 'A.N.　2021年入社' },
-    { ph: 'ph-person-main', alt: '夜のホームで設備を確認する技術者',
+    { ph: 'ph-hero-sub-b', alt: '計測器を手に設備を確認する女性技術者',
       catch: ['駅の明かりは、', '誰かの帰り道を照らしています。'], tag: '駅設備・建築電気', who: 'Y.K.　2014年入社' },
-    { ph: 'ph-person-b', alt: '架線の下で工具を手にする若手技術者',
+    { ph: 'ph-hero-sub-a', alt: 'ヘッドライト付きのヘルメットで架線設備を見上げる若手技術者',
       catch: ['先輩の手つきを覚えることから、', '毎日が始まりました。'], tag: '鉄道電気（電車線）', who: 'R.H.　2023年入社' },
-    { ph: 'ph-person-a', alt: '図面を手に工程を確認する施工管理担当',
+    { ph: 'ph-movie', alt: '計器盤を指差し確認する技術者',
       catch: ['工程を組み替える判断まで、', '現場が教えてくれます。'], tag: '施工管理', who: 'S.O.　2010年入社' }
   ];
 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お問い合わせ｜UNOHARA BREWING 株式会社ウノハラ醸造</title>
+<meta name="description" content="ウノハラ醸造へのお問い合わせ。商品、ご注文と配送、飲食店・酒販店さまのお取り扱い、メルマガの登録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/sub.css">
+</head>
+<body class="sub" id="top">
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="hd is-dark" id="hd">
+  <a class="mark" href="index.html" aria-label="ウノハラ醸造 トップへ">
+    <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M2 10 Q12 0 22 10" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+  </a>
+  <nav class="hd__nav" aria-label="グローバル">
+    <a class="ln" href="beer.html">BEER &amp; GOODS</a>
+    <a class="ln" href="about.html">ABOUT</a>
+    <i class="hd__bar" aria-hidden="true">|</i>
+    <a class="ln hd__cart" href="cart.html">CART ( <b id="cartn">0</b> )</a>
+  </nav>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く"><i></i><i></i><i></i></button>
+</header>
+
+<nav class="menu" id="menu" aria-label="メニュー" hidden>
+  <a href="index.html">HOME<span>トップページ</span></a>
+  <a href="beer.html">BEER &amp; GOODS<span>ビールとグッズ</span></a>
+  <a href="about.html">ABOUT<span>ウノハラ醸造について</span></a>
+  <a href="index.html#news">NEWS<span>お知らせ</span></a>
+  <a href="cart.html">CART<span>カート</span></a>
+  <a href="contact.html">CONTACT<span>お問い合わせ</span></a>
+</nav>
+
+<main id="main">
+<div class="phd">
+  <p class="card__top"></p>
+  <div class="phd__in">
+    <div>
+      <p class="phd__en" aria-hidden="true">CONTACT</p>
+      <h1 class="phd__ja">お問い合わせ</h1>
+    </div>
+    <div class="phd__side">
+      <p class="phd__lead">商品のこと、ご注文のこと、お店でのお取り扱いのことなど、お気軽にどうぞ。</p>
+      <ol class="crumb"><li><a class="ln" href="index.html">HOME</a></li><li>お問い合わせ</li></ol>
+    </div>
+  </div>
+</div>
+<figure class="phd__ph fade"><img src="assets/img/sc0.webp" alt="鵜原山の稜線" width="1440" height="620"></figure>
+
+<section class="sec" id="info">
+  <div class="sp2">
+    <div class="sp2__t up">
+      <p class="card__top"></p>
+    <p class="sec__lab">TEL</p>
+    <h2 class="sec__h">お電話でのお問い合わせ</h2>
+      <p class="tel"><a href="tel:0463962870">0463-96-2870</a></p>
+      <p class="sec__p">受付時間 平日 10:00〜17:00（土日祝・年末年始を除く）<br>仕込みの日は電話に出られないことがあります。フォームからのお問い合わせには、2営業日以内にお返事します。</p>
+    </div>
+    <div class="sp2__t up" id="faq">
+      <p class="card__top"></p>
+    <p class="sec__lab">FAQ</p>
+    <h2 class="sec__h">よくいただくご質問</h2>
+      <dl class="faq">
+        <div><dt>贈りものにできますか？</dt><dd>できます。ご注文の備考欄に「贈りもの」とお書きください。金額のわかるものは同封しません。</dd></div>
+        <div><dt>常温で置いておいても大丈夫ですか？</dt><dd>熱を加えていないビールなので、冷蔵庫での保管をお願いしています。常温に長く置くと香りが落ちてしまいます。</dd></div>
+        <div><dt>お店で扱いたいのですが。</dt><dd>飲食店・酒販店さまのお取り扱いは、下のフォームで「飲食店・酒販店さまのお取り扱い」を選んでご連絡ください。</dd></div>
+        <div><dt>醸造所を見学できますか？</dt><dd>いまは見学を受け付けていません。2027年にタップルームが開いたら、見学の日もつくるつもりです。</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--panel" id="form-area">
+  <div class="sec__head">
+    <p class="card__top"></p>
+    <p class="sec__lab">FORM</p>
+    <h2 class="sec__h">フォームでのお問い合わせ</h2>
+    <p class="sec__lead">メルマガの登録も、こちらのフォームから受け付けています。種類で「メルマガの登録」を選び、本文に「登録希望」とだけお書きください。</p>
+  </div>
+  <div class="fm">
+    <form class="form" id="form" novalidate>
+      <div class="field" data-req="radio"><p class="field__l">お問い合わせの種類<span class="req">必須</span></p>
+        <div class="rad">
+          <label><input type="radio" name="type" value="product"><span>商品について</span></label>
+          <label><input type="radio" name="type" value="order"><span>ご注文・配送について</span></label>
+          <label><input type="radio" name="type" value="wholesale"><span>飲食店・酒販店さまのお取り扱い</span></label>
+          <label><input type="radio" name="type" value="magazine"><span>メルマガの登録</span></label>
+          <label><input type="radio" name="type" value="other"><span>その他</span></label>
+        </div><p class="err">お問い合わせの種類を選んでください</p></div>
+      <div class="field" data-req><label class="field__l" for="f-name">お名前<span class="req">必須</span></label>
+        <input class="in" id="f-name" name="name" type="text" autocomplete="name"><p class="err">お名前を入力してください</p></div>
+      <div class="field"><label class="field__l" for="f-shop">店名・会社名<span class="opt">任意</span></label>
+        <input class="in" id="f-shop" name="shop" type="text" autocomplete="organization"></div>
+      <div class="field" data-req="email"><label class="field__l" for="f-mail">メールアドレス<span class="req">必須</span></label>
+        <input class="in" id="f-mail" name="mail" type="email" autocomplete="email"><p class="err">メールアドレスを正しく入力してください</p></div>
+      <div class="field"><label class="field__l" for="f-tel">電話番号<span class="opt">任意</span></label>
+        <input class="in" id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+      <div class="field" data-req><label class="field__l" for="f-msg">お問い合わせ内容<span class="req">必須</span></label>
+        <textarea class="in" id="f-msg" name="msg" rows="6"></textarea><p class="err">お問い合わせ内容を入力してください</p></div>
+      <div class="agree" data-req="check"><label><input type="checkbox" name="agree"><span><a class="tl" href="privacy.html" target="_blank">プライバシーポリシー</a>に同意する</span></label><p class="err">プライバシーポリシーへの同意が必要です</p></div>
+      <p class="fm__send"><button class="sbtn submit" type="submit"><span>SEND</span>この内容で送信する</button></p>
+    </form>
+    <div class="thanks" id="thanks" hidden tabindex="-1">
+      <p class="card__top"></p>
+      <p class="sec__lab">THANK YOU</p>
+      <h2 class="thanks__h">お問い合わせありがとうございます</h2>
+      <p class="thanks__p">内容を確認して、2営業日以内にお返事します。<br>お急ぎの場合は、お電話（0463-96-2870）でもどうぞ。</p>
+      <p class="sec__more"><a class="ln" href="index.html">トップへ戻る</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <nav class="ft__nav" aria-label="フッター">
+    <a class="ln" href="index.html">HOME</a><a class="ln" href="beer.html">BEER &amp; GOODS</a><a class="ln" href="about.html">ABOUT</a>
+    <a class="ln ft__cart" href="cart.html">CART ( <b>0</b> )</a>
+  </nav>
+  <figure class="ft__can fade"><img src="assets/img/can2.webp" alt="" width="400" height="920" loading="lazy"></figure>
+  <ul class="ft__links">
+    <li><a class="ln" href="index.html#news">ニュース</a></li><li><a class="ln is-here" href="contact.html">お問い合わせ</a></li>
+    <li><a class="ln" href="tokushoho.html">特定商取引法に基づく表記</a></li><li><a class="ln" href="privacy.html">プライバシーポリシー</a></li>
+  </ul>
+  <div class="ft__mail">
+    <p class="card__top"></p>
+    <p class="ft__mailh"><a href="contact.html?type=magazine">メルマガの登録</a><span class="arw" aria-hidden="true"></span></p>
+    <p class="ft__mailb">新商品やイベント、お得な情報など</p>
+    <p class="ft__mailbtn"><a class="ln" href="contact.html?type=magazine">メールアドレスを登録する</a></p>
+  </div>
+  <address class="ft__co">株式会社ウノハラ醸造 / UNOHARA BREWING<br>
+    〒259-1114 神奈川県伊勢原市上谷1188<br>TEL 0463-96-2870</address>
+  <p class="ft__c">© UNOHARA BREWING</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/form.js"></script>
+</body>
+</html>

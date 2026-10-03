@@ -42,6 +42,7 @@
   var now = document.getElementById('galnow');
   var bar = document.getElementById('galbar');
   var th = document.getElementById('galth');
+  if (!cap || !th) return;   /* 下層ページにはギャラリーが無い */
   var i = 0, timer = null;
   function draw() {
     cap.textContent = CAPS[i];

@@ -1,0 +1,233 @@
+@charset "utf-8";
+/* ============================================================
+   榑木工芸 塗装部 — 下層ページ（style.css の上に重ねる）
+   白地・黒文字・細い罫線・[→] リンクはTOPと共通。PC 1440 / SP 390
+   ============================================================ */
+
+/* ---------- 左上のロゴ（TOPのヒーロー見出しを小さくした形） ---------- */
+.shd{position:absolute;left:var(--pad);top:24px;z-index:10}
+.shd__logo{display:block}
+.shd__en{display:block;font-family:Inter,sans-serif;font-size:10.5px}
+.shd__ja{display:block;font-size:20px;font-weight:700;line-height:1.5;margin-top:2px}
+.nav a[aria-current="page"]{color:var(--acc)}
+
+/* ---------- ページ見出し ---------- */
+.phd{padding:190px var(--pad) 0}
+.phd__en{font-family:Inter,sans-serif;font-size:88px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.phd__ja{font-size:22px;font-weight:700;line-height:1.5;margin-top:30px}
+.phd__lead{margin-top:16px;max-width:560px;font-size:12.5px}
+.crumb{display:flex;flex-wrap:wrap;gap:0;margin:56px 0 0;padding:14px 0 0;list-style:none;
+  border-top:1px solid var(--line);font-size:11px;color:var(--sub)}
+.crumb li + li::before{content:"/";margin:0 12px;color:var(--line)}
+.crumb a{transition:color .3s}
+.crumb a:hover{color:var(--ink)}
+.phd__ph{margin:60px 10px 0;overflow:hidden}
+.phd__ph img{width:100%;height:520px;object-fit:cover;scale:1.12}
+
+/* ---------- ブロック ---------- */
+.blk{padding:90px var(--pad) 90px}
+.blk--top{padding-top:70px}
+.blk--line{border-top:1px solid var(--line);margin:0 var(--pad);padding-left:0;padding-right:0}
+.sh{margin-bottom:44px}
+.sh__h{font-size:20px;font-weight:700;line-height:1.5;margin-top:12px}
+.two{display:grid;grid-template-columns:minmax(0,640px) minmax(0,694px);gap:52px;align-items:start}
+.two + .two,.cards + .two{margin-top:80px}
+.two--rev{grid-template-columns:minmax(0,640px) minmax(0,694px)}
+.two .sh{margin-bottom:0}
+.txt p + p{margin-top:18px}
+.txt__h{font-size:16px;font-weight:700;margin-bottom:18px}
+.pic{overflow:hidden}
+/* 素材の左右に白い余白があるので、少し拡大して枠の外へ逃がす */
+.pic img{width:100%;height:440px;object-fit:cover;scale:1.3}
+.pic--sm{width:280px;margin-top:40px}
+.pic--sm img{height:220px}
+.pic--msg{margin-top:44px;max-width:520px}
+.pic--msg img{height:380px}
+.note{margin-top:56px;color:var(--sub);max-width:640px}
+.more{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);max-width:280px}
+.ul{text-decoration:underline;text-underline-offset:3px}
+.sub__h{font-size:14px;font-weight:700;margin:70px 0 18px}
+h3{margin:0}
+blockquote{margin:0}
+dl,dd{margin:0}
+
+/* 考え方：番号付き3枚 */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:0;padding:0;list-style:none}
+.cards li{border-top:1.4px solid var(--ink);padding-top:22px}
+.cards__n{font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:var(--acc)}
+.cards__h{font-size:16px;font-weight:700;line-height:1.6;margin:10px 0 14px}
+
+/* 人材育成：年次の行 */
+.steps{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.steps__y{font-family:Inter,sans-serif;font-weight:500;font-size:12.5px}
+.steps__h{font-size:14px;font-weight:700;margin-bottom:6px}
+
+/* スタジオ：仕様 */
+.spec{margin-top:30px;border-top:1px solid var(--line)}
+.spec div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:12px 0;border-bottom:1px solid var(--line)}
+.spec dt{color:var(--sub)}
+
+/* 設備 4つ */
+.eq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:70px 52px}
+.eq .pic img{height:400px}
+.eq__n{font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:var(--acc);margin-top:26px}
+.eq__h{font-size:16px;font-weight:700;margin:6px 0 10px}
+
+/* 仕上げの一覧 */
+.fin{border-top:1px solid var(--line)}
+.fin div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.fin dt{font-weight:700;font-size:13px}
+
+/* 流れ */
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.flow li{padding:22px 24px 0 0;border-top:1.4px solid var(--ink);position:relative}
+.flow li + li{padding-left:24px;border-left:1px solid var(--line)}
+.flow__n{font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:var(--acc)}
+.flow__h{font-size:15px;font-weight:700;margin:6px 0 10px}
+
+/* 実績 */
+.case{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:80px 40px}
+.case .pic img{height:320px;transition:scale .6s var(--ease)}
+.case li:hover .pic img{scale:1.35}
+.case__cat{margin-top:22px;font-size:11px;color:var(--sub);display:flex;gap:12px}
+.case__cat span{font-family:Inter,sans-serif;font-weight:500;color:var(--ink)}
+.case__h{font-size:16px;font-weight:700;line-height:1.6;margin-top:6px}
+.case__b{margin-top:12px}
+.case__d{margin-top:18px;border-top:1px solid var(--line)}
+.case__d div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.case__d dt{color:var(--sub)}
+
+/* 職人 */
+.ppl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:90px 50px}
+.ppl .pic img{height:480px;transition:scale .6s var(--ease)}
+.ppl li:hover .pic img{scale:1.35}
+.ppl .craft__name{font-size:18px;font-weight:700;margin-top:6px;line-height:1.6}
+.ppl__k{font-family:"Noto Sans JP",sans-serif;font-size:11px;font-weight:400;color:var(--sub);margin-left:14px}
+.ppl__q{margin-top:22px;padding:20px 0 0 22px;border-top:1px solid var(--line);position:relative}
+.ppl__q::before{content:"";position:absolute;left:0;top:26px;width:8px;height:8px;background:var(--acc)}
+
+/* 表（会社概要・募集要項） */
+.tbl{border-top:1px solid var(--line)}
+.tbl div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:30px;padding:18px 0;border-bottom:1px solid var(--line)}
+.tbl dt{font-weight:700}
+.tbl--y dt{font-family:Inter,sans-serif;font-weight:500;font-size:13px}
+.acc2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:52px}
+.acc2 > div{border-top:1.4px solid var(--ink);padding-top:22px}
+.acc2__h{font-size:15px;font-weight:700;margin-bottom:10px}
+.jobs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:52px}
+.job__h{font-size:16px;font-weight:700;margin-bottom:18px}
+.job .tbl div{grid-template-columns:100px minmax(0,1fr)}
+
+/* ---------- お問い合わせ ---------- */
+.tels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:52px}
+.tels > div{border-top:1.4px solid var(--ink);padding-top:22px}
+.tels__h{font-size:12.5px;font-weight:700}
+.tels__v{display:inline-block;font-family:Inter,sans-serif;font-size:36px;font-weight:500;letter-spacing:-.01em;margin-top:8px}
+.tels__v--m{font-size:24px;margin-top:16px}
+.tels__p{color:var(--sub);margin-top:6px}
+.form{max-width:900px;margin-top:100px}
+.field{display:grid;grid-template-columns:220px minmax(0,1fr);gap:30px;padding:22px 0;border-top:1px solid var(--line)}
+.field__l{font-weight:700;font-size:12.5px;padding-top:10px;display:flex;align-items:flex-start;gap:10px}
+.req,.opt{font-size:10px;font-weight:500;padding:1px 7px;line-height:1.7;white-space:nowrap;margin-top:1px}
+.req{background:var(--ink);color:#fff}
+.opt{border:1px solid var(--line);color:var(--sub)}
+.form input[type=text],.form input[type=email],.form input[type=tel],.form textarea{
+  width:100%;font:inherit;font-size:14px;color:var(--ink);background:#fff;
+  border:1px solid var(--line);border-radius:0;padding:11px 14px;transition:border-color .3s}
+.form textarea{min-height:200px;resize:vertical;line-height:1.8}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--ink)}
+.form ::placeholder{color:#AAA}
+.radios{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:8px}
+.radios label,.agree label{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:12.5px}
+.form input[type=radio],.form input[type=checkbox]{width:16px;height:16px;margin:0;accent-color:var(--ink)}
+.agree{padding:30px 0 0;border-top:1px solid var(--line);text-align:center}
+.agree a{text-decoration:underline;text-underline-offset:3px}
+.err{display:none;color:#B3261E;font-size:11px;margin-top:8px}
+.is-err .err{display:block}
+.is-err input[type=text],.is-err input[type=email],.is-err textarea{border-color:#B3261E}
+.submit{display:block;margin:34px auto 0;width:320px;max-width:100%;height:60px;border:0;cursor:pointer;
+  background:var(--ink);color:#fff;font:inherit;font-size:13px;font-weight:700;letter-spacing:.08em;transition:opacity .3s}
+.submit:hover{opacity:.8}
+.thanks{max-width:900px;margin-top:100px;padding:70px 0;border-top:1.4px solid var(--ink);border-bottom:1px solid var(--line);text-align:center}
+.thanks:focus{outline:none}
+.thanks__h{font-size:20px;font-weight:700;margin:12px 0 18px}
+.thanks .more{margin:40px auto 0}
+
+/* ---------- プライバシーポリシー ---------- */
+.policy{max-width:900px}
+.policy h2{font-size:15px;font-weight:700;margin:44px 0 12px;padding-top:22px;border-top:1px solid var(--line)}
+.policy ol{margin:0;padding-left:1.6em}
+.policy .date{margin-top:44px;color:var(--sub);text-align:right}
+
+/* ============================================================
+   SP
+   ============================================================ */
+@media (max-width:900px){
+  .shd{top:18px}
+  .shd__en{font-size:8px}
+  .shd__ja{font-size:15px}
+
+  .phd{padding-top:120px}
+  .phd__en{font-size:44px}
+  .phd__ja{font-size:19px;margin-top:20px}
+  .phd__lead{font-size:11.5px}
+  .crumb{margin-top:34px;font-size:10px}
+  .phd__ph{margin:34px 12px 0}
+  .phd__ph img{height:260px}
+
+  .blk{padding:56px var(--pad)}
+  .blk--top{padding-top:44px}
+  .blk--line{padding-left:0;padding-right:0}
+  .sh{margin-bottom:28px}
+  .sh__h{font-size:18px}
+  .two,.two--rev{grid-template-columns:minmax(0,1fr);gap:26px}
+  .two + .two,.cards + .two{margin-top:50px}
+  .pic img{height:240px}
+  .pic--sm{width:100%;margin-top:26px}
+  .pic--sm img{height:200px}
+  .note{margin-top:34px}
+  .more{margin-top:34px;max-width:none}
+  .sub__h{margin-top:50px}
+
+  .cards{grid-template-columns:minmax(0,1fr);gap:30px}
+  .cards__h{font-size:15px}
+  .steps li{grid-template-columns:minmax(0,1fr);gap:4px;padding:16px 0}
+  .spec div,.fin div{grid-template-columns:90px minmax(0,1fr);gap:14px}
+  .fin div{grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 0}
+
+  .eq{grid-template-columns:minmax(0,1fr);gap:44px}
+  .eq .pic img{height:240px}
+  .eq__n{margin-top:18px}
+
+  .flow{grid-template-columns:minmax(0,1fr);border-top:1.4px solid var(--ink)}
+  .flow li,.flow li + li{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:10px;
+    padding:16px 0;border:0;border-bottom:1px solid var(--line)}
+  .flow__n{grid-row:span 2;padding-top:2px}
+  .flow__h{margin:0 0 4px}
+  .flow li p:last-child{grid-column:2}
+
+  .case{grid-template-columns:minmax(0,1fr);gap:56px}
+  .case .pic img{height:240px}
+
+  .ppl{grid-template-columns:minmax(0,1fr);gap:56px}
+  .ppl .pic img{height:260px}
+  .ppl .craft__name{font-size:16px}
+
+  .tbl div{grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 0}
+  .tbl--y div{grid-template-columns:64px minmax(0,1fr);gap:14px}
+  .acc2,.jobs,.tels{grid-template-columns:minmax(0,1fr);gap:34px}
+  .job .tbl div{grid-template-columns:minmax(0,1fr)}
+
+  .tels__v{font-size:28px}
+  .tels__v--m{font-size:17px}
+  .form{margin-top:60px}
+  .field{grid-template-columns:minmax(0,1fr);gap:10px;padding:18px 0}
+  .field__l{padding-top:0}
+  .form input[type=text],.form input[type=email],.form input[type=tel],.form textarea{font-size:16px}
+  .radios{flex-direction:column;gap:12px;padding-top:0}
+  .agree{text-align:left}
+  .thanks{margin-top:60px;padding:50px 0}
+  .thanks__h{font-size:17px}
+  .policy h2{font-size:14px}
+}

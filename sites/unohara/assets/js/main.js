@@ -26,16 +26,29 @@
   });
 
   /* ---- カートに入れる（参照元 js_waveBg_1/2 ＋ 文字の入れ替え） ---- */
+  /* カートの中身はページをまたいで覚えておく（商品IDと数量だけ） */
+  const KEY = 'unohara-cart';
+  const load = () => { try { return JSON.parse(sessionStorage.getItem(KEY)) || {}; } catch (e) { return {}; } };
+  let cart = load();
   const cartn = $('#cartn');
-  let count = 0;
+  const paint = () => {
+    const n = Object.values(cart).reduce((a, b) => a + b, 0);
+    if (cartn) cartn.textContent = String(n);
+    $$('.ft__cart b').forEach(b => b.textContent = String(n));
+  };
+  window.unoharaCart = {
+    get: () => ({ ...cart }),
+    set: (c) => { cart = c; try { sessionStorage.setItem(KEY, JSON.stringify(cart)); } catch (e) { /* 保存できなくても表示は続ける */ } paint(); },
+  };
+  paint();
   $$('[data-add]').forEach(btn => {
     btn.innerHTML = `<span class="bk__wave"></span><span class="bk__wave"></span>`
       + `<span class="bk__t">${btn.textContent.trim()}</span>`;
     btn.addEventListener('click', () => {
       if (btn.classList.contains('is-adding')) return;
       const done = () => {
-        count++; cartn.textContent = String(count);
-        $$('.ft__cart b').forEach(b => b.textContent = String(count));
+        const id = btn.dataset.add || 'item';
+        const c = window.unoharaCart.get(); c[id] = (c[id] || 0) + 1; window.unoharaCart.set(c);
         cartn.classList.remove('pop'); void cartn.offsetWidth; cartn.classList.add('pop');
         btn.classList.remove('is-adding');
         $('.bk__t', btn).textContent = 'カートに入れる';

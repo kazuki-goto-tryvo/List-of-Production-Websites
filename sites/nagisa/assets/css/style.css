@@ -247,9 +247,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .logo--w b{grid-template-columns:repeat(3,11px);grid-auto-rows:11px}
 .logo--w span{font-size:19px}
 .ft__co{background:var(--ink);color:#9A9A9A;font-size:10px;font-weight:400;line-height:2;
-  padding:0 70px 10px;margin-top:-96px}
+  padding:40px 70px 0}   /* 住所が左の青いカードの裏に隠れていたので、重ねずに下へ出す（2026-10-03） */
 .ft__c{background:var(--ink);color:#9A9A9A;font-family:var(--en);font-size:13px;
-  text-align:right;padding:40px 70px 30px}
+  text-align:right;padding:0 70px 30px}
 
 /* ================= SP（390のフレームどおり） ================= */
 @media (max-width:900px){
@@ -344,7 +344,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .logo--w{margin-top:34px}
   .logo--w b{grid-template-columns:repeat(3,9px);grid-auto-rows:9px}
   .logo--w span{font-size:15px}
-  .ft__co{padding:0 12px 10px;margin-top:26px;font-size:9px}
+  .ft__co{padding:26px 12px 10px;font-size:9px}   /* margin だと白い隙間が出たので padding に */
   .ft__c{padding:20px 12px 24px;text-align:left;font-size:11px}
 }
 
